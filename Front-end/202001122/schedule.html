@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+
+  <!-- Head Section -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Schedule | FIRE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Stylesheet -->
+    <style>
+      .carousel-inner {
+          height:400px;
+          background-position: center;
+          content: inherit;
+          box-sizing: border-box;
+          max-width: 100%;
+      }
+      .flex-container {
+          display: flex;
+      }
+
+      .flex-child {
+          margin: 10px;
+          border: 1px;
+          padding: 15px;
+          min-width: 300px;
+      }
+    </style>
+  </head>
+
+  <!-- Body Section -->
+  <body>
+    <div class="main">
+
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active" data-bs-interval="3000">
+            <img src="background1.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img src="background2.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img src="background3.jpg" class="d-block w-100" alt="...">
+          </div>
+
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Fire 2022</h1>
+            <p>Conference Management Website</p>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      
+      <div class="flex-container">
+
+        <!-- Slidebar -->
+        <div class="flex-child d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; margin: 10px;">
+        
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" aria-current="page">
+                <i class="fa fa-fw fa-home"></i>
+                Home
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                <i class="fa fa-fw fa-file"></i>
+                Call for Papers
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                <i class="fa fa-fw fa-laptop"></i>
+                Tutorials
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="fa fa-fw fa-book"></i>
+                Lecture Series
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                <i class="fa fa-fw fa-gear"></i>
+                Schedule
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                <i class="fa fa-fw fa-rupee"></i>
+                Registration
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                <i class="fa fa-fw fa-money"></i>
+                Student Travel Grant
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                <i class="fa fa-fw fa-users"></i>
+                Organization
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                <i class="fa fa-fw fa-building"></i>
+                Accommodation
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                <i class="fa fa-fw fa-envelope"></i>
+                Contact Us
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                <i class="fa fa-fw fa-check"></i>
+                Accepted Paper
+                </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex-child d-flex flex-column">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"> -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> -->
+        <style>
+            body{
+                background-color: #eee;
+            }
+
+            .mt-70{
+                margin-top: 70px;
+            }
+
+            .mb-70{
+                margin-bottom: 70px;
+            }
+
+            .card {
+                box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+                border-width: 0;
+                transition: all .2s;
+            }
+
+            .card {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+                word-wrap: break-word;
+                background-color: #fff;
+                background-clip: border-box;
+                border: 1px solid rgba(26,54,126,0.125);
+                border-radius: .25rem;
+            }
+
+            .card-body {
+                flex: 1 1 auto;
+                padding: 1.25rem;
+            }
+            .vertical-timeline {
+                width: 100%;
+                position: relative;
+                padding: 1.5rem 0 1rem;
+            }
+
+            .vertical-timeline::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 67px;
+                height: 100%;
+                width: 4px;
+                background: #e9ecef;
+                border-radius: .25rem;
+            }
+
+            .vertical-timeline-element {
+                position: relative;
+                margin: 0 0 1rem;
+            }
+
+            .vertical-timeline--animate .vertical-timeline-element-icon.bounce-in {
+                visibility: visible;
+                animation: cd-bounce-1 .8s;
+            }
+            .vertical-timeline-element-icon {
+                position: absolute;
+                top: 0;
+                left: 60px;
+            }
+
+            .vertical-timeline-element-icon .badge-dot-xl {
+                box-shadow: 0 0 0 5px #fff;
+            }
+
+            .badge-dot-xl {
+                width: 18px;
+                height: 18px;
+                position: relative;
+            }
+            .badge:empty {
+                display: none;
+            }
+
+
+            .badge-dot-xl::before {
+                content: '';
+                width: 10px;
+                height: 10px;
+                border-radius: .25rem;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin: -5px 0 0 -5px;
+                background: #fff;
+            }
+
+            .vertical-timeline-element-content {
+                position: relative;
+                margin-left: 90px;
+                font-size: .8rem;
+            }
+
+            .vertical-timeline-element-content .timeline-title {
+                font-size: .8rem;
+                text-transform: uppercase;
+                margin: 0 0 .5rem;
+                padding: 2px 0 0;
+                font-weight: bold;
+            }
+
+            .vertical-timeline-element-content .vertical-timeline-element-date {
+                display: block;
+                position: absolute;
+                left: -90px;
+                top: 0;
+                padding-right: 10px;
+                text-align: right;
+                color: #adb5bd;
+                font-size: .7619rem;
+                white-space: nowrap;
+            }
+
+            .vertical-timeline-element-content:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        </style>
+
+        <div class="main-card mb-3 card">
+          <div class="card-body">
+            <h5 class="card-title">User Timeline</h5>
+            <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot badge-dot-xl badge-success"></i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <h4 class="timeline-title">Meeting with client</h4>
+                          <p>Meeting with USA Client, today at <b>12:00 PM</b></p>
+                          <span class="vertical-timeline-element-date">9:30 AM</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot-xl badge-success"> </i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <p>Another meeting with UK client today, at <b>3:00 PM</b></p>
+                          <p>Yet another one, at <b>5:00 PM</b></p>
+                          <span class="vertical-timeline-element-date">12:25 PM</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot-xl badge-success"> </i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <h4 class="timeline-title">Discussion with team about new product launch</h4>
+                          <p>meeting with team mates about the launch of new product. and tell them about new features</p>
+                          <span class="vertical-timeline-element-date">6:00 PM</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot-xl badge-success"> </i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <h4 class="timeline-title">Discussion with marketing team</h4>
+                          <p>Discussion with marketing team about the popularity of last product</p>
+                          <span class="vertical-timeline-element-date">9:00 AM</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot-xl badge-success"> </i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <h4 class="timeline-title">Purchase new hosting plan</h4>
+                          <p>Purchase new hosting plan as discussed with development team, today at <b>10:00 AM</b></p>
+                          <span class="vertical-timeline-element-date">10:30 PM</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot-xl badge-success"> </i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <p>Another conference call today, at <b>11:00 AM</b></p>
+                          <p>Yet another one, at <b>1:00 PM</b></p>
+                          <span class="vertical-timeline-element-date">12:25 PM</span>
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot badge-dot-xl badge-success"> </i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <p>Another meeting with UK client today, at <b>3:00 PM</b></p>
+                          <p>Yet another one, at <b>5:00 PM</b></p>
+                          <span class="vertical-timeline-element-date">12:25 PM</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot badge-dot-xl badge-success"> </i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <h4 class="timeline-title">Discussion with team about new product launch</h4>
+                          <p>meeting with team mates about the launch of new product. and tell them about new features</p>
+                          <span class="vertical-timeline-element-date">6:00 PM</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot badge-dot-xl badge-success"> </i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <h4 class="timeline-title text-success">Discussion with marketing team</h4>
+                          <p>Discussion with marketing team about the popularity of last product</p>
+                          <span class="vertical-timeline-element-date">9:00 AM</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-timeline-item vertical-timeline-element">
+                  <div>
+                      <span class="vertical-timeline-element-icon bounce-in">
+                          <i class="badge badge-dot badge-dot-xl badge-success"> </i>
+                      </span>
+                      <div class="vertical-timeline-element-content bounce-in">
+                          <h4 class="timeline-title">Purchase new hosting plan</h4>
+                          <p>Purchase new hosting plan as discussed with development team, today at <b>10:00 AM</b></p>
+                          <span class="vertical-timeline-element-date">10:30 PM</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-timeline-item vertical-timeline-element">
+                <div>
+                  <span class="vertical-timeline-element-icon bounce-in">
+                    <i class="badge badge-dot badge-dot-xl badge-success"> </i>
+                  </span>
+                  <div class="vertical-timeline-element-content bounce-in">
+                    <p>Another conference call today, at <b>11:00 AM</b></p>
+                    <p>Yet another one, at <b>1:00 PM</b></p>
+                    <span class="vertical-timeline-element-date">12:25 PM</span>
+                  </div>
+                </div>
+              </div>                      
+            </div>
+          </div>
+        </div>        
+                <!-- </div> -->
+            <!-- </div> -->
+            </div>
+        </div>
+
+
+        <div class="footer">
+            <div class="container">
+                <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                  <div class="col-md-4 d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                      <img src="DAIICT.jpg" alt="DAIICT Logo" style="width: 100%; height: 100%;">
+                    </a>
+                    <span class="mb-3 mb-md-0 text-muted">Dhirubhai Ambani Institute of Information and Communication Technology</span>
+                  </div>
+              
+                  <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="https://www.facebook.com/fire.forum" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="https://twitter.com/fire_forum" target="_blank"><i class="fa fa-fw fa-twitter"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href=""><i class="fa fa-fw fa-instagram"></i></a></li>
+                  </ul>
+                </footer>
+              </div>
+        </div>
+    </div>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
