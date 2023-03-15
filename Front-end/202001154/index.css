@@ -106,3 +106,7 @@ header {
 footer .left-footer img {
   height: 100px;
 }
+
+footer .right-footer .socials {
+  font-size: 2em;
+}
