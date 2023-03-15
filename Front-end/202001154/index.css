@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --text-color: #078186;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.container-fluid {
+  margin: 0 !important;
+}
+
+header {
+  height: 50vh;
+  position: relative;
+  width: 100vw;
+  margin: 0 !important;
+}
+
+header .org-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  padding: 0;
+}
+
+.main-heading {
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.sec-heading {
+  font-weight: 650;
+  font-size: 1.8rem;
+}
+
+.tabs-container {
+  background-color: #eee;
+  color: var(--text-color);
+  font-weight: 700;
+  transition: all 0.5s ease;
+}
+
+.tabs-container .tab {
+  padding: 0.5em;
+}
+
+.tabs-container .tab div {
+  width: 2rem;
+  margin-right: 1em;
+  display: inline;
+}
+
+.tabs-container .tab:hover {
+  background-color: #fff;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.content-heading,
+.right-container-heading {
+  background-color: #eee;
+  color: var(--text-color);
+  font-weight: 700;
+}
