@@ -27,12 +27,12 @@
     />
   </head>
   <body>
-    <header class="container-fluid row py-4 border border-bottom-3">
-      <img
-        class="org-img"
-        src="https://placehold.jp/ff8080/ffffff/1500x300.png"
-        alt=""
-      />
+    <header
+      class="container-fluid row py-4 border border-bottom-3"
+      style="
+        background-image: url('https://placehold.jp/ff8080/ffffff/1500x300.png');
+      "
+    >
       <div class="top-left col-2 d-none d-sm-block">
         <img src="https://placehold.jp/200x120.png" alt="" />
       </div>
@@ -53,37 +53,88 @@
 
     <div class="container-fluid overflow-hidden">
       <div class="main-content row p-5 gx-5">
+        <!-- content which will come in left side -->
+
         <div class="left-content col-12 col-md-4 col-lg-3">
           <div
             class="p-3 tabs-container rounded border shadow-sm border-2 text-capitalize"
           >
-            <div class="tab rounded">
+            <a href="#" class="tab rounded my-3 shadow-sm">
               <div><i class="fa-solid fa-house-chimney mr-1"></i></div>
               <span>Home</span>
-            </div>
-            <div class="tab rounded">
+            </a>
+            <a href="#" class="tab rounded my-3 shadow-sm">
               <div>
                 <i class="fa-solid fa-file"></i>
               </div>
               <span>call for papers</span>
-            </div>
-            <div class="tab rounded">
+            </a>
+            <a href="#" class="tab rounded my-3 shadow-sm">
               <div><i class="fa-solid fa-laptop"></i></div>
               <span>Call for tracks</span>
-            </div>
-            <div class="tab rounded">
+            </a>
+            <a href="#" class="tab rounded my-3 shadow-sm">
               <div><i class="fa-solid fa-calendar"></i></div>
               <span>schedule</span>
-            </div>
-            <div class="tab rounded">
+            </a>
+            <a href="#" class="tab rounded my-3 shadow-sm">
               <div><i class="fa-solid fa-user-group"></i></div>
               <span>organization</span>
-            </div>
+            </a>
           </div>
+
+          <hr class="hr" />
+
+          <!-- archives -->
+          <div
+            class="p-3 tabs-container rounded border shadow-sm border-2 text-capitalize"
+          >
+            <div class="archive-heading p-2 rounded">
+              <div><i class="fa-solid fa-box-archive"></i></div>
+              <span>Archives</span>
+            </div>
+            <a href="#" class="tab rounded my-3 shadow-sm">
+              <div><i class="fa-solid fa-database"></i></div>
+              <span>Data</span>
+            </a>
+            <a href="#" class="tab rounded my-3 shadow-sm">
+              <div>
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </div>
+              <span>Resources</span>
+            </a>
+            <a href="#" class="tab rounded my-3 shadow-sm">
+              <div><i class="fa-solid fa-timeline"></i></div>
+              <span>Past Precedings</span>
+            </a>
+            <a href="#" class="tab rounded my-3 shadow-sm">
+              <div><i class="fa-solid fa-fire"></i></div>
+              <span>Fire</span>
+            </a>
+            <a href="#" class="years rounded my-2">
+              <div><i class="fa-solid fa-arrow-right"></i></div>
+              <span>2022</span>
+            </a>
+            <a href="#" class="years rounded my-2">
+              <div><i class="fa-solid fa-arrow-right"></i></div>
+              <span>2021</span>
+            </a>
+            <a href="#" class="years rounded my-2">
+              <div><i class="fa-solid fa-arrow-right"></i></div>
+              <span>2020</span>
+            </a>
+          </div>
+
+          <hr class="hr" />
         </div>
+
+        <!-- content which will come in center -->
+
         <div class="central-content col-12 col-md-7 gap-2">
           <div class="content-container rounded-3 shadow-sm border border-2">
-            <div class="content-heading h2 px-4 py-2">Welcome</div>
+            <div class="content-heading h2 px-4 py-2 text-capitalize">
+              Welcome
+            </div>
             <div class="content-desc p-3" style="text-align: justify">
               <p>
                 The 15th meeting of Forum for Information Retrieval Evaluation
@@ -113,7 +164,33 @@
               </p>
             </div>
           </div>
+
+          <hr class="hr" />
+
+          <!-- container for showing list content -->
+          <div class="list-container rounded-3 shadow-sm border border-2">
+            <div class="content-heading h2 px-4 py-2 text-capitalize">
+              Keynote speakers
+            </div>
+            <ul>
+              <li><a href="#">Nicola Cancedda, Meta, UK </a></li>
+              <li>
+                <a href="#">Frank Hopfgartner, Universität Koblenz, Germany </a>
+              </li>
+              <li><a href="#">Cynthia Rudin, Duke University, USA </a></li>
+              <li>
+                <a href="Serge Sharoff, University of Leeds, UK "
+                  >Serge Sharoff, University of Leeds, UK
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <hr class="hr" />
         </div>
+
+        <!-- content which will come in right side -->
+
         <div class="right-content col-12 col-lg-2">
           <div class="right-container" style="border-bottom: 2px solid #dcdcdc">
             <div
@@ -128,5 +205,14 @@
         </div>
       </div>
     </div>
+
+    <footer class="row px-5 border border-2 shadow py-2">
+      <div class="left-footer col-12 col-md-6 d-flex align-items-center">
+        <img src="./DAIICT.jpg" alt="DAIICT LOGO" />
+        <div class="h3 text-capitalize">
+          Dhirubhai Ambani Institute of information and Communication Technology
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

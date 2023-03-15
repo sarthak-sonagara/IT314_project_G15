@@ -21,18 +21,10 @@ body {
 
 header {
   height: 50vh;
-  position: relative;
+  background-size: cover;
+  background-position: center;
   width: 100vw;
   margin: 0 !important;
-}
-
-header .org-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  padding: 0;
 }
 
 .main-heading {
@@ -46,17 +38,21 @@ header .org-img {
 }
 
 .tabs-container {
-  background-color: #eee;
-  color: var(--text-color);
   font-weight: 700;
   transition: all 0.5s ease;
+  background-color: #eee;
 }
 
 .tabs-container .tab {
+  color: var(--text-color);
   padding: 0.5em;
+  display: block;
+  text-decoration: none;
 }
 
-.tabs-container .tab div {
+.tabs-container .tab div,
+.archive-heading div,
+.years div {
   width: 2rem;
   margin-right: 1em;
   display: inline;
@@ -68,9 +64,45 @@ header .org-img {
   cursor: pointer;
 }
 
+.tabs-container .archive-heading {
+  background-color: var(--text-color);
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.tabs-container .years {
+  margin-left: 1em;
+  display: block;
+  color: #014421;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  padding: 0.5em;
+}
+
+.tabs-container .years:hover {
+  color: #1cac78;
+  background-color: #fff;
+  transition: all 0.5s ease;
+}
+
 .content-heading,
 .right-container-heading {
   background-color: #eee;
   color: var(--text-color);
   font-weight: 700;
+}
+
+.list-container ul li {
+  list-style-type: square;
+}
+
+.list-container ul li a {
+  text-decoration: none;
+  font-size: 1.2em;
+  color: var(--text-color);
+}
+
+footer .left-footer img {
+  height: 100px;
 }
