@@ -1,0 +1,129 @@
+:root {
+    --text-color: #078186;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", Times, serif;
+    box-sizing: border-box;
+    --background-color: #eeeeee;
+    --primary-color: #078186;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.container-fluid {
+    margin: 0 !important;
+}
+
+header {
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    margin: 0 !important;
+}
+
+.main-header {
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.sec-header {
+    font-weight: 650;
+    font-size: 1.7rem;
+}
+
+
+.content-heading {
+    background-color: #eee;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.sidecontainerele {
+    width: 100vw;
+}
+
+.sidecontainer {
+    width: 20vw;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    padding: 10px 0;
+    border-radius: 4px;
+}
+
+.sidecontainer1 {
+    width: 20vw;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    padding: 10px 0;
+    margin: 25px 0 0 0;
+    border-radius: 4px;
+}
+
+.sidecontainerelement {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-size: 15px;
+}
+
+.mainContainer {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    margin: 50px 0;
+    width: 100vw;
+    justify-content: space-between;
+    align-items: space-between;
+}
+
+.leftsideContainer {
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
+
+.middlecontainer {
+    display: flex;
+    flex-direction: column;
+    width: 50em;
+    height: 70em;
+    padding: 0 15px;
+}
+
+.sponsors,
+.publication {
+    display: flex;
+    flex-direction: column;
+    width: 12em;
+    height: 50px;
+    border-radius: 4px;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #078186;
+    font-size: 20px;
+    margin-bottom: 80px;
+}
+
+.rightsidecontainer {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    padding-left: 15px;
+}
+
+h6 {
+    font-weight: 700;
+}
