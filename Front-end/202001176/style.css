@@ -1,0 +1,95 @@
+header {
+
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 45px;
+}
+
+.block1 {
+    background-color: rgb(244, 240, 240);
+    padding: 30px 30px;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.block1 a {
+    text-decoration: none;
+    background-size: cover;
+}
+
+.block1 a:link {
+    color: rgb(15, 207, 241);
+    font-weight: bold;
+}
+
+.block1 a:hover {
+    background-color: white;
+    padding: 2px;
+}
+
+.block2 {
+    text-align: left;
+    padding: 10px 10px;
+    position: absolute;
+    top: 250px;
+    left: 18%;
+    right: 18%;
+}
+
+.block2 h1 {
+    color: rgb(15, 207, 241);
+}
+
+.block2 p {
+    line-height: 1.6;
+    padding: 5px;
+}
+
+.block2 h1 {
+    background-color: rgb(244, 240, 240);
+    padding: 5px;
+    left : 5px;
+}
+.block3{
+    background-color: rgb(244, 240, 240);
+    padding: 30px 30px;
+    font-size: 18px;
+    position: absolute;
+    top: 450px;
+    text-decoration: none;
+}
+.block3 a {
+    text-decoration: none;
+    background-size: cover;
+}
+.block3 a:link {
+    color: rgb(15, 207, 241);
+    font-weight: bold;
+}
+.block3 a:hover {
+    background-color: white;
+    padding: 5px;
+    border-radius: 9px;
+}
+
+.block4{
+    background-color: rgb(244, 240, 240);
+    padding: 30px 30px;
+    font-size: 18px;
+}
+.block4 a {
+    text-decoration: none;
+    background-size: cover;
+}
+.block4 a:link {
+    color: rgb(15, 207, 241);
+    font-weight: bold;
+}
+.block4 a:hover {
+    background-color: white;
+    padding: 5px;
+    border-radius: 9px;
+}
