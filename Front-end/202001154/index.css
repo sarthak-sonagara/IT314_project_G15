@@ -27,6 +27,16 @@ header {
   margin: 0 !important;
 }
 
+header .socials {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+header .socials .social-link {
+  font-size: 2em;
+  text-decoration: none;
+}
+
 .main-heading {
   font-weight: 700;
   font-size: 3rem;
@@ -103,8 +113,13 @@ header {
   color: var(--text-color);
 }
 
+footer {
+  background-color: var(--text-color);
+  min-height: 200px;
+}
+
 footer .left-footer img {
-  height: 100px;
+  height: 60px;
 }
 
 footer .right-footer .socials {
