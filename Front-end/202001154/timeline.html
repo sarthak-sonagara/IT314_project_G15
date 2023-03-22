@@ -2,12 +2,70 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
     <link rel="stylesheet" href="./timeline.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
+    <header
+      class="container-fluid row py-2"
+      style="background-image: url('./title-background-2022.png')"
+    >
+      <div class="top-left col-2 d-none d-sm-block">
+        <img src="./title_left-2022.png" alt="" />
+      </div>
+      <div class="top-center col-12 col-sm-8 text-center text-capitalize">
+        <h1 class="main-heading">Fire 2023</h1>
+        <h2 class="sec-heading">forum for Information Retrieval Evaluation</h2>
+        <h4 style="font-weight: 550" class="font-weight-bold">
+          indian statistical institute, kolkata
+        </h4>
+        <h4 style="font-weight: 550" class="font-weight-bold">
+          9th-13th december
+        </h4>
+      </div>
+      <div class="top-right col-2 d-none d-sm-flex flex-column">
+        <img src="./title_left-2022.png" alt="" />
+        <div class="socials d-flex justify-content-end">
+          <a href="#" class="social-link mx-1">
+            <i
+              class="fab fa-facebook-f text-light border border-2 shadow-lg py-1 px-2 bg-primary rounded-3"
+            ></i>
+          </a>
+          <a href="#" class="social-link mx-1">
+            <i
+              class="fab fa-twitter text-light border border-2 shadow-lg py-1 px-2 bg-info rounded-3"
+            ></i>
+          </a>
+          <a href="#" class="social-link mx-1">
+            <i
+              class="fab fa-linkedin-in text-light border border-2 shadow-lg py-1 px-2 bg-primary rounded-3"
+            ></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="row">
+      <div class="h1 shadow-sm py-2 bg-secondary text-light text-center">Event Schedules</div>
+    </div>
+
     <div class="timeline">
-      <div class="container left">
-        <div class="content">
+      <div class="card-container left">
+        <div class="content shadow-lg">
           <h2>2017</h2>
           <p>
             Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
@@ -17,8 +75,8 @@
           </p>
         </div>
       </div>
-      <div class="container right">
-        <div class="content">
+      <div class="card-container right">
+        <div class="content shadow-lg">
           <h2>2016</h2>
           <p>
             Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
@@ -28,8 +86,8 @@
           </p>
         </div>
       </div>
-      <div class="container left">
-        <div class="content">
+      <div class="card-container left">
+        <div class="content shadow-lg">
           <h2>2015</h2>
           <p>
             Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
@@ -39,8 +97,8 @@
           </p>
         </div>
       </div>
-      <div class="container right">
-        <div class="content">
+      <div class="card-container right">
+        <div class="content shadow-lg">
           <h2>2012</h2>
           <p>
             Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
@@ -50,8 +108,8 @@
           </p>
         </div>
       </div>
-      <div class="container left">
-        <div class="content">
+      <div class="card-container left">
+        <div class="content shadow-lg">
           <h2>2011</h2>
           <p>
             Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
@@ -61,8 +119,8 @@
           </p>
         </div>
       </div>
-      <div class="container right">
-        <div class="content">
+      <div class="card-container right">
+        <div class="content shadow-lg">
           <h2>2007</h2>
           <p>
             Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
@@ -73,5 +131,39 @@
         </div>
       </div>
     </div>
+    <footer class="row px-5 border border-2 shadow py-2">
+      <div class="left-footer col-12 col-md-6 d-flex align-items-center">
+        <img
+          src="./DAIICT.png"
+          alt="DAIICT LOGO"
+          class="bg-light rounded-circle mx-3"
+        />
+
+        <div class="h3 text-capitalize text-light">
+          Dhirubhai Ambani Institute of information and Communication Technology
+        </div>
+      </div>
+      <div
+        class="right-footer col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-end"
+      >
+        <div class="socials">
+          <a href="#" class="social-link mx-1">
+            <i
+              class="fab fa-facebook-f text-light border border-2 shadow-lg py-1 px-2 bg-primary rounded-3"
+            ></i>
+          </a>
+          <a href="#" class="social-link mx-1">
+            <i
+              class="fab fa-twitter text-light border border-2 shadow-lg py-1 px-2 bg-info rounded-3"
+            ></i>
+          </a>
+          <a href="#" class="social-link mx-1">
+            <i
+              class="fab fa-linkedin-in text-light border border-2 shadow-lg py-1 px-2 bg-primary rounded-3"
+            ></i>
+          </a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
