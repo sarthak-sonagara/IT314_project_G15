@@ -127,3 +127,31 @@ header {
 h6 {
     font-weight: 700;
 }
+
+.footerBackground {
+    background-color: #037074;
+}
+
+.footerContainer {
+    flex-direction: column;
+    text-align: justify;
+}
+
+.footerContainer img {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+}
+
+.footerContainer:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+
+footer {
+    margin-top: 70px;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    display: block;
+}
