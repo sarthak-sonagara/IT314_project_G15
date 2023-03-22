@@ -17,6 +17,7 @@ body {
 
 .container-fluid {
   margin: 0 !important;
+  overflow: hidden !important;
 }
 
 header {
@@ -25,6 +26,17 @@ header {
   background-position: center;
   width: 100vw;
   margin: 0 !important;
+  border-bottom: 12px solid #444;
+}
+
+header .socials {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+header .socials .social-link {
+  font-size: 2em;
+  text-decoration: none;
 }
 
 .main-heading {
@@ -103,8 +115,13 @@ header {
   color: var(--text-color);
 }
 
+footer {
+  background-color: var(--text-color);
+  min-height: 200px;
+}
+
 footer .left-footer img {
-  height: 100px;
+  height: 60px;
 }
 
 footer .right-footer .socials {
