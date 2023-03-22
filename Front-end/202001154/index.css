@@ -17,6 +17,7 @@ body {
 
 .container-fluid {
   margin: 0 !important;
+  overflow: hidden !important;
 }
 
 header {
@@ -25,6 +26,7 @@ header {
   background-position: center;
   width: 100vw;
   margin: 0 !important;
+  border-bottom: 12px solid #444;
 }
 
 header .socials {
