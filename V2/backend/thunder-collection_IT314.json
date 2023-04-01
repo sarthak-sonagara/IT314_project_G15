@@ -1,0 +1,55 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "IT314",
+    "dateExported": "2023-04-01T16:47:44.436Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "ccb70fa3-d485-4c1a-957e-004fd29dcb4b",
+            "name": "auth",
+            "containerId": "",
+            "created": "2023-04-01T16:35:30.539Z",
+            "sortNum": 10000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "d5cf9843-5434-4de1-8292-7661e7585b7d",
+            "colId": "b1b8d211-6ad1-4c9c-bc66-97076c49bf94",
+            "containerId": "ccb70fa3-d485-4c1a-957e-004fd29dcb4b",
+            "name": "signup",
+            "url": "http://localhost:3001/auth/user/signup",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-04-01T16:35:41.073Z",
+            "modified": "2023-04-01T16:47:33.040Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"Shreeji\",\n  \"email\": \"shreeji@gmail.com\",\n  \"password\": \"Shreeji@01\",\n  \"role\": \"admin\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7c4e8983-1aba-4673-9b63-0b98fd3b05cf",
+            "colId": "b1b8d211-6ad1-4c9c-bc66-97076c49bf94",
+            "containerId": "ccb70fa3-d485-4c1a-957e-004fd29dcb4b",
+            "name": "login",
+            "url": "http://localhost:3001/auth/user/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-04-01T16:44:08.511Z",
+            "modified": "2023-04-01T16:46:28.270Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"shreeji@gmail.com\",\n  \"password\": \"Shreeji@01\",\n  \"role\": \"admin\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
