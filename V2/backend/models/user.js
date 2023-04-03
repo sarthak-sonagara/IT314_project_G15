@@ -92,4 +92,23 @@ userSchema.statics.login = async function (email, password, role) {
   return user;
 };
 
+// static update function
+userSchema.statics.update = async function (email, password) {
+  // validation
+  if (!email || !password) {
+    throw new Error("Please fill all the fields");
+  }
+  const user = await this.findOne({ email });
+
+  if (!user) {
+    throw new Error("Not authorized to update");
+  }
+
+  const salt = await bcyrpt.genSalt(10);
+  const hash = await bcyrpt.hash(password, salt);
+  user.password = hash; // update password
+  await user.save();
+  return user;
+};
+
 module.exports = mongoose.model("User", userSchema);
