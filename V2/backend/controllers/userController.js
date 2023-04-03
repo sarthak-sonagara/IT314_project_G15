@@ -36,4 +36,26 @@ const loginUser = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-module.exports = { signupUser, loginUser };
+const updateUser = async (req, res) => {
+  const { email, password } = req.body;
+  User.update(email, password)
+    .then((user) => {
+      res.status(200).json({
+        user,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+const deleteUser = async (req, res) => {
+  const { email } = req.body;
+  User.findOneAndDelete({ email })
+    .then((user) => {
+      res.status(200).json({
+        user,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+module.exports = { signupUser, loginUser, updateUser, deleteUser };

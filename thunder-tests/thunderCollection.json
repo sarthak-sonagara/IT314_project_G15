@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "colName": "IT314",
+    "created": "2023-04-03T18:06:31.443Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
+        "name": "auth",
+        "containerId": "",
+        "created": "2023-04-03T18:06:31.460Z",
+        "sortNum": 10000
+      }
+    ]
+  }
+]
