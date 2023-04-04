@@ -28,7 +28,6 @@ const loginOrg = async (req, res) => {
             const token = createToken(org._id);
             res.status(200).json({
                 email,
-                role,
                 token,
             });
         })
