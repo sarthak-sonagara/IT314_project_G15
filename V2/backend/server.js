@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const userRoutes = require("./routes/userRoutes");
+const orgRoutes = require("./routes/orgRoutes");
 
 // express app
 const app = express();
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/auth/user", userRoutes);
+app.use("/auth/org", orgRoutes);
 
 // connect to mongodb
 mongoose
