@@ -4,6 +4,8 @@ import App from './App'
 import Home from './pages/Home'
 // import Login from './pages/Signup'
 import Signup from './pages/Signup'
+import Login from './pages/Login'
+import PasswordReset from './pages/PasswordReset'
 // import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -11,6 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/* <Home /> */}
     {/* <App /> */}
   {/* <Login/> */}
-  <Signup/>
+  <PasswordReset/>
+  {/* <Signup/> */}
   </React.StrictMode>,
 )
