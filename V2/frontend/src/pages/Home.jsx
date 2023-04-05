@@ -1,28 +1,17 @@
 import React from 'react'
 import './homepage.css'
 
-var NewComponent = React.createClass({
-    render: function() {
+const  Home = ()=> {
       return (
         <div>
-          {/* {% load static %} */}
-          <meta charSet="UTF-8" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Open Conference Management System</title>
-          {/* django code */}
-          {/* {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
-      <link rel="stylesheet" href="{% static 'index.css' %}" /> */}
-          <link rel="stylesheet" href="index.css" />
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossOrigin="anonymous" />
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
+        
           <style dangerouslySetInnerHTML={{__html: "\n      .comment {\n        width: 100%;\n        height: 80px;\n        padding: 10px;\n        background-color:#1b99a4;\n      }\n    " }} />
           <style dangerouslySetInnerHTML={{__html: "\n      .blink {\n          animation: blinker 1.5s linear infinite;\n          color:#1b99a4;\n          font-family: sans-serif;\n      }\n      @keyframes blinker {\n          50% {\n              opacity: 0;\n          }\n      }\n  " }} />
           <style dangerouslySetInnerHTML={{__html: "\n    .blinky {\n        animation: blinker 5s linear infinite;\n        color:#1b99a4;\n        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;\n    }\n    @keyframes blinker {\n        50% {\n            opacity: 0.2;\n        }\n    }\n" }} />
           <style dangerouslySetInnerHTML={{__html: "\n    .scroll-left {\n     height: 50px;\t\n     overflow: hidden;\n     position: relative;\n     background:#1b99a4;\n     color: rgb(244, 233, 30);\n     border: 1px solid rgb(25, 197, 169);\n    }\n    .scroll-left p {\n     position: absolute;\n     width: 100%;\n     height: 80%;\n     margin: 0;\n     line-height: 50px;\n     text-align: center;\n     transform:translateX(100%);\n     animation: scroll-left 20s linear infinite;\n    }\n    @keyframes scroll-left {\n     0%   {\n     transform: translateX(100%); \t\t\n     }\n     100% {\n     transform: translateX(-100%); \n     }\n    }\n    " }} />
           <header className="container-fluid row p-0" style={{backgroundImage: 'url("./bg4.jpg")'}}>
             <div className="top-left col-2 d-none d-sm-block">
-              <img src="./DAIICT.png" alt="" />
+              <img  src="/images/DAIICT.png" alt="" />
             </div>
             <div className="top-center col-12 col-sm-8 text-center text-capitalize">
               <h1 className="main-heading"><p style={{fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif'}}>Open Conference Management System</p></h1>
@@ -249,7 +238,7 @@ var NewComponent = React.createClass({
           </div>
           <footer className="row px-5 border border-2 shadow py-2">
             <div className="left-footer col-12 col-md-6 d-flex align-items-center">
-              <img src="DAIICT.png" alt="DAIICT LOGO" className="bg-light rounded-circle mx-1" />
+              <img src="/images/DAIICT.png" alt="DAIICT LOGO" className="bg-light rounded-circle mx-1" />
               <div className="h3 text-capitalize text-light">
                 Dhirubhai Ambani Institute of information and Communication Technology
               </div>
@@ -275,6 +264,5 @@ var NewComponent = React.createClass({
         </div>
       );
     }
-  });
 
   export default Home
