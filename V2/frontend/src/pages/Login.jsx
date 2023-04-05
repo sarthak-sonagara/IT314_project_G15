@@ -1,6 +1,17 @@
-import React from 'react'
-import './Signup.css'
+import React, {useState} from 'react';
+import './Signup.css';
+
+import { useLogin } from "../hooks/useLogin";
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login, error, isLoading } = useLogin();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await login(email, password);
+  };
     return (
       <>
       <section className="h-100 gradient-custom">
@@ -23,29 +34,30 @@ const Login = () => {
                 <div className="card shadow-2-strong card-registration" style={{borderRadius: '15px'}}>
                   <div className="card-body p-4 p-md-5">
                     <h2 className="mb-4 pb-2 pb-md-0 mb-md-5"><b> Login</b></h2>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                       <div className="row">
                         <div className="col-md-12 mb-4">
                           <div className="form-floating">
-                            <input type="text" id="username" className="form-control form-control-lg" placeholder="User Name" required />
-                            <label className="form-label" htmlFor="username">User Name</label>
+                            <input type="email" id="username" className="form-control form-control-lg" placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
+                            <label className="form-label" htmlFor="username">Email</label>
                           </div>
                         </div>
                         <div className="row">
                         </div>
                         <div className="col-md-12 mb-4">
                           <div className="form-floating">
-                            <input type="password" id="password" className="form-control form-control-lg" placeholder="password" />
+                            <input type="password" id="password" className="form-control form-control-lg" placeholder="password"  onChange={(e) => setPassword(e.target.value)} required/>
                             <label className="form-label" htmlFor="password">Password</label>
                           </div>
                         </div>
                       </div>
                       <div className="mt-4">
-                        <input className="btn btn-primary btn-lg" type="submit" defaultValue="Login" />
+                        <input className="btn btn-primary btn-lg" type="submit" defaultValue="Login" disabled={isLoading}/>
                       </div>
                       <div className="mt-4">
                         <p> <b><a href="#">Forgot password?</a></b></p>
                       </div>
+                      {error && <div className="error">{error}</div>}
                     </form>
                   </div>
                 </div>
