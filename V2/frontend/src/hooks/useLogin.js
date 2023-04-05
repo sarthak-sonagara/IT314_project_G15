@@ -21,7 +21,6 @@ export const useLogin = () => {
         role,
       }),
     });
-    console.log(response);
     const json = await response.json(); // javascript object response
 
     // response has state of ok if successfull
