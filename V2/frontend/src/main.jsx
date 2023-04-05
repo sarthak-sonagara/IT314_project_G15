@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/* <Home /> */}
     {/* <App /> */}
   {/* <Login/> */}
-  <PasswordReset/>
-  {/* <Signup/> */}
+  {/* <PasswordReset/> */}
+  <Signup/>
   </React.StrictMode>,
 )
