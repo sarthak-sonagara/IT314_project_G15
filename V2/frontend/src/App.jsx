@@ -7,6 +7,7 @@ import Signup from './pages/Signup'
 import PasswordReset from './pages/PasswordReset'
 
 function App() {
+  const {user} = useAuthContext() // will be used to provide functionality of private routes
 
   return (
    <>
@@ -14,8 +15,8 @@ function App() {
    <div className="pages">
     <Routes>
       <Route element={<Home />} path="/" />
-      <Route element={<Login />} path="/login" />
-      <Route element={<Signup />} path="/signup" />
+      <Route element={!user ? <Login /> : <Navigate to="/" />} path="/login" />
+      <Route element={!user ? <Signup /> : <Navigate to='/' />} path="/signup" />
       <Route element={<PasswordReset />} path="/password-reset" />
     </Routes>
    </div>
