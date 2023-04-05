@@ -1,9 +1,7 @@
-const { useAuthContext } = require("./useAuthContext");
-const { useWorkoutsContext } = require("./useWorkoutsContext");
+import { useAuthContext } from "./useAuthContext";
 
 export const useLogout = () => {
   const { dispatch } = useAuthContext();
-  const { dispatch: workoutsDipatch } = useWorkoutsContext();
 
   const logout = () => {
     // remove user from local storage
