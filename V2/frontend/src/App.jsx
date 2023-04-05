@@ -1,24 +1,27 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
+import {useAuthContext} from './hooks/useAuthContext'
+
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import PasswordReset from './pages/PasswordReset'
 
 function App() {
+  const {user} = useAuthContext() // will be used to provide functionality of private routes
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+   <>
+   <BrowserRouter>
+   <div className="pages">
+    <Routes>
+      <Route element={<Home />} path="/" />
+      <Route element={!user ? <Login /> : <Navigate to="/" />} path="/login" />
+      <Route element={!user ? <Signup /> : <Navigate to='/' />} path="/signup" />
+      <Route element={<PasswordReset />} path="/password-reset" />
+    </Routes>
+   </div>
+   </BrowserRouter>
+   </>
   )
 }
 
