@@ -2,16 +2,13 @@ const mongoose = require("mongoose");
 
 const conferenceSchema = new mongoose.Schema({
     org_id: {
-        type:ObjectId,
-        required: true,
-    },
-    start_date_time: {
-        type: Date,
+        // type:ObjectId,
+        type: String,
         required: true,
     },
 
-    end_date_time: {
-        type: Date,
+    conferenceName: {
+        type: String,
         required: true,
     },
 
@@ -20,9 +17,19 @@ const conferenceSchema = new mongoose.Schema({
         required: false,
     },
 
-    guest_speakers: {
+    startDate: {
+        type: String,
+        required: true,
+    },
+
+    endDate: {
+        type: String,
+        required: true,
+    },
+
+    guestSpeakers: {
         type: [String],
-        required: true,  
+        required: true,
     },
 
     topic: {
@@ -30,3 +37,8 @@ const conferenceSchema = new mongoose.Schema({
         required: true,
     }
 });
+
+const Conference = mongoose.model("Conference", conferenceSchema);
+
+module.exports = Conference;
+
