@@ -1,22 +1,11 @@
 const express = require("express");
-
+const conferenceController = require("../controllers/conferenceController.js")
 const router = express.Router();
 
-const {
-    viewConference,
-    createConference,
-    editConference,
-    deleteConference,
-} = require("../controllers/conferenceController");
+router.route("/createConference").post(conferenceController.createConference);
 
-// GET Route
-router.get("/viewConference", viewConference);
+router.route("/editConference").put(conferenceController.editConference);
 
-//POST Route
-router.post("/createConference", createConference);
+router.route("/deleteConference").delete(conferenceController.deleteConference);
 
-//PUT Route
-router.put("/editConference", editConference);
-
-//DELETE Route
-router.delete("/deleteConference" , deleteConference);
+module.exports = router;
