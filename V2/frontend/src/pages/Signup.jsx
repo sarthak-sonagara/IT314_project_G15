@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../assets/CSS/signup.css";
+import "../assets/CSS/Signup.css";
 
 import { useSignup } from "../hooks/useSignup";
 
