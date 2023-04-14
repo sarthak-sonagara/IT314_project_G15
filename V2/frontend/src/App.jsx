@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PasswordReset from "./pages/PasswordReset";
-// import TimeLine from "./pages/TimeLine";
+import TimeLine from "./pages/TimeLine";
 
 function App() {
   const { user } = useAuthContext(); // will be used to provide functionality of private routes
@@ -25,7 +25,7 @@ function App() {
               path="/signup"
             />
             <Route element={<PasswordReset />} path="/password-reset" />
-            {/* <Route element={<TimeLine />} path="/timeline" /> */}
+            <Route element={<TimeLine />} path="/timeline" />
           </Routes>
         </div>
       </BrowserRouter>
