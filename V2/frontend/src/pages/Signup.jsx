@@ -103,24 +103,6 @@ const Signup = () => {
                             className="form-check-input"
                             type="radio"
                             name="inlineRadioOptions"
-                            id="AttendeeRole"
-                            value="attendee"
-                            required
-                            onChange={(e) => setRole(e.target.value)}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="femaleGender"
-                          >
-                            Attendee
-                          </label>
-                        </div>
-
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            name="inlineRadioOptions"
                             id="PublisherRole"
                             value="admin"
                             required
@@ -131,6 +113,24 @@ const Signup = () => {
                             htmlFor="maleGender"
                           >
                             Admin
+                          </label>
+                        </div>
+
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="inlineRadioOptions"
+                            id="AttendeeRole"
+                            value="attendee"
+                            required
+                            onChange={(e) => setRole(e.target.value)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="femaleGender"
+                          >
+                            Attendee
                           </label>
                         </div>
                       </div>
@@ -176,7 +176,7 @@ const Signup = () => {
                         value="Sign Up"
                         disabled={isLoading}
                       />
-                      {error && <div className="error">{error}</div>}
+                      {error && <div className="text-danger">{error}</div>}
                     </div>
                     <div className="mt-4">
                       <p>
