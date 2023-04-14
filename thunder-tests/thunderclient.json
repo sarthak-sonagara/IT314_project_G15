@@ -23,16 +23,16 @@
     "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
     "containerId": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
     "name": "login",
-    "url": "http://localhost:3000/auth/user/login",
+    "url": "https://conf-backend.onrender.com/auth/user/login",
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-04-03T18:06:31.464Z",
-    "modified": "2023-04-06T09:29:53.423Z",
+    "modified": "2023-04-14T11:15:05.973Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"sarthak@gmail.com\",\n  \"password\": \"Sarthak@1234\",\n  \"role\":\"attendee\"\n}",
+      "raw": "{\n  \"email\": \"shreeji@gmail.com\",\n  \"password\": \"Shreeji@01\",\n  \"role\":\"admin\"\n}",
       "form": []
     },
     "tests": []

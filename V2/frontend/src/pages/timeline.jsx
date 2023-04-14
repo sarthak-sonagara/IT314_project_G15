@@ -1,9 +1,9 @@
 import React from "react";
-import "../assets/CSS/timeline.css";
+import "../assets/CSS/TimeLine.css";
 
 const TimeLine = () => {
   return (
-    <div>
+    <>
       <div className="row">
         <div
           className="h1 shadow-sm py-2 bg-secondary text-light text-center"
@@ -118,7 +118,7 @@ const TimeLine = () => {
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
