@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 // routes
 app.use("/auth/user", userRoutes);
 app.use("/auth/org", orgRoutes);
-app.use("/orgID/conference", conferenceRoutes);       // Temporary. orgID must be ID of logged in organization's Id
+app.use("/orgID/conference", conferenceRoutes); // Temporary. orgID must be ID of logged in organization's Id
 // app.use("/:id/conference", conferenceRoutes);
 
 // connect to mongodb
