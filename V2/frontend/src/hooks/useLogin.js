@@ -13,7 +13,7 @@ export const useLogin = () => {
     //   process.env.NODE_ENV === "development"
     //     ? "/auth/user/login"
     //     : "https://conf-backend.onrender.com/auth/user/login";
-    console.log(process.env.NODE_ENV);
+    // console.log(process.env.NODE_ENV);
     const response = await fetch("/auth/user/login", {
       method: "POST",
       headers: {
