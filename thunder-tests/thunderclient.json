@@ -23,16 +23,16 @@
     "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
     "containerId": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
     "name": "login",
-    "url": "http://localhost:3000/auth/user/login",
+    "url": "https://conf-backend.onrender.com/auth/user/login",
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-04-03T18:06:31.464Z",
-    "modified": "2023-04-05T19:38:14.298Z",
+    "modified": "2023-04-14T11:15:05.973Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"shreeji@gmail.com\",\n  \"password\": \"Shreeji@01\",\n  \"role\": \"admin\"\n}",
+      "raw": "{\n  \"email\": \"shreeji@gmail.com\",\n  \"password\": \"Shreeji@01\",\n  \"role\":\"admin\"\n}",
       "form": []
     },
     "tests": []
@@ -46,12 +46,12 @@
     "method": "PATCH",
     "sortNum": 30000,
     "created": "2023-04-03T19:21:51.000Z",
-    "modified": "2023-04-05T19:38:23.648Z",
+    "modified": "2023-04-06T09:29:18.748Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"harshmetkel24@gmail.com\",\n  \"password\": \"Shreeji@02\"\n}",
+      "raw": "{\n  \"email\": \"sarthak@gmail.com\",\n  \"password\": \"Sarthak@1234\"\n}",
       "form": []
     },
     "tests": []
@@ -65,12 +65,12 @@
     "method": "DELETE",
     "sortNum": 40000,
     "created": "2023-04-03T19:30:37.412Z",
-    "modified": "2023-04-05T19:38:30.428Z",
+    "modified": "2023-04-06T09:30:10.206Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\" : \"harshmetkel24@gmail.com\"\n}",
+      "raw": "{\n  \"email\" : \"sarthak@gmail.com\"\n}",
       "form": []
     },
     "tests": []

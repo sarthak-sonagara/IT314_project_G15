@@ -1,9 +1,11 @@
 import React from "react";
 import "../assets/CSS/Home.css";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
     <div>
+      <Navbar />
       <style
         dangerouslySetInnerHTML={{
           __html:

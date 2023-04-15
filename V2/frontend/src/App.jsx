@@ -6,7 +6,6 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PasswordReset from "./pages/PasswordReset";
 import TimeLine from "./pages/TimeLine";
-import Navbar from "./components/Navbar";
 
 function App() {
   const { user } = useAuthContext(); // will be used to provide functionality of private routes
@@ -14,7 +13,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
         <div className="pages">
           <Routes>
             <Route element={<Home />} path="/" />

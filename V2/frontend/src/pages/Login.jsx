@@ -88,13 +88,55 @@ const Login = () => {
                         </div>
                       </div>
                     </div>
+
+                    <div className="row">
+                      <div className="mb-4">
+                        <h6 className="mb-2 pb-1">Role: </h6>
+
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="inlineRadioOptions"
+                            id="PublisherRole"
+                            value="admin"
+                            required
+                            onChange={(e) => setRole(e.target.value)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="maleGender"
+                          >
+                            Admin
+                          </label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="inlineRadioOptions"
+                            id="AttendeeRole"
+                            value="attendee"
+                            required
+                            onChange={(e) => setRole(e.target.value)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="femaleGender"
+                          >
+                            Attendee
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                     <div className="mt-4">
-                      <input
+                      <button
                         className="btn btn-primary btn-lg"
                         type="submit"
-                        defaultValue="Login"
                         disabled={isLoading}
-                      />
+                      >
+                        Login{" "}
+                      </button>
                     </div>
                     <div className="mt-4">
                       <p>
@@ -104,7 +146,7 @@ const Login = () => {
                         </b>
                       </p>
                     </div>
-                    {error && <div className="error">{error}</div>}
+                    {error && <div className="error text-danger">{error}</div>}
                   </form>
                 </div>
               </div>

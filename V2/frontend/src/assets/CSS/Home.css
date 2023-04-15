@@ -154,7 +154,6 @@ button {
 
 button:hover {
   color: white;
-  width: 3px;
   box-shadow: 0 0 20px rgba(21, 94, 212, 0.6);
   background-color: rgb(198, 208, 200);
 }
