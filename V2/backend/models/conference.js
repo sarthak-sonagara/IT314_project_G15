@@ -120,4 +120,27 @@ conferenceSchema.statics.deleteConference = async function (req) {
     return conference;
 }
 
+// static function to search any conferences by name
+conferenceSchema.statics.viewConference = async function (req) {
+    console.log("------In viewConference function------\n", req.body);
+
+    const conferenceName = req.body.conferenceName;
+
+    if ( !conferenceName ) {
+        throw new Error("Please Enter Name of a conference");
+    }
+
+    // this will return conference object.
+    const conference =  await this.find({conferenceName});
+    
+
+    // Conference does not exist then return error message.
+    if (!conference) {
+        throw new Error("Search not found");
+      }
+
+    return conference;
+}
+
+
 module.exports = mongoose.model("Conference", conferenceSchema);

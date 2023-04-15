@@ -32,4 +32,18 @@ const deleteConference = async (req, res) => {
         .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-module.exports = { createConference, editConference, deleteConference};
+
+
+const viewConference = async (req, res) => {
+    console.log("in view conference contoller");
+    Conference.viewConference(req)
+        .then((conference) => {
+            res.status(201).json({
+                conference
+            });
+        })
+        .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+
+module.exports = { createConference, editConference, deleteConference, viewConference};
