@@ -8,9 +8,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/auth/": {
-        target: process.env.NODE_ENV
-          ? "http://localhost:3000"
-          : "https://conf-backend.onrender.com",
+        target:
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:3000"
+            : "https://conf-backend.onrender.com",
         changeOrigin: true,
         secure: false,
       },
