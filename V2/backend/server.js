@@ -9,7 +9,7 @@ const orgRoutes = require("./routes/orgRoutes");
 const conferenceRoutes = require("./routes/conferenceRoutes");
 
 const corsOptions = {
-  origin: "http://127.0.0.1:5173/",
+  origin: "*",
   successStatus: 200,
 };
 
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 // routes
 app.use("/auth/user", userRoutes);
 app.use("/auth/org", orgRoutes);
-app.use("/orgID/conference", conferenceRoutes);       // Temporary. orgID must be ID of logged in organization's Id
+app.use("/orgID/conference", conferenceRoutes); // Temporary. orgID must be ID of logged in organization's Id
 // app.use("/:id/conference", conferenceRoutes);
 
 // connect to mongodb

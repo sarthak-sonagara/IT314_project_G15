@@ -9,8 +9,11 @@ export const useLogin = () => {
   const login = async (email, password, role) => {
     setIsLoading(true);
     setError(null);
-
-    const response = await fetch("/auth/user/login", {
+    const url =
+      process.env.NODE_ENV === "development"
+        ? "/auth/user/login"
+        : "https://conf-backend.onrender.com/auth/user/login";
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

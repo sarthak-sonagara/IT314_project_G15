@@ -1,44 +1,42 @@
 const mongoose = require("mongoose");
 
 const conferenceSchema = new mongoose.Schema({
-    org_id: {
-        // type:ObjectId,
-        type: String,
-        required: true,
-    },
+  org: {
+    type: mongoose.Schema.Types.ObjectId,
+    type: String,
+    required: true,
+    ref: "Org", // whatever object id we store must be from the Org model
+  },
 
-    conferenceName: {
-        type: String,
-        required: true,
-    },
+  conferenceName: {
+    type: String,
+    required: true,
+  },
 
-    description: {
-        type: String,
-        required: false,
-    },
+  description: {
+    type: String,
+    required: false,
+  },
 
-    startDate: {
-        type: String,
-        required: true,
-    },
+  startDate: {
+    type: String,
+    required: true,
+  },
 
-    endDate: {
-        type: String,
-        required: true,
-    },
+  endDate: {
+    type: String,
+    required: true,
+  },
 
-    guestSpeakers: {
-        type: [String],
-        required: true,
-    },
+  guestSpeakers: {
+    type: [String],
+    required: true,
+  },
 
-    topic: {
-        type: [String],
-        required: true,
-    }
+  topics: {
+    type: [String],
+    required: true,
+  },
 });
 
-const Conference = mongoose.model("Conference", conferenceSchema);
-
-module.exports = Conference;
-
+module.exports = mongoose.model("Conference", conferenceSchema);
