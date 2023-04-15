@@ -12,6 +12,7 @@ export default defineConfig({
             ? "http://localhost:3000"
             : "https://conf-backend.onrender.com",
         changeOrigin: true,
+        secure: false,
       },
     },
   },
