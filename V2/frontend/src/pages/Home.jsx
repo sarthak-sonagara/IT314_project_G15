@@ -1,358 +1,233 @@
 import React from "react";
-import "../assets/CSS/Home.css";
-import Navbar from "../components/Navbar";
+import "../assets/CSS/style.css";
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+import Dropdown from "react-bootstrap/Dropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBell,
+  faClipboardList,
+  faHome,
+  faMagnifyingGlass,
+  faRightFromBracket,
+  faServer,
+  faTimeline,
+  faUpload,
+  faUser,
+  faUserGroup,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { Link } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout } from "../hooks/useLogout";
 
 const Home = () => {
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
+  const handleClick = () => {
+    logout();
+  };
+
   return (
     <div>
-      <Navbar />
-      <style
-        dangerouslySetInnerHTML={{
-          __html:
-            "\n      .comment {\n        width: 100%;\n        height: 80px;\n        padding: 10px;\n        background-color:#1b99a4;\n      }\n    ",
-        }}
-      />
-      <style
-        dangerouslySetInnerHTML={{
-          __html:
-            "\n      .blink {\n          animation: blinker 1.5s linear infinite;\n          color:#1b99a4;\n          font-family: sans-serif;\n      }\n      @keyframes blinker {\n          50% {\n              opacity: 0;\n          }\n      }\n  ",
-        }}
-      />
-      <style
-        dangerouslySetInnerHTML={{
-          __html:
-            "\n    .blinky {\n        animation: blinker 5s linear infinite;\n        color:#1b99a4;\n        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;\n    }\n    @keyframes blinker {\n        50% {\n            opacity: 0.2;\n        }\n    }\n",
-        }}
-      />
-      <style
-        dangerouslySetInnerHTML={{
-          __html:
-            "\n    .scroll-left {\n     height: 50px;\t\n     overflow: hidden;\n     position: relative;\n     background:#1b99a4;\n     color: rgb(244, 233, 30);\n     border: 1px solid rgb(25, 197, 169);\n    }\n    .scroll-left p {\n     position: absolute;\n     width: 100%;\n     height: 80%;\n     margin: 0;\n     line-height: 50px;\n     text-align: center;\n     transform:translateX(100%);\n     animation: scroll-left 20s linear infinite;\n    }\n    @keyframes scroll-left {\n     0%   {\n     transform: translateX(100%); \t\t\n     }\n     100% {\n     transform: translateX(-100%); \n     }\n    }\n    ",
-        }}
-      />
-      <div className="container-fluid">
-        <div className="main-content row p-5 gx-5">
-          {/* content which will come in left side */}
-          <div className="left-content col-12 col-md-4 col-lg-3">
-            <div className="p-3 tabs-container rounded border shadow-sm border-2 text-capitalize">
-              <a href="#" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-house-chimney mr-1" />
-                </div>
-                <span>Home</span>
-              </a>
-              <a href="#" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-file" />
-                </div>
-                <span>Call for papers</span>
-              </a>
-              <a href="#" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-laptop" />
-                </div>
-                <span>Call for tracks</span>
-              </a>
-              <a href="#" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-calendar" />
-                </div>
-                <span>Schedule</span>
-              </a>
-              <a href="timeline.html" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-clock" aria-hidden="true" />
-                </div>
-                <span>Timeline</span>
-              </a>
-              <a href="#" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-user-group" />
-                </div>
-                <span>Organization</span>
-              </a>
-            </div>
-            <hr className="hr" />
-            {/* archives */}
-            <div className="p-3 tabs-container rounded border shadow-sm border-2 text-capitalize">
-              <div className="archive-heading p-2 rounded">
-                <div>
-                  <i className="fa-solid fa-box-archive" />
-                </div>
-                <span>Archives</span>
-              </div>
-              <a href="#" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-database" />
-                </div>
-                <span>Data</span>
-              </a>
-              <a href="#" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-screwdriver-wrench" />
-                </div>
-                <span>Resources</span>
-              </a>
-              <a href="#" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-timeline" />
-                </div>
-                <span>Past Precedings</span>
-              </a>
-              <a href="#" className="tab rounded my-3 shadow-sm">
-                <div>
-                  <i className="fa-solid fa-fire" />
-                </div>
-                <span>Fire</span>
-              </a>
-              <a href="#" className="years rounded my-2">
-                <div>
-                  <i className="fa-solid fa-arrow-right" />
-                </div>
-                <span>2022</span>
-              </a>
-              <a href="#" className="years rounded my-2">
-                <div>
-                  <i className="fa-solid fa-arrow-right" />
-                </div>
-                <span>2021</span>
-              </a>
-              <a href="#" className="years rounded my-2">
-                <div>
-                  <i className="fa-solid fa-arrow-right" />
-                </div>
-                <span>2020</span>
-              </a>
-              <a href="#" className="years rounded my-2">
-                <div>
-                  <i className="fa-solid fa-arrow-right" />
-                </div>
-                <span>2019</span>
-              </a>
-            </div>
-            <hr className="hr" />
-          </div>
-          {/* content which will come in center */}
-          <div className="central-content col-12 col-md-7 gap-2">
-            <div className="content-container rounded-3 shadow-sm border border-2">
-              <div
-                className="content-heading h2 px-4 py-2 text-capitalize"
+      <nav className="nav-bar">
+        {!user ? (
+          <div className="icons-container" style={{ width: "auto" }}>
+            <Link to="/signup">
+              <button
+                type="submit"
+                className="nav-optional-btn"
                 style={{
-                  fontFamily:
-                    '"Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif',
-                }}
-              >
-                Welcome!
-              </div>
-              <div
-                className="content-desc p-3"
-                style={{ textAlign: "justify" }}
-              >
-                <p>
-                  Worldwide, there are numerous study and Innovation Institutes
-                  that plan yearly gatherings for scholarly and study
-                  objectives. People need assistance from all over the world in
-                  order to learn about the conference's program, timetable,
-                  location, and registration process. This platform is
-                  specifically made for conference administration that aids
-                  organisations in planning and managing events and conferences
-                  in order to address the issues related to conference
-                  organisation.
-                </p>
-                <p>
-                  This website shall provide all the information regarding the
-                  conference organization, like venue, schedule, timings,
-                  participants and roles. Also it will give schedule information
-                  for all the events/sessions which are part of the conference.
-                </p>
-                <p>
-                  We invite active participation in each track. Please refer to
-                  the call for submission in each track for more information.
-                </p>
-              </div>
-            </div>
-            <hr className="hr" />
-            <div className="list-container rounded-3 shadow-sm border border-2">
-              <div
-                className="content-heading h2 px-4 py-2 text-capitalize"
-                style={{
-                  fontFamily:
-                    '"Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif',
-                }}
-              >
-                Keynote speakers
-              </div>
-              <ul>
-                <li>
-                  <a href="https://starsunfolded.com/anand-kumar-super-30/">
-                    Anand Kumar, Super 30, India{" "}
-                  </a>
-                </li>
-                <li>
-                  <a href="https://starsunfolded.com/h-c-verma/">
-                    HC Verma, IIT Kanpur, India{" "}
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.edx.org/bio/walter-lewin">
-                    Walter Lewin, MIT, USA{" "}
-                  </a>
-                </li>
-                <li>
-                  <a href="Serge Sharoff, University of Leeds, UK ">
-                    Serge Sharoff, University of Leeds, UK
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <hr className="hr" />
-            <div className="list-container rounded-3 shadow-sm border border-2">
-              <div
-                className="content-heading h2 px-4 py-2 text-capitalize"
-                style={{
-                  fontFamily:
-                    '"Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif',
-                }}
-              >
-                You may like to see...
-              </div>
-              <ul>
-                <li>
-                  <a href="#">Topic for the upcoming Conferences </a>
-                </li>
-                <li>
-                  <a href="#">Complete schedule for the Conferences </a>
-                </li>
-                <li>
-                  <a href="#">Information regarding Research Papers</a>
-                </li>
-                <li>
-                  <a href="timeline.html"> Timeline of the events held</a>
-                </li>
-              </ul>
-            </div>
-            <hr className="hr" />
-          </div>
-          {/* content which for the right side */}
-          <div className="right-content col-12 col-lg-2">
-            <div
-              className="right-container"
-              style={{ borderBottom: "2px solid #dcdcdc" }}
-            >
-              <div className="p-3 tabs-container rounded border shadow-sm border-2 text-capitalize">
-                <div className="archive-heading p-2 rounded">
-                  <div>
-                    <i className="fa fa-box-money" />
-                  </div>
-                  <span style={{ fontSize: "medium" }}>Our Sponsors</span>
-                </div>
-              </div>
-              <div className="right-container-heading h4 py-3 text-center">
-                <h6 style={{ fontSize: "small", fontFamily: "cursive" }}>
-                  <p className="blink"> Add your sponsors here...</p>
-                </h6>
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  height: "30px",
-                  backgroundColor: "#eee",
-                }}
-              />
-              <div
-                className="right-container-heading h2 py-2 text-center text-capitalize"
-                style={{ fontSize: "medium", fontStyle: "oblique" }}
-              >
-                Upcoming Conference
-                <div
-                  style={{
-                    width: "100%",
-                    height: "30px",
-                    backgroundColor: "#eee",
-                  }}
-                />
-                <div className="scroll-left">
-                  <p style={{ fontSize: "medium" }}>Stay tuned!</p>
-                </div>
-              </div>
-              <div
-                className="right-container-heading h2 py-2 text-center text-capitalize"
-                style={{
-                  fontSize: "medium",
-                  fontStyle: "italic",
+                  color: "var(--menu-bg-color)",
+                  border: "2px solid var(--menu-bg-color)",
                   fontWeight: "bold",
+                  marginRight: "10px", padding: "5px 20px 5px 20px"
                 }}
               >
-                Quote of the Day...
-                <div
-                  style={{
-                    width: "100%",
-                    height: "30px",
-                    backgroundColor: "#eee",
-                  }}
+                SignUp
+              </button>
+            </Link>
+            <Link to="/login">
+              <button
+                type="submit"
+                className="nav-optional-btn"
+                style={{
+                  color: "var(--nav-bg-color)",
+                  border: "2px solid var(--nav-bg-color)",
+                  fontWeight: "bold",
+                  backgroundColor: "var(--menu-bg-color)", padding: "5px 20px 5px 20px"
+                }}
+              >
+                LogIn
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div className="icons-container">
+            <div className="search-icon-container">
+              {/* <img class="search-icon" src="./assests/search.png" alt="" /> */}
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                style={{ color: "var(--nav-bg-color)" }}
+              />
+              {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
+            </div>
+            <div className="btn-group">
+              <div className="user-icon-container">
+                {/* <img class="user-icon" src="./assests/user.png" alt="" /> */}
+                <FontAwesomeIcon
+                  icon={faUser}
+                  style={{ color: "var(--nav-bg-color)" }}
                 />
-                <p className="blinky" style={{ fontStyle: "normal" }}>
-                  Everything is theoretically impossible until it is done
-                </p>
               </div>
-              <div className="p-3 tabs-container rounded border shadow-sm border-2 text-capitalize">
-                <div className="archive-heading p-2 rounded">
-                  <div>
-                    <i className="fa fa-box-money" />
-                  </div>
-                  <span>Comments</span>
-                </div>
-                <div className="list-container rounded-3 shadow-sm border border-2">
-                  <div className="content-heading h4 px-2 py-2 text-capitalize"></div>
-                  <form action="/form/submit" method="POST">
-                    <textarea className="comment" defaultValue={""} />
-                    <br />
-                    <input type="submit" name="submit" defaultValue="Send" />
-                  </form>
-                </div>
-              </div>
+              <Dropdown style={{ boxSizing: "border-box" }}>
+                <Dropdown.Toggle
+                  id="dropdown-basic"
+                  className="dropdown-btn"
+                  style={{
+                    background: "none",
+                    color: "var(--menu-bg-color)",
+                    border: "none",
+                    boxShadow: "none",
+                  }}
+                ></Dropdown.Toggle>
+
+                <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow p-3 mt-2 bg-body rounded">
+                  <Dropdown.Item href="#/action-1">VIEW PROFILE</Dropdown.Item>
+                  <Dropdown.Item className="text-danger" href="#/action-2">
+                    <Link
+                      onClick={handleClick}
+                      style={{ cursor: "pointer" }}
+                      className="text-danger"
+                    >
+                      LOGOUT
+                    </Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+            <div className="notification-icon-container">
+              {/* <img class="notification-icon" src="./assests/bell.png" alt="" /> */}
+              <FontAwesomeIcon
+                icon={faBell}
+                style={{ color: "var(--nav-bg-color)" }}
+              />
             </div>
           </div>
-        </div>
-      </div>
-      <footer className="row px-5 border border-2 shadow py-2">
-        <div className="left-footer col-12 col-md-6 d-flex align-items-center">
-          <img
-            src="/images/DAIICT.png"
-            alt="DAIICT LOGO"
-            className="bg-light rounded-circle mx-1"
-          />
-          <div className="h3 text-capitalize text-light">
-            Dhirubhai Ambani Institute of information and Communication
-            Technology
-          </div>
-        </div>
-        <div className="right-footer col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-end">
-          <h5
-            style={{
-              fontSize: "small",
-              color: "aliceblue",
-              paddingRight: "2%",
-            }}
+        )}
+      </nav>
+      {/* -------------------------------------------------------------- */}
+      <div className="left-container">
+        <div className="logo-container" id="logo-ctn">
+          <svg
+            className="logo-icon"
+            width="262.667"
+            height="262.667"
+            viewBox="0 0 197 197"
+            preserveAspectRatio="xMidYMid meet"
+            style={{ fill: "var(--nav-bg-color)" }}
           >
-            Follow us on:{" "}
-          </h5>
-          <div className="socials">
-            <a href="#" className="social-link mx-1">
-              <i className="fab fa-facebook-f text-light border border-2 shadow-lg py-1 px-2 bg-primary rounded-3" />
-            </a>
-            <a href="#" className="social-link mx-1">
-              <i className="fab fa-twitter text-light border border-2 shadow-lg py-1 px-2 bg-info rounded-3" />
-            </a>
-            <a href="#" className="social-link mx-1">
-              <i className="fab fa-linkedin-in text-light border border-2 shadow-lg py-1 px-2 bg-primary rounded-3" />
-            </a>
-            <a href="#" className="social-link mx-1">
-              <i className="fab fa-pinterest-square text-light border border-2 shadow-lg py-1 px-2 bg-primary rounded-3" />
-            </a>
+            <path d="M102.7 13.7c-.4.3-.7 1.9-.7 3.4 0 3.2 3.2 4.8 5.5 2.9 2-1.6 1.9-5.6-.1-6.4s-3.9-.8-4.7.1zm-17.3 1.7c-1 2.7.1 5.1 2.6 5.4 2.8.5 5-2 4.3-4.8-.6-2.4-6.1-2.8-6.9-.6zm33 2c-1.2 3.1.1 5.1 3.2 5.4 2.4.2 3.3-.1 3.6-1.6.3-1.1.1-2.7-.4-3.6-1.1-2-5.7-2.1-6.4-.2zm-48.2.8c-1.8 1.8-1.5 5.6.7 6.3 3 .9 5.1-.5 5.1-3.5 0-3.6-3.4-5.2-5.8-2.8z" />
+            <use xlink:href="#B" />
+            <path d="M54.7 24.7c-1.5 1.4-.7 6.1 1.2 6.6 2.7.7 5.1-1.1 5.1-3.7 0-2.9-4.4-4.9-6.3-2.9z" />
+            <use xlink:href="#B" x="14" y="9" />
+            <path d="M40.5 35.1c-.4.5-.4 2.1-.1 3.5.5 1.7 1.3 2.4 3.1 2.4 2.7 0 4.8-3 3.9-5.4-.7-1.8-5.9-2.2-6.9-.5z" />
+            <use xlink:href="#B" x="26" y="20" />
+            <use xlink:href="#B" x="-105" y="24" />
+            <path d="M117.2 50c-3.3 2-7.1 8.6-7.2 12.3 0 1.3-.7 1.8-2.2 1.7-5-.4-6.9.1-10.3 3.1-9.8 8.7-25.5 46.6-27 65.1-.6 8.7 1.5 16 5.6 19 8 5.9 26.8.7 41.9-11.5 8.4-6.8 11.3-11.7 10.5-17.6-.6-5.5-2.9-9.1-5.6-9.1-4.9 0-10.9 7.1-11.1 13.3-.1 3.4-.4 3.7-5.9 5.7-12.7 4.8-19.9 1.9-19.9-7.9S95.8 83 98.9 83c1 0 1.4.8 4.7 10.4s4.8 11.6 8.5 11.6c8.4 0 12.9-14.9 12.9-42.7 0-8.8-.3-11.5-1.6-12.7-2-2-2.2-2-6.2.4zm53.3 6.6c-1.9 2-1.6 4.3.8 5.8 3.7 2.3 7.7-3.5 4.1-6.1-2.3-1.7-2.9-1.6-4.9.3z" />
+            <use xlink:href="#B" x="-114" y="38" />
+            <path d="M177.6 71.2c-3.1 1.7-1.3 6.8 2.5 6.8 2.3 0 4.2-2.6 3.4-4.8-.7-2.3-3.6-3.3-5.9-2zm-162.4 5c-1.8 1.8-1.5 4.6.7 5.8 3.1 1.6 5.3.2 4.9-3.4-.3-3.4-3.3-4.7-5.6-2.4z" />
+            <use xlink:href="#B" x="46" y="65" />
+            <path d="M12.6 92.3c-3.6 2.6.4 8.4 4.2 6.1 2.3-1.5 2.6-3.8.7-5.8-2-1.9-2.6-2-4.9-.3zM181 104.5c-1.4 1.7-.5 5.1 1.6 5.9 2.2.8 5.4-1.1 5.4-3.2 0-3.8-4.6-5.6-7-2.7z" />
+            <use xlink:href="#B" x="-122" y="86" />
+            <path d="M179.3 119.7c-1.9.7-1.6 6.2.3 7 3.9 1.5 7.1-4 3.8-6.4-1.9-1.4-2.2-1.4-4.1-.6zM16 125.5c-1.5 1.8-.5 5.1 1.9 5.8 2.5.6 5.1-1 5.1-3.1 0-3.8-4.6-5.6-7-2.7z" />
+            <use xlink:href="#B" x="38" y="113" />
+            <path d="M23.2 140.2c-1.8 1.8-1.4 4.6.7 5.8 2.5 1.3 4.8.4 5.6-2.1 1.2-3.8-3.5-6.5-6.3-3.7z" />
+            <use xlink:href="#B" x="29" y="127" />
+            <use xlink:href="#B" x="-102" y="131" />
+            <path d="M152 162.9c-1.5 2.9-.2 5.1 3 5.1 3.4 0 4.4-1.3 3.6-4.6-.8-3-5-3.3-6.6-.5z" />
+            <use xlink:href="#B" x="-90" y="142" />
+            <path d="M139.6 171.2c-2.6 1.4-2 5.6.8 6.4 3.3.8 4.6-.2 4.6-3.5 0-3.2-2.5-4.5-5.4-2.9z" />
+            <use xlink:href="#B" x="-76" y="151" />
+            <path d="M124.3 177.7c-2.2.8-1.6 6.1.7 6.8 2.6.8 5-1.1 5-4s-2.6-4.1-5.7-2.8zm-50.6 3.2c-.7 2.9 1.5 5.4 4.4 4.9 1.9-.2 2.4-.9 2.4-3.3 0-2.6-.4-3-3.1-3.3-2.4-.2-3.3.1-3.7 1.7zm17.5 1.3c-2.1 2.1-1.4 5.7 1.2 6.4 3.3.8 4.6-.2 4.6-3.6 0-3.6-3.3-5.3-5.8-2.8zm16 .4c-1.7 3.1-.3 5.5 3.2 5.2 2.7-.3 3.1-.7 3.1-3.3 0-2.5-.4-3.1-2.7-3.3-1.7-.2-3 .3-3.6 1.4z" />
+            <defs>
+              <path
+                id="B"
+                d="M134.4 23.4c-1.2 3.1 0 5.1 3.1 5.1 2.7 0 3-.3 3-3 0-2.5-.4-3-2.8-3.3-1.7-.2-2.9.2-3.3 1.2z"
+              />
+            </defs>
+          </svg>
+          <h5 style={{ padding: "0px", margin: 0 }}>CMS</h5>
+        </div>
+        <div className="left-sub-container">
+          <h6 style={{ marginBottom: "10px", opacity: "80%" }}>MENU</h6>
+          <div
+            className="menu-options-ctn"
+            style={{ opacity: "100%", backgroundColor: "var(--logo-bg-color" }}
+          >
+            <FontAwesomeIcon
+              icon={faHome}
+              className="menu-icons"
+              style={{ color: "var(--nav-bg-color)" }}
+            />
+            <p className="menu-texts">HOME</p>
+          </div>
+          <div className="menu-options-ctn">
+            <FontAwesomeIcon
+              icon={faUpload}
+              className="menu-icons"
+              style={{ color: "var(--nav-bg-color)" }}
+            />
+            <p className="menu-texts">CALL FOR PAPER</p>
+          </div>
+          <div className="menu-options-ctn">
+            <FontAwesomeIcon
+              icon={faUserGroup}
+              className="menu-icons"
+              style={{ color: "var(--nav-bg-color)" }}
+            />
+            <p className="menu-texts">ORGANIZATION</p>
+          </div>
+          <h6 style={{ marginBottom: "10px", opacity: "80%" }}>ARCHIVE</h6>
+          <div className="menu-options-ctn">
+            <FontAwesomeIcon
+              icon={faServer}
+              className="menu-icons"
+              style={{ color: "var(--nav-bg-color)" }}
+            />
+            <p className="menu-texts">DATA</p>
+          </div>
+          <div className="menu-options-ctn">
+            <FontAwesomeIcon
+              icon={faClipboardList}
+              className="menu-icons"
+              style={{ color: "var(--nav-bg-color)" }}
+            />
+            <p className="menu-texts">RESOURCES</p>
+          </div>
+          <div className="menu-options-ctn">
+            <FontAwesomeIcon
+              icon={faTimeline}
+              className="menu-icons"
+              style={{ color: "var(--nav-bg-color)" }}
+            />
+            <p className="menu-texts">PAST PROCEEDING</p>
           </div>
         </div>
-      </footer>
+        {!user ? (
+          <></>
+        ) : (
+          <Link onClick={handleClick} style={{ cursor: "pointer" }}>
+            <div className="logout-container text-danger">
+              <FontAwesomeIcon
+                icon={faRightFromBracket}
+                style={{ margin: "0 10px 0 15px" }}
+              />
+              <h6 style={{ padding: "0px", margin: "0px" }}>LOGOUT</h6>
+            </div>
+          </Link>
+        )}
+      </div>
     </div>
   );
 };
