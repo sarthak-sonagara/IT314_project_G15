@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "IT314",
-    "dateExported": "2023-04-03T19:35:38.346Z",
+    "dateExported": "2023-04-18T19:39:14.889Z",
     "version": "1.1",
     "folders": [
         {
@@ -10,6 +10,13 @@
             "containerId": "",
             "created": "2023-04-03T18:06:31.460Z",
             "sortNum": 10000
+        },
+        {
+            "_id": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+            "name": "org",
+            "containerId": "",
+            "created": "2023-04-18T13:56:39.254Z",
+            "sortNum": 20000
         }
     ],
     "requests": [
@@ -18,11 +25,11 @@
             "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
             "containerId": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
             "name": "signup",
-            "url": "http://localhost:3001/auth/user/signup",
+            "url": "http://localhost:3000/auth/user/signup",
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-04-03T18:06:31.462Z",
-            "modified": "2023-04-03T18:09:31.635Z",
+            "modified": "2023-04-05T19:38:06.771Z",
             "headers": [],
             "params": [],
             "body": {
@@ -37,16 +44,16 @@
             "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
             "containerId": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
             "name": "login",
-            "url": "http://localhost:3001/auth/user/login",
+            "url": "https://conf-backend.onrender.com/auth/user/login",
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-04-03T18:06:31.464Z",
-            "modified": "2023-04-03T19:34:04.210Z",
+            "modified": "2023-04-14T11:15:05.973Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"shreeji@gmail.com\",\n  \"password\": \"Shreeji@01\",\n  \"role\": \"admin\"\n}",
+                "raw": "{\n  \"email\": \"shreeji@gmail.com\",\n  \"password\": \"Shreeji@01\",\n  \"role\":\"admin\"\n}",
                 "form": []
             },
             "tests": []
@@ -56,16 +63,16 @@
             "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
             "containerId": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
             "name": "Update user password",
-            "url": "http://localhost:3001/auth/user/update",
+            "url": "http://localhost:3000/auth/user/update",
             "method": "PATCH",
             "sortNum": 30000,
             "created": "2023-04-03T19:21:51.000Z",
-            "modified": "2023-04-03T19:26:06.174Z",
+            "modified": "2023-04-06T09:29:18.748Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"harshmetkel24@gmail.com\",\n  \"password\": \"Shreeji@02\"\n}",
+                "raw": "{\n  \"email\": \"sarthak@gmail.com\",\n  \"password\": \"Sarthak@1234\"\n}",
                 "form": []
             },
             "tests": []
@@ -75,16 +82,144 @@
             "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
             "containerId": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
             "name": "Delete existing user",
-            "url": "http://localhost:3001/auth/user/delete",
+            "url": "http://localhost:3000/auth/user/delete",
             "method": "DELETE",
             "sortNum": 40000,
             "created": "2023-04-03T19:30:37.412Z",
-            "modified": "2023-04-03T19:32:02.219Z",
+            "modified": "2023-04-06T09:30:10.206Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\" : \"harshmetkel24@gmail.com\"\n}",
+                "raw": "{\n  \"email\" : \"sarthak@gmail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "abe2fb6b-f406-4c24-99d9-9d64a2456c58",
+            "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+            "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+            "name": "create org",
+            "url": "http://localhost:3000/auth/org/signup",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-04-18T13:56:52.529Z",
+            "modified": "2023-04-18T14:02:47.848Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"orgname\": \"ABC\",\n  \"email\": \"org@abc.com\",\n  \"password\": \"Org@1234\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "faf0e6b3-4897-41ea-9077-3be58ea51abc",
+            "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+            "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+            "name": "login org",
+            "url": "http://localhost:3000/auth/org/login",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-04-18T14:02:27.631Z",
+            "modified": "2023-04-18T14:03:41.413Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"org@abc.com\",\n  \"password\": \"Org@1234\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fd2ff106-ff3f-4d0d-9f15-437ebb9628b5",
+            "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+            "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+            "name": "All orgs",
+            "url": "http://localhost:3000/auth/org/",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-04-18T14:05:28.926Z",
+            "modified": "2023-04-18T14:05:43.924Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5baf76a0-abdb-4fc2-8798-662654eb9b08",
+            "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+            "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+            "name": "update org",
+            "url": "http://localhost:3000/auth/org/update",
+            "method": "PATCH",
+            "sortNum": 80000,
+            "created": "2023-04-18T14:11:46.734Z",
+            "modified": "2023-04-18T14:12:49.640Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"org@abc.com\",\n  \"password\": \"Org@12345\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "04ba7c23-1e22-4b59-aa0d-3f31896ec183",
+            "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+            "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+            "name": "update status accepted",
+            "url": "http://localhost:3000/auth/org/update/accepted",
+            "method": "PATCH",
+            "sortNum": 90000,
+            "created": "2023-04-18T16:48:41.111Z",
+            "modified": "2023-04-18T16:49:38.184Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"org@abc.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "942f46ab-e533-4d06-8ef5-ac61c02a67d7",
+            "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+            "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+            "name": "create conference",
+            "url": "http://localhost:3000/org/create/",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2023-04-18T19:04:16.774Z",
+            "modified": "2023-04-18T19:17:29.536Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"org_id\": \"643ea2de6aa927d460b3f676\",\n  \"conferenceName\": \"conf2\",\n  \"description\": \"lorem epsum\",\n  \"startDate\": \"1255556\",\n  \"endDate\": \"855455\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "3ee01676-8153-44bb-abe5-df616f1c452c",
+            "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+            "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+            "name": "edit conference",
+            "url": "http://localhost:3000/org/edit/conf",
+            "method": "PATCH",
+            "sortNum": 110000,
+            "created": "2023-04-18T19:29:27.916Z",
+            "modified": "2023-04-18T19:38:27.399Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"org_id\": \"643ea2de6aa927d460b3f676\",\n  \"conferenceName\": \"conf-updated\",\n  \"description\": \"lorem epsum\",\n  \"startDate\": \"1255556\",\n  \"endDate\": \"855455\"\n}",
                 "form": []
             },
             "tests": []
