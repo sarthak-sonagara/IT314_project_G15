@@ -21,6 +21,19 @@ const orgSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  // add array of conferences to org schema
+  conferences: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Conference",
+      default: [],
+    },
+  ],
+
+  accepted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // static signup function

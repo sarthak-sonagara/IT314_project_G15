@@ -14,15 +14,15 @@ const {
 const requireAuth = require("../middlewares/requireAuth");
 
 // fire middleware function before every other workout route
-router.use(requireAuth);
+// router.use(requireAuth);
 
 // createConference route
-router.post("/createConference", createConference);
+router.post("/create", createConference);
 
-router.get("/viewConference", viewConference);
+router.get("/get", viewConference);
 
-router.put("/editConference/:id", editConference);
+router.patch("/edit/:name", editConference);
 
-router.delete("/deleteConference/:id", deleteConference);
+router.delete("/delete/:name", deleteConference);
 
 module.exports = router;

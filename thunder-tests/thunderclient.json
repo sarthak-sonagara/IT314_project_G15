@@ -74,5 +74,133 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "abe2fb6b-f406-4c24-99d9-9d64a2456c58",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "create org",
+    "url": "http://localhost:3000/auth/org/signup",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2023-04-18T13:56:52.529Z",
+    "modified": "2023-04-18T14:02:47.848Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"orgname\": \"ABC\",\n  \"email\": \"org@abc.com\",\n  \"password\": \"Org@1234\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "faf0e6b3-4897-41ea-9077-3be58ea51abc",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "login org",
+    "url": "http://localhost:3000/auth/org/login",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2023-04-18T14:02:27.631Z",
+    "modified": "2023-04-18T14:03:41.413Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"org@abc.com\",\n  \"password\": \"Org@1234\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "fd2ff106-ff3f-4d0d-9f15-437ebb9628b5",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "All orgs",
+    "url": "http://localhost:3000/auth/org/",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2023-04-18T14:05:28.926Z",
+    "modified": "2023-04-18T14:05:43.924Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "5baf76a0-abdb-4fc2-8798-662654eb9b08",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "update org",
+    "url": "http://localhost:3000/auth/org/update",
+    "method": "PATCH",
+    "sortNum": 80000,
+    "created": "2023-04-18T14:11:46.734Z",
+    "modified": "2023-04-18T14:12:49.640Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"org@abc.com\",\n  \"password\": \"Org@12345\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "04ba7c23-1e22-4b59-aa0d-3f31896ec183",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "update status accepted",
+    "url": "http://localhost:3000/auth/org/update/accepted",
+    "method": "PATCH",
+    "sortNum": 90000,
+    "created": "2023-04-18T16:48:41.111Z",
+    "modified": "2023-04-18T16:49:38.184Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\":\"org@abc.com\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "942f46ab-e533-4d06-8ef5-ac61c02a67d7",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "create conference",
+    "url": "http://localhost:3000/org/create/",
+    "method": "POST",
+    "sortNum": 100000,
+    "created": "2023-04-18T19:04:16.774Z",
+    "modified": "2023-04-18T19:17:29.536Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"org_id\": \"643ea2de6aa927d460b3f676\",\n  \"conferenceName\": \"conf2\",\n  \"description\": \"lorem epsum\",\n  \"startDate\": \"1255556\",\n  \"endDate\": \"855455\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "3ee01676-8153-44bb-abe5-df616f1c452c",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "edit conference",
+    "url": "http://localhost:3000/org/edit/conf",
+    "method": "PATCH",
+    "sortNum": 110000,
+    "created": "2023-04-18T19:29:27.916Z",
+    "modified": "2023-04-18T19:38:27.399Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"org_id\": \"643ea2de6aa927d460b3f676\",\n  \"conferenceName\": \"conf-updated\",\n  \"description\": \"lorem epsum\",\n  \"startDate\": \"1255556\",\n  \"endDate\": \"855455\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
