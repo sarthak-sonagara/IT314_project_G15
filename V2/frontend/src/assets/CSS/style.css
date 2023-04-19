@@ -10,7 +10,7 @@
   :root {
     --bg-color: #ECF2FF;
     --nav-bg-color: #eee;
-    --logo-bg-color: rgba(0, 0, 0, 0.15);
+    --logo-bg-color: #0066AE;
     --menu-bg-color: #0078cc;
     --icon-color: #eee;
   }
@@ -32,7 +32,7 @@
   .left-sub-container {
     padding-left: 15px;
     padding-right: 15px;
-    padding-top: 10px;
+    padding-top: 9px;
     color: var(--nav-bg-color);
   }
   
@@ -55,6 +55,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
+    background-color: var(--menu-bg-color);
   }
   
   .icons-container {
@@ -79,7 +80,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--menu-bg-color);
+    background-color: var(--logo-bg-color);
     cursor: pointer;
   }
   
@@ -167,14 +168,15 @@
     /* background-color: hsl(218, 41%, 15%); */
     background-image: radial-gradient(
       650px circle at 20% 20%,
-      rgb(14, 19, 59),
-      rgb(14, 39, 79),
-      rgb(24, 49, 83),
-      rgb(44, 69, 103),
+      
+      rgb(11, 61, 143),
+      rgb(31, 81, 163),
+      rgb(41, 91, 173),
+      rgb(61, 111, 193),
       transparent 100%
     ),
     radial-gradient(
-      1550px circle at 50% 100%,
+      1450px circle at 50% 100%,
       rgb(99, 109, 129),
       rgb(79, 89, 109),
       rgb(69, 79, 99),
