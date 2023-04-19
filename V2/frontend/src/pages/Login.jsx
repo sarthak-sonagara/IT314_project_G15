@@ -19,7 +19,6 @@ const Login = () => {
       <div className="login-screen-ctn">
         <div className="login-container">
           <div className="left-login-ctn">
-            {/* <div className="col-lg-5 mb-5 mb-lg-0" style= "z-index: 10"> */}
             <h1
               classname="my-5 display-5 fw-bold ls-tight"
               style={{
@@ -73,7 +72,6 @@ const Login = () => {
                 Signup
               </button>
             </Link>
-            {/* </div> */}
           </div>
           <div className="right-login-ctn">
             <b
