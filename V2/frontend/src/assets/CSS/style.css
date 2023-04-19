@@ -5,10 +5,14 @@
   * {
     margin: 0;
     padding: 0;
+  }
+
+  :root {
     --bg-color: #ECF2FF;
     --nav-bg-color: #eee;
     --logo-bg-color: rgba(0, 0, 0, 0.15);
-    --menu-bg-color: #183153;
+    --menu-bg-color: #0078cc;
+    --icon-color: #eee;
   }
   
   .nav-bar {
@@ -22,6 +26,7 @@
     width: 275px;
     position: absolute;
     top: 0px;
+    overflow: scroll;
   }
   
   .left-sub-container {
@@ -41,6 +46,7 @@
     text-align: center;
     padding-left: 20px;
     color: var(--nav-bg-color);
+    width: 100%;
     /* opacity: 70%; */
   }
   
@@ -112,7 +118,7 @@
   .menu-options-ctn {
     display: flex;
     padding-left: 7px;
-    opacity: 60%;
+    opacity: 70%;
     padding: 15px 0 10px 15px;
     margin-bottom: 5px;
     cursor: pointer;
