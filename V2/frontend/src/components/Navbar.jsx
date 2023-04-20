@@ -9,11 +9,15 @@ import {
   faClipboardList,
   faHome,
   faMagnifyingGlass,
+  faPowerOff,
   faRightFromBracket,
+  faSearch,
   faServer,
+  faSignOut,
   faTimeline,
   faUpload,
   faUser,
+  faUserAlt,
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -30,6 +34,22 @@ const Navbar = () => {
   return (
     <>
       <nav className="nav-bar">
+        <div className="search-bar">
+          <FontAwesomeIcon
+            icon={faSearch}
+            style={{
+              color: "var(--primary-color)",
+              position: "absolute",
+              marginLeft: "13px",
+            }}
+          />
+          <input
+            type="text"
+            className="form-control search-input"
+            placeholder="Search conferences..."
+            style={{ background: "none", border: "none" }}
+          />
+        </div>
         {!user ? (
           <div className="icons-container" style={{ width: "auto" }}>
             <Link to="/signup">
@@ -41,10 +61,11 @@ const Navbar = () => {
                   border: "2px solid var(--menu-bg-color)",
                   fontWeight: "bold",
                   marginRight: "10px",
+                  fontSize: "15px",
                   padding: "5px 20px 5px 20px",
                 }}
               >
-                SignUp
+                SINGUP
               </button>
             </Link>
             <Link to="/login">
@@ -55,64 +76,58 @@ const Navbar = () => {
                   color: "var(--nav-bg-color)",
                   border: "2px solid var(--nav-bg-color)",
                   fontWeight: "bold",
+                  fontSize: "15px",
                   backgroundColor: "var(--menu-bg-color)",
                   padding: "5px 20px 5px 20px",
                 }}
               >
-                LogIn
+                LOGIN
               </button>
             </Link>
           </div>
         ) : (
           <div className="icons-container">
-            <div className="search-icon-container">
-              {/* <img class="search-icon" src="./assests/search.png" alt="" /> */}
-              <FontAwesomeIcon
-                icon={faMagnifyingGlass}
-                style={{ color: "var(--nav-bg-color)" }}
-              />
-              {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
-            </div>
             <div className="btn-group">
               <div className="user-icon-container">
-                {/* <img class="user-icon" src="./assests/user.png" alt="" /> */}
-                <FontAwesomeIcon
-                  icon={faUser}
-                  style={{ color: "var(--nav-bg-color)" }}
-                />
-              </div>
-              <Dropdown style={{ boxSizing: "border-box" }}>
-                <Dropdown.Toggle
-                  id="dropdown-basic"
-                  className="dropdown-btn"
-                  style={{
-                    background: "none",
-                    color: "var(--menu-bg-color)",
-                    border: "none",
-                    boxShadow: "none",
-                  }}
-                ></Dropdown.Toggle>
+                <Dropdown style={{ boxSizing: "border-box" }}>
+                  <Dropdown.Toggle
+                    id="dropdown-basic"
+                    className="dropdown-btn"
+                    style={{
+                      display: "flex",
+                      background: "none",
+                      color: "var(--menu-bg-color)",
+                      border: "none",
+                      boxShadow: "none",
+                      padding: "0",
+                      alignItems: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faUser} />
+                  </Dropdown.Toggle>
 
-                <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow p-3 mt-2 bg-body rounded">
-                  <Dropdown.Item href="#/action-1">VIEW PROFILE</Dropdown.Item>
-                  <Dropdown.Item className="text-danger" href="#/action-2">
-                    <Link
-                      onClick={handleClick}
-                      style={{ cursor: "pointer" }}
-                      className="text-danger"
-                    >
-                      LOGOUT
-                    </Link>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+                  <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow p-3 mt-2 bg-body rounded">
+                    <Dropdown.Item href="#/action-1">
+                    <FontAwesomeIcon icon={faUserAlt} style={{marginRight: "10px"}}/>
+                      VIEW PROFILE
+                    </Dropdown.Item>
+                    <Dropdown.Item className="text-danger" href="#/action-2">
+                      <Link
+                        onClick={handleClick}
+                        className="text-danger"
+                        style={{ cursor: "pointer" }}
+                      >
+                        <FontAwesomeIcon icon={faSignOut} style={{marginRight: "10px"}}/>
+                        LOGOUT
+                      </Link>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
             </div>
             <div className="notification-icon-container">
               {/* <img class="notification-icon" src="./assests/bell.png" alt="" /> */}
-              <FontAwesomeIcon
-                icon={faBell}
-                style={{ color: "var(--nav-bg-color)" }}
-              />
+              <FontAwesomeIcon icon={faBell} />
             </div>
           </div>
         )}
@@ -126,7 +141,7 @@ const Navbar = () => {
             height="262.667"
             viewBox="0 0 197 197"
             preserveAspectRatio="xMidYMid meet"
-            style={{ fill: "var(--nav-bg-color)" }}
+            style={{ fill: "var(--active-font-color)" }}
           >
             <path d="M102.7 13.7c-.4.3-.7 1.9-.7 3.4 0 3.2 3.2 4.8 5.5 2.9 2-1.6 1.9-5.6-.1-6.4s-3.9-.8-4.7.1zm-17.3 1.7c-1 2.7.1 5.1 2.6 5.4 2.8.5 5-2 4.3-4.8-.6-2.4-6.1-2.8-6.9-.6zm33 2c-1.2 3.1.1 5.1 3.2 5.4 2.4.2 3.3-.1 3.6-1.6.3-1.1.1-2.7-.4-3.6-1.1-2-5.7-2.1-6.4-.2zm-48.2.8c-1.8 1.8-1.5 5.6.7 6.3 3 .9 5.1-.5 5.1-3.5 0-3.6-3.4-5.2-5.8-2.8z" />
             <use xlink:href="#B" />
@@ -161,57 +176,59 @@ const Navbar = () => {
           <h5 style={{ padding: "0px", margin: 0 }}>CMS</h5>
         </div>
         <div className="left-sub-container">
-          <h6 style={{ marginBottom: "10px", opacity: "80%" }}>MENU</h6>
+          <h6
+            style={{
+              marginBottom: "5px",
+              fontSize: ".875rem",
+              marginLeft: "15px",
+            }}
+          >
+            MENU
+          </h6>
           <div
             className="menu-options-ctn"
-            style={{ opacity: "100%", backgroundColor: "var(--logo-bg-color" }}
+            style={{ color: "var(--primary-color)" }}
           >
-            <FontAwesomeIcon
-              icon={faHome}
-              className="menu-icons"
-              style={{ color: "var(--nav-bg-color)" }}
-            />
+            <div
+              className="active-indicator"
+              style={{ backgroundColor: "var(--primary-color)" }}
+            ></div>
+            <FontAwesomeIcon icon={faHome} className="menu-icons" style={{}} />
             <p className="menu-texts">HOME</p>
           </div>
           <div className="menu-options-ctn">
-            <FontAwesomeIcon
-              icon={faUpload}
-              className="menu-icons"
-              style={{ color: "var(--nav-bg-color)" }}
-            />
+            <div className="active-indicator"></div>
+            <FontAwesomeIcon icon={faUpload} className="menu-icons" />
             <p className="menu-texts">CALL FOR PAPER</p>
           </div>
           <div className="menu-options-ctn">
-            <FontAwesomeIcon
-              icon={faUserGroup}
-              className="menu-icons"
-              style={{ color: "var(--nav-bg-color)" }}
-            />
+            <div className="active-indicator"></div>
+            <FontAwesomeIcon icon={faUserGroup} className="menu-icons" />
             <p className="menu-texts">ORGANIZATION</p>
           </div>
-          <h6 style={{ marginBottom: "10px", opacity: "80%" }}>ARCHIVE</h6>
+          <h6
+            style={{
+              marginBottom: "5px",
+              marginTop: "15px",
+              fontSize: ".875rem",
+              marginLeft: "15px",
+            }}
+          >
+            ARCHIVE
+          </h6>
           <div className="menu-options-ctn">
-            <FontAwesomeIcon
-              icon={faServer}
-              className="menu-icons"
-              style={{ color: "var(--nav-bg-color)" }}
-            />
+            <div className="active-indicator"></div>
+            <FontAwesomeIcon icon={faServer} className="menu-icons" />
             <p className="menu-texts">DATA</p>
           </div>
           <div className="menu-options-ctn">
-            <FontAwesomeIcon
-              icon={faClipboardList}
-              className="menu-icons"
-              style={{ color: "var(--nav-bg-color)" }}
-            />
+            <div className="active-indicator"></div>
+            <FontAwesomeIcon icon={faClipboardList} className="menu-icons" />
             <p className="menu-texts">RESOURCES</p>
           </div>
           <div className="menu-options-ctn">
-            <FontAwesomeIcon
-              icon={faTimeline}
-              className="menu-icons"
-              style={{ color: "var(--nav-bg-color)" }}
-            />
+            <div className="active-indicator"></div>
+            <FontAwesomeIcon icon={faTimeline} className="menu-icons" />
             <p className="menu-texts">PAST PROCEEDING</p>
           </div>
         </div>
