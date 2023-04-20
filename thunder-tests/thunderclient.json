@@ -84,12 +84,12 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2023-04-18T13:56:52.529Z",
-    "modified": "2023-04-18T14:02:47.848Z",
+    "modified": "2023-04-20T16:21:32.402Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"orgname\": \"ABC\",\n  \"email\": \"org@abc.com\",\n  \"password\": \"Org@1234\"\n}",
+      "raw": "{\n  \"orgname\": \"ABC\",\n  \"email\": \"org1@abc.com\",\n  \"password\": \"Org@1234\"\n}",
       "form": []
     },
     "tests": []
@@ -103,12 +103,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2023-04-18T14:02:27.631Z",
-    "modified": "2023-04-18T14:03:41.413Z",
+    "modified": "2023-04-20T16:21:39.985Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"org@abc.com\",\n  \"password\": \"Org@1234\"\n}",
+      "raw": "{\n  \"email\": \"org1@abc.com\",\n  \"password\": \"Org@1234\"\n}",
       "form": []
     },
     "tests": []
@@ -199,6 +199,25 @@
     "body": {
       "type": "json",
       "raw": "{\n  \"org_id\": \"643ea2de6aa927d460b3f676\",\n  \"conferenceName\": \"conf-updated\",\n  \"description\": \"lorem epsum\",\n  \"startDate\": \"1255556\",\n  \"endDate\": \"855455\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "dd2b9b46-521c-4558-a3a3-b073bb089c0c",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "delete org",
+    "url": "http://localhost:3000/auth/org/delete",
+    "method": "DELETE",
+    "sortNum": 120000,
+    "created": "2023-04-20T17:05:20.831Z",
+    "modified": "2023-04-20T17:08:19.396Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\":\"org1@abc.com\"\n}",
       "form": []
     },
     "tests": []
