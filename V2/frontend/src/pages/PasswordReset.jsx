@@ -48,21 +48,8 @@ const PasswordReset = () => {
               makes it easier for organizers to deliver a successful&nbsp;event.
             </p>
             <hr />
-            <p
-              classname="mb-4 opacity-70"
-              style={{
-                color: "hsl(220, 100%, 91%)",
-                width: "90%",
-                textAlign: "center",
-              }}
-            >
-              Don't have an account, please SignUp first!
-            </p>
-            <Link to="/signup">
-              <button type="submit" className="optional-btn">
-                Signup
-              </button>
-            </Link>
+            
+            
           </div>
           <div className="right-login-ctn">
             <b

@@ -2,18 +2,8 @@ import React, { useState } from "react";
 import "../assets/CSS/style.css";
 import { Link } from "react-router-dom";
 
-import { useLogin } from "../hooks/useLogin";
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("admin");
-  const { login, error, isLoading } = useLogin();
+const Org_Login = () => {
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    await login(email, password, role);
-  };
   return (
     <>
       <div className="login-screen-ctn">
@@ -81,9 +71,9 @@ const Login = () => {
                 marginBottom: 15,
               }}
             >
-              Login
+              Organization Login
             </b>
-            <form style={{ width: "65%" }} onSubmit={handleSubmit}>
+            <form style={{ width: "65%" }}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   Email address or Username:
@@ -93,7 +83,6 @@ const Login = () => {
                   className="input-field"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -105,63 +94,10 @@ const Login = () => {
                   type="password"
                   className="input-field"
                   id="InputPassword"
-                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
-              Role:
-              <div
-                className="mb-3 form-check"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                }}
-              >
-                <div className="form-check">
-                  <input
-                    type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault1"
-                    style={{
-                      cursor: "pointer",
-                      accentColor: "var(--menu-bg-color)",
-                    }}
-                    onChange={(e) => setRole(e.target.value)}
-                    required
-                    value="admin"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexRadioDefault1"
-                    style={{ cursor: "pointer" }}
-                  >
-                    Admin
-                  </label>
-                </div>
-                <div className="form-check">
-                  <input
-                    type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault2"
-                    defaultChecked=""
-                    style={{
-                      cursor: "pointer",
-                      accentColor: "var(--menu-bg-color)",
-                    }}
-                    onChange={(e) => setRole(e.target.value)}
-                    required
-                    value="attendee"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexRadioDefault2"
-                    style={{ cursor: "pointer" }}
-                  >
-                    Attendee
-                  </label>
-                </div>
-              </div>
+
               <button
                 type="submit"
                 className="input-btn"
@@ -169,29 +105,18 @@ const Login = () => {
                   backgroundColor: "var(--menu-bg-color)",
                   border: "none",
                 }}
-                disabled={isLoading}
+              // disabled={isLoading}
               >
                 Submit
               </button>
-              <button
-                type="submit"
-                className="input-btn"
-                style={{
-                  backgroundColor: "var(--menu-bg-color)",
-                  border: "none",
-                  marginInlineStart: 20,
-                }}
-                disabled={isLoading}
-              >
-                Password reset
-              </button>
-              {error && <div className="error text-danger">{error}</div>}
+
             </form>
           </div>
         </div>
-      </div>
+
+      </div >
     </>
   );
 };
 
-export default Login;
+export default Org_Login;
