@@ -60,7 +60,7 @@ const Org_Signup = () => {
             >
               Already have an account, then click on the below LogIn button!
             </p>
-            <Link to="/login">
+            <Link to="/Org_Login">
               <button type="submit" className="optional-btn">
                 LogIn
               </button>
@@ -74,7 +74,7 @@ const Org_Signup = () => {
                 marginBottom: 15,
               }}
             >
-              Signup
+              Organization Signup
             </b>
             <form style={{ width: "65%" }}>
               <div className="mb-3">

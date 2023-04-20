@@ -57,7 +57,7 @@ const Org_Login = () => {
             >
               Don't have an account, please SignUp first!
             </p>
-            <Link to="/signup">
+            <Link to="/org_signup">
               <button type="submit" className="optional-btn">
                 Signup
               </button>
@@ -109,7 +109,17 @@ const Org_Login = () => {
               >
                 Submit
               </button>
-
+              <button
+                type="submit"
+                className="input-btn"
+                style={{
+                  backgroundColor: "var(--menu-bg-color)",
+                  border: "none",
+                  marginInlineStart: 20,
+                }}
+              >
+                Password reset
+              </button>
             </form>
           </div>
         </div>
