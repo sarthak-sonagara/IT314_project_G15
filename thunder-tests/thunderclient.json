@@ -23,11 +23,11 @@
     "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
     "containerId": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
     "name": "login",
-    "url": "https://conf-backend.onrender.com/auth/user/login",
+    "url": "http://localhost:3000/auth/user/login",
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-04-03T18:06:31.464Z",
-    "modified": "2023-04-14T11:15:05.973Z",
+    "modified": "2023-04-20T11:38:42.347Z",
     "headers": [],
     "params": [],
     "body": {
@@ -46,12 +46,12 @@
     "method": "PATCH",
     "sortNum": 30000,
     "created": "2023-04-03T19:21:51.000Z",
-    "modified": "2023-04-06T09:29:18.748Z",
+    "modified": "2023-04-20T12:24:34.780Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"sarthak@gmail.com\",\n  \"password\": \"Sarthak@1234\"\n}",
+      "raw": "{\n  \"email\": \"harsh@test.com\",\n  \"password\": \"Harsh@test2\"\n}",
       "form": []
     },
     "tests": []
