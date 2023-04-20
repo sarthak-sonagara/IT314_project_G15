@@ -173,6 +173,18 @@ const Login = () => {
               >
                 Submit
               </button>
+              <button
+                type="submit"
+                className="input-btn"
+                style={{
+                  backgroundColor: "var(--menu-bg-color)",
+                  border: "none",
+                  marginInlineStart: 20,
+                }}
+                disabled={isLoading}
+              >
+                Password reset
+              </button>
               {error && <div className="error text-danger">{error}</div>}
             </form>
           </div>
