@@ -60,6 +60,7 @@ describe("Org", () => {
     });
   });
 
+  // delete org
   describe("DELETE /auth/org/delete", () => {
     it("it should delete an org", (done) => {
       chai
