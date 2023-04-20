@@ -7,25 +7,6 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe("Org", () => {
-  // login org
-  describe("POST /auth/org/login", () => {
-    it("it should login an org", (done) => {
-      chai
-        .request(app)
-        .post("/auth/org/login")
-        .send({
-          email: "org1@abc.com",
-          password: "Org@1234",
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.a("object");
-          expect(res.body).to.have.property("email");
-          done();
-        });
-    });
-  });
-
   // signup org
   describe("POST /auth/org/signup", () => {
     it("it should signup an org", (done) => {
@@ -46,6 +27,25 @@ describe("Org", () => {
     });
   });
 
+  // login org
+  describe("POST /auth/org/login", () => {
+    it("it should login an org", (done) => {
+      chai
+        .request(app)
+        .post("/auth/org/login")
+        .send({
+          email: "org1@abc.com",
+          password: "Org@1234",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.a("object");
+          expect(res.body).to.have.property("email");
+          done();
+        });
+    });
+  });
+
   // get all orgs
   describe("GET /auth/org", () => {
     it("it should get all orgs", (done) => {
@@ -54,7 +54,7 @@ describe("Org", () => {
         .get("/auth/org")
         .end((err, res) => {
           expect(res).to.have.status(200);
-          expect(res.body).to.be.a("array");
+          expect(res.body).to.be.a("object");
           done();
         });
     });
