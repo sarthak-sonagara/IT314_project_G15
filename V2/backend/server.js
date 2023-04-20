@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 app.use("/auth/user", userRoutes);
 app.use("/auth/org", orgRoutes);
 app.use("/org", conferenceRoutes);
-app.use("/auth/admin" , adminRoutes);
+app.use("/auth/admin", adminRoutes);
 
 // connect to mongodb
 mongoose
