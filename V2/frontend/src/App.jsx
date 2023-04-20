@@ -10,6 +10,8 @@ import TimeLineTest from "./pages/TimeLineTest";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import Profile from "./pages/Profile";
+import Org_Login from "./pages/Org_Login";
+import Org_Signup from "./pages/Org_Signup";
 
 function App() {
   const { user } = useAuthContext(); // will be used to provide functionality of private routes
@@ -34,6 +36,9 @@ function App() {
               path="/signup"
             />
             <Route element={<PasswordReset />} path="/password-reset" />
+            {/* Oragnization  */}
+            <Route element={<Org_Login />} path="/org_login" />
+            <Route element={<Org_Signup />} path="/org_signup" />
             {/* <Route element={<TimeLine />} path="/timeline" /> */}
             <Route element={<TimeLineTest />} path="/timeline" />
           </Routes>

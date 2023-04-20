@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "../assets/CSS/style.css";
+
+import { useSignup } from "../hooks/useSignup";
 import { Link } from "react-router-dom";
 
-
-const PasswordReset = () => {
+const Org_Signup = () => {
+  
 
   return (
     <>
@@ -48,8 +50,21 @@ const PasswordReset = () => {
               makes it easier for organizers to deliver a successful&nbsp;event.
             </p>
             <hr />
-            
-            
+            <p
+              classname="mb-4 opacity-70"
+              style={{
+                color: "hsl(220, 100%, 91%)",
+                width: "90%",
+                textAlign: "center",
+              }}
+            >
+              Already have an account, then click on the below LogIn button!
+            </p>
+            <Link to="/Org_Login">
+              <button type="submit" className="optional-btn">
+                LogIn
+              </button>
+            </Link>
           </div>
           <div className="right-login-ctn">
             <b
@@ -59,18 +74,52 @@ const PasswordReset = () => {
                 marginBottom: 15,
               }}
             >
-              Password Reset
+              Organization Signup
             </b>
             <form style={{ width: "65%" }}>
               <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">
-                  Email address or Username:
+                <label htmlFor="input-username" className="form-label">
+                  Organization name:
+                </label>
+                <input
+                  type="text"
+                  className="input-field"
+                  id="input-username"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="input-email" className="form-label">
+                  Email address:
                 </label>
                 <input
                   type="email"
                   className="input-field"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
+                  id="input-email"
+                  required
+                />
+              </div>
+              
+                
+              <div className="mb-3">
+                <label htmlFor="input-password" className="form-label">
+                  Password:
+                </label>
+                <input
+                  type="password"
+                  className="input-field"
+                  id="input-password"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="input-conf-password" className="form-label">
+                  Confirm Password:
+                </label>
+                <input
+                  type="password"
+                  className="input-field"
+                  id="input-conf-password"
                   required
                 />
               </div>
@@ -92,4 +141,4 @@ const PasswordReset = () => {
   );
 };
 
-export default PasswordReset;
+export default Org_Signup;
