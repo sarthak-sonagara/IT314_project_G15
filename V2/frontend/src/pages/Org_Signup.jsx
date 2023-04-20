@@ -79,7 +79,7 @@ const Org_Signup = () => {
             <form style={{ width: "65%" }}>
               <div className="mb-3">
                 <label htmlFor="input-username" className="form-label">
-                  Username:
+                  Organization name:
                 </label>
                 <input
                   type="text"

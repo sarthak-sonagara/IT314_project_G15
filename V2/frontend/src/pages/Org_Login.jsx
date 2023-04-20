@@ -76,7 +76,7 @@ const Org_Login = () => {
             <form style={{ width: "65%" }}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
-                  Email address or Username:
+                  Email address or Organization name:
                 </label>
                 <input
                   type="email"
