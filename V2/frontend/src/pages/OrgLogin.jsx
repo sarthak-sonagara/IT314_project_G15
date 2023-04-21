@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import "../assets/CSS/style.css";
-
-import { useSignup } from "../hooks/useSignup";
 import { Link } from "react-router-dom";
 
-const Org_Signup = () => {
-  
-
+const OrgLogin = () => {
   return (
     <>
       <div className="login-screen-ctn">
@@ -58,11 +54,11 @@ const Org_Signup = () => {
                 textAlign: "center",
               }}
             >
-              Already have an account, then click on the below LogIn button!
+              Don't have an account, please SignUp first!
             </p>
-            <Link to="/Org_Login">
+            <Link to="/org-signup">
               <button type="submit" className="optional-btn">
-                LogIn
+                Signup
               </button>
             </Link>
           </div>
@@ -74,55 +70,33 @@ const Org_Signup = () => {
                 marginBottom: 15,
               }}
             >
-              Organization Signup
+              Organization Login
             </b>
             <form style={{ width: "65%" }}>
               <div className="mb-3">
-                <label htmlFor="input-username" className="form-label">
-                  Organization name:
-                </label>
-                <input
-                  type="text"
-                  className="input-field"
-                  id="input-username"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="input-email" className="form-label">
-                  Email address:
+                <label htmlFor="exampleInputEmail1" className="form-label">
+                  Email address or Organization name:
                 </label>
                 <input
                   type="email"
                   className="input-field"
-                  id="input-email"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
                   required
                 />
               </div>
-              
-                
               <div className="mb-3">
-                <label htmlFor="input-password" className="form-label">
+                <label htmlFor="InputPassword" className="form-label">
                   Password:
                 </label>
                 <input
                   type="password"
                   className="input-field"
-                  id="input-password"
+                  id="InputPassword"
                   required
                 />
               </div>
-              <div className="mb-3">
-                <label htmlFor="input-conf-password" className="form-label">
-                  Confirm Password:
-                </label>
-                <input
-                  type="password"
-                  className="input-field"
-                  id="input-conf-password"
-                  required
-                />
-              </div>
+
               <button
                 type="submit"
                 className="input-btn"
@@ -130,8 +104,20 @@ const Org_Signup = () => {
                   backgroundColor: "var(--menu-bg-color)",
                   border: "none",
                 }}
+                // disabled={isLoading}
               >
                 Submit
+              </button>
+              <button
+                type="submit"
+                className="input-btn"
+                style={{
+                  backgroundColor: "var(--menu-bg-color)",
+                  border: "none",
+                  marginInlineStart: 20,
+                }}
+              >
+                Password reset
               </button>
             </form>
           </div>
@@ -141,4 +127,4 @@ const Org_Signup = () => {
   );
 };
 
-export default Org_Signup;
+export default OrgLogin;

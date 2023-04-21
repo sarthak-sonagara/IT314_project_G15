@@ -52,7 +52,7 @@ const Navbar = () => {
         </div>
         {!user ? (
           <div className="icons-container" style={{ width: "auto" }}>
-            <Link to="/signup">
+            <Link to="/choice">
               <button
                 type="submit"
                 className="nav-optional-btn"
@@ -68,7 +68,7 @@ const Navbar = () => {
                 SINGUP
               </button>
             </Link>
-            <Link to="/login">
+            <Link to="/choice">
               <button
                 type="submit"
                 className="nav-optional-btn"
@@ -108,7 +108,10 @@ const Navbar = () => {
 
                   <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow p-3 mt-2 bg-body rounded">
                     <Dropdown.Item href="#/action-1">
-                    <FontAwesomeIcon icon={faUserAlt} style={{marginRight: "10px"}}/>
+                      <FontAwesomeIcon
+                        icon={faUserAlt}
+                        style={{ marginRight: "10px" }}
+                      />
                       VIEW PROFILE
                     </Dropdown.Item>
                     <Dropdown.Item className="text-danger" href="#/action-2">
@@ -117,7 +120,10 @@ const Navbar = () => {
                         className="text-danger"
                         style={{ cursor: "pointer" }}
                       >
-                        <FontAwesomeIcon icon={faSignOut} style={{marginRight: "10px"}}/>
+                        <FontAwesomeIcon
+                          icon={faSignOut}
+                          style={{ marginRight: "10px" }}
+                        />
                         LOGOUT
                       </Link>
                     </Dropdown.Item>
@@ -134,7 +140,7 @@ const Navbar = () => {
       </nav>
       {/* -------------------------------------------------------------- */}
       <div className="left-container">
-        <div className="logo-container" id="logo-ctn">
+        <Link to={"/"} className="logo-container" id="logo-ctn">
           <svg
             className="logo-icon"
             width="262.667"
@@ -173,8 +179,8 @@ const Navbar = () => {
               />
             </defs>
           </svg>
-          <h5 style={{ padding: "0px", margin: 0 }}>CMS</h5>
-        </div>
+          <h5 className="m-0 p-0 text-dark">CMS</h5>
+        </Link>
         <div className="left-sub-container">
           <h6
             style={{
