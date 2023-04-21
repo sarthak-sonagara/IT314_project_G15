@@ -10,8 +10,8 @@ import TimeLineTest from "./pages/TimeLineTest";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import Profile from "./pages/Profile";
-import Org_Login from "./pages/Org_Login";
-import Org_Signup from "./pages/Org_Signup";
+import OrgLogin from "./pages/OrgLogin";
+import OrgSignup from "./pages/OrgSignup";
 import Choice from "./pages/choice";
 
 function App() {
@@ -26,8 +26,9 @@ function App() {
             <Route element={<AdminLogin />} path="/admin/login" />
             <Route element={<AdminDashboard />} path="/admin/admin-dashboard" />
             {/* general routes */}
+            {/* public routes */}
             <Route element={<Home />} path="/" />
-            <Route element={<Profile />} path="/profile" />
+            <Route element={<Choice />} path="/choice" />
             <Route
               element={!user ? <Login /> : <Navigate to="/" />}
               path="/login"
@@ -36,12 +37,12 @@ function App() {
               element={!user ? <Signup /> : <Navigate to="/" />}
               path="/signup"
             />
+            <Route element={<OrgLogin />} path="/org-login" />
+            <Route element={<OrgSignup />} path="/org-signup" />
+            {/* private routes */}
+            <Route element={user ? <Profile /> : <Choice />} path="/profile" />
             <Route element={<PasswordReset />} path="/password-reset" />
             {/* Oragnization  */}
-            <Route element={<Org_Login />} path="/org_login" />
-            <Route element={<Org_Signup />} path="/org_signup" />
-            {/* Choice  */}
-            <Route element={<Choice />} path="/choice" />
             {/* <Route element={<TimeLine />} path="/timeline" /> */}
             <Route element={<TimeLineTest />} path="/timeline" />
           </Routes>

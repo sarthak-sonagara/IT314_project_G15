@@ -126,7 +126,10 @@ const Signup = () => {
                     type="radio"
                     name="flexRadioDefault"
                     id="flexRadioDefault1"
-                    style={{ cursor: "pointer", accentColor: "var(--menu-bg-color)" }}
+                    style={{
+                      cursor: "pointer",
+                      accentColor: "var(--menu-bg-color)",
+                    }}
                     onChange={(e) => setRole(e.target.value)}
                     value="publisher"
                     required
@@ -135,7 +138,6 @@ const Signup = () => {
                     className="form-check-label"
                     htmlFor="flexRadioDefault1"
                     style={{ cursor: "pointer" }}
-                    
                   >
                     Publisher
                   </label>
@@ -146,7 +148,10 @@ const Signup = () => {
                     name="flexRadioDefault"
                     id="flexRadioDefault2"
                     defaultChecked=""
-                    style={{ cursor: "pointer", accentColor: "var(--menu-bg-color)" }}
+                    style={{
+                      cursor: "pointer",
+                      accentColor: "var(--menu-bg-color)",
+                    }}
                     onChange={(e) => setRole(e.target.value)}
                     required
                     value="attendee"
@@ -190,6 +195,7 @@ const Signup = () => {
                   backgroundColor: "var(--menu-bg-color)",
                   border: "none",
                 }}
+                disabled={isLoading}
               >
                 Submit
               </button>
