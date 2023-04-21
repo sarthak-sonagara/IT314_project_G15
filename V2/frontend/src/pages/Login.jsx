@@ -86,7 +86,7 @@ const Login = () => {
             <form style={{ width: "65%" }} onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
-                  Email address or Username:
+                  Email address:
                 </label>
                 <input
                   type="email"
