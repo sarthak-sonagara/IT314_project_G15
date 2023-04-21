@@ -128,15 +128,16 @@ const Signup = () => {
                     id="flexRadioDefault1"
                     style={{ cursor: "pointer", accentColor: "var(--menu-bg-color)" }}
                     onChange={(e) => setRole(e.target.value)}
-                    value="admin"
+                    value="publisher"
                     required
                   />
                   <label
                     className="form-check-label"
                     htmlFor="flexRadioDefault1"
                     style={{ cursor: "pointer" }}
+                    
                   >
-                    Admin
+                    Publisher
                   </label>
                 </div>
                 <div className="form-check">

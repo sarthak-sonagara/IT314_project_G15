@@ -124,20 +124,36 @@ conferenceSchema.statics.viewConference = async function (req) {
   console.log("------In viewConference function------\n", req.body);
 
   const conferenceName = req.body.conferenceName;
+  const topicName  = req.body.topicName;
 
-  if (!conferenceName) {
-    throw new Error("Please Enter Name of a conference");
+  if (conferenceName) {
+        // this will return conference object.
+      const conference = await this.find({ conferenceName });
+
+      if (conference) {
+        return conference;
+      }
+  }
+  
+  if(topicName)
+  {
+    // this will return conference object.
+    var conferences = [];
+    conferences = await this.find({
+      topics :{
+        $all: [topicName],
+      },
+    });
+
+    //Conference does not exist then return error message.
+    if (!conferences) {
+      throw new Error("Search not found");
+    }
+    return conferences;
   }
 
-  // this will return conference object.
-  const conference = await this.find({ conferenceName });
-
-  // Conference does not exist then return error message.
-  if (!conference) {
-    throw new Error("Search not found");
-  }
-
-  return conference;
+  throw new Error("Please Enter Name of a conference");
+  //const find({EmployeeDetails:{$elemMatch:{EmployeePerformanceArea : "C++", Year : 1998}}}).pretty();
 };
 
 module.exports = mongoose.model("Conference", conferenceSchema);
