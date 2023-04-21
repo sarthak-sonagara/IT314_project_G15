@@ -12,6 +12,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Profile from "./pages/Profile";
 import Org_Login from "./pages/Org_Login";
 import Org_Signup from "./pages/Org_Signup";
+import Choice from "./pages/choice";
 
 function App() {
   const { user } = useAuthContext(); // will be used to provide functionality of private routes
@@ -39,6 +40,8 @@ function App() {
             {/* Oragnization  */}
             <Route element={<Org_Login />} path="/org_login" />
             <Route element={<Org_Signup />} path="/org_signup" />
+            {/* Choice  */}
+            <Route element={<Choice />} path="/choice" />
             {/* <Route element={<TimeLine />} path="/timeline" /> */}
             <Route element={<TimeLineTest />} path="/timeline" />
           </Routes>

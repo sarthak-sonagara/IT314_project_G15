@@ -289,7 +289,60 @@
     background: none;
     border: 1.5px solid var(--bg-color);
   }
+
+  .choice-btn{
+    display: inline-block;
+    font-weight: 400;
+    font-size: 1.5rem;  
+    line-height: 1.5;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    user-select: none;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 0.5rem;
+    border: none;
+    width: 25%;
+    color: black;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
   
+  .choice-btn:hover {
+    outline: none !important;
+    box-shadow: 0px 0px 15px 2px #ababab;
+  }
+  
+  .choice-screen-ctn {
+    height: 85vh;
+    width: 100vw;
+    margin: 0 auto;
+    background-image: radial-gradient(
+      650px circle at 20% 20%,
+      
+      rgb(11, 61, 143),
+      rgb(31, 81, 163),
+      rgb(41, 91, 173),
+      rgb(61, 111, 193),
+      transparent 100%
+    ),
+    radial-gradient(
+      1450px circle at 50% 100%,
+      rgb(99, 109, 129),
+      rgb(79, 89, 109),
+      rgb(69, 79, 99),
+      rgb(49, 59, 79),
+      transparent 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px 5px 5px 5px;
+  }
+
   @media screen and (max-width: 1200px) {
   }
   

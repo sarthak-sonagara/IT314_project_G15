@@ -129,14 +129,14 @@ const Login = () => {
                     }}
                     onChange={(e) => setRole(e.target.value)}
                     required
-                    value="admin"
+                    value="publisher"
                   />
                   <label
                     className="form-check-label"
                     htmlFor="flexRadioDefault1"
                     style={{ cursor: "pointer" }}
                   >
-                    Admin
+                    Publisher
                   </label>
                 </div>
                 <div className="form-check">
