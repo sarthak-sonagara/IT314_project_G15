@@ -7,7 +7,6 @@ const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const orgRoutes = require("./routes/orgRoutes");
 const conferenceRoutes = require("./routes/conferenceRoutes");
-const adminRoutes = require("./routes/adminRoutes");
 
 const corsOptions = {
   origin: "*",
@@ -29,7 +28,6 @@ app.use((req, res, next) => {
 app.use("/auth/user", userRoutes);
 app.use("/auth/org", orgRoutes);
 app.use("/org", conferenceRoutes);
-app.use("/auth/admin", adminRoutes);
 
 // connect to mongodb
 mongoose
