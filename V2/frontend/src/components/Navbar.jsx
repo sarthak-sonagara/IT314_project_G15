@@ -4,12 +4,12 @@ import "../assets/CSS/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import $ from "jquery";
 import {
+  faBars,
   faBell,
   faClipboardList,
   faHome,
-  faMagnifyingGlass,
-  faPowerOff,
   faRightFromBracket,
   faSearch,
   faServer,
@@ -34,106 +34,6 @@ const Navbar = () => {
   return (
     <>
       <nav className="nav-bar">
-        <div className="search-bar">
-          <FontAwesomeIcon
-            icon={faSearch}
-            style={{
-              color: "var(--primary-color)",
-              position: "absolute",
-              marginLeft: "13px",
-            }}
-          />
-          <input
-            type="text"
-            className="form-control search-input"
-            placeholder="Search conferences..."
-            style={{ background: "none", border: "none" }}
-          />
-        </div>
-        {!user ? (
-          <div className="icons-container" style={{ width: "auto" }}>
-            <Link to="/signup">
-              <button
-                type="submit"
-                className="nav-optional-btn"
-                style={{
-                  color: "var(--menu-bg-color)",
-                  border: "2px solid var(--menu-bg-color)",
-                  fontWeight: "bold",
-                  marginRight: "10px",
-                  fontSize: "15px",
-                  padding: "5px 20px 5px 20px",
-                }}
-              >
-                SINGUP
-              </button>
-            </Link>
-            <Link to="/login">
-              <button
-                type="submit"
-                className="nav-optional-btn"
-                style={{
-                  color: "var(--nav-bg-color)",
-                  border: "2px solid var(--nav-bg-color)",
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                  backgroundColor: "var(--menu-bg-color)",
-                  padding: "5px 20px 5px 20px",
-                }}
-              >
-                LOGIN
-              </button>
-            </Link>
-          </div>
-        ) : (
-          <div className="icons-container">
-            <div className="btn-group">
-              <div className="user-icon-container">
-                <Dropdown style={{ boxSizing: "border-box" }}>
-                  <Dropdown.Toggle
-                    id="dropdown-basic"
-                    className="dropdown-btn"
-                    style={{
-                      display: "flex",
-                      background: "none",
-                      color: "var(--menu-bg-color)",
-                      border: "none",
-                      boxShadow: "none",
-                      padding: "0",
-                      alignItems: "center",
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faUser} />
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow p-3 mt-2 bg-body rounded">
-                    <Dropdown.Item href="#/action-1">
-                    <FontAwesomeIcon icon={faUserAlt} style={{marginRight: "10px"}}/>
-                      VIEW PROFILE
-                    </Dropdown.Item>
-                    <Dropdown.Item className="text-danger" href="#/action-2">
-                      <Link
-                        onClick={handleClick}
-                        className="text-danger"
-                        style={{ cursor: "pointer" }}
-                      >
-                        <FontAwesomeIcon icon={faSignOut} style={{marginRight: "10px"}}/>
-                        LOGOUT
-                      </Link>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
-            </div>
-            <div className="notification-icon-container">
-              {/* <img class="notification-icon" src="./assests/bell.png" alt="" /> */}
-              <FontAwesomeIcon icon={faBell} />
-            </div>
-          </div>
-        )}
-      </nav>
-      {/* -------------------------------------------------------------- */}
-      <div className="left-container">
         <div className="logo-container" id="logo-ctn">
           <svg
             className="logo-icon"
@@ -141,7 +41,7 @@ const Navbar = () => {
             height="262.667"
             viewBox="0 0 197 197"
             preserveAspectRatio="xMidYMid meet"
-            style={{ fill: "var(--active-font-color)" }}
+            style={{ fill: "var(--primary-color)" }}
           >
             <path d="M102.7 13.7c-.4.3-.7 1.9-.7 3.4 0 3.2 3.2 4.8 5.5 2.9 2-1.6 1.9-5.6-.1-6.4s-3.9-.8-4.7.1zm-17.3 1.7c-1 2.7.1 5.1 2.6 5.4 2.8.5 5-2 4.3-4.8-.6-2.4-6.1-2.8-6.9-.6zm33 2c-1.2 3.1.1 5.1 3.2 5.4 2.4.2 3.3-.1 3.6-1.6.3-1.1.1-2.7-.4-3.6-1.1-2-5.7-2.1-6.4-.2zm-48.2.8c-1.8 1.8-1.5 5.6.7 6.3 3 .9 5.1-.5 5.1-3.5 0-3.6-3.4-5.2-5.8-2.8z" />
             <use xlink:href="#B" />
@@ -173,17 +73,124 @@ const Navbar = () => {
               />
             </defs>
           </svg>
-          <h5 style={{ padding: "0px", margin: 0 }}>CMS</h5>
+          <h5 style={{ padding: "0px", margin: 0, fontWeight: "600" }}>CMS</h5>
         </div>
-        <div className="left-sub-container">
-          <h6
+        <div className="search-bar">
+          <FontAwesomeIcon
+            icon={faSearch}
             style={{
-              marginBottom: "5px",
-              fontSize: ".875rem",
-              marginLeft: "15px",
+              color: "var(--primary-color)",
+              position: "absolute",
+              marginLeft: "13px",
             }}
-          >
-            MENU
+          />
+          <input
+            type="text"
+            className="form-control search-input"
+            placeholder="Search conferences..."
+            style={{ background: "none", border: "none" }}
+          />
+        </div>
+        {!user ? (
+          <div className="icons-container" style={{ width: "auto" }}>
+            <Link to="/login" style={{ marginRight: "1.2rem" }}>
+              <button
+                type="submit"
+                className="nav-optional-btn"
+                style={{
+                  color: "var(--primary-color)",
+                  fontWeight: "bold",
+                  fontSize: "0.875rem",
+                  padding: "5px 15px",
+                  border : "1px solid var(--primary-color)",
+                }}
+              >
+                LOGIN
+              </button>
+            </Link>
+            <Link to="/signup">
+              <button
+                type="submit"
+                className="nav-optional-btn"
+                style={{
+                  color: "var(--nav-bg-color)",
+                  border: "2px solid var(--nav-bg-color)",
+                  fontWeight: "bold",
+                  fontSize: "0.875rem",
+                  backgroundColor: "var(--menu-bg-color)",
+                  padding: "5px 15px",
+                }}
+              >
+                SIGNUP
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div className="icons-container">
+            <div className="btn-group">
+              <div className="user-icon-container">
+                <Dropdown style={{ boxSizing: "border-box" }}>
+                  <Dropdown.Toggle
+                    id="dropdown-basic"
+                    className="dropdown-btn"
+                    style={{
+                      display: "flex",
+                      background: "none",
+                      color: "var(--menu-bg-color)",
+                      border: "none",
+                      boxShadow: "none",
+                      padding: "0",
+                      alignItems: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faUser} />
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow p-3 mt-2 bg-body rounded">
+                    <Dropdown.Item href="#/action-1">
+                      <FontAwesomeIcon
+                        icon={faUserAlt}
+                        style={{ marginRight: "10px" }}
+                      />
+                      VIEW PROFILE
+                    </Dropdown.Item>
+                    <Dropdown.Item className="text-danger" href="#/action-2">
+                      <Link
+                        onClick={handleClick}
+                        className="text-danger"
+                        style={{ cursor: "pointer" }}
+                      >
+                        <FontAwesomeIcon
+                          icon={faSignOut}
+                          style={{ marginRight: "10px" }}
+                        />
+                        LOGOUT
+                      </Link>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            </div>
+            <div className="notification-icon-container">
+              {/* <img class="notification-icon" src="./assests/bell.png" alt="" /> */}
+              <FontAwesomeIcon icon={faBell} />
+            </div>
+          </div>
+        )}
+      </nav>
+      {/* -------------------------------------------------------------- */}
+      <div className="left-container" id="left-container">
+        <div className="left-sub-container" id="left-sub-container">
+          <h6 className="menu-text-ctn">
+            <FontAwesomeIcon
+              icon={faBars}
+              className="menu-icons"
+              id="menu-icon"
+              style={{}}
+            />
+            <p className="menu-texts" id="menu-text">
+              MENU
+            </p>
           </h6>
           <div
             className="menu-options-ctn"
@@ -206,16 +213,6 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faUserGroup} className="menu-icons" />
             <p className="menu-texts">ORGANIZATION</p>
           </div>
-          <h6
-            style={{
-              marginBottom: "5px",
-              marginTop: "15px",
-              fontSize: ".875rem",
-              marginLeft: "15px",
-            }}
-          >
-            ARCHIVE
-          </h6>
           <div className="menu-options-ctn">
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faServer} className="menu-icons" />
@@ -235,7 +232,7 @@ const Navbar = () => {
         {!user ? (
           <></>
         ) : (
-          <Link onClick={handleClick} style={{ cursor: "pointer" }}>
+          <Link onClick={handleClick} style={{ cursor: "pointer", position: "absolute", bottom: "63px" }}>
             <div className="logout-container text-danger">
               <FontAwesomeIcon
                 icon={faRightFromBracket}
@@ -249,5 +246,15 @@ const Navbar = () => {
     </>
   );
 };
+
+$(document).ready(function () {
+  $("#menu-icon").on("click", function () {
+    $("#left-container").toggleClass("left-close-container");
+    $(".menu-texts").toggleClass("menu-close-texts");
+    $("#menu-text").toggleClass("menu-close-text");
+    $("#menu-icon").toggleClass("menu-close-icon");
+    $(".active-indicator").toggleClass("active-close-indicator");
+  });
+});
 
 export default Navbar;
