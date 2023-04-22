@@ -12,7 +12,6 @@ const createConference = async (req, res) => {
 };
 
 const editConference = async (req, res) => {
-  console.log(req.params.name);
   Conference.editConference(req)
     .then((conference) => {
       res.status(200).json({

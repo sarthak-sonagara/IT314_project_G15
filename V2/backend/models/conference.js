@@ -90,7 +90,10 @@ conferenceSchema.statics.createConference = async function (req) {
 
 // static function to update any conferences
 conferenceSchema.statics.editConference = async function (req) {
-  const name = req.params.name;
+
+  console.log("------In editConference function------\n", req.body);
+  const id = req.params.id;
+  const filter = { _id: id }; // filter to find the conference
 
   // validation
   const { org_id, conferenceName, description, startDate, endDate } = req.body;
@@ -101,7 +104,7 @@ conferenceSchema.statics.editConference = async function (req) {
 
   // this will return old conference document not updated one.
   const conference = await this.findOneAndUpdate(
-    { conferenceName: name },
+    filter,
     req.body
   );
 
