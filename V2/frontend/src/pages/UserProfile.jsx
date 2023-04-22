@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import "../assets/CSS/UserProfile.css";
 import {useState} from 'react';
-import {AiOutlineMail,AiOutlineInstagram,AiOutlineLinkedin} from 'react-icons/ai';
+// import {AiOutlineMail,AiOutlineInstagram,AiOutlineLinkedin} from 'react-icons/ai';
 // var cn = require('classNames');
 
 const c1 = {
