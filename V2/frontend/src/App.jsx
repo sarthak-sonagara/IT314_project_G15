@@ -13,6 +13,7 @@ import OrgLogin from "./pages/OrgLogin";
 import OrgSignup from "./pages/OrgSignup";
 import Choice from "./pages/choice";
 import UserProfile from "./pages/UserProfile";
+import OrgProfile from "./pages/OrgProfile";
 
 function App() {
   const { user, org } = useAuthContext(); // will be used to provide functionality of private routes
@@ -70,6 +71,7 @@ function App() {
             element={user ? <UserProfile /> : <Choice />}
             path="/profile"
           />
+          <Route element={<OrgProfile />} path="/org-profile" />
           <Route element={<PasswordReset />} path="/password-reset" />
           {/* Oragnization  */}
           {/* <Route element={<TimeLine />} path="/timeline" /> */}

@@ -1,8 +1,8 @@
 // import logo from './logo.svg';
-import "../assets/CSS/UserProfile.css";
+import "../assets/CSS/OrgProfile.css";
 import {useState} from 'react';
 import {AiOutlineMail,AiOutlineInstagram,AiOutlineLinkedin} from 'react-icons/ai';
-import userimage from "../../public/images/DAIICT.png";
+import orgimage from "../../public/images/DAIICT.png";
 // var cn = require('classNames');
 
 const c1 = {
@@ -14,11 +14,10 @@ const c1 = {
   description: "aa to atyant sundar confereence chhe. khub khub abhar."
 }
 
-const user = {
-  username: "Narayan",
+const org = {
+  orgname: "Narayan",
   email: "shree_hari@gmail.com",
   password: "xyz",
-  role: "attendee",
   oldConfList: [c1,c1,c1,c1,c1,c1,c1],
   newConfList: [c1,c1,c1,c1,c1,c1,c1],
   linkedIn: "https://www.linkedin.com/in/narayan-0b1b1b1b1/",
@@ -26,7 +25,7 @@ const user = {
 }
 
 
-function UserProfile() {
+function OrgProfile() {
 
 const [isModalOpen, setIsModalOpen] = useState(false);
 const [currentConf, setCurrentConf] = useState('');
@@ -42,13 +41,13 @@ const setConf = (confName) => {
 
 function conftable(conf){
   const rows = conf.map((conf,ind) => {
-    const classind = "dropdown_item-1";
+    const classind = "org_dropdown_item-1";
     return (
-      <div onClick={() => {setConf(conf);}}><li class={(classind)} >{conf.conferenceName}</li></div>
+      <li onClick={() => {setConf(conf);}} class={(classind)} >{conf.conferenceName}</li>
     )
   });
   return (
-    <ul class="dropdown_menu dropdown_menu-2">
+    <ul class="org_dropdown_menu org_dropdown_menu-2">
       {rows}
     </ul>
   )
@@ -56,43 +55,41 @@ function conftable(conf){
 
   return (
     <>
-    <div className="box">
-      <div className="profileBox">
-        <img src={userimage} alt="Image of user" className="profilePhoto"/>
-        <div className="profileUserName">{user.username}</div>
-        <div className='role'>{user.role}</div>
-        <hr class="h_line" />
-        <div className="profileEmail">
-          <span className='emailIcon'><AiOutlineMail /></span>
-          <a href={`mailto: ${user.email}`}>
-            {user.email}  
-                                  {/* TODO: hasdjhsad */}
-                                  {/*dfdf  */}
+    <div className="org_box">
+      <div className="org_profileBox">
+        <img src={orgimage} alt="Image of user" className="org_profilePhoto"/>
+        <div className="profileOrgName">{org.orgname}</div>
+        <div className='org_role'>organization</div>
+        <hr class="org_h_line" />
+        <div className="org_profileEmail">
+          <span className='org_emailIcon'><AiOutlineMail /></span>
+          <a href={`mailto: ${org.email}`}>
+            {org.email}  
           </a>
         </div>
-        <hr class="h_line" />
-        <div className="profileLinks">
-          <a href={user.instagram}><AiOutlineInstagram /></a> 
-          <a href={user.linkedIn}><AiOutlineLinkedin /></a>   
+        <hr class="org_h_line" />
+        <div className="org_profileLinks">
+          <a href={org.instagram}><AiOutlineInstagram /></a> 
+          <a href={org.linkedIn}><AiOutlineLinkedin /></a>   
         </div>
       </div>
-      <div className="conferenceList">
-        <div className="header">Registered Conferences</div>
-        <div className="confTypes">
-          <div class="conferenceItem dropdown dropdown-2" onclick="try">
+      <div className="org_conferenceList">
+        <div className="org_header">Organized Conferences</div>
+        <div className="org_confTypes">
+          <div class="org_conferenceItem org_dropdown org_dropdown-2" onclick="try">
             Past Conferences
-            {conftable(user.oldConfList)}
+            {conftable(org.oldConfList)}
           </div>
-          <div class="conferenceItem dropdown dropdown-2" onclick="try">
+          <div class="org_conferenceItem org_dropdown org_dropdown-2" onclick="try">
             Upcoming Conferences
-            {conftable(user.newConfList)}
+            {conftable(org.newConfList)}
           </div>
         </div>
       </div>
-    </div>
+      </div>
         { 
-          isModalOpen && <div className="modalWindow">
-            <div className="modalBox" onClick={toggleModal}>
+          isModalOpen && <div className="org_modalWindow">
+            <div className="org_modalBox" onClick={toggleModal}>
               <table class="tg">
                 <tbody>
                   <tr>
@@ -124,7 +121,8 @@ function conftable(conf){
             </div>
           </div>
         }
-    </>
+        </>
   );
 }
-export default UserProfile;
+
+export default OrgProfile;
