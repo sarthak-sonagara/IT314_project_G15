@@ -12,5 +12,16 @@ export const useLogout = () => {
       type: "LOGOUT",
     });
   };
-  return { logout };
+
+  const orgLogout = () => {
+    // remove user from local storage
+    localStorage.removeItem("org");
+
+    //   dispatch logout action
+    dispatch({
+      type: "ORG_LOGOUT",
+    });
+  };
+
+  return { logout, orgLogout };
 };

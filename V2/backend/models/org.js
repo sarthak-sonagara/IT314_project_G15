@@ -38,6 +38,8 @@ const orgSchema = new mongoose.Schema({
 
 // static signup function
 orgSchema.statics.signup = async function (orgname, email, password) {
+  console.log("orgname", orgname, "email", email, "password", password);
+
   // validation
   if (!orgname || !email || !password) {
     throw new Error("Please fill all the fields");
@@ -79,7 +81,6 @@ orgSchema.statics.login = async function (email, password) {
   if (!email || !password) {
     throw new Error("Please fill all the fields");
   }
-
   const org = await this.findOne({ email });
 
   //if organization's email does not exist, so first we have to sign up.

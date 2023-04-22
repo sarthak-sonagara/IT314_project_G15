@@ -6,14 +6,14 @@ import { useLogin } from "../hooks/useLogin";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("admin");
+  const [role, setRole] = useState("");
   const { login, error, isLoading } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     await login(email, password, role);
   };
+
   return (
     <>
       <div className="login-screen-ctn">
@@ -156,7 +156,7 @@ const Login = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexRadioDefault2"
-                    style={{ cursor: "pointer", marginLeft: "3px"  }}
+                    style={{ cursor: "pointer", marginLeft: "3px" }}
                   >
                     Attendee
                   </label>
@@ -175,7 +175,17 @@ const Login = () => {
               </button>
               <br />
               <Link to="/password-reset">
-                <p style={{padding: "0", color: "var(--primary-color)", background: "none", marginTop: "10px", marginLeft: "2px"}}>Forgot Password ?</p>
+                <p
+                  style={{
+                    padding: "0",
+                    color: "var(--primary-color)",
+                    background: "none",
+                    marginTop: "10px",
+                    marginLeft: "2px",
+                  }}
+                >
+                  Forgot Password ?
+                </p>
               </Link>
               {error && <div className="error text-danger">{error}</div>}
             </form>

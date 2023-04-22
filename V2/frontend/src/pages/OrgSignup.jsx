@@ -1,10 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/CSS/style.css";
 
 import { useSignup } from "../hooks/useSignup";
 import { Link } from "react-router-dom";
 
 const OrgSignup = () => {
+  const [orgname, setOrgName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const { orgSignup, isLoading, error } = useSignup();
+
+  useEffect(() => {
+    console.log("orgname", orgname);
+  }, [orgname]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    console.log("orgname", orgname, "email", email, "password", password);
+    await orgSignup(orgname, email, password);
+  };
   return (
     <>
       <div className="login-screen-ctn">
@@ -23,6 +43,7 @@ const OrgSignup = () => {
               <span style={{ color: "hsl(218, 81%, 75%)" }}>
                 for Conferences
               </span>
+              P
             </h1>
             <p
               classname="mb-4 opacity-70"
@@ -59,7 +80,11 @@ const OrgSignup = () => {
               Already have an account, then click on the below LogIn button!
             </p>
             <Link to="/org-login">
-              <button type="submit" className="optional-btn">
+              <button
+                type="submit"
+                className="optional-btn"
+                disabled={isLoading}
+              >
                 LogIn
               </button>
             </Link>
@@ -74,7 +99,7 @@ const OrgSignup = () => {
             >
               Organization Signup
             </b>
-            <form style={{ width: "65%" }}>
+            <form style={{ width: "65%" }} onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="input-username" className="form-label">
                   Organization name:
@@ -83,6 +108,7 @@ const OrgSignup = () => {
                   type="text"
                   className="input-field"
                   id="input-username"
+                  onChange={(e) => setOrgName(e.target.value)}
                   required
                 />
               </div>
@@ -95,6 +121,7 @@ const OrgSignup = () => {
                   className="input-field"
                   id="input-email"
                   required
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -107,6 +134,7 @@ const OrgSignup = () => {
                   className="input-field"
                   id="input-password"
                   required
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="mb-3">
@@ -118,6 +146,7 @@ const OrgSignup = () => {
                   className="input-field"
                   id="input-conf-password"
                   required
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
               <button
@@ -130,6 +159,7 @@ const OrgSignup = () => {
               >
                 Submit
               </button>
+              {error && <div className="alert alert-danger">{error}</div>}
             </form>
           </div>
         </div>
