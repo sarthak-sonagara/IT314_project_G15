@@ -9,10 +9,10 @@ import PasswordReset from "./pages/PasswordReset";
 import TimeLineTest from "./pages/TimeLineTest";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
-import Profile from "./pages/Profile";
 import OrgLogin from "./pages/OrgLogin";
 import OrgSignup from "./pages/OrgSignup";
 import Choice from "./pages/choice";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const { user } = useAuthContext(); // will be used to provide functionality of private routes
@@ -25,10 +25,10 @@ function App() {
             {/* admin routes */}
             <Route
               element={
-                user && user.role === "admin" ? (
-                  <AdminDashboard />
-                ) : (
+                !user || user.role !== "admin" ? (
                   <AdminLogin />
+                ) : (
+                  <Navigate to="/admin/dashboard" />
                 )
               }
               path="/admin/login"
@@ -38,7 +38,7 @@ function App() {
                 user && user.role === "admin" ? (
                   <AdminDashboard />
                 ) : (
-                  <AdminLogin />
+                  <Navigate to="/admin/login" />
                 )
               }
               path="/admin/dashboard"
@@ -46,7 +46,10 @@ function App() {
             {/* general routes */}
             {/* public routes */}
             <Route element={<Home />} path="/" />
-            <Route element={<Choice />} path="/choice" />
+            <Route
+              element={!user ? <Choice /> : <Navigate to="/" />}
+              path="/choice"
+            />
             <Route
               element={!user ? <Login /> : <Navigate to="/" />}
               path="/login"
@@ -58,7 +61,10 @@ function App() {
             <Route element={<OrgLogin />} path="/org-login" />
             <Route element={<OrgSignup />} path="/org-signup" />
             {/* private routes */}
-            <Route element={user ? <Profile /> : <Choice />} path="/profile" />
+            <Route
+              element={user ? <UserProfile /> : <Choice />}
+              path="/profile"
+            />
             <Route element={<PasswordReset />} path="/password-reset" />
             {/* Oragnization  */}
             {/* <Route element={<TimeLine />} path="/timeline" /> */}
