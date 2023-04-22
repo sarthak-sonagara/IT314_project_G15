@@ -27,7 +27,7 @@ function App() {
               !user || user.role !== "admin" ? (
                 <AdminLogin />
               ) : (
-                <Navigate to="/admin/login" />
+                <Navigate to="/admin/dashboard" />
               )
             }
             path="/admin/login"
