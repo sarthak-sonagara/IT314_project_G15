@@ -137,7 +137,7 @@ const Signup = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexRadioDefault1"
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", marginLeft: "3px"  }}
                   >
                     Publisher
                   </label>
@@ -159,7 +159,7 @@ const Signup = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexRadioDefault2"
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", marginLeft: "3px"  }}
                   >
                     Attendee
                   </label>
