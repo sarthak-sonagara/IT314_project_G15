@@ -8,6 +8,16 @@ const createToken = (id) => {
   });
 };
 
+const getAllUsers = async (req, res) => {
+  User.find()
+    .then((users) => {
+      res.status(200).json({
+        users,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
 const signupUser = async (req, res) => {
   const { username, email, password, role } = req.body;
   User.signup(username, email, password, role)
@@ -58,4 +68,4 @@ const deleteUser = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-module.exports = { signupUser, loginUser, updateUser, deleteUser };
+module.exports = { getAllUsers, signupUser, loginUser, updateUser, deleteUser };
