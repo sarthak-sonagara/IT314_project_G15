@@ -8,7 +8,11 @@ const {
   signupUser,
   updateUser,
   deleteUser,
+  getAllUsers,
 } = require("../controllers/userController");
+
+// all users routes
+router.get("/", getAllUsers);
 
 // signup route
 router.post("/signup", signupUser);

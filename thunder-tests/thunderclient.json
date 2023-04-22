@@ -221,5 +221,19 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "06da39eb-4098-4478-b42b-b318e4528c67",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
+    "name": "all users",
+    "url": "http://localhost:3000/auth/user/",
+    "method": "GET",
+    "sortNum": 130000,
+    "created": "2023-04-22T08:18:26.397Z",
+    "modified": "2023-04-22T08:19:09.455Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
