@@ -15,62 +15,66 @@ import Choice from "./pages/choice";
 import UserProfile from "./pages/UserProfile";
 
 function App() {
-  const { user } = useAuthContext(); // will be used to provide functionality of private routes
+  const { user, org } = useAuthContext(); // will be used to provide functionality of private routes
   console.log(user);
   return (
     <>
       <BrowserRouter>
-        <div className="pages">
-          <Routes>
-            {/* admin routes */}
-            <Route
-              element={
-                !user || user.role !== "admin" ? (
-                  <AdminLogin />
-                ) : (
-                  <Navigate to="/admin/dashboard" />
-                )
-              }
-              path="/admin/login"
-            />
-            <Route
-              element={
-                user && user.role === "admin" ? (
-                  <AdminDashboard />
-                ) : (
-                  <Navigate to="/admin/login" />
-                )
-              }
-              path="/admin/dashboard"
-            />
-            {/* general routes */}
-            {/* public routes */}
-            <Route element={<Home />} path="/" />
-            <Route
-              element={!user ? <Choice /> : <Navigate to="/" />}
-              path="/choice"
-            />
-            <Route
-              element={!user ? <Login /> : <Navigate to="/" />}
-              path="/login"
-            />
-            <Route
-              element={!user ? <Signup /> : <Navigate to="/" />}
-              path="/signup"
-            />
-            <Route element={<OrgLogin />} path="/org-login" />
-            <Route element={<OrgSignup />} path="/org-signup" />
-            {/* private routes */}
-            <Route
-              element={user ? <UserProfile /> : <Choice />}
-              path="/profile"
-            />
-            <Route element={<PasswordReset />} path="/password-reset" />
-            {/* Oragnization  */}
-            {/* <Route element={<TimeLine />} path="/timeline" /> */}
-            <Route element={<TimeLineTest />} path="/timeline" />
-          </Routes>
-        </div>
+        <Routes>
+          {/* admin routes */}
+          <Route
+            element={
+              !user || user.role !== "admin" ? (
+                <AdminLogin />
+              ) : (
+                <Navigate to="/admin/login" />
+              )
+            }
+            path="/admin/login"
+          />
+          <Route
+            element={
+              user && user.role === "admin" ? (
+                <AdminDashboard />
+              ) : (
+                <Navigate to="/admin/login" />
+              )
+            }
+            path="/admin/dashboard"
+          />
+          {/* general routes */}
+          {/* public routes */}
+          <Route element={<Home />} path="/" />
+          <Route
+            element={!user ? <Choice /> : <Navigate to="/" />}
+            path="/choice"
+          />
+          <Route
+            element={!user ? <Login /> : <Navigate to="/" />}
+            path="/login"
+          />
+          <Route
+            element={!user ? <Signup /> : <Navigate to="/" />}
+            path="/signup"
+          />
+          <Route
+            element={!org ? <OrgLogin /> : <Navigate to="/" />}
+            path="/org-login"
+          />
+          <Route
+            element={!org ? <OrgSignup /> : <Navigate to="/" />}
+            path="/org-signup"
+          />
+          {/* private routes */}
+          <Route
+            element={user ? <UserProfile /> : <Choice />}
+            path="/profile"
+          />
+          <Route element={<PasswordReset />} path="/password-reset" />
+          {/* Oragnization  */}
+          {/* <Route element={<TimeLine />} path="/timeline" /> */}
+          <Route element={<TimeLineTest />} path="/timeline" />
+        </Routes>
       </BrowserRouter>
     </>
   );

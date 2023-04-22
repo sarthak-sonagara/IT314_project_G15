@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import "../assets/CSS/style.css";
 import { Link } from "react-router-dom";
+import { useLogin } from "../hooks/useLogin";
 
 const OrgLogin = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { orgLogin, error, isLoading } = useLogin();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await orgLogin(email, password);
+  };
+
   return (
     <>
       <div className="login-screen-ctn">
@@ -72,13 +83,14 @@ const OrgLogin = () => {
             >
               Organization Login
             </b>
-            <form style={{ width: "65%" }}>
+            <form style={{ width: "65%" }} onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   Email address:
                 </label>
                 <input
                   type="email"
+                  onChange={(e) => setEmail(e.target.value)}
                   className="input-field"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
@@ -94,6 +106,7 @@ const OrgLogin = () => {
                   className="input-field"
                   id="InputPassword"
                   required
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
 
@@ -104,14 +117,25 @@ const OrgLogin = () => {
                   backgroundColor: "var(--menu-bg-color)",
                   border: "none",
                 }}
-                // disabled={isLoading}
+                disabled={isLoading}
               >
                 Submit
               </button>
               <br />
               <Link to="/password-reset">
-                <p style={{padding: "0", color: "var(--primary-color)", background: "none", marginTop: "10px", marginLeft: "2px"}}>Forgot Password ?</p>
+                <p
+                  style={{
+                    padding: "0",
+                    color: "var(--primary-color)",
+                    background: "none",
+                    marginTop: "10px",
+                    marginLeft: "2px",
+                  }}
+                >
+                  Forgot Password ?
+                </p>
               </Link>
+              {error && <div className="error text-danger">{error}</div>}
             </form>
           </div>
         </div>

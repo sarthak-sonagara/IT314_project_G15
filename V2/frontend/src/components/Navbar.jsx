@@ -28,10 +28,12 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 
 const Navbar = () => {
-  const { logout } = useLogout();
-  const { user } = useAuthContext();
+  const { logout, orgLogout } = useLogout();
+  const { user, org } = useAuthContext();
+  console.log("user ", user, "org", org);
   const handleClick = () => {
     logout();
+    orgLogout();
   };
   return (
     <>
@@ -93,7 +95,7 @@ const Navbar = () => {
             style={{ background: "none", border: "none" }}
           />
         </div>
-        {!user ? (
+        {!user && !org ? (
           <div className="icons-container" style={{ width: "auto" }}>
             <Link to="/choice" style={{ marginRight: "1.2rem" }}>
               <button
@@ -230,7 +232,7 @@ const Navbar = () => {
             <p className="menu-texts">PAST PROCEEDING</p>
           </div>
         </div>
-        {!user ? (
+        {!user && !org ? (
           <></>
         ) : (
           <Link

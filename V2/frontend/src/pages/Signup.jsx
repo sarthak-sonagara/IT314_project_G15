@@ -9,10 +9,15 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const { signup, isLoading, error } = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
     await signup(username, email, password, role);
   };
 
@@ -137,7 +142,7 @@ const Signup = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexRadioDefault1"
-                    style={{ cursor: "pointer", marginLeft: "3px"  }}
+                    style={{ cursor: "pointer", marginLeft: "3px" }}
                   >
                     Publisher
                   </label>
@@ -159,7 +164,7 @@ const Signup = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexRadioDefault2"
-                    style={{ cursor: "pointer", marginLeft: "3px"  }}
+                    style={{ cursor: "pointer", marginLeft: "3px" }}
                   >
                     Attendee
                   </label>
@@ -186,6 +191,7 @@ const Signup = () => {
                   className="input-field"
                   id="input-conf-password"
                   required
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
               <button
@@ -199,7 +205,7 @@ const Signup = () => {
               >
                 Submit
               </button>
-              {error && <div className="text-danger">{error}</div>}
+              {error && <div className="error text-danger">{error}</div>}
             </form>
           </div>
         </div>
