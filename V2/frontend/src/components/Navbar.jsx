@@ -104,8 +104,8 @@ const Navbar = () => {
                   fontWeight: "bold",
                   fontSize: "0.875rem",
                   padding: "5px 15px",
-                  border : "1px solid var(--primary-color)",
-                  borderRadius: "0.375rem"
+                  border: "1px solid var(--primary-color)",
+                  borderRadius: "0.375rem",
                 }}
               >
                 SIGNUP
@@ -122,7 +122,7 @@ const Navbar = () => {
                   fontSize: "0.875rem",
                   backgroundColor: "var(--menu-bg-color)",
                   padding: "5px 15px",
-                  borderRadius: "0.375rem"
+                  borderRadius: "0.375rem",
                 }}
               >
                 LOGIN
@@ -152,11 +152,13 @@ const Navbar = () => {
 
                   <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow p-3 mt-2 bg-body rounded">
                     <Dropdown.Item href="#/action-1">
-                      <FontAwesomeIcon
-                        icon={faUserAlt}
-                        style={{ marginRight: "10px" }}
-                      />
-                      VIEW PROFILE
+                      <Link to="/profile">
+                        <FontAwesomeIcon
+                          icon={faUserAlt}
+                          style={{ marginRight: "10px" }}
+                        />
+                        VIEW PROFILE
+                      </Link>
                     </Dropdown.Item>
                     <Dropdown.Item className="text-danger" href="#/action-2">
                       <Link
@@ -186,10 +188,7 @@ const Navbar = () => {
       <div className="left-container" id="left-container">
         <div className="left-sub-container" id="left-sub-container">
           <h6 className="menu-text-ctn">
-            <FontAwesomeIcon
-              icon={faBars}
-              className="menu-icons menu-icon"
-            />
+            <FontAwesomeIcon icon={faBars} className="menu-icons menu-icon" />
             <p className="menu-texts" id="menu-text">
               MENU
             </p>
@@ -234,13 +233,18 @@ const Navbar = () => {
         {!user ? (
           <></>
         ) : (
-          <Link onClick={handleClick} style={{ cursor: "pointer", position: "absolute", bottom: "63px" }}>
+          <Link
+            onClick={handleClick}
+            style={{ cursor: "pointer", position: "absolute", bottom: "63px" }}
+          >
             <div className="logout-container text-danger">
               <FontAwesomeIcon
                 icon={faRightFromBracket}
                 style={{ margin: "0 10px 0 15px" }}
               />
-              <h6 style={{ }} id="logout-text-at-left-ctn" >LOGOUT</h6>
+              <h6 style={{}} id="logout-text-at-left-ctn">
+                LOGOUT
+              </h6>
             </div>
           </Link>
         )}
