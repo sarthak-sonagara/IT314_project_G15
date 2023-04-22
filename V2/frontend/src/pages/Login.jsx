@@ -134,7 +134,7 @@ const Login = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexRadioDefault1"
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", marginLeft: "3px" }}
                   >
                     Publisher
                   </label>
@@ -156,7 +156,7 @@ const Login = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexRadioDefault2"
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", marginLeft: "3px"  }}
                   >
                     Attendee
                   </label>
@@ -173,18 +173,10 @@ const Login = () => {
               >
                 Submit
               </button>
-              <button
-                type="submit"
-                className="input-btn"
-                style={{
-                  backgroundColor: "var(--menu-bg-color)",
-                  border: "none",
-                  marginInlineStart: 20,
-                }}
-                disabled={isLoading}
-              >
-                Password reset
-              </button>
+              <br />
+              <Link to="/password-reset">
+                <p style={{padding: "0", color: "var(--primary-color)", background: "none", marginTop: "10px", marginLeft: "2px"}}>Forgot Password ?</p>
+              </Link>
               {error && <div className="error text-danger">{error}</div>}
             </form>
           </div>
