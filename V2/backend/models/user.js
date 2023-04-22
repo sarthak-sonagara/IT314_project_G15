@@ -30,11 +30,10 @@ const userSchema = new mongoose.Schema({
   gender: {
     type: String,
     required: false,
-    enum: ["Male" , "Female" , "Other"],  // enum is an array of strings
-    default: "Male",
+    enum: ["Male", "Female", "Other"],  // enum is an array of strings
   },
-  
-  linkdin: {
+
+  linkedin: {
     type: String,
     required: false,
   },
@@ -134,6 +133,28 @@ userSchema.statics.update = async function (email, password) {
   user.password = hash; // update password
   await user.save();
   return user;
+};
+
+//static update function to update profile fields otherthan password and email
+userSchema.statics.updateUserProfile = async function (req) {
+
+  console.log("---------In update user profile function--------")
+  const id = req.params.id;
+  const user = await this.findOne({ _id: id });
+
+  console.log(user)
+  console.log(req.body)
+
+  if (!user) {
+    throw new Error("Not authorized to update");
+  }
+
+  const updatedUser = await this.findOneAndUpdate(
+    { _id: id },
+    req.body
+  );
+  return updatedUser;
+
 };
 
 module.exports = mongoose.model("User", userSchema);

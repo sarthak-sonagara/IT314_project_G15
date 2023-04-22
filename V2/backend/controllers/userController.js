@@ -57,6 +57,20 @@ const updateUser = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
+const updateUserProfile = async (req, res) => {
+
+  const id = req.params.id;
+
+  User.updateUserProfile(req)
+    .then((user) => {
+      res.status(200).json({
+        user,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+
+};
+
 const deleteUser = async (req, res) => {
   const { email } = req.body;
   User.findOneAndDelete({ email })
@@ -68,4 +82,4 @@ const deleteUser = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-module.exports = { getAllUsers, signupUser, loginUser, updateUser, deleteUser };
+module.exports = { getAllUsers, signupUser, loginUser, updateUser, updateUserProfile, deleteUser };

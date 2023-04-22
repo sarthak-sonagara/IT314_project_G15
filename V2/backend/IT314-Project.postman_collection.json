@@ -300,6 +300,103 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "User profile",
+			"item": [
+				{
+					"name": "user login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"parth@gmail.com\",\r\n    \"password\": \"Hello@123\",\r\n    \"role\": \"attendee\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"linkedin\": \"https://www.linkedin.com/in/parth-prajapati-4250721b9/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/updateProfile/6443d484bd6d791b5d7abdeb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"updateProfile",
+								"6443d484bd6d791b5d7abdeb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "try to update user profile that does not exist",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"linkedin\": \"https://www.linkedin.com/in/parth-prajapati-4250721b9/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/updateProfile/6443d484bd6d791b5d7abdef",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"updateProfile",
+								"6443d484bd6d791b5d7abdef"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

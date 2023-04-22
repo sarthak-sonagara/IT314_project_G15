@@ -7,6 +7,7 @@ const {
   loginUser,
   signupUser,
   updateUser,
+  updateUserProfile,
   deleteUser,
   getAllUsers,
 } = require("../controllers/userController");
@@ -22,6 +23,9 @@ router.post("/login", loginUser);
 
 // update route
 router.patch("/update", updateUser);
+
+//update Profile route
+router.patch("/updateProfile/:id", updateUserProfile);
 
 // delete route
 router.delete("/delete", deleteUser);
