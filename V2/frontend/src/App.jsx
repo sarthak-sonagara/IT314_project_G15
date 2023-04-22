@@ -16,15 +16,33 @@ import Choice from "./pages/choice";
 
 function App() {
   const { user } = useAuthContext(); // will be used to provide functionality of private routes
-
+  console.log(user);
   return (
     <>
       <BrowserRouter>
         <div className="pages">
           <Routes>
             {/* admin routes */}
-            <Route element={<AdminLogin />} path="/admin/login" />
-            <Route element={<AdminDashboard />} path="/admin/admin-dashboard" />
+            <Route
+              element={
+                user && user.role === "admin" ? (
+                  <AdminDashboard />
+                ) : (
+                  <AdminLogin />
+                )
+              }
+              path="/admin/login"
+            />
+            <Route
+              element={
+                user && user.role === "admin" ? (
+                  <AdminDashboard />
+                ) : (
+                  <AdminLogin />
+                )
+              }
+              path="/admin/dashboard"
+            />
             {/* general routes */}
             {/* public routes */}
             <Route element={<Home />} path="/" />
