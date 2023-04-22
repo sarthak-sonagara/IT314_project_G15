@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import "../assets/CSS/UserProfile.css";
 import {useState} from 'react';
-// import {AiOutlineMail,AiOutlineInstagram,AiOutlineLinkedin} from 'react-icons/ai';
+import {AiOutlineMail,AiOutlineInstagram,AiOutlineLinkedin} from 'react-icons/ai';
 // var cn = require('classNames');
 
 const c1 = {
@@ -55,7 +55,7 @@ function conftable(conf){
 }
 
   return (
-    <>
+    <div className="UserProfileBodyCtn">
     <div className="box">
       <div className="profileBox">
         <img src={user.userimage} alt="Image of user" className="profilePhoto"/>
@@ -124,7 +124,7 @@ function conftable(conf){
             </div>
           </div>
         }
-    </>
+    </div>
 
   );
 }

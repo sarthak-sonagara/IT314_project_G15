@@ -35,10 +35,10 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className="nav-bar">
+      <nav className="global-nav-bar">
         <div className="logo-container" id="logo-ctn">
           <svg
-            className="logo-icon"
+            className="global-nav-logo-icon"
             width="262.667"
             height="262.667"
             viewBox="0 0 197 197"
@@ -77,7 +77,7 @@ const Navbar = () => {
           </svg>
           <h5 style={{ padding: "0px", margin: 0, fontWeight: "600" }}>CMS</h5>
         </div>
-        <div className="search-bar">
+        <div className="global-nav-search-bar">
           <FontAwesomeIcon
             icon={faSearch}
             style={{
