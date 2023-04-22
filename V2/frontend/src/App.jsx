@@ -11,6 +11,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import OrgLogin from "./pages/OrgLogin";
 import OrgSignup from "./pages/OrgSignup";
+import OrgDashboard from "./pages/OrgDashboard"
 import Choice from "./pages/choice";
 import UserProfile from "./pages/UserProfile";
 
@@ -65,6 +66,7 @@ function App() {
             element={!org ? <OrgSignup /> : <Navigate to="/" />}
             path="/org-signup"
           />
+          <Route element={<OrgDashboard />} path="/org-dashboard" />
           {/* private routes */}
           <Route
             element={user ? <UserProfile /> : <Choice />}
