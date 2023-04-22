@@ -26,6 +26,31 @@ const userSchema = new mongoose.Schema({
     enum: ["attendee", "admin", "publisher"], // enum is an array of strings
     default: "attendee",
   },
+
+  gender: {
+    type: String,
+    required: false,
+    enum: ["Male" , "Female" , "Other"],  // enum is an array of strings
+    default: "Male",
+  },
+  
+  linkdin: {
+    type: String,
+    required: false,
+  },
+
+  instagram: {
+    type: String,
+    required: false,
+  },
+
+  // array of registered conferences ID  
+  registered_conferences: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Conference",
+    default: [],
+  }],
+
 });
 
 // static signup function

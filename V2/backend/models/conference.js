@@ -39,6 +39,15 @@ const conferenceSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
+
+  registeredAttendees: [
+    {
+      type: mongoose.Schema.Types.ObjectId, // type must be object ids
+      ref: "User", // whatever object id we store must be from the User model
+      default: [],
+    }
+  ],
+
 });
 
 // static function to create new conferences
@@ -124,23 +133,22 @@ conferenceSchema.statics.viewConference = async function (req) {
   console.log("------In viewConference function------\n", req.body);
 
   const conferenceName = req.body.conferenceName;
-  const topicName  = req.body.topicName;
+  const topicName = req.body.topicName;
 
   if (conferenceName) {
-        // this will return conference object.
-      const conference = await this.find({ conferenceName });
+    // this will return conference object.
+    const conference = await this.find({ conferenceName });
 
-      if (conference) {
-        return conference;
-      }
+    if (conference) {
+      return conference;
+    }
   }
-  
-  if(topicName)
-  {
+
+  if (topicName) {
     // this will return conference object.
     var conferences = [];
     conferences = await this.find({
-      topics :{
+      topics: {
         $all: [topicName],
       },
     });
