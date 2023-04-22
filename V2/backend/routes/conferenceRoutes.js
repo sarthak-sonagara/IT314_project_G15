@@ -21,7 +21,7 @@ router.post("/create", createConference);
 
 router.get("/get", viewConference);
 
-router.patch("/edit/:name", editConference);
+router.patch("/edit/:id", editConference);
 
 router.delete("/delete/:name", deleteConference);
 

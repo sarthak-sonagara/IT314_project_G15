@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/CSS/style.css";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//jQuery libraries
+import "jquery/dist/jquery.min.js";
+//Datatable Modules
+import "datatables.net-dt/js/dataTables.dataTables";
+import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import Table from "react-bootstrap/Table";
-
 import AdminNavbar from "../components/AdminNavbar";
 
 const AdminDashboard = () => {
@@ -14,50 +16,54 @@ const AdminDashboard = () => {
       <AdminNavbar />
       <div className="admin-container">
         <div className="admin-content-ctn">
-          <Table
-            id="example"
-            className="table table-striped"
-            striped
-            bordered
-            hover
-            size="sm"
-          >
+          <table id="example" className="display">
             <thead>
               <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Id</th>
                 <th>Username</th>
+                <th>Email</th>
+                <th>Role.</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td colSpan={2}>Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </Table>
+          </table>
         </div>
       </div>
     </>
   );
 };
 
-$(document).ready(function () {
-  $("#example").DataTable();
-});
+var xmlhttp = new XMLHttpRequest();
+var listFilesUrl = "http://localhost:3000/auth/user/";
+xmlhttp.open("GET", listFilesUrl, true);
+xmlhttp.send();
+xmlhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    var data = JSON.parse(this.responseText);
+    console.log(data);
+    let table = $("#example").DataTable({
+      stateSave: true,
+      bDestroy: true,
+      data: data.users,
+      columns: [
+        { data: "_id" },
+        { data: "username" },
+        { data: "email" },
+        { data: "role" },
+        {
+          data: null,
+          defaultContent:
+            "<svg style='height: 15px; width: 15px; fill: var(--bs-primary); cursor: pointer;'><path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/><path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z'/></svg>",
+        },
+        {
+          data: null,
+          defaultContent:
+            "<svg style='height: 15px; width: 15px; fill: var(--bs-danger); cursor: pointer;'>  <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z'/></svg>",
+        },
+      ],
+    });
+  }
+};
 
 export default AdminDashboard;

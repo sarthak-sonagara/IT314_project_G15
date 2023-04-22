@@ -39,6 +39,15 @@ const conferenceSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
+
+  registeredAttendees: [
+    {
+      type: mongoose.Schema.Types.ObjectId, // type must be object ids
+      ref: "User", // whatever object id we store must be from the User model
+      default: [],
+    }
+  ],
+
 });
 
 // static function to create new conferences
@@ -81,7 +90,10 @@ conferenceSchema.statics.createConference = async function (req) {
 
 // static function to update any conferences
 conferenceSchema.statics.editConference = async function (req) {
-  const name = req.params.name;
+
+  console.log("------In editConference function------\n", req.body);
+  const id = req.params.id;
+  const filter = { _id: id }; // filter to find the conference
 
   // validation
   const { org_id, conferenceName, description, startDate, endDate } = req.body;
@@ -92,7 +104,7 @@ conferenceSchema.statics.editConference = async function (req) {
 
   // this will return old conference document not updated one.
   const conference = await this.findOneAndUpdate(
-    { conferenceName: name },
+    filter,
     req.body
   );
 
@@ -124,23 +136,22 @@ conferenceSchema.statics.viewConference = async function (req) {
   console.log("------In viewConference function------\n", req.body);
 
   const conferenceName = req.body.conferenceName;
-  const topicName  = req.body.topicName;
+  const topicName = req.body.topicName;
 
   if (conferenceName) {
-        // this will return conference object.
-      const conference = await this.find({ conferenceName });
+    // this will return conference object.
+    const conference = await this.find({ conferenceName });
 
-      if (conference) {
-        return conference;
-      }
+    if (conference) {
+      return conference;
+    }
   }
-  
-  if(topicName)
-  {
+
+  if (topicName) {
     // this will return conference object.
     var conferences = [];
     conferences = await this.find({
-      topics :{
+      topics: {
         $all: [topicName],
       },
     });
