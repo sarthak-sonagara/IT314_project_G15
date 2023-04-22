@@ -19,7 +19,7 @@
   --active-font-color: #1a1c23;
 }
 
-.nav-bar {
+.global-nav-bar {
   height: 63px;
   background-color: var(--nav-bg-color);
   display: flex;
@@ -29,7 +29,7 @@
   z-index: 9;
 }
 
-.search-bar {
+.global-nav-search-bar {
   height: 35px;
   background-color: rgb(234, 235, 237);
   width: 45%;
@@ -151,7 +151,7 @@
   background-color: var(--nav-bg-color);
 }
 
-.logo-icon {
+.global-nav-logo-icon {
   height: 35px;
   width: 35px;
   margin-right: 7px;

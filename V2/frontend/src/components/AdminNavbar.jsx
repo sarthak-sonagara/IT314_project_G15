@@ -5,23 +5,7 @@ import "../assets/CSS/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-  faArrowsLeftRightToLine,
-  faBars,
-  faBarsStaggered,
-  faBell,
-  faClipboardList,
-  faHome,
-  faRightFromBracket,
-  faSearch,
-  faServer,
-  faSignOut,
-  faTimeline,
-  faUpload,
-  faUser,
-  faUserAlt,
-  faUserGroup,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faSignOut } from "@fortawesome/free-solid-svg-icons";
 
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -35,7 +19,7 @@ const AdminNavbar = () => {
   };
   return (
     <>
-      <nav className="nav-bar admin-nav">
+      <nav className="global-nav-bar admin-nav">
         <div className="admin-nav-left-span">
           <div className="admin-nav-left-sub-ctn">
             <p style={{ padding: "0", margin: "0" }}>Admin</p>
@@ -55,7 +39,7 @@ const AdminNavbar = () => {
             ></div>
           </div>
         </div>
-        <div className="search-bar">
+        <div className="global-nav-search-bar">
           <FontAwesomeIcon
             icon={faSearch}
             style={{
@@ -71,14 +55,18 @@ const AdminNavbar = () => {
             style={{ background: "none", border: "none" }}
           />
         </div>
-        <div
-          className="admin-nav-right-logout-span"
-          style={{ cursor: "pointer" }}
-          onClick={handleClick}
-        >
-          <FontAwesomeIcon icon={faSignOut} style={{}} />
-          <p style={{ padding: "0", margin: "0", marginLeft: "5px" }}>LOGOUT</p>
-        </div>
+        <Link onClick={handleClick} className="admin-nav-right-logout-span">
+          <div
+            className="admin-nav-right-logout-span"
+            style={{ cursor: "pointer" }}
+            onClick={handleClick}
+          >
+            <FontAwesomeIcon icon={faSignOut} style={{}} />
+            <p style={{ padding: "0", margin: "0", marginLeft: "5px" }}>
+              LOGOUT
+            </p>
+          </div>
+        </Link>
       </nav>
     </>
   );
