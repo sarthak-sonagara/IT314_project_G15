@@ -248,12 +248,17 @@
   background-color: var(--nav-bg-color);
 }
 
-.login-container {
+.login-container, .admin-login-container {
   height: 600px;
   width: 1100px;
   display: flex;
   box-shadow: 0px 0px 30px 3px #888888;
   border-radius: 5px;
+}
+
+.admin-login-container {
+  width: 500px;
+  height: 500px;
 }
 
 .left-login-ctn {
@@ -285,7 +290,7 @@
   border-radius: 5px 0 0 5px;
 }
 
-.right-login-ctn {
+.right-login-ctn, .admin-login-ctn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -294,6 +299,10 @@
   background-color: #f3f3f3;
   border-radius: 0 5px 5px 0;
   flex-direction: column;
+}
+
+.admin-login-ctn {
+  width: 100%;
 }
 
 .input-field {
@@ -403,6 +412,76 @@
   align-items: center;
   border-radius: 5px 5px 5px 5px;
 }
+
+/* --------------------------------admin ------------------------------------------- */
+
+.admin-nav {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+
+.admin-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(223, 227, 231);
+  padding-top: 100px;
+}
+
+.admin-nav-right-logout-span {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--bs-danger);
+  position: absolute;
+  right: 20px;
+}
+
+.admin-nav-left-span {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  left: 20px;
+}
+
+.admin-nav-left-sub-ctn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.admin-active-indicator {
+  position: absolute;
+  bottom: -20px;
+  height: 5px;
+  background-color: var(--primary-color);
+  border-radius: 4px 4px 0 0;
+}
+#user-active-indicator {
+  width: 35px;
+}
+#org-active-indicator {
+  width: 75px;
+}
+
+.admin-content-ctn {
+  width: 1100px;
+  padding: 10px;
+  padding: 10px 20px;
+  /* background-color: #707275; */
+  border-radius: 0.750rem;
+  border: 1px  #626c72 ;
+  border-style: dashed;
+}
+
 
 @media screen and (max-width: 1200px) {
 }
