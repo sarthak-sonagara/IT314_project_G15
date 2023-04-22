@@ -153,28 +153,28 @@ const Navbar = () => {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow p-3 mt-2 bg-body rounded">
-                    <Dropdown.Item href="#/action-1">
-                      <Link to="/profile">
+                    <Link to="/profile" className="text-dark">
+                      <Dropdown.Item href="#/action-1">
                         <FontAwesomeIcon
                           icon={faUserAlt}
                           style={{ marginRight: "10px" }}
                         />
                         VIEW PROFILE
-                      </Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item className="text-danger" href="#/action-2">
+                      </Dropdown.Item>
+                    </Link>
                       <Link
                         onClick={handleClick}
                         className="text-danger"
                         style={{ cursor: "pointer" }}
                       >
+                    <Dropdown.Item className="text-danger" href="#/action-2">
                         <FontAwesomeIcon
                           icon={faSignOut}
                           style={{ marginRight: "10px" }}
                         />
                         LOGOUT
-                      </Link>
                     </Dropdown.Item>
+                      </Link>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
