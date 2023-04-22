@@ -25,13 +25,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:  0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
+  z-index: 9;
 }
 
 .search-bar {
   height: 35px;
-  background-color: #f4f5f7;
+  background-color: rgb(234, 235, 237);
   width: 45%;
   border-radius: 5px;
   display: flex;
@@ -50,9 +50,9 @@
   border-radius: 1px;
 }
 
-.search-input:focus {
+.search-input:focus{
   box-shadow: none;
-  border: none;
+  border:none;
 }
 
 /* -------------------------------------------------------------------- */
@@ -63,11 +63,17 @@
   width: 275px;
   position: absolute;
   top: 0px;
+  padding-top: 80px;
+  box-shadow:  0 6px 8px -1px rgba(0,0,0,.1),0 6px 8px -1px rgba(0,0,0,.06);
+}
+
+.left-close-container {
+  width: 60px;
 }
 
 .left-sub-container {
-  padding-top: 20px;
   color: var(--font-color);
+  width: 100%;
 }
 
 .active-indicator {
@@ -79,23 +85,30 @@
   border-radius: 0 4px 4px 0;
 }
 
+.active-close-indicator {
+  margin-right: 15px;
+}
+
 .logo-container,
 .logout-container {
+  position: absolute;
+  width: 300px;
   height: 63px;
   display: flex;
   /* justify-content: c; */
   align-items: center;
   text-align: center;
   padding-left: 20px;
-  color: var(--active-font-color);
-  width: 100%;
+  color: var(--primary-color);
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background-color: #fff;
   /* opacity: 70%; */
 }
 
 .logout-container {
-  position: absolute;
   bottom: 0;
-  left: 0;
   width: 100%;
 }
 
@@ -156,24 +169,72 @@
   height: 37px;
   cursor: pointer;
   border-radius: 35px;
-  color: var(--font-color);
-  font-weight: bold;
+  color:  var(--font-color);
+  font-weight:bold;
 }
 
 .menu-options-ctn:hover {
-  color: var(--primary-color);
+  color: var(--primary-color)
 }
 
 .menu-icons {
-  height: 0.975rem;
+  height: .975rem;
   width: 19px;
   margin-right: 10px;
 }
 
 .menu-texts {
-  font-size: 0.775rem;
+  display: inherit;
+  font-size: .775rem;
   margin: 0;
   padding: 0;
+}
+ 
+.menu-text-ctn {
+  margin-bottom: 5px;
+  font-size: 0.855rem;
+  margin-left: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+
+.menu-close-texts {
+  display: none;
+}
+.menu-close-text {
+  visibility: hidden;
+}
+
+.menu-icon {
+  position: absolute;
+  right: 9.5px; 
+  height: 1.15rem;
+  cursor: pointer;
+}
+
+.menu-close-icon {
+  position: inherit;
+  margin-left: 5px;
+}
+
+.menu-icon:hover {
+  color: var(--primary-color);
+}
+
+#logout-text-at-left-ctn {
+  padding: 0px; 
+  margin: 0px;
+}
+
+.logout-text-close-at-left-ctn {
+  display: none;
+}
+
+.logout-close-container {
+  padding-left: 10px;
 }
 
 /* --------------------- Loging ------------------------------ */

@@ -75,7 +75,7 @@ const OrgLogin = () => {
             <form style={{ width: "65%" }}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
-                  Email address or Organization name:
+                  Email address:
                 </label>
                 <input
                   type="email"
@@ -108,17 +108,10 @@ const OrgLogin = () => {
               >
                 Submit
               </button>
-              <button
-                type="submit"
-                className="input-btn"
-                style={{
-                  backgroundColor: "var(--menu-bg-color)",
-                  border: "none",
-                  marginInlineStart: 20,
-                }}
-              >
-                Password reset
-              </button>
+              <br />
+              <Link to="/password-reset">
+                <p style={{padding: "0", color: "var(--primary-color)", background: "none", marginTop: "10px", marginLeft: "2px"}}>Forgot Password ?</p>
+              </Link>
             </form>
           </div>
         </div>
