@@ -176,3 +176,266 @@ describe("PATCH /auth/user/update", () => {
         });
     });
   });
+
+  
+///signup test case
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UN",
+        email: "UN@gmail.com",
+        password: "UNnnnnn0)",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+
+// duplicate email address
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UNX",
+        email: "UN@gmail.com",
+        password: "UNnnnnn0)",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+// empty username
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "",
+        email: "UN2@gmail.com",  
+        password: "UNnnnnn2@",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+//empty email
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UN6",
+        email: "",
+        password: "UNnnnnn6^",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+
+ // empty Password
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UN1",
+        email: "UN1@gmail.com",
+        password: "",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+// Password contain less than 8 char
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UN3",
+        email: "UN3@gmail.com",
+        password: "UN3",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+ // Password not contain uppercase char
+ describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UN4",
+        email: "UN4@gmail.com",
+        password: "unnnnnn4$",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+// Password not contain lowercase char
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UN5",
+        email: "UN5@gmail.com",
+        password: "UNNNNNN5%",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+
+// Password not contain number
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UN7",
+        email: "UN7@gmail.com",
+        password: "UNnnnnnn&",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+// password not contain symbol
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UN8",
+        email: "UN8@gmail.com",
+        password: "UNnnnnnn8",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+
+//check default role
+// set default role in user userSchema but put condition on empty role not vaild
+ 
+describe("POST /auth/user/signup", () => {
+  it("it should signup a user", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/signup")
+      .send({
+        username: "UN9",
+        email: "UN9@gmail.com",
+        password: "UNnnnnn9(",
+        role: "",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        expect(res.body).to.have.property("token");
+        done();
+      });
+  });
+});
+
+
+
