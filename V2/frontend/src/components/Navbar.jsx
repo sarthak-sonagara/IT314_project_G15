@@ -95,7 +95,7 @@ const Navbar = () => {
         </div>
         {!user ? (
           <div className="icons-container" style={{ width: "auto" }}>
-            <Link to="/login" style={{ marginRight: "1.2rem" }}>
+            <Link to="/choice" style={{ marginRight: "1.2rem" }}>
               <button
                 type="submit"
                 className="nav-optional-btn"
@@ -105,12 +105,13 @@ const Navbar = () => {
                   fontSize: "0.875rem",
                   padding: "5px 15px",
                   border : "1px solid var(--primary-color)",
+                  borderRadius: "0.375rem"
                 }}
               >
-                LOGIN
+                SIGNUP
               </button>
             </Link>
-            <Link to="/signup">
+            <Link to="/choice">
               <button
                 type="submit"
                 className="nav-optional-btn"
@@ -121,9 +122,10 @@ const Navbar = () => {
                   fontSize: "0.875rem",
                   backgroundColor: "var(--menu-bg-color)",
                   padding: "5px 15px",
+                  borderRadius: "0.375rem"
                 }}
               >
-                SIGNUP
+                LOGIN
               </button>
             </Link>
           </div>
