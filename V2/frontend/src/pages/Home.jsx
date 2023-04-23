@@ -31,9 +31,9 @@ const Home = () => {
               <div className="col p-4 d-flex flex-column position-static">
                 <strong className="d-inline-block mb-2 text-success">Organization</strong>
                 <h3 className="mb-0">Organization Name</h3>
-                <Link to="/Home_conf">
+                {/* <Link to="/Home_conf">
                   <button type="submit" class="optional-btn">See every conference...</button>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

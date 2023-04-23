@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../assets/CSS/style.css";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
+import Form from 'react-bootstrap/Form';
 //jQuery libraries
 import "jquery/dist/jquery.min.js";
 //Datatable Modules
@@ -9,76 +10,286 @@ import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import AdminNavbar from "../components/AdminNavbar";
-import { text } from "@fortawesome/fontawesome-svg-core";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Alert from 'react-bootstrap/Alert';
+
 
 const OrgDashboard = () => {
+    const [show, setShow] = useState(false);
+    const handleClose = () => {
+        setShow(false)
+        var conf_name = document.getElementById("conference-name").value;
+        var desc = document.getElementById("description").value;
+        var start_date = document.getElementById("startdate").value;
+        var end_date = document.getElementById("enddate").value;
+        var guest_speaker = document.getElementById("guestspeaker").value;
+        var topic = document.getElementById("topic").value;
+        guest_speaker = guest_speaker.split(",");
+        topic = topic.split(",");
+        for (let i = 0; i < guest_speaker.length; i++) {
+            guest_speaker[i] = guest_speaker[i].trim();
+        }
+        for (let i = 0; i < topic.length; i++) {
+            topic[i] = topic[i].trim();
+        }
+        console.log(conf_name);
+        console.log(desc);
+        console.log(start_date);
+        console.log(end_date);
+        console.log(guest_speaker);
+        console.log(topic);
+    };
+    const handleShow = () => setShow(true);
+    const [showEdit, setShowEdit] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
+    const handleCloseEdit = () => setShowEdit(false);
+    const handleShowEdit = () => setShowEdit(true);
+    const handleCloseDelete = () => setShowDelete(false);
+    const handleShowDelete = () => setShowDelete(true);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    useEffect(() => {
+
+        var xmlhttp = new XMLHttpRequest();
+        var listFilesUrl = "http://localhost:3000/org/all";
+        xmlhttp.open("GET", listFilesUrl, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                console.log(data);
+                $(document).ready(function () {
+                    let table = $("#example").DataTable({
+                        stateSave: true,
+                        bDestroy: true,
+                        data: data.conferences,
+                        columns: [
+                            { data: "conferenceName" },
+                            { data: "description" },
+                            { data: "startDate" },
+                            { data: "endDate" },
+                            {
+                                data: null,
+                                defaultContent:
+                                    '<button class="btn btn-primary edit-btn">Edit</button>',
+                            },
+                            {
+                                data: null,
+                                defaultContent:
+                                    '<button class="btn btn-danger delete-btn">Delete</button>',
+                            },
+                        ],
+                    });
+
+
+                    // Handle Edit button click
+                    $("#example tbody").on("click", ".edit-btn", function () {
+                        let td = $(this).closest("tr").find("td:eq(0)");
+                        // let id = table.row(td).data();
+                        if (table.cell(td).data()) {
+                            // $("#input-id").val("Hello");
+                            console.log(table.cell(td).data());
+                        }
+                        // let rowData = table.row(tr).data();
+                        // console.log("Edit row data:", id);
+                        handleShowEdit();
+                    });
+
+                    // Handle Delete button click
+                    $("#example tbody").on("click", ".delete-btn", function () {
+                        let rowData = table.row($(this).parents("tr")).data();
+                        console.log("Delete row data:", rowData);
+                        handleShowDelete();
+                    });
+                });
+            }
+        };
+    }, []);
+
     return (
         <>
-            <AdminNavbar />
-            <div className="admin-container">
-                <div className="admin-content-ctn">
-                    <h1 style={{
-                        textAlign: "center",
-                        fontSize: "2rem",
-                        fontWeight: "bold",
-                        marginBottom: "1rem",
-                        marginTop: "1rem",
-                    }}>
-                        Organization Name
-                    </h1>
-                        
-                    
-                    <table id="example" className="display">
+            <div style={{
+                backgroundColor: "#F5F5F5",
+                paddingTop: "68px",
+                overflow: "hidden",
+                display: "flex",
+                width: "100%",
+                minHeight: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}>
 
-                        <thead>
+                <AdminNavbar />
 
-                            <tr>
-                                <th>Conference Name</th>
-                                <th>Description</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <Button variant="primary" onClick={handleShow} style={{
+                    height: "50px", position: "absolute", right: "20px", top: "100px", width: "200px", borderRadius: "10px"
+                }}>
+                    Add Conference
+                </Button>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>New Conference</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="conference-name">
+                                <Form.Label>Conference Name</Form.Label>
+                                <Form.Control type="text" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="description">
+                                <Form.Label>Description</Form.Label>
+                                <Form.Control type="text" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="startdate">
+                                <Form.Label>Start Date</Form.Label>
+                                <Form.Control type="date" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="enddate">
+                                <Form.Label>End Date</Form.Label>
+                                <Form.Control type="date" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="guestspeaker">
+                                <Form.Label>Guest Speakers</Form.Label>
+                                <Form.Control type="text" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="topic">
+                                <Form.Label>Topics</Form.Label>
+                                <Form.Control type="text" />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
+                <div className="admin-container">
+                    <div className="admin-content-ctn">
+                        <table id="example" className="display">
+                            <thead>
+                                <tr>
+                                    <th>Conference Name</th>
+                                    <th>Description</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <>
+                        <Modal
+                            show={showEdit}
+                            onHide={handleCloseEdit}
+                            style={{
+                                transform: "translate(-50%, -25%)",
+                                top: "50%",
+                                left: "50%",
+                            }}
+                        >
+                            <Modal.Header closeButton>
+                                <Modal.Title>Edit User</Modal.Title>
+                            </Modal.Header>
+                            <form action="">
+                                <Modal.Body>
+                                    <div className="mb-3">
+                                        <label htmlFor="input-id" className="form-label">
+                                            ID:
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="input-field"
+                                            id="input-id"
+                                            required
+                                            value=""
+                                            readOnly
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="input-email" className="form-label">
+                                            Email address:
+                                        </label>
+                                        <input
+                                            type="email"
+                                            className="input-field"
+                                            id="input-email"
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                            // readOnly
+                                            defaultValue=""
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="input-password" className="form-label">
+                                            Password:
+                                        </label>
+                                        <input
+                                            type="password"
+                                            className="input-field"
+                                            id="input-password"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleCloseEdit}>
+                                        Close
+                                    </Button>
+                                    <Button
+                                        type="submit"
+                                        variant="primary"
+                                        onClick={handleCloseEdit}
+                                    >
+                                        Submit
+                                    </Button>
+                                </Modal.Footer>
+                            </form>
+                        </Modal>
+
+                        <Modal
+                            show={showDelete}
+                            onHide={handleCloseDelete}
+                            style={{
+                                transform: "translate(-50%, -25%)",
+                                top: "50%",
+                                left: "50%",
+                            }}
+                        >
+                            <Modal.Header closeButton>
+                                <Modal.Title>Are you really want to delete it?</Modal.Title>
+                            </Modal.Header>
+                            <form action="">
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleCloseDelete}>
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        type="submit"
+                                        variant="danger"
+                                        onClick={handleCloseDelete}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Modal.Footer>
+                            </form>
+                        </Modal>
+                    </>
                 </div>
             </div>
         </>
     );
 };
 
-var xmlhttp = new XMLHttpRequest();
-var listFilesUrl = "http://localhost:3000/auth/user/";
-xmlhttp.open("GET", listFilesUrl, true);
-xmlhttp.send();
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        var data = JSON.parse(this.responseText);
-        console.log(data);
-        let table = $("#example").DataTable({
-            stateSave: true,
-            bDestroy: true,
-            data: data.users,
-            columns: [
-                { data: "_id" },
-                { data: "username" },
-                { data: "email" },
-                { data: "role" },
-                {
-                    data: null,
-                    defaultContent:
-                        "<svg style='height: 15px; width: 15px; fill: var(--bs-primary); cursor: pointer;'><path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z' /><path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z' /></svg>",
-                },
-                {
-                    data: null,
-                    defaultContent:
-                        "<svg style='height: 15px; width: 15px; fill: var(--bs-danger); cursor: pointer;'>  <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z' /></svg>",
-                },
-            ],
-        });
-    }
-};
+
 
 export default OrgDashboard;

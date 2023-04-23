@@ -59,6 +59,8 @@ function App() {
             element={!user ? <Signup /> : <Navigate to="/" />}
             path="/signup"
           />
+          <Route element={<OrgDashboard/>} path="org-dashboard" /> 
+
           <Route
             element={!org ? <OrgLogin /> : <Navigate to="/" />}
             path="/org-login"
@@ -67,10 +69,10 @@ function App() {
             element={!org ? <OrgSignup /> : <Navigate to="/" />}
             path="/org-signup"
           />
-          <Route
+          {/* <Route
             element={org ? <OrgDashboard /> : <Navigate to="/org-login" />}
             path="/org-dashboard"
-          />
+          /> */}
           {/* private routes */}
           <Route
             element={user ? <UserProfile /> : <Navigate to="/login" />}
