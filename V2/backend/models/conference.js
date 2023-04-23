@@ -154,7 +154,7 @@ conferenceSchema.statics.viewConference = async function (req) {
       topics: {
         $all: [topicName],
       },
-    });
+    }).sort(( {  startDate : 1 } )) ;
 
     //Conference does not exist then return error message.
     if (!conferences) {
