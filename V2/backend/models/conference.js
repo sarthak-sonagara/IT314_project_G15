@@ -182,7 +182,7 @@ conferenceSchema.statics.conferenceRegistration = async function (req) {
   return conference;
 };
 
-// static function to search any conferences by name
+// static function to search any conferences by name of conference or topic
 conferenceSchema.statics.viewConference = async function (req) {
   console.log("------In viewConference function------\n", req.body);
 
