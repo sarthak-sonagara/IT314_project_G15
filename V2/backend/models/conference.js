@@ -88,6 +88,26 @@ conferenceSchema.statics.createConference = async function (req) {
   return conference;
 };
 
+// static function to get all conferences
+conferenceSchema.statics.getAllConferences = async function () {
+  const conferences = await this.find({});
+  return conferences;
+};
+
+//static function to get a conference by id
+conferenceSchema.statics.getConferenceById = async function (id) {
+
+  const filter = { _id: id }; // filter to find the conference
+
+  const conference = await this.findOne(filter); // this will return conference object.
+
+  if (!conference) {
+    throw new Error("Conference does not exist");
+  }
+
+  return conference;
+}
+
 // static function to update any conferences
 conferenceSchema.statics.editConference = async function (req) {
 

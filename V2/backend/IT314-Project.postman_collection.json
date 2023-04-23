@@ -460,6 +460,71 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Get Conference",
+			"item": [
+				{
+					"name": "fetch all conferences",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/org/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch particular conference details by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/org/643accdedd24efe86281f193",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"643accdedd24efe86281f193"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "try to fetch conference that doesn't exist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/org/643accdedd24efe86281f196",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"643accdedd24efe86281f196"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

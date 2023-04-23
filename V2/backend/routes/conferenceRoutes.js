@@ -6,6 +6,8 @@ const router = express.Router();
 
 const {
   createConference,
+  getAllConferences,
+  getConferenceById,
   editConference,
   deleteConference,
   viewConference,
@@ -18,6 +20,12 @@ const requireAuth = require("../middlewares/requireAuth");
 
 // createConference route
 router.post("/create", createConference);
+
+//Get all conferences
+router.get("/all", getAllConferences);
+
+//Get information of conference by id
+router.get("/:id", getConferenceById);
 
 router.get("/get", viewConference);
 
