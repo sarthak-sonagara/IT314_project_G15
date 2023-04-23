@@ -135,7 +135,7 @@ userSchema.statics.update = async function (email, password) {
   return user;
 };
 
-//static update function to update profile fields otherthan password and email
+//static update function to update profile fields other than password and email
 userSchema.statics.updateUserProfile = async function (req) {
 
   console.log("---------In update user profile function--------")
@@ -155,6 +155,22 @@ userSchema.statics.updateUserProfile = async function (req) {
   );
   return updatedUser;
 
+};
+
+// static function to get user by id
+userSchema.statics.getUserById = async function (id) {
+  const user = await this.findOne({ _id: id });
+  console.log(user);
+  if(!user){
+    throw new Error("User not found");
+  }
+  return user;
+};
+
+// static function to get all users
+userSchema.statics.getAllUsers = async function () {
+  const users = await this.find({});
+  return users;
 };
 
 module.exports = mongoose.model("User", userSchema);

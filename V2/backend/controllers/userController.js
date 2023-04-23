@@ -8,15 +8,6 @@ const createToken = (id) => {
   });
 };
 
-const getAllUsers = async (req, res) => {
-  User.find()
-    .then((users) => {
-      res.status(200).json({
-        users,
-      });
-    })
-    .catch((error) => res.status(400).json({ error: error.message }));
-};
 
 const signupUser = async (req, res) => {
   const { username, email, password, role } = req.body;
@@ -71,6 +62,27 @@ const updateUserProfile = async (req, res) => {
 
 };
 
+const getUserById = async (req, res) => {
+  const id = req.params.id;
+  User.getUserById(id)
+    .then((user) => {
+      res.status(200).json({
+        user,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+const getAllUsers = async (req, res) => {
+  User.getAllUsers()
+    .then((users) => {
+      res.status(200).json({
+        users,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
 const deleteUser = async (req, res) => {
   const { email } = req.body;
   User.findOneAndDelete({ email })
@@ -82,4 +94,4 @@ const deleteUser = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-module.exports = { getAllUsers, signupUser, loginUser, updateUser, updateUserProfile, deleteUser };
+module.exports = { signupUser, loginUser, updateUser, updateUserProfile, getUserById, getAllUsers, deleteUser };

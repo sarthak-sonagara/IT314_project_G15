@@ -10,10 +10,14 @@ const {
   updateUserProfile,
   deleteUser,
   getAllUsers,
+  getUserById,
 } = require("../controllers/userController");
 
 // all users routes
 router.get("/", getAllUsers);
+
+//user by id route
+router.get("/:id", getUserById);
 
 // signup route
 router.post("/signup", signupUser);
