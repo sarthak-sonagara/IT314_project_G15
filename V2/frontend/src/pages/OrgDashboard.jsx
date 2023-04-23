@@ -33,6 +33,10 @@ const OrgDashboard = () => {
         for (let i = 0; i < topic.length; i++) {
             topic[i] = topic[i].trim();
         }
+        if(start_date > end_date){
+            alert("Start date cannot be greater than end date");
+            return;
+        }
         console.log(conf_name);
         console.log(desc);
         console.log(start_date);
@@ -112,7 +116,7 @@ const OrgDashboard = () => {
         <>
             <div style={{
                 backgroundColor: "#F5F5F5",
-                paddingTop: "68px",
+                paddingTop: "63px",
                 overflow: "hidden",
                 display: "flex",
                 width: "100%",
@@ -125,10 +129,11 @@ const OrgDashboard = () => {
                 <AdminNavbar />
 
                 <Button variant="primary" onClick={handleShow} style={{
-                    height: "50px", position: "absolute", right: "20px", top: "100px", width: "200px", borderRadius: "10px"
+                    height: "50px", position: "absolute", right: "20px", top: "70px", width: "200px", borderRadius: "10px"
                 }}>
                     Add Conference
                 </Button>
+                
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>New Conference</Modal.Title>
@@ -137,27 +142,27 @@ const OrgDashboard = () => {
                         <Form>
                             <Form.Group className="mb-3" controlId="conference-name">
                                 <Form.Label>Conference Name</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control type="text"  required />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="description">
                                 <Form.Label>Description</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control type="text"  required/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="startdate">
                                 <Form.Label>Start Date</Form.Label>
-                                <Form.Control type="date" />
+                                <Form.Control type="date"  required/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="enddate">
                                 <Form.Label>End Date</Form.Label>
-                                <Form.Control type="date" />
+                                <Form.Control type="date"  required/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="guestspeaker">
                                 <Form.Label>Guest Speakers</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control type="text"  required/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="topic">
                                 <Form.Label>Topics</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control type="text"  required/>
                             </Form.Group>
                         </Form>
                     </Modal.Body>
@@ -171,8 +176,12 @@ const OrgDashboard = () => {
                     </Modal.Footer>
                 </Modal>
 
-                <div className="admin-container">
-                    <div className="admin-content-ctn">
+                <div className="org-container">
+                <h1 style={{
+                    height: "50px", position: "center", top: "70px", borderRadius: "10px"
+                }}>Organization Name</h1>
+                    <div className="org-content-ctn">
+                    
                         <table id="example" className="display">
                             <thead>
                                 <tr>
