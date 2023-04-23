@@ -1,0 +1,85 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "thunder-collection_IT314_conference",
+    "dateExported": "2023-04-23T08:32:18.889Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "5a13d210-70c2-406c-9ccc-e44cc9c7991c",
+            "colId": "95e294b3-cfa5-43a2-95d9-539895612f02",
+            "containerId": "",
+            "name": "localhost:3000/org/create",
+            "url": "localhost:3000/org/create",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-04-23T08:23:58.291Z",
+            "modified": "2023-04-23T08:23:58.291Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"org_id\": \"642c6b0187058e54695f37b7\",\n    \"conferenceName\": \"xyzC2\",\n    \"description\": \"second conference of org xyz\",\n    \"startDate\" : \"2023-4-23\",\n    \"endDate\":\"2023-4-24\",\n    \"guestSpeakers\" : [ \"abc\" , \"xyz\"],\n    \"topics\": [ \"AI\" , \"ML\" ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cb571c0f-c7b6-400f-bd48-88e5ae77902a",
+            "colId": "95e294b3-cfa5-43a2-95d9-539895612f02",
+            "containerId": "",
+            "name": "localhost:3000/org/create",
+            "url": "localhost:3000/org/create",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-04-23T08:24:57.706Z",
+            "modified": "2023-04-23T08:25:51.035Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"org_id\": \"642c6b0187058e54695f37b7\",\n    \"conferenceName\": \"xyzC3\",\n    \"description\": \"3rd conference of org xyz\",\n    \"startDate\" : \"2023-5-23\",\n    \"endDate\":\"2023-5-24\",\n    \"guestSpeakers\" : [ \"abc\" , \"xyz\"],\n    \"topics\": [ \"AI\" , \"ML\" ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0f5b4474-ed49-40d6-9f6e-1f8fd91f403e",
+            "colId": "95e294b3-cfa5-43a2-95d9-539895612f02",
+            "containerId": "",
+            "name": "localhost:3000/org/create",
+            "url": "localhost:3000/org/create",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-04-23T08:26:25.711Z",
+            "modified": "2023-04-23T08:27:18.407Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"org_id\": \"642c6b0187058e54695f37b7\",\n    \"conferenceName\": \"xyzC4\",\n    \"description\": \"4th conference of org xyz\",\n    \"startDate\" : \"2022-5-23\",\n    \"endDate\":\"2022-5-24\",\n    \"guestSpeakers\" : [ \"abc\" , \"xyz\"],\n    \"topics\": [ \"AI\" , \"ML\" ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a611846c-23f5-4c6d-b414-402b94a2aa29",
+            "colId": "95e294b3-cfa5-43a2-95d9-539895612f02",
+            "containerId": "",
+            "name": "localhost:3000/org/viewConference",
+            "url": "localhost:3000/org/get",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-04-23T08:29:13.606Z",
+            "modified": "2023-04-23T08:30:24.975Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"topicName\" : \"AI\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

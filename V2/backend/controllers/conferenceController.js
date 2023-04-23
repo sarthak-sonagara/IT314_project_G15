@@ -11,6 +11,27 @@ const createConference = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
+const getAllConferences = async (req, res) => {
+  Conference.getAllConferences(req)
+    .then((conferences) => {
+      res.status(200).json({
+        conferences,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+const getConferenceById = async (req, res) => {
+  const id = req.params.id;
+  Conference.getConferenceById(id)
+    .then((conference) => {
+      res.status(200).json({
+        conference,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
 const editConference = async (req, res) => {
   Conference.editConference(req)
     .then((conference) => {
@@ -44,6 +65,8 @@ const viewConference = async (req, res) => {
 
 module.exports = {
   createConference,
+  getAllConferences,
+  getConferenceById,
   editConference,
   deleteConference,
   viewConference,
