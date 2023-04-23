@@ -18,6 +18,17 @@ const allOrgs = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
+const getOrgById = async (req, res) => {
+  const id = req.params.id;
+  Org.getOrgById(id)
+    .then((org) => {
+      res.status(200).json({
+        org,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
 const signupOrg = async (req, res) => {
   const { orgname, email, password } = req.body;
   Org.signup(orgname, email, password)
@@ -86,5 +97,6 @@ module.exports = {
   updateOrg,
   deleteOrg,
   allOrgs,
+  getOrgById,
   updateOrgAcceptedStatus,
 };

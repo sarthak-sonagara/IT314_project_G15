@@ -75,7 +75,6 @@ orgSchema.statics.signup = async function (orgname, email, password) {
 };
 
 // static login function
-
 orgSchema.statics.login = async function (email, password) {
   // validation
   if (!email || !password) {
@@ -96,6 +95,17 @@ orgSchema.statics.login = async function (email, password) {
 
   return org;
 };
+
+// static function to get organization by id
+orgSchema.statics.getOrgById = async function (id) {
+  const org = await this.findOne({ _id: id });
+
+  if (!org) {
+    throw new Error("Organization does not exist");
+  }
+
+  return org;
+}
 
 // static update function
 orgSchema.statics.update = async function (email, password) {

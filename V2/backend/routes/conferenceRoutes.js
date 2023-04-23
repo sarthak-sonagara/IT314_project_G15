@@ -31,6 +31,6 @@ router.get("/get", viewConference);
 
 router.patch("/edit/:id", editConference);
 
-router.delete("/delete/:name", deleteConference);
+router.delete("/delete/:id", deleteConference);
 
 module.exports = router;

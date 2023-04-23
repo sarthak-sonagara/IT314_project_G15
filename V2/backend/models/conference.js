@@ -11,7 +11,7 @@ const conferenceSchema = new mongoose.Schema({
 
   conferenceName: {
     type: String,
-    unique: true,
+    unique: false,
     required: true,
   },
 
@@ -174,7 +174,7 @@ conferenceSchema.statics.viewConference = async function (req) {
       topics: {
         $all: [topicName],
       },
-    }).sort(( {  startDate : 1 } )) ;
+    }).sort(({ startDate: 1 }));
 
     //Conference does not exist then return error message.
     if (!conferences) {

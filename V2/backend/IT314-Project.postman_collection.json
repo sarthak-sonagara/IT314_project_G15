@@ -525,6 +525,74 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Get Organization",
+			"item": [
+				{
+					"name": "All Organization",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/org/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"org",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Org By Id that exists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/org/642c6b0187058e54695f37b7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"org",
+								"642c6b0187058e54695f37b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "try to get organization that does not exist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/org/642c6b0187058e54695f37b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"org",
+								"642c6b0187058e54695f37b9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

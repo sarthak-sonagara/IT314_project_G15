@@ -9,11 +9,15 @@ const {
   updateOrg,
   deleteOrg,
   allOrgs,
+  getOrgById,
   updateOrgAcceptedStatus,
 } = require("../controllers/orgController");
 
 // all orgs
 router.get("/", allOrgs);
+
+//OrgById route
+router.get("/:id", getOrgById);
 
 // signup route
 router.post("/signup", signupOrg);
