@@ -13,10 +13,17 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const AdminDashboard = () => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [showEdit, setShowEdit] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+  const handleCloseEdit = () => setShowEdit(false);
+  const handleShowEdit = () => setShowEdit(true);
+  const handleCloseDelete = () => setShowDelete(false);
+  const handleShowDelete = () => setShowDelete(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
   useEffect(() => {
+
     var xmlhttp = new XMLHttpRequest();
     var listFilesUrl = "http://localhost:3000/auth/user/";
     xmlhttp.open("GET", listFilesUrl, true);
@@ -25,38 +32,49 @@ const AdminDashboard = () => {
       if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(this.responseText);
         console.log(data);
-        let table = $("#example").DataTable({
-          stateSave: true,
-          bDestroy: true,
-          data: data.users,
-          columns: [
-            { data: "_id" },
-            { data: "username" },
-            { data: "email" },
-            { data: "role" },
-            {
-              data: null,
-              defaultContent:
-                '<button class="btn btn-primary edit-btn">Edit</button>',
-            },
-            {
-              data: null,
-              defaultContent:
-                '<button class="btn btn-danger delete-btn">Delete</button>',
-            },
-          ],
-        });
+        $(document).ready(function () {
+          let table = $("#example").DataTable({
+            stateSave: true,
+            bDestroy: true,
+            data: data.users,
+            columns: [
+              { data: "_id" },
+              { data: "username" },
+              { data: "email" },
+              { data: "role" },
+              {
+                data: null,
+                defaultContent:
+                  '<button class="btn btn-primary edit-btn">Edit</button>',
+              },
+              {
+                data: null,
+                defaultContent:
+                  '<button class="btn btn-danger delete-btn">Delete</button>',
+              },
+            ],
+          });
 
-        // Handle Edit button click
-        $("#example tbody").on("click", ".edit-btn", function () {
-          handleShow();
-        });
 
-        // Handle Delete button click
-        $("#example tbody").on("click", ".delete-btn", function () {
-          // let rowData = table.row($(this).parents("tr")).data();
-          // console.log("Delete row data:", rowData);
-          handleShow();
+          // Handle Edit button click
+          $("#example tbody").on("click", ".edit-btn", function () {
+            let td = $(this).closest("tr").find("td:eq(0)");
+            // let id = table.row(td).data();
+            if(table.cell( td ).data()){
+              // $("#input-id").val("Hello");
+              console.log(table.cell( td ).data());
+            }
+            // let rowData = table.row(tr).data();
+            // console.log("Edit row data:", id);
+            handleShowEdit();
+          });
+
+          // Handle Delete button click
+          $("#example tbody").on("click", ".delete-btn", function () {
+            let rowData = table.row($(this).parents("tr")).data();
+            console.log("Delete row data:", rowData);
+            handleShowDelete();
+          });
         });
       }
     };
@@ -81,25 +99,101 @@ const AdminDashboard = () => {
           </table>
         </div>
         <>
-          <Button variant="primary" onClick={handleShow}>
-            Launch demo modal
-          </Button>
-
-          <Modal show={show} onHide={handleClose}>
+          <Modal
+            show={showEdit}
+            onHide={handleCloseEdit}
+            style={{
+              transform: "translate(-50%, -25%)",
+              top: "50%",
+              left: "50%",
+            }}
+          >
             <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
+              <Modal.Title>Edit User</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              Woohoo, you're reading this text in a modal!
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={handleClose}>
-                Save Changes
-              </Button>
-            </Modal.Footer>
+            <form action="">
+              <Modal.Body>
+                <div className="mb-3">
+                  <label htmlFor="input-id" className="form-label">
+                    ID:
+                  </label>
+                  <input
+                    type="text"
+                    className="input-field"
+                    id="input-id"
+                    required
+                    value=""
+                    readOnly
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="input-email" className="form-label">
+                    Email address:
+                  </label>
+                  <input
+                    type="email"
+                    className="input-field"
+                    id="input-email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    // readOnly
+                    defaultValue=""
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="input-password" className="form-label">
+                    Password:
+                  </label>
+                  <input
+                    type="password"
+                    className="input-field"
+                    id="input-password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseEdit}>
+                  Close
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  onClick={handleCloseEdit}
+                >
+                  Submit
+                </Button>
+              </Modal.Footer>
+            </form>
+          </Modal>
+
+          <Modal
+            show={showDelete}
+            onHide={handleCloseDelete}
+            style={{
+              transform: "translate(-50%, -25%)",
+              top: "50%",
+              left: "50%",
+            }}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Are you really want to delete it?</Modal.Title>
+            </Modal.Header>
+            <form action="">
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseDelete}>
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="danger"
+                  onClick={handleCloseDelete}
+                >
+                  Delete
+                </Button>
+              </Modal.Footer>
+            </form>
           </Modal>
         </>
       </div>
