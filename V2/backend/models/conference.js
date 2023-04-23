@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const Org = require("./org");
 
+const User = require("./user");
+
 const conferenceSchema = new mongoose.Schema({
   org_id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -147,6 +149,35 @@ conferenceSchema.statics.deleteConference = async function (req) {
   }
 
   const conference = await this.findOneAndDelete(filter);
+
+  return conference;
+};
+
+//static function to registration for a conference
+conferenceSchema.statics.conferenceRegistration = async function (req) {
+  console.log("------In conferenceRegistration function------\n", req.body);
+
+  const conferenceObjId = req.params.id;
+  //get object id of the user
+  const userId = req.body.userId;
+  console.log(userId, " ", conferenceObjId);
+
+  //add the user to the conference's registeredAttendees array 
+  const filter = { _id: conferenceObjId };
+
+  const conference = await this.findOne(filter);
+  if (!conference) {
+    throw new Error("Conference does not exist");
+  }
+
+  conference.registeredAttendees.push(userId);
+  await conference.save();
+
+  console.log("hello");
+  //add the conference to the user's conferences array
+  const user = await User.findOne({ _id: userId });
+  user.registered_conferences.push(conferenceObjId);
+  await user.save();
 
   return conference;
 };

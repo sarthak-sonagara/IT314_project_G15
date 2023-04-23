@@ -593,6 +593,83 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Conference Registration",
+			"item": [
+				{
+					"name": "Valid user register in valid conference",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/register/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"register",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64452d160fe8410f7fea53aa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to register in Invalid conference",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/register/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"register",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64452d160fe8410f7fea53ab"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

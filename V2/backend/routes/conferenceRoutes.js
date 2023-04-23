@@ -10,6 +10,7 @@ const {
   getConferenceById,
   editConference,
   deleteConference,
+  conferenceRegistration,
   viewConference,
 } = require("../controllers/conferenceController");
 
@@ -26,6 +27,9 @@ router.get("/all", getAllConferences);
 
 //Get information of conference by id
 router.get("/:id", getConferenceById);
+
+//conference registration route
+router.patch("/register/:id", conferenceRegistration);
 
 router.get("/get", viewConference);
 
