@@ -33,7 +33,7 @@ const OrgDashboard = () => {
         for (let i = 0; i < topic.length; i++) {
             topic[i] = topic[i].trim();
         }
-        if(start_date > end_date){
+        if (start_date > end_date) {
             alert("Start date cannot be greater than end date");
             return;
         }
@@ -133,7 +133,7 @@ const OrgDashboard = () => {
                 }}>
                     Add Conference
                 </Button>
-                
+
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>New Conference</Modal.Title>
@@ -142,27 +142,27 @@ const OrgDashboard = () => {
                         <Form>
                             <Form.Group className="mb-3" controlId="conference-name">
                                 <Form.Label>Conference Name</Form.Label>
-                                <Form.Control type="text"  required />
+                                <Form.Control type="text" required />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="description">
                                 <Form.Label>Description</Form.Label>
-                                <Form.Control type="text"  required/>
+                                <Form.Control type="text" required />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="startdate">
                                 <Form.Label>Start Date</Form.Label>
-                                <Form.Control type="date"  required/>
+                                <Form.Control type="date" required />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="enddate">
                                 <Form.Label>End Date</Form.Label>
-                                <Form.Control type="date"  required/>
+                                <Form.Control type="date" required />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="guestspeaker">
                                 <Form.Label>Guest Speakers</Form.Label>
-                                <Form.Control type="text"  required/>
+                                <Form.Control type="text" required />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="topic">
                                 <Form.Label>Topics</Form.Label>
-                                <Form.Control type="text"  required/>
+                                <Form.Control type="text" required />
                             </Form.Group>
                         </Form>
                     </Modal.Body>
@@ -177,11 +177,12 @@ const OrgDashboard = () => {
                 </Modal>
 
                 <div className="org-container">
-                <h1 style={{
-                    height: "50px", position: "center", top: "70px", borderRadius: "10px"
-                }}>Organization Name</h1>
+                    <h1 style={{
+                        position: "absolute", top: "70px"
+                    }}>Organization Name</h1>
+
                     <div className="org-content-ctn">
-                    
+
                         <table id="example" className="display">
                             <thead>
                                 <tr>
