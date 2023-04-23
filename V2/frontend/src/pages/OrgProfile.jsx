@@ -54,7 +54,7 @@ function conftable(conf){
 }
 
   return (
-    <>
+    <div className="UserProfileBodyCtn">
     <div className="org_box">
       <div className="org_profileBox">
         <img src={orgimage} alt="Image of user" className="org_profilePhoto"/>
@@ -121,7 +121,7 @@ function conftable(conf){
             </div>
           </div>
         }
-        </>
+        </div>
   );
 }
 
