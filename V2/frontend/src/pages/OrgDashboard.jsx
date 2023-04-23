@@ -37,6 +37,7 @@ const OrgDashboard = () => {
             alert("Start date cannot be greater than end date");
             return;
         }
+        
         console.log(conf_name);
         console.log(desc);
         console.log(start_date);
@@ -44,6 +45,7 @@ const OrgDashboard = () => {
         console.log(guest_speaker);
         console.log(topic);
     };
+    
     const handleShow = () => setShow(true);
     const [showEdit, setShowEdit] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
@@ -53,6 +55,14 @@ const OrgDashboard = () => {
     const handleShowDelete = () => setShowDelete(true);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [editname,Seteditname] = useState("");
+    const [editdesc,Seteditdesc] = useState("");
+    const [editstartdate,Seteditstartdate] = useState("");
+    const [editenddate,Seteditenddate] = useState("");
+    const [editguestspeaker,Seteditguestspeaker] = useState("");
+    const [edittopic,Setedittopic] = useState("");
+
+
 
     useEffect(() => {
 
@@ -74,6 +84,8 @@ const OrgDashboard = () => {
                             { data: "description" },
                             { data: "startDate" },
                             { data: "endDate" },
+                            { data: "guestSpeakers" },
+                            { data: "topics" },
                             {
                                 data: null,
                                 defaultContent:
@@ -95,9 +107,22 @@ const OrgDashboard = () => {
                         if (table.cell(td).data()) {
                             // $("#input-id").val("Hello");
                             console.log(table.cell(td).data());
+                            Seteditname(table.cell(td).data());
+                            td = $(this).closest("tr").find("td:eq(1)");
+                            Seteditdesc(table.cell(td).data());
+                            td = $(this).closest("tr").find("td:eq(2)");
+                            Seteditstartdate(table.cell(td).data());
+                            td = $(this).closest("tr").find("td:eq(3)");
+                            Seteditenddate(table.cell(td).data());
+                            td = $(this).closest("tr").find("td:eq(4)");
+                            Seteditguestspeaker(table.cell(td).data());
+                            td = $(this).closest("tr").find("td:eq(5)");
+                            Setedittopic(table.cell(td).data());
+
                         }
                         // let rowData = table.row(tr).data();
                         // console.log("Edit row data:", id);
+
                         handleShowEdit();
                     });
 
@@ -190,6 +215,8 @@ const OrgDashboard = () => {
                                     <th>Description</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
+                                    <th>Guest Speakers</th>
+                                    <th>Topics</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -207,49 +234,89 @@ const OrgDashboard = () => {
                             }}
                         >
                             <Modal.Header closeButton>
-                                <Modal.Title>Edit User</Modal.Title>
+                                <Modal.Title>Edit Conference</Modal.Title>
                             </Modal.Header>
                             <form action="">
                                 <Modal.Body>
                                     <div className="mb-3">
-                                        <label htmlFor="input-id" className="form-label">
-                                            ID:
+                                        <label htmlFor="conferencename" className="form-label">
+                                            Conference Name
                                         </label>
                                         <input
                                             type="text"
                                             className="input-field"
-                                            id="input-id"
+                                            id="conference-name"
                                             required
-                                            value=""
-                                            readOnly
+                                            value={editname}
                                         />
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="input-email" className="form-label">
-                                            Email address:
+                                        <label htmlFor="description" className="form-label">
+                                            Description
                                         </label>
                                         <input
-                                            type="email"
+                                            type="text"
                                             className="input-field"
-                                            id="input-email"
-                                            onChange={(e) => setEmail(e.target.value)}
+                                            id="description"
                                             required
-                                            // readOnly
-                                            defaultValue=""
+                                            value={editdesc}
                                         />
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="input-password" className="form-label">
-                                            Password:
+                                        <label htmlFor="startdate" className="form-label">
+                                            Start Date
                                         </label>
                                         <input
-                                            type="password"
+                                            type="date"
                                             className="input-field"
-                                            id="input-password"
-                                            onChange={(e) => setPassword(e.target.value)}
+                                            id="startdate"
                                             required
+                                            value={editstartdate}
                                         />
                                     </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="enddate" className="form-label">
+                                            End Date
+                                        </label>
+                                        <input
+                                            type="date"
+                                            className="input-field"
+                                            id="enddate"
+                                            required
+                                            value={editenddate}
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="guestspeaker" className="form-label">
+                                            Guest Speakers
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="input-field"
+                                            id="guestspeaker"
+                                            required
+                                            value={editguestspeaker}
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="topic" className="form-label">
+                                            Topics
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="input-field"
+                                            id="topic"
+                                            required
+                                            value={edittopic}
+                                        />
+                                    </div>
+
+
+
+                                    
+
+
+                                    
                                 </Modal.Body>
                                 <Modal.Footer>
                                     <Button variant="secondary" onClick={handleCloseEdit}>
