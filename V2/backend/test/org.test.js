@@ -13,7 +13,7 @@ describe("Org", () => {
         .request(app)
         .post("/auth/org/signup")
         .send({
-          orgname: "org",
+          orgname: "ABC",
           email: "org1@abc.com",
           password: "Org@1234",
         })
@@ -225,9 +225,8 @@ describe("Org", () => {
         });
     });
   });
-  
-   
-  // login org 
+
+  // login org
   describe("POST /auth/org/login", () => {
     it("it should login an org", (done) => {
       chai
@@ -246,7 +245,7 @@ describe("Org", () => {
     });
   });
 
-   // empty email
+  // empty email
   describe("POST /auth/org/login", () => {
     it("it should login an org", (done) => {
       chai
@@ -353,6 +352,4 @@ describe("Org", () => {
         });
     });
   });
-
-
 });
