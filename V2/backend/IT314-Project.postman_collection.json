@@ -668,6 +668,78 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "User already registered",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/register/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"register",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64452811cbf9eb7a940b1439"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conference has already ended",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/register/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"register",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6444eb0d1d0f0511e9cf82dc"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

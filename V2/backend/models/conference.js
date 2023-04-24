@@ -170,6 +170,17 @@ conferenceSchema.statics.conferenceRegistration = async function (req) {
     throw new Error("Conference does not exist");
   }
 
+  //check if the conference has already ended
+  const currDate = Date.now();
+  if (conference.endDate < currDate) {
+    throw new Error("Conference has already ended");
+  }
+
+  //check if the user is already registered for the conference
+  if (conference.registeredAttendees.includes(userId)) {
+    throw new Error("you already registered for this conference");
+  }
+
   conference.registeredAttendees.push(userId);
   await conference.save();
 
