@@ -182,7 +182,7 @@ userSchema.statics.getAllUsers = async function () {
 
 //static function to upload an profile picture
 userSchema.statics.uploadProfilePicture = async function (req) {
-  console.log("---------In upload profile picture function--------", req.body.userId)
+  console.log("---------In upload profile picture function--------\n", req.body.userId)
   const id = req.body.userId;
   const user = await this.findOne({ _id: id });
 
@@ -190,15 +190,8 @@ userSchema.statics.uploadProfilePicture = async function (req) {
     throw new Error("Not authorized to update");
   }
 
-
-  // const updatedUser = await this.findOneAndUpdate(
-  //   { _id: id }, console.log("hello"),
-  //   user.profile_picture = req.body.profile_picture,
-  // );
-
   user.profile_picture = req.body.profile_picture;
   await user.save();
-  // console.log(user.profile_picture);
 
   console.log("user updated successfully");
 

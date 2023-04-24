@@ -68,13 +68,6 @@ function UserProfile() {
     getImage();
   }, []);
 
-  // const createPost = async (newImage) => {
-  //   try{
-  //     await axios.patch(url, newImage)
-  //   }catch(error){
-  //     console.log(error)
-  //   }
-  // }
 
   function getImage() {
     // for now passed hard coded value
@@ -88,11 +81,7 @@ function UserProfile() {
     });
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // createPost(postImage)
-    console.log("hello in handleSubmit");
-    // console.log(postImage.myFile);
+  function uploadImage() {
     fetch("http://localhost:3000/auth/user/upload-pic/", {
       method: "PATCH",
       headers: {
@@ -109,6 +98,13 @@ function UserProfile() {
       .catch((error) => {
         // Handle error
       });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // createPost(postImage)
+    console.log("hello in handleSubmit");
+    uploadImage();
     console.log("Image Uploaded Successfully");
   };
 
@@ -116,7 +112,6 @@ function UserProfile() {
     const file = e.target.files[0];
     console.log("hello in handleFileUpload");
     const base64 = await convertToBase64(file);
-    // console.log(file === base64);
     setPostImage({ ...postImage, myFile: base64 });
   };
 
@@ -124,7 +119,6 @@ function UserProfile() {
     <>
       <div className="box">
         <div className="profileBox">
-          {/* <img src={userimage} alt="Image of user" className="profilePhoto"/> */}
           <form onSubmit={handleSubmit}>
             <label htmlFor="file-upload" className="custom-file-upload">
               {image ? (
@@ -140,13 +134,7 @@ function UserProfile() {
                   className="profilePhoto"
                 />
               )}
-              {/* image.map((item) => (
-              <img
-                alt="Image of user"
-                className="profilePhoto"
-                src={item.profile_picture}
-              />
-              )); */}
+              
             </label>
             <input
               type="file"
@@ -167,8 +155,6 @@ function UserProfile() {
             </span>
             <a href={`mailto: ${user.email}`}>
               {user.email}
-              {/* TODO: hasdjhsad */}
-              {/*dfdf  */}
             </a>
           </div>
           <hr class="h_line" />
