@@ -114,11 +114,11 @@ conferenceSchema.statics.getConferenceById = async function (id) {
 conferenceSchema.statics.editConference = async function (req) {
 
   console.log("------In editConference function------\n", req.body);
-  const id = req.params.id;
+  const id = req.body.id;
   const filter = { _id: id }; // filter to find the conference
 
   // validation
-  const { org_id, conferenceName, description, startDate, endDate } = req.body;
+  const { id1, org_id, conferenceName, description, startDate, endDate } = req.body;
 
   if (!org_id || !conferenceName || !description || !startDate || !endDate) {
     throw new Error("Please fill all the required fields");

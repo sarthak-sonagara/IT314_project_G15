@@ -42,6 +42,22 @@ const OrgDashboard = () => {
         console.log(end_date);
         console.log(guest_speaker);
         console.log(topic);
+        console.log("hello");
+        fetch("http://localhost:3000/org/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                org_id : "643ea2de6aa927d460b3f676",
+                conferenceName: conf_name,
+                description: desc,
+                startDate: start_date,
+                endDate: end_date,
+                guestSpeakers: guest_speaker,
+                topics: topic,
+            }),
+        })
     };
 
     const handleShow = () => setShow(true);
@@ -79,13 +95,29 @@ const OrgDashboard = () => {
             alert("Start date cannot be greater than end date");
             return;
         }
+        console.log(editid);
         console.log(conf_name);
         console.log(desc);
         console.log(start_date);
         console.log(end_date);
         console.log(guest_speaker);
         console.log(topic);
-        
+        fetch("http://localhost:3000/org/edit/", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id : editid,
+                org_id : "643ea2de6aa927d460b3f676",
+                conferenceName: conf_name,
+                description: desc,
+                startDate: start_date,
+                endDate: end_date,
+                guestSpeakers: guest_speaker,
+                topics: topic,
+            }),
+        })
 
     };
 
@@ -272,7 +304,7 @@ const OrgDashboard = () => {
                             <Modal.Header closeButton>
                                 <Modal.Title>Edit Conference</Modal.Title>
                             </Modal.Header>
-                            <form action="http://localhost:3000/org/edit/:editid" method="post">
+                            <form >
                                 <Modal.Body>
                                     <div className="mb-3">
                                         <label htmlFor="edit-conference-name" className="form-label">

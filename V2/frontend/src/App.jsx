@@ -47,6 +47,7 @@ function App() {
           {/* general routes */}
           {/* public routes */}
           <Route element={<Home />} path="/" />
+          
           <Route
             element={!user && !org? <Choice /> : <Navigate to="/" />}
             path="/choice"

@@ -37,7 +37,7 @@ router.patch("/cancelRegistration/:id", cancelRegistration);
 
 router.get("/get", viewConference);
 
-router.patch("/edit/:id", editConference);
+router.patch("/edit", editConference);
 
 router.delete("/delete/:id", deleteConference);
 
