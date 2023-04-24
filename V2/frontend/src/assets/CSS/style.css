@@ -60,15 +60,16 @@
 .left-container {
   height: 100vh;
   background-color: var(--nav-bg-color);
-  width: 275px;
+  width: 60px;
   position: absolute;
   top: 0px;
   padding-top: 80px;
   box-shadow:  0 6px 8px -1px rgba(0,0,0,.1),0 6px 8px -1px rgba(0,0,0,.06);
+  z-index: 9;  
 }
 
 .left-close-container {
-  width: 60px;
+  width: 275px;
 }
 
 .left-sub-container {
@@ -81,12 +82,12 @@
   width: 5px;
   /* background-color: var(--primary-color); */
   background: none;
-  margin-right: 25px;
+  margin-right: 15px;
   border-radius: 0 4px 4px 0;
 }
 
 .active-close-indicator {
-  margin-right: 15px;
+  margin-right: 25px;
 }
 
 .logo-container,
@@ -108,8 +109,13 @@
 }
 
 .logout-container {
-  bottom: 0;
+  padding-left: 10px;
   width: 100%;
+}
+
+.logout-close-container {
+  bottom: 0;
+  padding-left: 25px;
 }
 
 .icons-container {
@@ -184,7 +190,7 @@
 }
 
 .menu-texts {
-  display: inherit;
+  display: none;
   font-size: .775rem;
   margin: 0;
   padding: 0;
@@ -202,39 +208,41 @@
 
 
 .menu-close-texts {
-  display: none;
+  display: inherit;
 }
-.menu-close-text {
+
+.menu-text {
   visibility: hidden;
 }
 
+.menu-close-text {
+  visibility: visible;
+}
+
 .menu-icon {
-  position: absolute;
-  right: 9.5px; 
-  height: 1.15rem;
+  position: inherit;
+  margin-left: 5px;
   cursor: pointer;
 }
 
 .menu-close-icon {
-  position: inherit;
-  margin-left: 5px;
+  position: absolute;
+  right: 9.5px; 
+  height: 1.15rem;
 }
 
 .menu-icon:hover {
   color: var(--primary-color);
 }
 
-#logout-text-at-left-ctn {
+.logout-text-at-left-ctn {
+  display: none;
   padding: 0px; 
   margin: 0px;
 }
 
 .logout-text-close-at-left-ctn {
-  display: none;
-}
-
-.logout-close-container {
-  padding-left: 10px;
+  display: inherit;
 }
 
 /* --------------------- Loging ------------------------------ */

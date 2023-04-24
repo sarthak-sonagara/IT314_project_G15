@@ -7,7 +7,7 @@ const Home = () => {
     <div>
       <Navbar />
 
-      <div className="container">
+      <div className="container" style={{marginTop: "1rem"}}>
 
         <div className="p-4 p-md-5 mb-4 rounded text-bg-dark">
           <div className="col-md-6 px-0">

@@ -65,7 +65,6 @@ const AdminDashboard = () => {
               console.log(table.cell( td ).data());
             }
             // let rowData = table.row(tr).data();
-            // console.log("Edit row data:", id);
             handleShowEdit();
           });
 
@@ -122,7 +121,6 @@ const AdminDashboard = () => {
                     className="input-field"
                     id="input-id"
                     required
-                    value=""
                     readOnly
                   />
                 </div>
