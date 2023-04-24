@@ -399,9 +399,11 @@ a {
 .org_modalBox {
   margin-top: 120px;
   margin-left: 285px;
+
   @media only screen and (max-width: 720px) {
     margin: 0;
   }
+  
   padding: 30px;
   /* height: 350px;
     width: 60%; */
@@ -442,12 +444,10 @@ a {
   background-color: var(--backColor);
   color: var(--frontMainColor);
   text-align: left;
-  /* vertical-align: center; */
 }
 
 .tg .tg-0lax {
   background-color: var(--frontMainColor);
   color: black;
   text-align: left;
-  /* vertical-align: center; */
 }

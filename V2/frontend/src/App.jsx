@@ -60,6 +60,7 @@ function App() {
             path="/signup"
           />
           <Route element={<OrgDashboard/>} path="org-dashboard" /> 
+          <Route element={<OrgProfile/>} path="org-profile" /> 
 
           <Route
             element={!org ? <OrgLogin /> : <Navigate to="/" />}
@@ -78,10 +79,10 @@ function App() {
             element={user ? <UserProfile /> : <Navigate to="/login" />}
             path="/profile"
           />
-          <Route
+          {/* <Route
             element={org ? <OrgProfile /> : <Navigate to="/org-login" />}
             path="/org-profile"
-          />
+          /> */}
           <Route element={<PasswordReset />} path="/password-reset" />
           {/* Oragnization  */}
           {/* <Route element={<TimeLine />} path="/timeline" /> */}
