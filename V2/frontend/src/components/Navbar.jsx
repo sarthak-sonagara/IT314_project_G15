@@ -244,7 +244,7 @@ const Navbar = () => {
                 icon={faRightFromBracket}
                 style={{ margin: "0 10px 0 15px" }}
               />
-              <h6 style={{}} id="logout-text-at-left-ctn">
+              <h6 style={{}} className="logout-text-at-left-ctn">
                 LOGOUT
               </h6>
             </div>
@@ -262,7 +262,7 @@ $(document).ready(function () {
     $("#menu-text").toggleClass("menu-close-text");
     $(".menu-icon").toggleClass("menu-close-icon");
     $(".active-indicator").toggleClass("active-close-indicator");
-    $("#logout-text-at-left-ctn").toggleClass("logout-text-close-at-left-ctn");
+    $(".logout-text-at-left-ctn").toggleClass("logout-text-close-at-left-ctn");
     $(".logout-container").toggleClass("logout-close-container");
   });
 });
