@@ -742,6 +742,119 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Cancel Conference Registration",
+			"item": [
+				{
+					"name": "Registration Cancelled Successfully",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/cancelRegistration/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"cancelRegistration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64464eba2cf5182825cfee7f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Not Registered!",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/cancelRegistration/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"cancelRegistration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64464eba2cf5182825cfee7f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conference ended",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/cancelRegistration/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"cancelRegistration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6444eb0d1d0f0511e9cf82dc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

@@ -193,6 +193,48 @@ conferenceSchema.statics.conferenceRegistration = async function (req) {
   return conference;
 };
 
+//static function to cancel registration for a conference
+conferenceSchema.statics.cancelConferenceRegistration = async function (req) {
+  console.log("------In cancelConferenceRegistration function------\n", req.body);
+
+  const conferenceObjId = req.params.id;
+  const userId = req.body.userId; //get object id of the user
+  console.log(userId, " ", conferenceObjId);
+
+  //check if the conference exists
+  const filter = { _id: conferenceObjId };
+  const conference = await this.findOne(filter);
+  if (!conference) {
+    throw new Error("Conference does not exist");
+  }
+
+  //check if the user is registered for the conference or not
+  if (!conference.registeredAttendees.includes(userId)) {
+    throw new Error("you are not registered for this conference");
+  }
+  
+  //check if the conference has already ended
+  const currDate = Date.now();
+  if (conference.endDate < currDate) {
+    throw new Error("Conference has already ended! Can't Unregister Now");
+  }
+  
+  
+  //remove the user from the conference's registeredAttendees array
+  const index = conference.registeredAttendees.indexOf(userId);
+  conference.registeredAttendees.splice(index, 1);
+  await conference.save();
+  
+
+  //remove the conference from the user's conferences array
+  const user = await User.findOne({ _id: userId });
+  const index1 = user.registered_conferences.indexOf(conferenceObjId);
+  user.registered_conferences.splice(index1, 1);
+  await user.save();
+
+  return conference;
+};
+
 // static function to search any conferences by name of conference or topic
 conferenceSchema.statics.viewConference = async function (req) {
   console.log("------In viewConference function------\n", req.body);

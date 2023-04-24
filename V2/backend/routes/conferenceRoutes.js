@@ -11,6 +11,7 @@ const {
   editConference,
   deleteConference,
   conferenceRegistration,
+  cancelRegistration,
   viewConference,
 } = require("../controllers/conferenceController");
 
@@ -30,6 +31,9 @@ router.get("/:id", getConferenceById);
 
 //conference registration route
 router.patch("/register/:id", conferenceRegistration);
+
+//conference cancel registration route
+router.patch("/cancelRegistration/:id", cancelRegistration);
 
 router.get("/get", viewConference);
 
