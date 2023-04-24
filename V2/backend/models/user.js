@@ -50,6 +50,13 @@ const userSchema = new mongoose.Schema({
     default: [],
   }],
 
+  //Profile picture
+  profile_picture: {
+    type: String,
+    required: false,
+    default: ""
+  },
+
 });
 
 // static signup function
@@ -161,7 +168,7 @@ userSchema.statics.updateUserProfile = async function (req) {
 userSchema.statics.getUserById = async function (id) {
   const user = await this.findOne({ _id: id });
   console.log(user);
-  if(!user){
+  if (!user) {
     throw new Error("User not found");
   }
   return user;
@@ -172,5 +179,31 @@ userSchema.statics.getAllUsers = async function () {
   const users = await this.find({});
   return users;
 };
+
+//static function to upload an profile picture
+userSchema.statics.uploadProfilePicture = async function (req) {
+  console.log("---------In upload profile picture function--------", req.body.userId)
+  const id = req.body.userId;
+  const user = await this.findOne({ _id: id });
+
+  if (!user) {
+    throw new Error("Not authorized to update");
+  }
+
+  console.log("user", user);
+
+  // const updatedUser = await this.findOneAndUpdate(
+  //   { _id: id }, console.log("hello"),
+  //   user.profile_picture = req.body.profile_picture,
+  // );
+
+  user.profile_picture = req.body.profile_picture;
+  await user.save();
+  // console.log(user.profile_picture);
+
+  console.log("updated user", updatedUser);
+
+  return updatedUser;
+}
 
 module.exports = mongoose.model("User", userSchema);

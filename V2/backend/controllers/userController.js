@@ -94,4 +94,14 @@ const deleteUser = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-module.exports = { signupUser, loginUser, updateUser, updateUserProfile, getUserById, getAllUsers, deleteUser };
+const uploadProfilePicture = async(req,res) => {
+  User.uploadProfilePicture(req)
+    .then((users) => {
+      res.status(200).json({
+        users,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+module.exports = { signupUser, loginUser, updateUser, updateUserProfile, getUserById, getAllUsers, deleteUser, uploadProfilePicture };

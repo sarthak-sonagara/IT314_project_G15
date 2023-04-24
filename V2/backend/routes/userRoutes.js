@@ -11,6 +11,7 @@ const {
   deleteUser,
   getAllUsers,
   getUserById,
+  uploadProfilePicture,
 } = require("../controllers/userController");
 
 // all users routes
@@ -30,6 +31,9 @@ router.patch("/update", updateUser);
 
 //update Profile route
 router.patch("/updateProfile/:id", updateUserProfile);
+
+//upload profile picture route
+router.patch("/uploadPicture", uploadProfilePicture)
 
 // delete route
 router.delete("/delete", deleteUser);
