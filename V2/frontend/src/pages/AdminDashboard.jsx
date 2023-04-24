@@ -21,19 +21,23 @@ const AdminDashboard = () => {
   const handleShowDelete = () => setShowDelete(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  useEffect(() => {
 
-    var xmlhttp = new XMLHttpRequest();
-    var listFilesUrl = "http://localhost:3000/auth/user/";
-    xmlhttp.open("GET", listFilesUrl, true);
-    xmlhttp.send();
-    xmlhttp.onreadystatechange = function () {
+  useEffect(() => {
+    var xmlHttpUsers = new XMLHttpRequest();
+    var xmlHttpOrgs = new XMLHttpRequest();
+    var getAllUserUrl = "http://localhost:3000/auth/user/";
+    var getAllOrgUrl = "http://localhost:3000/auth/org/";
+    xmlHttpUsers.open("GET", getAllUserUrl, true);
+    xmlHttpOrgs.open("GET", getAllOrgUrl, true);
+    xmlHttpUsers.send();
+    xmlHttpOrgs.send();
+
+    xmlHttpUsers.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(this.responseText);
         console.log(data);
         $(document).ready(function () {
-          let table = $("#example").DataTable({
+          let table = $("#users_datatable").DataTable({
             stateSave: true,
             bDestroy: true,
             data: data.users,
@@ -55,24 +59,42 @@ const AdminDashboard = () => {
             ],
           });
 
-
           // Handle Edit button click
-          $("#example tbody").on("click", ".edit-btn", function () {
+          $("#users_datatable tbody").on("click", ".edit-btn", function () {
             let td = $(this).closest("tr").find("td:eq(0)");
             // let id = table.row(td).data();
-            if(table.cell( td ).data()){
+            if (table.cell(td).data()) {
               // $("#input-id").val("Hello");
-              console.log(table.cell( td ).data());
+              console.log(table.cell(td).data());
             }
             // let rowData = table.row(tr).data();
             handleShowEdit();
           });
 
           // Handle Delete button click
-          $("#example tbody").on("click", ".delete-btn", function () {
+          $("#users_datatable tbody").on("click", ".delete-btn", function () {
             let rowData = table.row($(this).parents("tr")).data();
             console.log("Delete row data:", rowData);
             handleShowDelete();
+          });
+        });
+      }
+    };
+
+    xmlHttpOrgs.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        $(document).ready(function () {
+          let table1 = $("#orgs_datatable").DataTable({
+            stateSave: true,
+            bDestroy: true,
+            data: data.orgs,
+            columns: [
+              { data: "_id" },
+              { data: "orgname" },
+              { data: "email" }
+            ],
           });
         });
       }
@@ -84,7 +106,7 @@ const AdminDashboard = () => {
       <AdminNavbar />
       <div className="admin-container">
         <div className="admin-content-ctn">
-          <table id="example" className="display">
+          <table id="users_datatable" className="display">
             <thead>
               <tr>
                 <th>Id</th>
@@ -96,104 +118,114 @@ const AdminDashboard = () => {
               </tr>
             </thead>
           </table>
-        </div>
-        <>
-          <Modal
-            show={showEdit}
-            onHide={handleCloseEdit}
-            style={{
-              transform: "translate(-50%, -25%)",
-              top: "50%",
-              left: "50%",
-            }}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>Edit User</Modal.Title>
-            </Modal.Header>
-            <form action="">
-              <Modal.Body>
-                <div className="mb-3">
-                  <label htmlFor="input-id" className="form-label">
-                    ID:
-                  </label>
-                  <input
-                    type="text"
-                    className="input-field"
-                    id="input-id"
-                    required
-                    readOnly
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="input-email" className="form-label">
-                    Email address:
-                  </label>
-                  <input
-                    type="email"
-                    className="input-field"
-                    id="input-email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    // readOnly
-                    defaultValue=""
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="input-password" className="form-label">
-                    Password:
-                  </label>
-                  <input
-                    type="password"
-                    className="input-field"
-                    id="input-password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseEdit}>
-                  Close
-                </Button>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  onClick={handleCloseEdit}
-                >
-                  Submit
-                </Button>
-              </Modal.Footer>
-            </form>
-          </Modal>
+          {/* <table id="orgs_datatable" className="display">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>OrgName</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+          </table> */}
 
-          <Modal
-            show={showDelete}
-            onHide={handleCloseDelete}
-            style={{
-              transform: "translate(-50%, -25%)",
-              top: "50%",
-              left: "50%",
-            }}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>Are you really want to delete it?</Modal.Title>
-            </Modal.Header>
-            <form action="">
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseDelete}>
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  variant="danger"
-                  onClick={handleCloseDelete}
-                >
-                  Delete
-                </Button>
-              </Modal.Footer>
-            </form>
-          </Modal>
-        </>
+          <>
+            <Modal
+              show={showEdit}
+              onHide={handleCloseEdit}
+              style={{
+                transform: "translate(-50%, -25%)",
+                top: "50%",
+                left: "50%",
+              }}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Edit User</Modal.Title>
+              </Modal.Header>
+              <form action="">
+                <Modal.Body>
+                  <div className="mb-3">
+                    <label htmlFor="input-id" className="form-label">
+                      ID:
+                    </label>
+                    <input
+                      type="text"
+                      className="input-field"
+                      id="input-id"
+                      required
+                      readOnly
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="input-email" className="form-label">
+                      Email address:
+                    </label>
+                    <input
+                      type="email"
+                      className="input-field"
+                      id="input-email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      // readOnly
+                      defaultValue=""
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="input-password" className="form-label">
+                      Password:
+                    </label>
+                    <input
+                      type="password"
+                      className="input-field"
+                      id="input-password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleCloseEdit}>
+                    Close
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    onClick={handleCloseEdit}
+                  >
+                    Submit
+                  </Button>
+                </Modal.Footer>
+              </form>
+            </Modal>
+
+            <Modal
+              show={showDelete}
+              onHide={handleCloseDelete}
+              style={{
+                transform: "translate(-50%, -25%)",
+                top: "50%",
+                left: "50%",
+              }}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Are you really want to delete it?</Modal.Title>
+              </Modal.Header>
+              <form action="">
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleCloseDelete}>
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="danger"
+                    onClick={handleCloseDelete}
+                  >
+                    Delete
+                  </Button>
+                </Modal.Footer>
+              </form>
+            </Modal>
+          </>
+        </div>
       </div>
     </>
   );
