@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import "../assets/CSS/UserProfile.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AiOutlineMail,
   AiOutlineInstagram,
@@ -62,6 +62,11 @@ function UserProfile() {
   }
 
   const [postImage, setPostImage] = useState({ myFile: "" });
+  const [image, setImage] = useState([]);
+
+  useEffect(() => {
+    getImage();
+  }, []);
 
   // const createPost = async (newImage) => {
   //   try{
@@ -71,12 +76,24 @@ function UserProfile() {
   //   }
   // }
 
+  function getImage() {
+    // for now passed hard coded value
+    fetch("http://localhost:3000/auth/user/show-pic/6446d482aa8b2ea8be3ba696", {
+      method: "GET",
+    }).then((res) => {
+      res.json().then((data) => {
+        console.log(data);
+        setImage(data.profile_picture);
+      });
+    });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // createPost(postImage)
     console.log("hello in handleSubmit");
     // console.log(postImage.myFile);
-    fetch("http://localhost:3000/auth/user/uploadPicture/", {
+    fetch("http://localhost:3000/auth/user/upload-pic/", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -110,11 +127,26 @@ function UserProfile() {
           {/* <img src={userimage} alt="Image of user" className="profilePhoto"/> */}
           <form onSubmit={handleSubmit}>
             <label htmlFor="file-upload" className="custom-file-upload">
+              {image ? (
+                <img
+                  src={image}
+                  alt="Uploaded Profile picture"
+                  className="profilePhoto"
+                />
+              ) : (
+                <img
+                  src={userimage}
+                  alt="Default profile picture"
+                  className="profilePhoto"
+                />
+              )}
+              {/* image.map((item) => (
               <img
-                src={postImage.myFile || userimage}
                 alt="Image of user"
                 className="profilePhoto"
+                src={item.profile_picture}
               />
+              )); */}
             </label>
             <input
               type="file"

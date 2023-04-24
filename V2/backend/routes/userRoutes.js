@@ -12,6 +12,7 @@ const {
   getAllUsers,
   getUserById,
   uploadProfilePicture,
+  getProfilePic
 } = require("../controllers/userController");
 
 // all users routes
@@ -33,9 +34,12 @@ router.patch("/update", updateUser);
 router.patch("/updateProfile/:id", updateUserProfile);
 
 //upload profile picture route
-router.patch("/uploadPicture", uploadProfilePicture)
+router.patch("/upload-pic", uploadProfilePicture)
 
 // delete route
 router.delete("/delete", deleteUser);
+
+//get profile picture route
+router.get("/show-pic/:id", getProfilePic);
 
 module.exports = router;

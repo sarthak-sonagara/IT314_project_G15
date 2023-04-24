@@ -94,7 +94,7 @@ const deleteUser = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-const uploadProfilePicture = async(req,res) => {
+const uploadProfilePicture = async (req, res) => {
   User.uploadProfilePicture(req)
     .then((users) => {
       res.status(200).json({
@@ -104,4 +104,14 @@ const uploadProfilePicture = async(req,res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-module.exports = { signupUser, loginUser, updateUser, updateUserProfile, getUserById, getAllUsers, deleteUser, uploadProfilePicture };
+const getProfilePic = async (req, res) => {
+  User.getProfilePic(req)
+    .then((profile_picture) => {
+      res.status(200).json({
+        profile_picture,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+module.exports = { signupUser, loginUser, updateUser, updateUserProfile, getUserById, getAllUsers, deleteUser, uploadProfilePicture, getProfilePic };

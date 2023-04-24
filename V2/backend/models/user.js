@@ -190,7 +190,6 @@ userSchema.statics.uploadProfilePicture = async function (req) {
     throw new Error("Not authorized to update");
   }
 
-  console.log("user", user);
 
   // const updatedUser = await this.findOneAndUpdate(
   //   { _id: id }, console.log("hello"),
@@ -201,9 +200,20 @@ userSchema.statics.uploadProfilePicture = async function (req) {
   await user.save();
   // console.log(user.profile_picture);
 
-  console.log("updated user", updatedUser);
+  console.log("user updated successfully");
 
   return updatedUser;
+}
+
+//static function to get profile picture
+userSchema.statics.getProfilePic = async function (req) {
+  console.log("---------In get profile picture function--------")
+  const userId = req.params.id;
+  const user = await this.findOne({ _id: userId });
+  if (!user) {
+    throw new Error("User not found");
+  }
+  return await user.profile_picture;
 }
 
 module.exports = mongoose.model("User", userSchema);
