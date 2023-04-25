@@ -7,9 +7,7 @@ import {
   AiOutlineLinkedin,
 } from "react-icons/ai";
 import userimage from "../../public/images/DAIICT.png";
-// var cn = require('classNames');
-
-import axios from "axios";
+  
 const baseUrl = "http://localhost:3000";
 
 const c1 = {
