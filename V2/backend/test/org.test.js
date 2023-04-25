@@ -28,7 +28,7 @@ describe("Org", () => {
 
   //duplicate org email
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org (duplicate organization email)", (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -48,7 +48,7 @@ describe("Org", () => {
   
   // empty org name
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org ( empty organization name)", (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -68,7 +68,7 @@ describe("Org", () => {
   
   //empty email
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org (empty email)", (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -88,7 +88,7 @@ describe("Org", () => {
   
   // empty password
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org (empty password)", (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -108,7 +108,7 @@ describe("Org", () => {
    
   // invalid email
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org ( invalid email)" , (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -128,7 +128,7 @@ describe("Org", () => {
 
   //password contain less than 8 char  
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org (password contain less than 8 char )", (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -148,7 +148,7 @@ describe("Org", () => {
   
   // password not contain uppercase char
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org ( password not contain uppercase char)", (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -168,7 +168,7 @@ describe("Org", () => {
  
    // password not contain lowercase char
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org (password not contain lowercase char)", (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -188,7 +188,7 @@ describe("Org", () => {
  
    // password not contain any number
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org (password not contain any number)", (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -208,7 +208,7 @@ describe("Org", () => {
   
   //password not contain any symbol 
   describe("POST /auth/org/signup", () => {
-    it("it should not signup an org", (done) => {
+    it("it should not signup an org (password not contain any symbol )", (done) => {
       chai
         .request(app)
         .post("/auth/org/signup")
@@ -247,7 +247,7 @@ describe("Org", () => {
 
   // empty email
   describe("POST /auth/org/login", () => {
-    it("it should not login an org", (done) => {
+    it("it should not login an org (empty email)", (done) => {
       chai
         .request(app)
         .post("/auth/org/login")
@@ -266,7 +266,7 @@ describe("Org", () => {
   
   // empty password
   describe("POST /auth/org/login", () => {
-    it("it should not login an org", (done) => {
+    it("it should not login an org (empty password)", (done) => {
       chai
         .request(app)
         .post("/auth/org/login")
@@ -285,7 +285,7 @@ describe("Org", () => {
    
   // wrong password
   describe("POST /auth/org/login", () => {
-    it("it should not login an org", (done) => {
+    it("it should not login an org (wrong password)", (done) => {
       chai
         .request(app)
         .post("/auth/org/login")
@@ -304,7 +304,7 @@ describe("Org", () => {
   
   //wrong email
   describe("POST /auth/org/login", () => {
-    it("it should not login an org", (done) => {
+    it("it should not login an org (wrong email)", (done) => {
       chai
         .request(app)
         .post("/auth/org/login")
@@ -323,7 +323,7 @@ describe("Org", () => {
 
     // invalid email 
 describe("POST /auth/org/login", () => {
-  it("it should not login an org", (done) => {
+  it("it should not login an org (invalid email )", (done) => {
     chai
       .request(app)
       .post("/auth/org/login")
@@ -374,7 +374,7 @@ describe("POST /auth/org/login", () => {
 
   // empty email
   describe("patch /auth/org/update", () => {
-    it("it should not update password of an org", (done) => {
+    it("it should not update password of an org (empty email)", (done) => {
       chai
         .request(app)
         .patch("/auth/org/update")
@@ -391,7 +391,7 @@ describe("POST /auth/org/login", () => {
 
   //wrong email
   describe("patch /auth/org/update", () => {
-    it("it should not update password of an org", (done) => {
+    it("it should not update password of an org (wrong email)", (done) => {
       chai
         .request(app)
         .patch("/auth/org/update")
@@ -408,7 +408,7 @@ describe("POST /auth/org/login", () => {
 
    // invalid email
    describe("patch /auth/org/update", () => {
-    it("it should not update password of an org", (done) => {
+    it("it should not update password of an org (invalid email)", (done) => {
       chai
         .request(app)
         .patch("/auth/org/update")
@@ -425,7 +425,7 @@ describe("POST /auth/org/login", () => {
 
    // empty password
    describe("patch /auth/org/update", () => {
-    it("it should not update password of an org", (done) => {
+    it("it should not update password of an org (empty password)", (done) => {
       chai
         .request(app)
         .patch("/auth/org/update")
@@ -442,7 +442,7 @@ describe("POST /auth/org/login", () => {
 
   // password contain less than 8 characters
   describe("patch /auth/org/update", () => {
-    it("it should not update password of an org", (done) => {
+    it("it should not update password of an org (password contain less than 8 characters)", (done) => {
       chai
         .request(app)
         .patch("/auth/org/update")
@@ -459,7 +459,7 @@ describe("POST /auth/org/login", () => {
 
     // password not contain uppercase character
     describe("patch /auth/org/update", () => {
-      it("it should not update password of an org", (done) => {
+      it("it should not update password of an org ( password not contain uppercase character)", (done) => {
         chai
           .request(app)
           .patch("/auth/org/update")
@@ -528,7 +528,7 @@ describe("POST /auth/org/login", () => {
      // organization delete function testing 
   // empty email
   describe("DELETE /auth/org/delete", () => {
-    it("it should not delete an organization", (done) => {
+    it("it should not delete an organization (empty email)", (done) => {
       chai
         .request(app)
         .delete("/auth/org/delete")
@@ -546,7 +546,7 @@ describe("POST /auth/org/login", () => {
 
   //wrong email
   describe("DELETE /auth/org/delete", () => {
-    it("it should not delete an organization", (done) => {
+    it("it should not delete an organization (wrong email)", (done) => {
       chai
         .request(app)
         .delete("/auth/org/delete")
@@ -564,7 +564,7 @@ describe("POST /auth/org/login", () => {
 
   //invalid email
   describe("DELETE /auth/org/delete", () => {
-    it("it should not delete an organization", (done) => {
+    it("it should not delete an organization (invalid email)", (done) => {
       chai
         .request(app)
         .delete("/auth/org/delete")
