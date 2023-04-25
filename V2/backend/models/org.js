@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const bcyrpt = require("bcrypt");
 const validator = require("validator");
 
-const Conference = require("./conference");
-
 const orgSchema = new mongoose.Schema({
   orgname: {
     type: String,
@@ -99,8 +97,8 @@ orgSchema.statics.login = async function (email, password) {
 };
 
 // static function to get organization by id
-orgSchema.statics.getOrgById = async function (emailid) {
-  const org = await this.findOne({ email: emailid });
+orgSchema.statics.getOrgById = async function (emailId) {
+  const org = await this.findOne({ email: emailId });
 
   if (!org) {
     throw new Error("Organization does not exist");
@@ -131,7 +129,6 @@ orgSchema.statics.update = async function (email, password) {
   return org;
 };
 
-// static function to get conferences of an organization
 orgSchema.statics.myConferences = async function (id) {
   const org = await this.findOne({ _id: id }).populate("conferences");
 

@@ -63,7 +63,7 @@ conferenceSchema.statics.createConference = async function (req) {
     guestSpeakers,
     topics,
   } = req.body;
-
+  console.log("------in create conference------",req.body);
   if (!conferenceName || !description || !startDate || !endDate) {
     throw new Error("Please fill all the required fields");
   }
@@ -83,10 +83,8 @@ conferenceSchema.statics.createConference = async function (req) {
     guestSpeakers,
     topics,
   });
-
   org.conferences.push(conference._id);
   await org.save();
-
   return conference;
 };
 
@@ -137,8 +135,7 @@ conferenceSchema.statics.editConference = async function (req) {
 conferenceSchema.statics.deleteConference = async function (req) {
   console.log("------In deleteConference function------\n", req.body);
 
-  const conferenceObjId = req.body.id;
-  console.log(conferenceObjId);
+  const conferenceObjId = req.params.id;
   const filter = { _id: conferenceObjId };
   const exist = await this.findOne(filter);
   console.log(exist);
