@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/CSS/style.css";
 
 import { useSignup } from "../hooks/useSignup";
@@ -11,6 +11,10 @@ const Signup = () => {
   const [role, setRole] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { signup, isLoading, error } = useSignup();
+
+  useEffect(() => {
+    document.title = "User Signup";
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

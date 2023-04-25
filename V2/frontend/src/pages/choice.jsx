@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/CSS/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 const Choice = () => {
+  useEffect(() => {
+    document.title = "Choice";
+  }, []);
   return (
     <>
       <div className="d-flex justify-content-center align-items-center m-5">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/CSS/style.css";
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const { login, error, isLoading } = useLogin();
+
+  useEffect(() => {
+    document.title = "User Login";
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

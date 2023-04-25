@@ -13,8 +13,8 @@ const OrgSignup = () => {
   const { orgSignup, isLoading, error } = useSignup();
 
   useEffect(() => {
-    console.log("orgname", orgname);
-  }, [orgname]);
+    document.title = "Organization Signup";
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
