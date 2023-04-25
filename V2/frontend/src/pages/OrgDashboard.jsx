@@ -15,6 +15,7 @@ import Alert from "react-bootstrap/Alert";
 
 const OrgDashboard = () => {
   const [show, setShow] = useState(false);
+  const myid = "642c6b0187058e54695f37b7";
   const handleClose = () => {
     setShow(false);
     var conf_name = document.getElementById("conference-name").value;
@@ -36,20 +37,13 @@ const OrgDashboard = () => {
       return;
     }
 
-    console.log(conf_name);
-    console.log(desc);
-    console.log(start_date);
-    console.log(end_date);
-    console.log(guest_speaker);
-    console.log(topic);
-    console.log("hello");
     fetch("http://localhost:3000/org/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        org_id: "643ea2de6aa927d460b3f676",
+        org_id: myid,
         conferenceName: conf_name,
         description: desc,
         startDate: start_date,
@@ -78,7 +72,7 @@ const OrgDashboard = () => {
       },
       body: JSON.stringify({
         id: id,
-        org_id: "643ea2de6aa927d460b3f676",
+        org_id: myid,
       }),
     });
   };
@@ -112,13 +106,6 @@ const OrgDashboard = () => {
       alert("Start date cannot be greater than end date");
       return;
     }
-    console.log(editid);
-    console.log(conf_name);
-    console.log(desc);
-    console.log(start_date);
-    console.log(end_date);
-    console.log(guest_speaker);
-    console.log(topic);
     fetch("http://localhost:3000/org/edit/", {
       method: "PATCH",
       headers: {
@@ -126,7 +113,7 @@ const OrgDashboard = () => {
       },
       body: JSON.stringify({
         id: editid,
-        org_id: "643ea2de6aa927d460b3f676",
+        org_id: myid,
         conferenceName: conf_name,
         description: desc,
         startDate: start_date,
@@ -139,7 +126,9 @@ const OrgDashboard = () => {
 
   useEffect(() => {
     var xmlhttp = new XMLHttpRequest();
-    var listFilesUrl = "http://localhost:3000/org/all";
+    console.log(myid);
+    var listFilesUrl = "http://localhost:3000/auth/org/" + myid + "/myconferences";
+    console.log(listFilesUrl);
     xmlhttp.open("GET", listFilesUrl, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function () {
@@ -150,6 +139,7 @@ const OrgDashboard = () => {
           let table = $("#example").DataTable({
             stateSave: true,
             bDestroy: true,
+            
             data: data.conferences,
             columns: [
               { data: "_id" },
@@ -250,6 +240,21 @@ const OrgDashboard = () => {
           }}
         >
           Add Conference
+        </Button>
+
+        <Button
+          variant="primary"
+          onClick={handleShow}
+          style={{
+            height: "50px",
+            position: "absolute",
+            left: "20px",
+            top: "5px",
+            width: "200px",
+            borderRadius: "10px",
+          }}
+        >
+          Profile
         </Button>
 
         <Modal show={show} onHide={handleClose}>
