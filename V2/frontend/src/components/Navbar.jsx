@@ -195,7 +195,8 @@ const Navbar = () => {
               MENU
             </p>
           </h6>
-          <div
+          <Link
+            to="/"
             className="menu-options-ctn"
             style={{ color: "var(--primary-color)" }}
           >
@@ -205,12 +206,12 @@ const Navbar = () => {
             ></div>
             <FontAwesomeIcon icon={faHome} className="menu-icons" style={{}} />
             <p className="menu-texts">HOME</p>
-          </div>
-          <div className="menu-options-ctn">
+          </Link>
+          <Link to="/dashboard" className="menu-options-ctn">
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faUserGroup} className="menu-icons" />
             <p className="menu-texts">DASHBOARD</p>
-          </div>
+          </Link>
           <div className="menu-options-ctn">
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faUpload} className="menu-icons" />

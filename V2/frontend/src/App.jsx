@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import OrgLogin from "./pages/OrgLogin";
 import OrgSignup from "./pages/OrgSignup";
 import OrgDashboard from "./pages/OrgDashboard";
+import UserDashboard from "./pages/UserDashboard";
 import Choice from "./pages/choice";
 import UserProfile from "./pages/UserProfile";
 import OrgProfile from "./pages/OrgProfile";
@@ -65,8 +66,6 @@ function App() {
             element={org ? <OrgDashboard /> : <Navigate to="/choise" />}
             path="org-dashboard"
           />
-          {/* <Route element={<OrgProfile/>} path="org-profile" /> 
-
           <Route
             element={!org ? <OrgLogin /> : <Navigate to="/" />}
             path="/org-login"
@@ -75,19 +74,31 @@ function App() {
             element={!org ? <OrgSignup /> : <Navigate to="/" />}
             path="/org-signup"
           />
-          {/* <Route
-            element={org ? <OrgDashboard /> : <Navigate to="/org-login" />}
-            path="/org-dashboard"
-          /> */}
-          {/* private routes */}
           <Route
-            element={user ? <UserProfile /> : <Navigate to="/login" />}
+            element={
+              user ? (
+                <UserDashboard />
+              ) : org ? (
+                <OrgDashboard />
+              ) : (
+                <Navigate to="/choice" />
+              )
+            }
+            path="/dashboard"
+          />
+
+          <Route
+            element={
+              user ? (
+                <UserProfile />
+              ) : org ? (
+                <OrgProfile />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
             path="/profile"
           />
-          {/* <Route
-            element={org ? <OrgProfile /> : <Navigate to="/org-login" />}
-            path="/org-profile"
-          /> */}
           <Route element={<PasswordReset />} path="/password-reset" />
           {/* Oragnization  */}
           {/* <Route element={<TimeLine />} path="/timeline" /> */}
