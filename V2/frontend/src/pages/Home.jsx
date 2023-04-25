@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import TimelineCard from "../components/TimelineCard";
 
 const Home = () => {
   const [orgs, setOrgs] = useState([])
@@ -16,6 +17,12 @@ const Home = () => {
   return (
     <div>
       <Navbar />
+
+      <div className="container">
+      <div className="timeline">
+        <TimelineCard />
+        </div>
+      </div>
 
       <div className="container" style={{ marginTop: "1rem" }}>
         <div className="p-4 p-md-2 mb-4 rounded"
@@ -54,11 +61,6 @@ const Home = () => {
           })} 
         </div>
 
-        <div className="p-4 p-md-4 mb-4 rounded text-bg-dark">
-          <div className="col-md-6 px-0">
-            <h2 className="display-4 fst-italic">Upcoming Conference</h2>
-          </div>
-        </div>
 
         
 
