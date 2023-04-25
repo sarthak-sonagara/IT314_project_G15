@@ -63,7 +63,7 @@ conferenceSchema.statics.createConference = async function (req) {
     guestSpeakers,
     topics,
   } = req.body;
-  console.log("------in create conference------",req.body);
+ // console.log("------in create conference------",req.body);
   if (!conferenceName || !description || !startDate || !endDate) {
     throw new Error("Please fill all the required fields");
   }
