@@ -6,9 +6,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import $ from "jquery";
 import {
-  faArrowsLeftRightToLine,
   faBars,
-  faBarsStaggered,
+  faAddressCard,
   faBell,
   faClipboardList,
   faHome,
@@ -211,6 +210,11 @@ const Navbar = () => {
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faUserGroup} className="menu-icons" />
             <p className="menu-texts">DASHBOARD</p>
+          </Link>
+          <Link to="/profile" className="menu-options-ctn">
+            <div className="active-indicator"></div>
+            <FontAwesomeIcon icon={faAddressCard} className="menu-icons" />
+            <p className="menu-texts">PROFILE</p>
           </Link>
           <div className="menu-options-ctn">
             <div className="active-indicator"></div>
