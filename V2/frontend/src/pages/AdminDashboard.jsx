@@ -21,19 +21,23 @@ const AdminDashboard = () => {
   const handleShowDelete = () => setShowDelete(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  useEffect(() => {
 
-    var xmlhttp = new XMLHttpRequest();
-    var listFilesUrl = "http://localhost:3000/auth/user/";
-    xmlhttp.open("GET", listFilesUrl, true);
-    xmlhttp.send();
-    xmlhttp.onreadystatechange = function () {
+  useEffect(() => {
+    var xmlHttpUsers = new XMLHttpRequest();
+    var xmlHttpOrgs = new XMLHttpRequest();
+    var getAllUserUrl = "http://localhost:3000/auth/user/";
+    var getAllOrgUrl = "http://localhost:3000/auth/org/";
+    xmlHttpUsers.open("GET", getAllUserUrl, true);
+    xmlHttpOrgs.open("GET", getAllOrgUrl, true);
+    xmlHttpUsers.send();
+    xmlHttpOrgs.send();
+
+    xmlHttpUsers.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(this.responseText);
         console.log(data);
         $(document).ready(function () {
-          let table = $("#example").DataTable({
+          let table = $("#users_datatable").DataTable({
             stateSave: true,
             bDestroy: true,
             data: data.users,
@@ -45,35 +49,44 @@ const AdminDashboard = () => {
               {
                 data: null,
                 defaultContent:
-                  '<button class="btn btn-primary edit-btn">Edit</button>',
-              },
-              {
-                data: null,
-                defaultContent:
-                  '<button class="btn btn-danger delete-btn">Delete</button>',
+                  '<div style="display:flex"><button class="btn btn-primary edit-btn" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn">Delete</button></div>',
               },
             ],
           });
 
-
           // Handle Edit button click
-          $("#example tbody").on("click", ".edit-btn", function () {
+          $("#users_datatable tbody").on("click", ".edit-btn", function () {
             let td = $(this).closest("tr").find("td:eq(0)");
             // let id = table.row(td).data();
-            if(table.cell( td ).data()){
+            if (table.cell(td).data()) {
               // $("#input-id").val("Hello");
-              console.log(table.cell( td ).data());
+              console.log(table.cell(td).data());
+              console.log($("#input-id").val());
             }
             // let rowData = table.row(tr).data();
-            // console.log("Edit row data:", id);
             handleShowEdit();
           });
 
           // Handle Delete button click
-          $("#example tbody").on("click", ".delete-btn", function () {
+          $("#users_datatable tbody").on("click", ".delete-btn", function () {
             let rowData = table.row($(this).parents("tr")).data();
             console.log("Delete row data:", rowData);
             handleShowDelete();
+          });
+        });
+      }
+    };
+
+    xmlHttpOrgs.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        $(document).ready(function () {
+          let table1 = $("#orgs_datatable").DataTable({
+            stateSave: true,
+            bDestroy: true,
+            data: data.orgs,
+            columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
           });
         });
       }
@@ -84,16 +97,29 @@ const AdminDashboard = () => {
     <>
       <AdminNavbar />
       <div className="admin-container">
-        <div className="admin-content-ctn">
-          <table id="example" className="display">
+        <div className="admin-content-ctn admin-welcome-screen">
+          <div className="admin-welcome-ctn">Welcome to Admin Dashboard</div>
+        </div>
+        <div className="admin-content-ctn user-table-ctn">
+          <table id="users_datatable" className="display">
             <thead>
               <tr>
                 <th>Id</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Role.</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div className="admin-content-ctn org-table-ctn">
+          <table id="orgs_datatable" className="display">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>OrgName</th>
+                <th>Email</th>
               </tr>
             </thead>
           </table>
@@ -122,8 +148,8 @@ const AdminDashboard = () => {
                     className="input-field"
                     id="input-id"
                     required
-                    value=""
                     readOnly
+                    value={"s"}
                   />
                 </div>
                 <div className="mb-3">
@@ -200,5 +226,61 @@ const AdminDashboard = () => {
     </>
   );
 };
+
+$(document).ready(function () {
+  $(".adm-ctn").on("click", function () {
+    // console.log("clicked");
+    if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
+      $(".user-table-ctn").toggleClass("user-active-table-ctn");
+      $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
+      $(".user-active-indicator").toggleClass("user-inactive-indicator");
+    }
+    if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
+      $(".org-table-ctn").toggleClass("org-active-table-ctn");
+      $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
+      $(".org-active-indicator").toggleClass("org-inactive-indicator");
+    }
+    if ($(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
+      $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
+      $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
+      $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
+    }
+  });
+  $(".user-ctn").on("click", function () {
+    if (!$(".user-table-ctn").hasClass("user-active-table-ctn")) {
+      $(".user-table-ctn").toggleClass("user-active-table-ctn");
+      $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
+      $(".user-active-indicator").toggleClass("user-inactive-indicator");
+    }
+    if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
+      $(".org-table-ctn").toggleClass("org-active-table-ctn");
+      $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
+      $(".org-active-indicator").toggleClass("org-inactive-indicator");
+    }
+    if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
+      $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
+      $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
+      $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
+    }
+  });
+  $(".org-ctn").on("click", function () {
+    // console.log("clicked");
+    if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
+      $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
+      $(".user-table-ctn").toggleClass("user-active-table-ctn");
+      $(".user-active-indicator").toggleClass("user-inactive-indicator");
+    }
+    if (!$(".org-table-ctn").hasClass("org-active-table-ctn")) {
+      $(".org-table-ctn").toggleClass("org-active-table-ctn");
+      $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
+      $(".org-active-indicator").toggleClass("org-inactive-indicator");
+    }
+    if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
+      $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
+      $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
+      $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
+    }
+  });
+});
 
 export default AdminDashboard;

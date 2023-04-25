@@ -593,6 +593,434 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Conference Registration",
+			"item": [
+				{
+					"name": "Valid user register in valid conference",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/register/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"register",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64452d160fe8410f7fea53aa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to register in Invalid conference",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/register/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"register",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64452d160fe8410f7fea53ab"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User already registered",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/register/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"register",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64452811cbf9eb7a940b1439"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conference has already ended",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/register/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"register",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6444eb0d1d0f0511e9cf82dc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cancel Conference Registration",
+			"item": [
+				{
+					"name": "Registration Cancelled Successfully",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/cancelRegistration/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"cancelRegistration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64464eba2cf5182825cfee7f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Not Registered!",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/cancelRegistration/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"cancelRegistration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64464eba2cf5182825cfee7f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conference ended",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"6443d484bd6d791b5d7abdeb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/cancelRegistration/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"cancelRegistration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6444eb0d1d0f0511e9cf82dc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile Picture",
+			"item": [
+				{
+					"name": "show profile picture",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/show-pic/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"show-pic",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6446d482aa8b2ea8be3ba696"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to fetch profile picture of invalid user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/user/show-pic/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"show-pic",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6446d482aa8b2ea8be3ba697"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove profile picture",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/remove-pic/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"remove-pic",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6446d482aa8b2ea8be3ba696"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to remove profile picture before setting it",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/user/remove-pic/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"remove-pic",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6446d482aa8b2ea8be3ba696"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to remove profile picture of invalid user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/user/remove-pic/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"remove-pic",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6446d482aa8b2ea8be3ba697"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

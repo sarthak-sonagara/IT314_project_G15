@@ -21,6 +21,28 @@ const getAllConferences = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
+//conference registration
+const conferenceRegistration = async (req, res) => {
+  Conference.conferenceRegistration(req)
+    .then((conference) => {
+      res.status(200).json({
+        conference,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+//cancel registration
+const cancelRegistration = async (req, res) => {
+  Conference.cancelConferenceRegistration(req)
+    .then((conference) => {
+      res.status(200).json({
+        conference,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
 const getConferenceById = async (req, res) => {
   const id = req.params.id;
   Conference.getConferenceById(id)
@@ -43,6 +65,7 @@ const editConference = async (req, res) => {
 };
 
 const deleteConference = async (req, res) => {
+  console.log("in delete conference contoller");
   Conference.deleteConference(req)
     .then((conference) => {
       res.status(200).json({
@@ -69,5 +92,7 @@ module.exports = {
   getConferenceById,
   editConference,
   deleteConference,
-  viewConference,
+  conferenceRegistration,
+  cancelRegistration,
+  viewConference
 };

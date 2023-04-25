@@ -32,7 +32,7 @@ const Home_conf = () => {
                       <td className="date">May 7, 2018</td>
                       <td className="speaker">Jenish</td>
                       <td className="topic">Space Reseach</td>
-                      <td className="btn"><button class="primary">Register</button></td>
+                      <td className="btn"><button type="button" class="btn btn-outline-success">Register</button></td>
                     </tr>
                     <tr>
                       <td className="conference_name">Sumit Monpara</td>
@@ -40,7 +40,7 @@ const Home_conf = () => {
                       <td className="date">May 7, 2018</td>
                       <td className="speaker">Jenish</td>
                       <td className="topic">Space Reseach</td>
-                      <td className="btn"><button class="primary">Register</button></td>
+                      <td className="btn"><button type="button" class="btn btn-outline-success">Register</button></td>
                     </tr>
                     <tr>
                       <td className="conference_name">Sumit Monpara</td>
@@ -48,7 +48,7 @@ const Home_conf = () => {
                       <td className="date">May 7, 2018</td>
                       <td className="speaker">Jenish</td>
                       <td className="topic">Space Reseach</td>
-                      <td className="btn"><button class="primary">Register</button></td>
+                      <td className="btn"><button type="button" class="btn btn-outline-success">Register</button></td>
                     </tr>
                   </tbody>
                 </table>

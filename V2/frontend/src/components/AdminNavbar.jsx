@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faSearch, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import $ from "jquery";
 
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -21,39 +22,26 @@ const AdminNavbar = () => {
     <>
       <nav className="global-nav-bar admin-nav">
         <div className="admin-nav-left-span">
-          <div className="admin-nav-left-sub-ctn">
-            <p style={{ padding: "0", margin: "0" }}>Admin</p>
-          </div>
-          <div className="admin-nav-left-sub-ctn">
-            <p style={{ padding: "0", margin: "0" }}>Users</p>
+          <div className="admin-nav-left-sub-ctn adm-ctn">
+            <p style={{ padding: "0", margin: "0" }} className="adm-left-nav-ctn-text">Admin</p>
             <div
-              className="admin-active-indicator"
-              id="user-active-indicator"
+              className="admin-inactive-indicator adm-active-indicator adm-inactive-indicator"
             ></div>
           </div>
-          <div className="admin-nav-left-sub-ctn">
-            <p style={{ padding: "0", margin: "0" }}>Organizations</p>
+          <div className="admin-nav-left-sub-ctn user-ctn">
+            <p style={{ padding: "0", margin: "0" }} className="user-left-nav-ctn-text">Users</p>
             <div
-              className="admin-active-indicator"
-              id="org-active-indicator"
+              className="admin-inactive-indicator user-active-indicator"
+              id=""
             ></div>
           </div>
-        </div>
-        <div className="global-nav-search-bar">
-          <FontAwesomeIcon
-            icon={faSearch}
-            style={{
-              color: "var(--primary-color)",
-              position: "absolute",
-              marginLeft: "13px",
-            }}
-          />
-          <input
-            type="text"
-            className="form-control search-input"
-            placeholder="Search conferences..."
-            style={{ background: "none", border: "none" }}
-          />
+          <div className="admin-nav-left-sub-ctn org-ctn">
+            <p style={{ padding: "0", margin: "0" }} className="org-left-nav-ctn-text">Organizations</p>
+            <div
+              className="admin-inactive-indicator org-active-indicator"
+              id=""
+            ></div>
+          </div>
         </div>
         <Link onClick={handleClick} className="admin-nav-right-logout-span">
           <div
@@ -71,5 +59,6 @@ const AdminNavbar = () => {
     </>
   );
 };
+
 
 export default AdminNavbar;
