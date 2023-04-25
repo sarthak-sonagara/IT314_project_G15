@@ -23,19 +23,10 @@ const AdminDashboard = () => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    var xmlHttpUsers = new XMLHttpRequest();
-    var xmlHttpOrgs = new XMLHttpRequest();
-    var getAllUserUrl = "http://localhost:3000/auth/user/";
-    var getAllOrgUrl = "http://localhost:3000/auth/org/";
-    xmlHttpUsers.open("GET", getAllUserUrl, true);
-    xmlHttpOrgs.open("GET", getAllOrgUrl, true);
-    xmlHttpUsers.send();
-    xmlHttpOrgs.send();
-
-    xmlHttpUsers.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        var data = JSON.parse(this.responseText);
-        console.log(data);
+    fetch("http://localhost:3000/auth/user/")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("This are Users:", data);
         $(document).ready(function () {
           let table = $("#users_datatable").DataTable({
             stateSave: true,
@@ -74,13 +65,12 @@ const AdminDashboard = () => {
             handleShowDelete();
           });
         });
-      }
-    };
+      });
 
-    xmlHttpOrgs.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        var data = JSON.parse(this.responseText);
-        console.log(data);
+    fetch("http://localhost:3000/auth/org/")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("This is Orgs:", data);
         $(document).ready(function () {
           let table1 = $("#orgs_datatable").DataTable({
             stateSave: true,
@@ -89,8 +79,7 @@ const AdminDashboard = () => {
             columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
           });
         });
-      }
-    };
+      });
   }, []);
 
   return (
@@ -227,60 +216,60 @@ const AdminDashboard = () => {
   );
 };
 
-$(document).ready(function () {
-  $(".adm-ctn").on("click", function () {
-    // console.log("clicked");
-    if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
-      $(".user-table-ctn").toggleClass("user-active-table-ctn");
-      $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
-      $(".user-active-indicator").toggleClass("user-inactive-indicator");
-    }
-    if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
-      $(".org-table-ctn").toggleClass("org-active-table-ctn");
-      $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
-      $(".org-active-indicator").toggleClass("org-inactive-indicator");
-    }
-    if ($(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
-      $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
-      $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
-      $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
-    }
-  });
-  $(".user-ctn").on("click", function () {
-    if (!$(".user-table-ctn").hasClass("user-active-table-ctn")) {
-      $(".user-table-ctn").toggleClass("user-active-table-ctn");
-      $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
-      $(".user-active-indicator").toggleClass("user-inactive-indicator");
-    }
-    if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
-      $(".org-table-ctn").toggleClass("org-active-table-ctn");
-      $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
-      $(".org-active-indicator").toggleClass("org-inactive-indicator");
-    }
-    if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
-      $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
-      $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
-      $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
-    }
-  });
-  $(".org-ctn").on("click", function () {
-    // console.log("clicked");
-    if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
-      $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
-      $(".user-table-ctn").toggleClass("user-active-table-ctn");
-      $(".user-active-indicator").toggleClass("user-inactive-indicator");
-    }
-    if (!$(".org-table-ctn").hasClass("org-active-table-ctn")) {
-      $(".org-table-ctn").toggleClass("org-active-table-ctn");
-      $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
-      $(".org-active-indicator").toggleClass("org-inactive-indicator");
-    }
-    if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
-      $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
-      $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
-      $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
-    }
-  });
-});
+// $(document).ready(function () {
+//   $(".adm-ctn").on("click", function () {
+//     console.log("clicked");
+//     if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
+//       $(".user-table-ctn").toggleClass("user-active-table-ctn");
+//       $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
+//       $(".user-active-indicator").toggleClass("user-inactive-indicator");
+//     }
+//     if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
+//       $(".org-table-ctn").toggleClass("org-active-table-ctn");
+//       $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
+//       $(".org-active-indicator").toggleClass("org-inactive-indicator");
+//     }
+//     if ($(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
+//       $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
+//       $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
+//       $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
+//     }
+//   });
+//   $(".user-ctn").on("click", function () {
+//     if (!$(".user-table-ctn").hasClass("user-active-table-ctn")) {
+//       $(".user-table-ctn").toggleClass("user-active-table-ctn");
+//       $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
+//       $(".user-active-indicator").toggleClass("user-inactive-indicator");
+//     }
+//     if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
+//       $(".org-table-ctn").toggleClass("org-active-table-ctn");
+//       $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
+//       $(".org-active-indicator").toggleClass("org-inactive-indicator");
+//     }
+//     if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
+//       $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
+//       $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
+//       $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
+//     }
+//   });
+//   $(".org-ctn").on("click", function () {
+//     console.log("clicked");
+//     if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
+//       $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
+//       $(".user-table-ctn").toggleClass("user-active-table-ctn");
+//       $(".user-active-indicator").toggleClass("user-inactive-indicator");
+//     }
+//     if (!$(".org-table-ctn").hasClass("org-active-table-ctn")) {
+//       $(".org-table-ctn").toggleClass("org-active-table-ctn");
+//       $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
+//       $(".org-active-indicator").toggleClass("org-inactive-indicator");
+//     }
+//     if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
+//       $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
+//       $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
+//       $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
+//     }
+//   });
+// });
 
 export default AdminDashboard;
