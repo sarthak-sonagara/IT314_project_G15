@@ -49,12 +49,7 @@ const AdminDashboard = () => {
               {
                 data: null,
                 defaultContent:
-                  '<button class="btn btn-primary edit-btn">Edit</button>',
-              },
-              {
-                data: null,
-                defaultContent:
-                  '<button class="btn btn-danger delete-btn">Delete</button>',
+                  '<div style="display:flex"><button class="btn btn-primary edit-btn" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn">Delete</button></div>',
               },
             ],
           });
@@ -66,6 +61,7 @@ const AdminDashboard = () => {
             if (table.cell(td).data()) {
               // $("#input-id").val("Hello");
               console.log(table.cell(td).data());
+              console.log($("#input-id").val());
             }
             // let rowData = table.row(tr).data();
             handleShowEdit();
@@ -90,11 +86,7 @@ const AdminDashboard = () => {
             stateSave: true,
             bDestroy: true,
             data: data.orgs,
-            columns: [
-              { data: "_id" },
-              { data: "orgname" },
-              { data: "email" }
-            ],
+            columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
           });
         });
       }
@@ -105,7 +97,10 @@ const AdminDashboard = () => {
     <>
       <AdminNavbar />
       <div className="admin-container">
-        <div className="admin-content-ctn">
+        <div className="admin-content-ctn admin-welcome-screen">
+          <div className="admin-welcome-ctn">Welcome to Admin Dashboard</div>
+        </div>
+        <div className="admin-content-ctn user-table-ctn">
           <table id="users_datatable" className="display">
             <thead>
               <tr>
@@ -113,12 +108,13 @@ const AdminDashboard = () => {
                 <th>Username</th>
                 <th>Email</th>
                 <th>Role.</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Actions</th>
               </tr>
             </thead>
           </table>
-          {/* <table id="orgs_datatable" className="display">
+        </div>
+        <div className="admin-content-ctn org-table-ctn">
+          <table id="orgs_datatable" className="display">
             <thead>
               <tr>
                 <th>Id</th>
@@ -126,109 +122,165 @@ const AdminDashboard = () => {
                 <th>Email</th>
               </tr>
             </thead>
-          </table> */}
-
-          <>
-            <Modal
-              show={showEdit}
-              onHide={handleCloseEdit}
-              style={{
-                transform: "translate(-50%, -25%)",
-                top: "50%",
-                left: "50%",
-              }}
-            >
-              <Modal.Header closeButton>
-                <Modal.Title>Edit User</Modal.Title>
-              </Modal.Header>
-              <form action="">
-                <Modal.Body>
-                  <div className="mb-3">
-                    <label htmlFor="input-id" className="form-label">
-                      ID:
-                    </label>
-                    <input
-                      type="text"
-                      className="input-field"
-                      id="input-id"
-                      required
-                      readOnly
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="input-email" className="form-label">
-                      Email address:
-                    </label>
-                    <input
-                      type="email"
-                      className="input-field"
-                      id="input-email"
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      // readOnly
-                      defaultValue=""
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="input-password" className="form-label">
-                      Password:
-                    </label>
-                    <input
-                      type="password"
-                      className="input-field"
-                      id="input-password"
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleCloseEdit}>
-                    Close
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    onClick={handleCloseEdit}
-                  >
-                    Submit
-                  </Button>
-                </Modal.Footer>
-              </form>
-            </Modal>
-
-            <Modal
-              show={showDelete}
-              onHide={handleCloseDelete}
-              style={{
-                transform: "translate(-50%, -25%)",
-                top: "50%",
-                left: "50%",
-              }}
-            >
-              <Modal.Header closeButton>
-                <Modal.Title>Are you really want to delete it?</Modal.Title>
-              </Modal.Header>
-              <form action="">
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleCloseDelete}>
-                    Cancel
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="danger"
-                    onClick={handleCloseDelete}
-                  >
-                    Delete
-                  </Button>
-                </Modal.Footer>
-              </form>
-            </Modal>
-          </>
+          </table>
         </div>
+        <>
+          <Modal
+            show={showEdit}
+            onHide={handleCloseEdit}
+            style={{
+              transform: "translate(-50%, -25%)",
+              top: "50%",
+              left: "50%",
+            }}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Edit User</Modal.Title>
+            </Modal.Header>
+            <form action="">
+              <Modal.Body>
+                <div className="mb-3">
+                  <label htmlFor="input-id" className="form-label">
+                    ID:
+                  </label>
+                  <input
+                    type="text"
+                    className="input-field"
+                    id="input-id"
+                    required
+                    readOnly
+                    value={"s"}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="input-email" className="form-label">
+                    Email address:
+                  </label>
+                  <input
+                    type="email"
+                    className="input-field"
+                    id="input-email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    // readOnly
+                    defaultValue=""
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="input-password" className="form-label">
+                    Password:
+                  </label>
+                  <input
+                    type="password"
+                    className="input-field"
+                    id="input-password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseEdit}>
+                  Close
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  onClick={handleCloseEdit}
+                >
+                  Submit
+                </Button>
+              </Modal.Footer>
+            </form>
+          </Modal>
+
+          <Modal
+            show={showDelete}
+            onHide={handleCloseDelete}
+            style={{
+              transform: "translate(-50%, -25%)",
+              top: "50%",
+              left: "50%",
+            }}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Are you really want to delete it?</Modal.Title>
+            </Modal.Header>
+            <form action="">
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseDelete}>
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="danger"
+                  onClick={handleCloseDelete}
+                >
+                  Delete
+                </Button>
+              </Modal.Footer>
+            </form>
+          </Modal>
+        </>
       </div>
     </>
   );
 };
+
+$(document).ready(function () {
+  $(".adm-ctn").on("click", function () {
+    // console.log("clicked");
+    if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
+      $(".user-table-ctn").toggleClass("user-active-table-ctn");
+      $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
+      $(".user-active-indicator").toggleClass("user-inactive-indicator");
+    }
+    if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
+      $(".org-table-ctn").toggleClass("org-active-table-ctn");
+      $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
+      $(".org-active-indicator").toggleClass("org-inactive-indicator");
+    }
+    if ($(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
+      $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
+      $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
+      $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
+    }
+  });
+  $(".user-ctn").on("click", function () {
+    if (!$(".user-table-ctn").hasClass("user-active-table-ctn")) {
+      $(".user-table-ctn").toggleClass("user-active-table-ctn");
+      $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
+      $(".user-active-indicator").toggleClass("user-inactive-indicator");
+    }
+    if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
+      $(".org-table-ctn").toggleClass("org-active-table-ctn");
+      $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
+      $(".org-active-indicator").toggleClass("org-inactive-indicator");
+    }
+    if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
+      $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
+      $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
+      $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
+    }
+  });
+  $(".org-ctn").on("click", function () {
+    // console.log("clicked");
+    if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
+      $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
+      $(".user-table-ctn").toggleClass("user-active-table-ctn");
+      $(".user-active-indicator").toggleClass("user-inactive-indicator");
+    }
+    if (!$(".org-table-ctn").hasClass("org-active-table-ctn")) {
+      $(".org-table-ctn").toggleClass("org-active-table-ctn");
+      $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
+      $(".org-active-indicator").toggleClass("org-inactive-indicator");
+    }
+    if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
+      $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
+      $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
+      $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
+    }
+  });
+});
 
 export default AdminDashboard;

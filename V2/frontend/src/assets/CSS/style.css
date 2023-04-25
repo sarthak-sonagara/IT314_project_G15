@@ -25,7 +25,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow:  0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 9;
 }
 
@@ -50,9 +51,9 @@
   border-radius: 1px;
 }
 
-.search-input:focus{
+.search-input:focus {
   box-shadow: none;
-  border:none;
+  border: none;
 }
 
 /* -------------------------------------------------------------------- */
@@ -64,8 +65,9 @@
   position: absolute;
   top: 0px;
   padding-top: 80px;
-  box-shadow:  0 6px 8px -1px rgba(0,0,0,.1),0 6px 8px -1px rgba(0,0,0,.06);
-  z-index: 9;  
+  box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1),
+    0 6px 8px -1px rgba(0, 0, 0, 0.06);
+  z-index: 9;
 }
 
 .left-close-container {
@@ -175,27 +177,27 @@
   height: 37px;
   cursor: pointer;
   border-radius: 35px;
-  color:  var(--font-color);
-  font-weight:bold;
+  color: var(--font-color);
+  font-weight: bold;
 }
 
 .menu-options-ctn:hover {
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 
 .menu-icons {
-  height: .975rem;
+  height: 0.975rem;
   width: 19px;
   margin-right: 10px;
 }
 
 .menu-texts {
   display: none;
-  font-size: .775rem;
+  font-size: 0.775rem;
   margin: 0;
   padding: 0;
 }
- 
+
 .menu-text-ctn {
   margin-bottom: 5px;
   font-size: 0.855rem;
@@ -205,7 +207,6 @@
   align-items: center;
   height: 30px;
 }
-
 
 .menu-close-texts {
   display: inherit;
@@ -227,7 +228,7 @@
 
 .menu-close-icon {
   position: absolute;
-  right: 9.5px; 
+  right: 9.5px;
   height: 1.15rem;
 }
 
@@ -237,7 +238,7 @@
 
 .logout-text-at-left-ctn {
   display: none;
-  padding: 0px; 
+  padding: 0px;
   margin: 0px;
 }
 
@@ -256,7 +257,8 @@
   background-color: var(--nav-bg-color);
 }
 
-.login-container, .admin-login-container {
+.login-container,
+.admin-login-container {
   height: 600px;
   width: 1100px;
   display: flex;
@@ -298,7 +300,8 @@
   border-radius: 5px 0 0 5px;
 }
 
-.right-login-ctn, .admin-login-ctn {
+.right-login-ctn,
+.admin-login-ctn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -409,18 +412,18 @@
 /* --------------------------------admin ------------------------------------------- */
 
 .admin-nav {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100vw;
 }
 
 .admin-container {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   background-color: rgb(223, 227, 231);
-  padding-top: 100px;
+  padding: 100px 0 50px 0;
 }
 
 .admin-nav-right-logout-span {
@@ -449,31 +452,72 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  cursor: pointer;
+  color: var(--font-color);
 }
 
-.admin-active-indicator {
+.admin-nav-left-sub-ctn:hover {
+  color: var(--active-font-color);
+}
+
+.admin-inactive-indicator {
+  display: none;
   position: absolute;
   bottom: -20px;
   height: 5px;
   background-color: var(--primary-color);
   border-radius: 4px 4px 0 0;
 }
-#user-active-indicator {
+.user-inactive-indicator {
   width: 35px;
+  display: inherit;
 }
-#org-active-indicator {
-  width: 75px;
+.org-inactive-indicator {
+  width: 60px;
+  display: inherit;
+}
+.adm-inactive-indicator {
+  width: 35px;
+  display: inherit;
 }
 
-.admin-content-ctn {
-  width: 1300px;
-  padding: 10px;
-  padding: 10px 20px;
-  /* background-color: #707275; */
-  border-radius: 0.750rem;
-  border: 1px  #898e92 ;
-  border-style: dashed;
+.active-user-left-nav-ctn-text, .active-org-left-nav-ctn-text {
+  color: var(--primary-color);
 }
+
+.adm-left-nav-ctn-text {
+  color: var(--primary-color);
+}
+
+.active-adm-left-nav-ctn-text {
+  color: var(--font-color)
+}
+
+
+.admin-content-ctn {
+  width: 1200px;
+  padding: 10px;
+  padding: 25px 20px 20px 20px;
+  /* background-color: #707275; */
+  border-radius: 0.75rem;
+  border: 1px #898e92;
+  border-style: dashed;
+  height: max-content;
+}
+
+/* Admin Welcome screen */
+.admin-welcome-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.admin-hidden-welcome-screen {
+  display: none;
+}
+
 /* Organization */
 .org-container {
   width: 100vw;
@@ -488,9 +532,28 @@
   padding: 10px;
   padding: 10px 20px;
   /* background-color: #707275; */
-  border-radius: 0.750rem;
-  border: 1px  #898e92 ;
+  border-radius: 0.75rem;
+  border: 1px #898e92;
   border-style: dashed;
 }
+
+.user-table-ctn {
+  display: none;
+}
+
+.user-active-table-ctn {
+  display: flex;
+  justify-content: center;
+}
+
+.org-table-ctn {
+  display: none;
+}
+
+.org-active-table-ctn {
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 1200px) {
 }
