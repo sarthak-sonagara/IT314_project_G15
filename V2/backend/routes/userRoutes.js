@@ -13,7 +13,8 @@ const {
   getUserById,
   uploadProfilePicture,
   getProfilePic,
-  removeProfilePic
+  removeProfilePic,
+  uploadPaper,
 } = require("../controllers/userController");
 
 // all users routes
@@ -35,7 +36,7 @@ router.patch("/update", updateUser);
 router.patch("/updateProfile/:id", updateUserProfile);
 
 //upload profile picture route
-router.patch("/upload-pic", uploadProfilePicture)
+router.patch("/upload-pic", uploadProfilePicture);
 
 // delete route
 router.delete("/delete", deleteUser);
@@ -45,5 +46,8 @@ router.get("/show-pic/:id", getProfilePic);
 
 //remove profile picture route
 router.patch("/remove-pic/:id", removeProfilePic);
+
+// publish paper
+router.post("/uploads/:id", uploadPaper);
 
 module.exports = router;

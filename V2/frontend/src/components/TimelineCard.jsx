@@ -1,8 +1,7 @@
 import React from "react";
 import "../assets/CSS/TimeLine.css";
 
-const TimelineCard = ({ conference,index }) => {
-  console.log(conference);
+const TimelineCard = ({ conference, index }) => {
   const className = index & 1 ? "card-container right" : "card-container left";
   return (
     <>

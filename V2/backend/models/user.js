@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
   gender: {
     type: String,
     required: false,
-    enum: ["Male", "Female", "Other"],  // enum is an array of strings
+    enum: ["Male", "Female", "Other"], // enum is an array of strings
   },
 
   linkedin: {
@@ -43,19 +43,31 @@ const userSchema = new mongoose.Schema({
     required: false,
   },
 
-  // array of registered conferences ID  
-  registered_conferences: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Conference",
-    default: [],
-  }],
+  // array of registered conferences ID
+  registered_conferences: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Conference",
+      default: [],
+    },
+  ],
 
   //Profile picture
   profile_picture: {
     type: String,
     required: false,
-    default: ""
+    default: "",
   },
+  papers: [
+    {
+      title: String,
+      fileUrl: String,
+      conference: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Conference",
+      },
+    },
+  ],
 
 });
 
@@ -144,24 +156,19 @@ userSchema.statics.update = async function (email, password) {
 
 //static update function to update profile fields other than password and email
 userSchema.statics.updateUserProfile = async function (req) {
-
-  console.log("---------In update user profile function--------")
+  console.log("---------In update user profile function--------");
   const id = req.params.id;
   const user = await this.findOne({ _id: id });
 
-  console.log(user)
-  console.log(req.body)
+  console.log(user);
+  console.log(req.body);
 
   if (!user) {
     throw new Error("Not authorized to update");
   }
 
-  const updatedUser = await this.findOneAndUpdate(
-    { _id: id },
-    req.body
-  );
+  const updatedUser = await this.findOneAndUpdate({ _id: id }, req.body);
   return updatedUser;
-
 };
 
 // static function to get user by id
@@ -182,7 +189,10 @@ userSchema.statics.getAllUsers = async function () {
 
 //static function to upload an profile picture
 userSchema.statics.uploadProfilePicture = async function (req) {
-  console.log("---------In upload profile picture function--------\n", req.body.userId)
+  console.log(
+    "---------In upload profile picture function--------\n",
+    req.body.userId
+  );
   const id = req.body.userId;
   const user = await this.findOne({ _id: id });
 
@@ -196,23 +206,23 @@ userSchema.statics.uploadProfilePicture = async function (req) {
   console.log("user updated successfully");
 
   return updatedUser;
-}
+};
 
 //static function to get profile picture
 userSchema.statics.getProfilePic = async function (req) {
-  console.log("---------In get profile picture function--------")
+  console.log("---------In get profile picture function--------");
   const userId = req.params.id;
   const user = await this.findOne({ _id: userId });
   if (!user) {
     throw new Error("User not found");
   }
   return await user.profile_picture;
-}
+};
 
 // static function to remove profile picture
 userSchema.statics.removeProfilePic = async function (req) {
-  console.log("---------In remove profile picture function--------\n")
- 
+  console.log("---------In remove profile picture function--------\n");
+
   const userId = req.params.id;
   const user = await this.findOne({ _id: userId });
 
@@ -222,7 +232,7 @@ userSchema.statics.removeProfilePic = async function (req) {
   }
 
   // if no profile picture has been set yet
-  if(user.profile_picture === ""){
+  if (user.profile_picture === "") {
     throw new Error("No profile picture has been set yet!");
   }
 
@@ -230,6 +240,6 @@ userSchema.statics.removeProfilePic = async function (req) {
   user.profile_picture = "";
   await user.save();
   return user;
-}
+};
 
 module.exports = mongoose.model("User", userSchema);
