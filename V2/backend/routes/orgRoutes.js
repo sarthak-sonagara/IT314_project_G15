@@ -11,14 +11,13 @@ const {
   allOrgs,
   getOrgById,
   updateOrgAcceptedStatus,
-  myConferences,
 } = require("../controllers/orgController");
 
 // all orgs
 router.get("/", allOrgs);
 
 //OrgById route
-router.get("/:emailid", getOrgById);
+router.get("/:id", getOrgById);
 
 // signup route
 router.post("/signup", signupOrg);
@@ -34,8 +33,5 @@ router.delete("/delete", deleteOrg);
 
 // update org accepted status
 router.patch("/update/accepted", updateOrgAcceptedStatus);
-
-// organization's conference routes
-router.get("/:id/myConferences", myConferences);
 
 module.exports = router;
