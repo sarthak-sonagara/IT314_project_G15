@@ -19,8 +19,8 @@ const allOrgs = async (req, res) => {
 };
 
 const getOrgById = async (req, res) => {
-  const id = req.params.id;
-  Org.getOrgById(id)
+  const emailid = req.params.emailid;
+  Org.getOrgById(emailid)
     .then((org) => {
       res.status(200).json({
         org,

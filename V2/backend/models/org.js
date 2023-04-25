@@ -99,8 +99,8 @@ orgSchema.statics.login = async function (email, password) {
 };
 
 // static function to get organization by id
-orgSchema.statics.getOrgById = async function (id) {
-  const org = await this.findOne({ _id: id });
+orgSchema.statics.getOrgById = async function (emailid) {
+  const org = await this.findOne({ email: emailid });
 
   if (!org) {
     throw new Error("Organization does not exist");
