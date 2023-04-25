@@ -523,6 +523,50 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "fetch particular organization's conferences",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/org/642c6b0187058e54695f37b7/myConferences",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"org",
+								"642c6b0187058e54695f37b7",
+								"myConferences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "try to fetch particular unvalid organization's conferences",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/org/642c6b0187058e54695f37b8/myConferences",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"org",
+								"642c6b0187058e54695f37b8",
+								"myConferences"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
