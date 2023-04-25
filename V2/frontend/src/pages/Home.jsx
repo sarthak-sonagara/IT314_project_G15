@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -30,10 +31,12 @@ const Home = () => {
             <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
               <div className="col p-4 d-flex flex-column position-static">
                 <strong className="d-inline-block mb-2 text-success">Organization</strong>
-                <h3 className="mb-0">Organization Name</h3>
-                {/* <Link to="/Home_conf">
-                  <button type="submit" class="optional-btn">See every conference...</button>
-                </Link> */}
+                <h3 className="mb-2">Organization Name</h3>
+                <Link to="/home-conf">
+                  <div className="d-grid gap-2">
+                    <button className="btn btn-success" type="button">More Conferences...</button>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

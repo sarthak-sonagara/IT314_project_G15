@@ -12,7 +12,8 @@ const {
   getAllUsers,
   getUserById,
   uploadProfilePicture,
-  getProfilePic
+  getProfilePic,
+  removeProfilePic
 } = require("../controllers/userController");
 
 // all users routes
@@ -41,5 +42,8 @@ router.delete("/delete", deleteUser);
 
 //get profile picture route
 router.get("/show-pic/:id", getProfilePic);
+
+//remove profile picture route
+router.patch("/remove-pic/:id", removeProfilePic);
 
 module.exports = router;

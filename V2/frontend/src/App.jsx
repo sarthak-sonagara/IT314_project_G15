@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 import Home from "./pages/Home";
+import HomeConf from "./pages/HomeConf";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PasswordReset from "./pages/PasswordReset";
@@ -70,7 +71,7 @@ function App() {
           <Route
             element={!org ? <OrgSignup /> : <Navigate to="/" />}
             path="/org-signup"
-          /> */}
+          />
           {/* <Route
             element={org ? <OrgDashboard /> : <Navigate to="/org-login" />}
             path="/org-dashboard"
