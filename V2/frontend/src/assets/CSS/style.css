@@ -507,7 +507,7 @@
 
 /* Admin Welcome screen */
 .admin-welcome-screen {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   color: var(--secondary-color);
@@ -546,9 +546,9 @@
   justify-content: center;
 }
 
-.org-table-ctn {
+/* .org-table-ctn {
   display: none;
-}
+} */
 
 .org-active-table-ctn {
   display: flex;
