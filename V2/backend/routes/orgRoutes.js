@@ -11,13 +11,17 @@ const {
   allOrgs,
   getOrgById,
   updateOrgAcceptedStatus,
+  myConferences,
 } = require("../controllers/orgController");
 
 // all orgs
 router.get("/", allOrgs);
 
 //OrgById route
-router.get("/:id", getOrgById);
+router.get("/:emailid", getOrgById);
+
+// organization's conference routes
+router.get("/:id/myConferences", myConferences);
 
 // signup route
 router.post("/signup", signupOrg);

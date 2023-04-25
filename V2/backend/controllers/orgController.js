@@ -19,14 +19,26 @@ const allOrgs = async (req, res) => {
 };
 
 const getOrgById = async (req, res) => {
-  const id = req.params.id;
-  Org.getOrgById(id)
+  const emailId = req.params.emailid;
+  Org.getOrgById(emailId)
     .then((org) => {
       res.status(200).json({
         org,
       });
     })
     .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+const myConferences = async (req, res) => {
+  const id = req.params.id;
+  Org.myConferences(id)
+    .then((conferences) => {
+      res.status(200).json({
+        conferences,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+
 };
 
 const signupOrg = async (req, res) => {
@@ -99,4 +111,5 @@ module.exports = {
   allOrgs,
   getOrgById,
   updateOrgAcceptedStatus,
+  myConferences,
 };
