@@ -49,7 +49,7 @@ const OrgDashboard = () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                org_id : "643ea2de6aa927d460b3f676",
+                org_id: "643ea2de6aa927d460b3f676",
                 conferenceName: conf_name,
                 description: desc,
                 startDate: start_date,
@@ -63,9 +63,26 @@ const OrgDashboard = () => {
     const handleShow = () => setShow(true);
     const [showEdit, setShowEdit] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
-    
+
     const handleShowEdit = () => setShowEdit(true);
-    const handleCloseDelete = () => setShowDelete(false);
+    const handleCloseDelete = () => {
+        setShowDelete(false)
+        
+        var id = editid;
+        
+        console.log("http://localhost:3000/org/delete/${id}");
+        fetch("http://localhost:3000/org/delete/${id}", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: id,
+                org_id: "643ea2de6aa927d460b3f676",
+            }),
+        })
+
+    };
     const handleShowDelete = () => setShowDelete(true);
     const [editname, Seteditname] = useState("");
     const [editdesc, Seteditdesc] = useState("");
@@ -75,8 +92,11 @@ const OrgDashboard = () => {
     const [edittopic, Setedittopic] = useState("");
     const [editid, Seteditid] = useState("");
 
+
+
     const handleCloseEdit = () => {
         setShowEdit(false);
+
         var conf_name = document.getElementById("edit-conference-name").value;
         var desc = document.getElementById("edit-description").value;
         var start_date = document.getElementById("edit-startdate").value;
@@ -108,8 +128,8 @@ const OrgDashboard = () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                id : editid,
-                org_id : "643ea2de6aa927d460b3f676",
+                id: editid,
+                org_id: "643ea2de6aa927d460b3f676",
                 conferenceName: conf_name,
                 description: desc,
                 startDate: start_date,
@@ -197,8 +217,11 @@ const OrgDashboard = () => {
 
                     // Handle Delete button click
                     $("#example tbody").on("click", ".delete-btn", function () {
-                        let rowData = table.row($(this).parents("tr")).data();
-                        console.log("Delete row data:", rowData);
+                        let td = $(this).closest("tr").find("td:eq(0)");
+                        // let id = table.row(td).data();
+                        if (table.cell(td).data()) {
+                            Seteditid(table.cell(td).data());
+                        }
                         handleShowDelete();
                     });
                 });
@@ -316,10 +339,10 @@ const OrgDashboard = () => {
                                             id="edit-conference-name"
                                             required
                                             value={editname}
-                                            onChange = {(e) => {
+                                            onChange={(e) => {
                                                 Seteditname(e.target.value);
                                             }}
-                                            
+
                                         />
                                     </div>
                                     <div className="mb-3">
@@ -332,7 +355,7 @@ const OrgDashboard = () => {
                                             id="edit-description"
                                             required
                                             value={editdesc}
-                                            onChange = {(e) => {
+                                            onChange={(e) => {
                                                 Seteditdesc(e.target.value);
                                             }}
                                         />
@@ -347,7 +370,7 @@ const OrgDashboard = () => {
                                             id="edit-startdate"
                                             required
                                             value={editstartdate}
-                                            onChange = {(e) => {
+                                            onChange={(e) => {
                                                 Seteditstartdate(e.target.value);
                                             }}
                                         />
@@ -362,7 +385,7 @@ const OrgDashboard = () => {
                                             id="edit-enddate"
                                             required
                                             value={editenddate}
-                                            onChange = {(e) => {
+                                            onChange={(e) => {
                                                 Seteditenddate(e.target.value);
                                             }}
                                         />
@@ -377,7 +400,7 @@ const OrgDashboard = () => {
                                             id="edit-guestspeaker"
                                             required
                                             value={editguestspeaker}
-                                            onChange = {(e) => {
+                                            onChange={(e) => {
                                                 Seteditguestspeaker(e.target.value);
                                             }}
                                         />
@@ -392,7 +415,7 @@ const OrgDashboard = () => {
                                             id="edit-topic"
                                             required
                                             value={edittopic}
-                                            onChange = {(e) => {
+                                            onChange={(e) => {
                                                 Setedittopic(e.target.value);
                                             }}
                                         />

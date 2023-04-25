@@ -63,7 +63,6 @@ body {
   height: 150px;
   width: 150px;
   margin: 10px;
-  /* margin-top: 30px; */
   box-shadow: 1px 4px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -116,7 +115,7 @@ a {
   cursor: pointer;
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
 }
 
@@ -159,7 +158,6 @@ a {
 
 .confTypes {
   display: flex;
-  /* width: 80%; */
   gap: 10%;
   padding: 4%;
 }
@@ -451,10 +449,8 @@ a {
   height: 350px;
 }
 
+
 .tg td {
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
   font-family: Arial, sans-serif;
   font-size: 14px;
   overflow: hidden;
@@ -463,9 +459,6 @@ a {
 }
 
 .tg th {
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
   font-family: Arial, sans-serif;
   font-size: 14px;
   font-weight: normal;
@@ -474,16 +467,23 @@ a {
   word-break: normal;
 }
 
+
 .tg .tg-gseg {
+  border-bottom : 1px solid #ccc;
+  border-right : 1px solid #ccc;
+  border-top : 1px solid #ccc;
   background-color: var(--backColor);
   color: var(--frontMainColor);
   text-align: left;
-  vertical-align: top
+  vertical-align: middle;
+  font-weight: bold;
 }
 
 .tg .tg-0lax {
+  border-bottom : 1px solid #ccc;
+  border-top : 1px solid #ccc;
   background-color: var(--frontMainColor);
   color: var(--backColor);
   text-align: left;
-  vertical-align: top
+  vertical-align: middle
 }

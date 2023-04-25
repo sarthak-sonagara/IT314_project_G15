@@ -61,7 +61,7 @@ function App() {
             path="/signup"
           />
           <Route element={<OrgDashboard/>} path="org-dashboard" /> 
-          <Route element={<OrgProfile/>} path="org-profile" /> 
+          {/* <Route element={<OrgProfile/>} path="org-profile" /> 
 
           <Route
             element={!org ? <OrgLogin /> : <Navigate to="/" />}
@@ -70,7 +70,7 @@ function App() {
           <Route
             element={!org ? <OrgSignup /> : <Navigate to="/" />}
             path="/org-signup"
-          />
+          /> */}
           {/* <Route
             element={org ? <OrgDashboard /> : <Navigate to="/org-login" />}
             path="/org-dashboard"

@@ -137,12 +137,12 @@ conferenceSchema.statics.editConference = async function (req) {
 conferenceSchema.statics.deleteConference = async function (req) {
   console.log("------In deleteConference function------\n", req.body);
 
-  const conferenceObjId = req.params.id;
-
+  const conferenceObjId = req.body.id;
+  console.log(conferenceObjId);
   const filter = { _id: conferenceObjId };
   const exist = await this.findOne(filter);
   console.log(exist);
-
+  
   // Conference does not exist then return error message.
   if (!exist) {
     throw new Error("Conference does not exist");

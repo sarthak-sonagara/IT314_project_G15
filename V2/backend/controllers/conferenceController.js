@@ -65,6 +65,7 @@ const editConference = async (req, res) => {
 };
 
 const deleteConference = async (req, res) => {
+  console.log("in delete conference contoller");
   Conference.deleteConference(req)
     .then((conference) => {
       res.status(200).json({
