@@ -69,8 +69,8 @@ const OrgDashboard = () => {
 
     var id = editid;
 
-    console.log("http://localhost:3000/org/delete/${id}");
-    fetch("http://localhost:3000/org/delete/${id}", {
+    console.log("http://localhost:3000/org/delete/" + id);
+    fetch("http://localhost:3000/org/delete/" + id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
