@@ -38,6 +38,59 @@ function OrgProfile() {
     setCurrentConf(confName);
     setIsModalOpen(true);
   }
+  const [postImage, setPostImage] = useState({ myFile: "" });
+  const [image, setImage] = useState([]);
+
+  useEffect(() => {
+    getImage();
+  }, []);
+
+
+  function getImage() {
+    // for now passed hard coded value
+    fetch("http://localhost:3000/auth/user/show-pic/6446d482aa8b2ea8be3ba696", {
+      method: "GET",
+    }).then((res) => {
+      res.json().then((data) => {
+        console.log(data);
+        setImage(data.profile_picture);
+      });
+    });
+  }
+
+  function uploadImage() {
+    fetch("http://localhost:3000/auth/user/upload-pic/", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: "6446d482aa8b2ea8be3ba696", // for now passed hard coded value
+        profile_picture: postImage.myFile,
+      }),
+    })
+      .then((response) => {
+        // console.log(response);
+      })
+      .catch((error) => {
+        // Handle error
+      });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // createPost(postImage)
+    console.log("hello in handleSubmit");
+    uploadImage();
+    console.log("Image Uploaded Successfully");
+  };
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    console.log("hello in handleFileUpload");
+    const base64 = await convertToBase64(file);
+    setPostImage({ ...postImage, myFile: base64 });
+  };
 
   function conftable(conf) {
     const rows = conf.map((conf, ind) => {
@@ -83,10 +136,40 @@ function OrgProfile() {
   }
 
   return (
+    <div className="userProfileContainer">
     <div className="UserProfileBodyCtn">
       <div className="org_box">
         <div className="org_profileBox">
-          <img src={orgimage} alt="Image of user" className="org_profilePhoto" />
+        <form onSubmit={handleSubmit} className="profileform">
+            <label htmlFor="file-upload" className="custom-file-upload">
+              {image ? (
+                <img
+                  src={image}
+                  alt="Uploaded Profile picture"
+                  className="org_profilePhoto"
+                />
+              ) : (
+                <img
+                  src={userimage}
+                  alt="Default profile picture"
+                  className="org_profilePhoto"
+                />
+              )}
+              
+            </label>
+            <span>
+            <input
+              className="choose-file"
+              type="file"
+              label="image"
+              name="myFile"
+              id="file-upload"
+              accept=".jpg, .jpeg, .png"
+              onChange={(e) => handleFileUpload(e)}
+            />
+            <button type="submit" className="upload-btn">Upload</button>
+            </span>
+          </form>
           <div className="profileOrgName">{org.orgname}</div>
           <div className='org_role'>organization</div>
           <hr class="org_h_line" />
@@ -156,6 +239,7 @@ function OrgProfile() {
           </div>
         </div>
       }
+    </div>
     </div>
   );
 }
