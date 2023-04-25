@@ -6,7 +6,7 @@ import HomeConf from "./pages/HomeConf";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PasswordReset from "./pages/PasswordReset";
-// import TimeLine from "./pages/TimeLine";
+import TimeLine from "./pages/TimeLine";
 import TimeLineTest from "./pages/TimeLineTest";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -101,8 +101,8 @@ function App() {
           />
           <Route element={<PasswordReset />} path="/password-reset" />
           {/* Oragnization  */}
-          {/* <Route element={<TimeLine />} path="/timeline" /> */}
-          <Route element={<TimeLineTest />} path="/timeline" />
+          <Route element={<TimeLine />} path="/timeline" />
+          {/* <Route element={<TimeLineTest />} path="/timeline" /> */}
         </Routes>
       </BrowserRouter>
     </>
