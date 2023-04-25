@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 import "../assets/CSS/style.css";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,7 +14,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
 
+
 const OrgDashboard = () => {
+  const { user, org } = useAuthContext();
+  
+  console.log(org);
   const [show, setShow] = useState(false);
   const myid = "642c6b0187058e54695f37b7";
   const handleClose = () => {
