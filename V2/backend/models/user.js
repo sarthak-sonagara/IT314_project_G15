@@ -209,4 +209,27 @@ userSchema.statics.getProfilePic = async function (req) {
   return await user.profile_picture;
 }
 
+// static function to remove profile picture
+userSchema.statics.removeProfilePic = async function (req) {
+  console.log("---------In remove profile picture function--------\n")
+ 
+  const userId = req.params.id;
+  const user = await this.findOne({ _id: userId });
+
+  // if user not found
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  // if no profile picture has been set yet
+  if(user.profile_picture === ""){
+    throw new Error("No profile picture has been set yet!");
+  }
+
+  // remove profile picture
+  user.profile_picture = "";
+  await user.save();
+  return user;
+}
+
 module.exports = mongoose.model("User", userSchema);
