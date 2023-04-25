@@ -117,6 +117,7 @@ function UserProfile() {
 
   return (
     <>
+    <div className="userProfileContainer">
       <div className="box">
         <div className="profileBox">
           <form onSubmit={handleSubmit} className="profileform">
@@ -136,7 +137,9 @@ function UserProfile() {
               )}
               
             </label>
+            <span>
             <input
+              className="choose-file"
               type="file"
               label="image"
               name="myFile"
@@ -145,6 +148,7 @@ function UserProfile() {
               onChange={(e) => handleFileUpload(e)}
             />
             <button type="submit" className="upload-btn">Upload</button>
+            </span>
           </form>
           <div className="profileUserName">{user.username}</div>
           <div className="role">{user.role}</div>
@@ -217,6 +221,7 @@ function UserProfile() {
           </div>
         </div>
       )}
+    </div>
     </>
   );
 }

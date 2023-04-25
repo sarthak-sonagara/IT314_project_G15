@@ -1,4 +1,4 @@
-.UserProfileBodyCtn {
+.userProfileContainer {
   --backColor: #452dc0;
   /* aane dark color rakhvo. */
   --frontMainColor: #f5f5f5;
@@ -6,13 +6,11 @@
   --frontColor: #409de9;
   /* aane bei ni vachche no color rakhvo. */
   --fontStyle: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   display: flex;
-}
-
-html,
-body {
-  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .org_box {
@@ -58,12 +56,42 @@ body {
   gap: 20px;
 }
 
+.upload-btn {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5rem 0.5rem;
+  justify-content: center;
+  text-decoration: none;
+  user-select: none;
+  border-radius: 0.5rem;
+  border: none;
+  color: black;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px 2px #ababab;
+  width: 50%;
+  margin: 20px auto;
+}
+
+.profileform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.choose-file{
+  width: 50%;
+  display: inline;
+}
+
 .org_profilePhoto {
   border-radius: 50%;
   height: 150px;
   width: 150px;
-  margin: 0px auto;
-  margin-top: 30px;
+  margin: 10px;
   box-shadow: 1px 4px 16px rgba(0, 0, 0, 0.3);
 }
 
