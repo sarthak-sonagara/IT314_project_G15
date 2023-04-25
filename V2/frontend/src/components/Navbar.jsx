@@ -162,19 +162,19 @@ const Navbar = () => {
                         VIEW PROFILE
                       </Dropdown.Item>
                     </Link>
-                      <Link
-                        onClick={handleClick}
-                        className="text-danger"
-                        style={{ cursor: "pointer" }}
-                      >
-                    <Dropdown.Item className="text-danger" href="#/action-2">
+                    <Link
+                      onClick={handleClick}
+                      className="text-danger"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <Dropdown.Item className="text-danger" href="#/action-2">
                         <FontAwesomeIcon
                           icon={faSignOut}
                           style={{ marginRight: "10px" }}
                         />
                         LOGOUT
-                    </Dropdown.Item>
-                      </Link>
+                      </Dropdown.Item>
+                    </Link>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
@@ -208,13 +208,13 @@ const Navbar = () => {
           </div>
           <div className="menu-options-ctn">
             <div className="active-indicator"></div>
-            <FontAwesomeIcon icon={faUpload} className="menu-icons" />
-            <p className="menu-texts">CALL FOR PAPER</p>
+            <FontAwesomeIcon icon={faUserGroup} className="menu-icons" />
+            <p className="menu-texts">DASHBOARD</p>
           </div>
           <div className="menu-options-ctn">
             <div className="active-indicator"></div>
-            <FontAwesomeIcon icon={faUserGroup} className="menu-icons" />
-            <p className="menu-texts">ORGANIZATION</p>
+            <FontAwesomeIcon icon={faUpload} className="menu-icons" />
+            <p className="menu-texts">CALL FOR PAPER</p>
           </div>
           <div className="menu-options-ctn">
             <div className="active-indicator"></div>
