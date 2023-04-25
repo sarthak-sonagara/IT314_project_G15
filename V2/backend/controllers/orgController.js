@@ -91,6 +91,18 @@ const updateOrgAcceptedStatus = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
+// get organization's conferences
+const myConferences = async (req, res) => {
+  const id = req.params.id;
+  Org.myConferences(id)
+    .then((conferences) => {
+      res.status(200).json({
+        conferences,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+
+};
 module.exports = {
   signupOrg,
   loginOrg,
@@ -99,4 +111,5 @@ module.exports = {
   allOrgs,
   getOrgById,
   updateOrgAcceptedStatus,
+  myConferences,
 };
