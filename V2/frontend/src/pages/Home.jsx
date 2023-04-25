@@ -18,9 +18,12 @@ const Home = () => {
       <Navbar />
 
       <div className="container" style={{ marginTop: "1rem" }}>
-        <div className="p-4 p-md-5 mb-4 rounded text-bg-dark">
+        <div className="p-4 p-md-2 mb-4 rounded"
+        style={{
+          backgroundColor: "#409de9"
+        }}>
           <div className="col-md-6 px-0">
-            <h1 className="display-4 fst-italic">Organization</h1>
+            <h3 className="display-4 fst-italic">Organization</h3>
             <p className="lead my-3">
               Every organization and their conference details.
             </p>
@@ -50,6 +53,15 @@ const Home = () => {
              );
           })} 
         </div>
+
+        <div className="p-4 p-md-4 mb-4 rounded text-bg-dark">
+          <div className="col-md-6 px-0">
+            <h2 className="display-4 fst-italic">Upcoming Conference</h2>
+          </div>
+        </div>
+
+        
+
       </div>
     </div>
   );
