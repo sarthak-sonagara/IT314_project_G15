@@ -33,12 +33,12 @@ const Home = () => {
       <Navbar />
 
       <div className="container">
-      <div className="timeline">
-        {upcomingConf.map((conf, index)  => {
-          return(
-            <TimelineCard conference={conf} index = {index}/>
-          )
-        })}
+        <div className="timeline">
+          {upcomingConf.map((conf, index) => {
+            return (
+              <TimelineCard conference={conf} index={index} key={conf._id} />
+            );
+          })}
         </div>
       </div>
 
@@ -80,9 +80,6 @@ const Home = () => {
             );
           })}
         </div>
-
-
-        
 
         <div className="p-4 p-md-4 mb-4 rounded text-bg-dark">
           <div className="col-md-6 px-0">

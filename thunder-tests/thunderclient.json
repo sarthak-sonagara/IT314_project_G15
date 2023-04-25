@@ -235,5 +235,49 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "0c8567ba-b3c9-4726-9525-dc5aa548ad63",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "1e143e4e-fd0c-46a9-89f6-0f981a5bb3d0",
+    "name": "publish paper",
+    "url": "http://localhost:3000/auth/user/uploads/642dea69a53930d9127550a8",
+    "method": "POST",
+    "sortNum": 140000,
+    "created": "2023-04-25T18:49:59.218Z",
+    "modified": "2023-04-25T19:14:58.492Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "title",
+          "value": "dsfsdfsdf"
+        }
+      ],
+      "files": [
+        {
+          "name": "submission",
+          "value": "..\\V2\\backend\\controllers\\userController.js"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "553493cf-e420-4477-9ba0-18d736105130",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "all conferences",
+    "url": "http://localhost:3000/org/all",
+    "method": "GET",
+    "sortNum": 150000,
+    "created": "2023-04-25T18:58:48.655Z",
+    "modified": "2023-04-25T18:59:15.588Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
