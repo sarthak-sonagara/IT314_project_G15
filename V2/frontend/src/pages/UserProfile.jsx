@@ -119,7 +119,7 @@ function UserProfile() {
     <>
       <div className="box">
         <div className="profileBox">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="profileform">
             <label htmlFor="file-upload" className="custom-file-upload">
               {image ? (
                 <img
@@ -144,7 +144,7 @@ function UserProfile() {
               accept=".jpg, .jpeg, .png"
               onChange={(e) => handleFileUpload(e)}
             />
-            <button type="submit">Upload</button>
+            <button type="submit" className="upload-btn">Upload</button>
           </form>
           <div className="profileUserName">{user.username}</div>
           <div className="role">{user.role}</div>
