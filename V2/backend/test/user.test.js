@@ -5,182 +5,168 @@ const app = require("../server");
 const expect = chai.expect;
 chai.use(chaiHttp);
 
+//errors
+// set default role in userSchema but put condition in signup function on empty role 
+// password constrains not working for all functions 
 
-// test case 1: valid admin login -------------------------------------------
+// describe("User", () => {
+  
+//   // valid login
+//   describe("POST /auth/user/login", () => {
+//     it("it should login a user (valid login )", (done) => {
+//       chai
+//         .request(app)
+//         .post("/auth/user/login")
+//         .send({
+//           email: "shreeji@gmail.com",
+//           password: "Shreeji@01",
+//           role: "admin",
+//         })
+//         .end((err, res) => {
+//           expect(res).to.have.status(200);
+//           expect(res.body).to.be.a("object");
+//           expect(res.body).to.have.property("email");
+//           expect(res.body).to.have.property("role");
+//           expect(res.body).to.have.property("token");
+//           done();
+//         });
+//     });
+//   });
 
-
-describe("User", () => {
-  // login module
-  describe("POST /auth/user/login", () => {
-    it("it should login a user", (done) => {
-      chai
-        .request(app)
-        .post("/auth/user/login")
-        .send({
-          email: "shreeji@gmail.com",
-          password: "Shreeji@01",
-          role: "admin",
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.a("object");
-          expect(res.body).to.have.property("email");
-          expect(res.body).to.have.property("role");
-          expect(res.body).to.have.property("token");
-          done();
-        });
-    });
-  });
-});
-
-
-// test case 2: invalid role login -------------------------------------------
-
-
-describe("User", () => {
-  // login module
-  describe("POST /auth/user/login", () => {
-    it("it should login a user", (done) => {
-      chai
-        .request(app)
-        .post("/auth/user/login")
-        .send({
-          email: "shreeji@gmail.com",
-          password: "Shreeji@01",
-          role: "attendee",         // invalid role, role changed to attendee
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.a("object");
-          expect(res.body).to.have.property("email");
-          expect(res.body).to.have.property("role");
-          expect(res.body).to.have.property("token");
-          done();
-        });
-    });
-  });
-});
+//    // invalid role 
+//   describe("POST /auth/user/login", () => {
+//     it("it should login a user (invalid role)", (done) => {
+//       chai
+//         .request(app)
+//         .post("/auth/user/login")
+//         .send({
+//           email: "shreeji@gmail.com",
+//           password: "Shreeji@01",
+//           role: "attendee",     
+//         })
+//         .end((err, res) => {
+//           expect(res).to.have.status(200);
+//           expect(res.body).to.be.a("object");
+//           expect(res.body).to.have.property("email");
+//           expect(res.body).to.have.property("role");
+//           expect(res.body).to.have.property("token");
+//           done();
+//         });
+//     });
+//   });
+// });
  
-// test case 3: valid signup -------------------------------------------
 
+//    // valid signup
+//   describe("POST /auth/user/signup", () => {
+//     it("it should signup a user (valid signup)", (done) => {
+//       chai
+//         .request(app)
+//         .post("/auth/user/signup")
+//         .send({
+//           username: "harsh@test",
+//           email: "harsh@test.com",
+//           password: "Harsh@test1",
+//           role: "attendee",
+//         })
+//         .end((err, res) => {
+//           expect(res).to.have.status(201);
+//           expect(res.body).to.be.a("object");
+//           expect(res.body).to.have.property("email");
+//           expect(res.body).to.have.property("role");
+//           expect(res.body).to.have.property("token");
+//           done();
+//         });
+//     });
+//   });
 
-  describe("POST /auth/user/signup", () => {
-    it("it should signup a user", (done) => {
-      chai
-        .request(app)
-        .post("/auth/user/signup")
-        .send({
-          username: "harsh@test",
-          email: "harsh@test.com",
-          password: "Harsh@test1",
-          role: "attendee",
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(201);
-          expect(res.body).to.be.a("object");
-          expect(res.body).to.have.property("email");
-          expect(res.body).to.have.property("role");
-          expect(res.body).to.have.property("token");
-          done();
-        });
-    });
-  });
-
-
-// test case 4: invalid signup -------------------------------------------
-
-
-  describe("POST /auth/user/signup", () => {
-    it("it should signup a user", (done) => {
-      chai
-        .request(app)
-        .post("/auth/user/signup")
-        .send({
-          username: "harsh@test",
-          email: "harshtest",         // invalid email address
-          password: "Harsh@test1",
-          role: "attendee",
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(201);
-          expect(res.body).to.be.a("object");
-          expect(res.body).to.have.property("email");
-          expect(res.body).to.have.property("role");
-          expect(res.body).to.have.property("token");
-          done();
-        });
-    });
-  });
-
-
-// test case 5: valid update -------------------------------------------
-
-
-  describe("PATCH /auth/user/update", () => {
-    it("it should update user password", (done) => {
-      chai
-        .request(app)
-        .patch("/auth/user/update")
-        .send({
-          email: "harsh@test.com",
-          password: "Harsh@test2",
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.a("object");
-          expect(res.body).to.have.property("user");
-          done();
-        });
-    });
-  });
-
-
-// test case 6: invalid update -------------------------------------------
-
-
-describe("PATCH /auth/user/update", () => {
-  it("it should update user password", (done) => {
-    chai
-      .request(app)
-      .patch("/auth/user/update")
-      .send({
-        email: "harsh@testtttt.com",      // wrong email address
-        password: "Harsh@test2",
-      })
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body).to.be.a("object");
-        expect(res.body).to.have.property("user");
-        done();
-      });
-  });
-});
-
-
-// test case 7: valid delete -------------------------------------------
-
-
-  describe("DELETE /auth/user/delete", () => {
-    it("it should delete a user", (done) => {
-      chai
-        .request(app)
-        .delete("/auth/user/delete")
-        .send({
-          email: "harsh@test.com",
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.a("object");
-          expect(res.body).to.have.property("user");
-          done();
-        });
-    });
-  });
+//    // invalid email address
+//   describe("POST /auth/user/signup", () => {
+//     it("it should signup a user (invalid email address)", (done) => {
+//       chai
+//         .request(app)
+//         .post("/auth/user/signup")
+//         .send({
+//           username: "harsh@test",
+//           email: "harshtest",         
+//           password: "Harsh@test1",
+//           role: "attendee",
+//         })
+//         .end((err, res) => {
+//           expect(res).to.have.status(201);
+//           expect(res.body).to.be.a("object");
+//           expect(res.body).to.have.property("email");
+//           expect(res.body).to.have.property("role");
+//           expect(res.body).to.have.property("token");
+//           done();
+//         });
+//     });
+//   });
 
   
-///signup test case
+//   //(valid update)
+//   describe("PATCH /auth/user/update", () => {
+//     it("it should update user password (valid update)", (done) => {
+//       chai
+//         .request(app)
+//         .patch("/auth/user/update")
+//         .send({
+//           email: "harsh@test.com",
+//           password: "Harsh@test2",
+//         })
+//         .end((err, res) => {
+//           expect(res).to.have.status(200);
+//           expect(res.body).to.be.a("object");
+//           expect(res.body).to.have.property("user");
+//           done();
+//         });
+//     });
+//   });
+
+
+//    // wrong email address
+// describe("PATCH /auth/user/update", () => {
+//   it("it should update user password (  wrong email address)", (done) => {
+//     chai
+//       .request(app)
+//       .patch("/auth/user/update")
+//       .send({
+//         email: "harsh@testtttt.com",     
+//         password: "Harsh@test2",
+//       })
+//       .end((err, res) => {
+//         expect(res).to.have.status(200);
+//         expect(res.body).to.be.a("object");
+//         expect(res.body).to.have.property("user");
+//         done();
+//       });
+//   });
+// });
+
+//   // valid delete
+//   describe("DELETE /auth/user/delete", () => {
+//     it("it should delete a user", (done) => {
+//       chai
+//         .request(app)
+//         .delete("/auth/user/delete")
+//         .send({
+//           email: "harsh@test.com",
+//         })
+//         .end((err, res) => {
+//           expect(res).to.have.status(200);
+//           expect(res.body).to.be.a("object");
+//           expect(res.body).to.have.property("user");
+//           done();
+//         });
+//     });
+//   });
+
+
+describe("User", () => {
+///signup test cases
+//(valid signup)
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should signup a user (valid signup)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -204,7 +190,7 @@ describe("POST /auth/user/signup", () => {
 
 // duplicate email address
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should not signup a user (duplicate email address)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -227,7 +213,7 @@ describe("POST /auth/user/signup", () => {
 
 // empty username
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should not signup a user (empty username)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -250,7 +236,7 @@ describe("POST /auth/user/signup", () => {
 
 //empty email
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should not signup a user (empty email)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -274,7 +260,7 @@ describe("POST /auth/user/signup", () => {
 
  // empty Password
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should not signup a user (empty Password)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -297,7 +283,7 @@ describe("POST /auth/user/signup", () => {
 
 // Password contain less than 8 char
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should not signup a user ( Password contain less than 8 char)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -320,7 +306,7 @@ describe("POST /auth/user/signup", () => {
 
  // Password not contain uppercase char
  describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should not signup a user (Password not contain uppercase char)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -343,7 +329,7 @@ describe("POST /auth/user/signup", () => {
 
 // Password not contain lowercase char
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should not signup a user (Password not contain lowercase char)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -367,7 +353,7 @@ describe("POST /auth/user/signup", () => {
 
 // Password not contain number
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should not signup a user (Password not contain number)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -390,7 +376,7 @@ describe("POST /auth/user/signup", () => {
 
 // password not contain symbol
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should not signup a user (password not contain symbol)", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -413,10 +399,10 @@ describe("POST /auth/user/signup", () => {
 
 
 //check default role
-// set default role in user userSchema but put condition on empty role not vaild
- 
+// set default role in userSchema but put condition in signup function on empty role 
+ // default role 
 describe("POST /auth/user/signup", () => {
-  it("it should signup a user", (done) => {
+  it("it should signup a user (default role )", (done) => {
     chai
       .request(app)
       .post("/auth/user/signup")
@@ -438,4 +424,344 @@ describe("POST /auth/user/signup", () => {
 });
 
 
+//user login test cases
+describe("POST /auth/user/login", () => {
+  it("it should login a user (valid login)", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/login")
+      .send({
+        email: "UN@gmail.com",
+        password: "UNnnnnn0)",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        done();
+      });
+  });
+});
+
+// empty email 
+describe("POST /auth/user/login", () => {
+  it("it should not login a user (empty email)", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/login")
+      .send({
+        email: "",
+        password: "UNnnnnn0)",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        done();
+      });
+  });
+});
+
+// empty password
+describe("POST /auth/user/login", () => {
+  it("it should not login a user (empty password)", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/login")
+      .send({
+        email: "UN@gmail.com",
+        password: "",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        done();
+      });
+  });
+});
+
+// empty role
+describe("POST /auth/user/login", () => {
+  it("it should not login a user (empty role)", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/login")
+      .send({
+        email: "UN@gmail.com",
+        password: "UNnnnnn0)",
+        role: "",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        done();
+      });
+  });
+});
+
+// wrong email
+describe("POST /auth/user/login", () => {
+  it("it should not login a user (wrong email)", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/login")
+      .send({
+        email: "UN@abc.com",
+        password: "UNnnnnn0)",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        done();
+      });
+  });
+});
+
+// invalid email
+describe("POST /auth/user/login", () => {
+  it("it should not login a user (invalid email)", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/login")
+      .send({
+        email: "UN@gmailcom",
+        password: "UNnnnnn0)",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        done();
+      });
+  });
+});
+
+//wrong password
+describe("POST /auth/user/login", () => {
+  it("it should not login a user (wrong password)", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/login")
+      .send({
+        email: "UN@gmail.com",
+        password: "UNnnnnn1(",
+        role: "attendee",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        done();
+      });
+  });
+});
+
+// invalid role
+describe("POST /auth/user/login", () => {
+  it("it should not login a user (invalid role)", (done) => {
+    chai
+      .request(app)
+      .post("/auth/user/login")
+      .send({
+        email: "UN@gmail.com",
+        password: "UNnnnnn0)",
+        role: "publisher",
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.a("object");
+        expect(res.body).to.have.property("email");
+        expect(res.body).to.have.property("role");
+        done();
+      });
+  });
+});
+
+//user update test cases
+  describe("patch /auth/user/update", () => {
+    it("it should update a user (valid update)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "UN@gmail.com",
+          password: "UNnnnnn0)PassChange",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  // empty email
+  describe("patch /auth/user/update", () => {
+    it("it should not update a user (empty email)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "",
+          password: "UNnnnnn0)PassChange",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  //wrong email
+  describe("patch /auth/user/update", () => {
+    it("it should not update a user (wrong email)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "UN@abc.com",
+          password: "UNnnnnn0)PassChange",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  //invalid email
+  describe("patch /auth/user/update", () => {
+    it("it should not update a user (invalid email)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "UN@gmailcom",
+          password: "UNnnnnn0)PassChange",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  //empty password
+  describe("patch /auth/user/update", () => {
+    it("it should not update a user (empty password)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "UN@gmail.com",
+          password: "UNnnnnn0)PassChange",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  //password contain less than 8 characters 
+  describe("patch /auth/user/update", () => {
+    it("it should not update a user (password contain less than 8 characters)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "UN@gmail.com",
+          password: "UNnn0)",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  //password not contain uppercase character
+  describe("patch /auth/user/update", () => {
+    it("it should not update a user (password not contain uppercase character)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "UN@gmail.com",
+          password: "unnnnnn0)passchange",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  //password not contain lowercase character
+  describe("patch /auth/user/update", () => {
+    it("it should not update a user (password not contain lowercase character)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "UN@gmail.com",
+          password: "UNNNNN0)PASSCHANGE",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  //password not contain any number
+  describe("patch /auth/user/update", () => {
+    it("it should not update a user (password not contain any number)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "UN@gmail.com",
+          password: "UNnnnnn)PassChange",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  //password not contain any symbol
+  describe("patch /auth/user/update", () => {
+    it("it should not update a user (password not contain any symbol)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/user/update")
+        .send({
+          email: "UN@gmail.com",
+          password: "UNnnnnn0PassChange",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+
+});
 

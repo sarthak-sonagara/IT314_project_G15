@@ -5,6 +5,8 @@ const app = require("../server");
 const expect = chai.expect;
 chai.use(chaiHttp);
 
+
+// password constrains not working for all functions 
 describe("Org", () => {
   // signup org
   describe("POST /auth/org/signup", () => {
