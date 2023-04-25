@@ -50,6 +50,13 @@ const userSchema = new mongoose.Schema({
     default: [],
   }],
 
+  //Profile picture
+  profile_picture: {
+    type: String,
+    required: false,
+    default: ""
+  },
+
 });
 
 // static signup function
@@ -161,7 +168,7 @@ userSchema.statics.updateUserProfile = async function (req) {
 userSchema.statics.getUserById = async function (id) {
   const user = await this.findOne({ _id: id });
   console.log(user);
-  if(!user){
+  if (!user) {
     throw new Error("User not found");
   }
   return user;
@@ -172,5 +179,57 @@ userSchema.statics.getAllUsers = async function () {
   const users = await this.find({});
   return users;
 };
+
+//static function to upload an profile picture
+userSchema.statics.uploadProfilePicture = async function (req) {
+  console.log("---------In upload profile picture function--------\n", req.body.userId)
+  const id = req.body.userId;
+  const user = await this.findOne({ _id: id });
+
+  if (!user) {
+    throw new Error("Not authorized to update");
+  }
+
+  user.profile_picture = req.body.profile_picture;
+  await user.save();
+
+  console.log("user updated successfully");
+
+  return updatedUser;
+}
+
+//static function to get profile picture
+userSchema.statics.getProfilePic = async function (req) {
+  console.log("---------In get profile picture function--------")
+  const userId = req.params.id;
+  const user = await this.findOne({ _id: userId });
+  if (!user) {
+    throw new Error("User not found");
+  }
+  return await user.profile_picture;
+}
+
+// static function to remove profile picture
+userSchema.statics.removeProfilePic = async function (req) {
+  console.log("---------In remove profile picture function--------\n")
+ 
+  const userId = req.params.id;
+  const user = await this.findOne({ _id: userId });
+
+  // if user not found
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  // if no profile picture has been set yet
+  if(user.profile_picture === ""){
+    throw new Error("No profile picture has been set yet!");
+  }
+
+  // remove profile picture
+  user.profile_picture = "";
+  await user.save();
+  return user;
+}
 
 module.exports = mongoose.model("User", userSchema);

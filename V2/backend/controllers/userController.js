@@ -94,4 +94,45 @@ const deleteUser = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
-module.exports = { signupUser, loginUser, updateUser, updateUserProfile, getUserById, getAllUsers, deleteUser };
+const uploadProfilePicture = async (req, res) => {
+  User.uploadProfilePicture(req)
+    .then((users) => {
+      res.status(200).json({
+        users,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+const getProfilePic = async (req, res) => {
+  User.getProfilePic(req)
+    .then((profile_picture) => {
+      res.status(200).json({
+        profile_picture,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+const removeProfilePic = async (req, res) => {
+  User.removeProfilePic(req)
+    .then((user) => {
+      res.status(200).json({
+        user,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+module.exports = {
+  signupUser,
+  loginUser,
+  updateUser,
+  updateUserProfile,
+  getUserById,
+  getAllUsers,
+  deleteUser,
+  uploadProfilePicture,
+  getProfilePic,
+  removeProfilePic
+};

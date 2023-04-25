@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 app.use("/auth/user", userRoutes);
 app.use("/auth/org", orgRoutes);
 app.use("/org", conferenceRoutes);
+// app.use(express.bodyParser({ limit: '50mb' }));
 
 // connect to mongodb
 mongoose

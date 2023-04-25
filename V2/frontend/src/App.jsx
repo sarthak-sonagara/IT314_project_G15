@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 import Home from "./pages/Home";
+import HomeConf from "./pages/HomeConf";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PasswordReset from "./pages/PasswordReset";
@@ -47,6 +48,7 @@ function App() {
           {/* general routes */}
           {/* public routes */}
           <Route element={<Home />} path="/" />
+          
           <Route
             element={!user && !org? <Choice /> : <Navigate to="/" />}
             path="/choice"
@@ -60,6 +62,7 @@ function App() {
             path="/signup"
           />
           <Route element={<OrgDashboard/>} path="org-dashboard" /> 
+          {/* <Route element={<OrgProfile/>} path="org-profile" /> 
 
           <Route
             element={!org ? <OrgLogin /> : <Navigate to="/" />}
@@ -78,10 +81,10 @@ function App() {
             element={user ? <UserProfile /> : <Navigate to="/login" />}
             path="/profile"
           />
-          <Route
+          {/* <Route
             element={org ? <OrgProfile /> : <Navigate to="/org-login" />}
             path="/org-profile"
-          />
+          /> */}
           <Route element={<PasswordReset />} path="/password-reset" />
           {/* Oragnization  */}
           {/* <Route element={<TimeLine />} path="/timeline" /> */}
