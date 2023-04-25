@@ -18,7 +18,7 @@ const {
 router.get("/", allOrgs);
 
 //OrgById route
-router.get("/:id", getOrgById);
+router.get("/:emailid", getOrgById);
 
 // signup route
 router.post("/signup", signupOrg);
