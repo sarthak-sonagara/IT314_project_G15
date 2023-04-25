@@ -3,13 +3,27 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [orgs, setOrgs] = useState([])
+  const [orgs, setOrgs] = useState([]);
+  const [upcomingConf, setUpcomingConf] = useState([]);
+
   useEffect(() => {
     document.title = "Home";
+    // get details of all organizations
     fetch("http://localhost:3000/auth/org/")
       .then((res) => res.json())
       .then((data) => {
         setOrgs(data.orgs);
+      });
+
+    // get details of all top 5 upcoming conferences
+    fetch("http://localhost:3000/org/all")
+      .then((res) => res.json())
+      .then((data) => {
+        const temp = data.conferences
+          .filter((conference) => new Date(conference.startDate) >= new Date())
+          .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+          .slice(0, 5);
+        setUpcomingConf(temp);
       });
   }, []);
 
@@ -18,10 +32,12 @@ const Home = () => {
       <Navbar />
 
       <div className="container" style={{ marginTop: "1rem" }}>
-        <div className="p-4 p-md-2 mb-4 rounded"
-        style={{
-          backgroundColor: "#409de9"
-        }}>
+        <div
+          className="p-4 p-md-2 mb-4 rounded"
+          style={{
+            backgroundColor: "#409de9",
+          }}
+        >
           <div className="col-md-6 px-0">
             <h3 className="display-4 fst-italic">Organization</h3>
             <p className="lead my-3">
@@ -50,8 +66,8 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-             );
-          })} 
+            );
+          })}
         </div>
 
         <div className="p-4 p-md-4 mb-4 rounded text-bg-dark">
@@ -59,9 +75,6 @@ const Home = () => {
             <h2 className="display-4 fst-italic">Upcoming Conference</h2>
           </div>
         </div>
-
-        
-
       </div>
     </div>
   );
