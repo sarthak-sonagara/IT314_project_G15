@@ -48,9 +48,9 @@ function App() {
           {/* general routes */}
           {/* public routes */}
           <Route element={<Home />} path="/" />
-          
+
           <Route
-            element={!user && !org? <Choice /> : <Navigate to="/" />}
+            element={!user && !org ? <Choice /> : <Navigate to="/" />}
             path="/choice"
           />
           <Route
@@ -61,7 +61,10 @@ function App() {
             element={!user ? <Signup /> : <Navigate to="/" />}
             path="/signup"
           />
-          <Route element={<OrgDashboard/>} path="org-dashboard" /> 
+          <Route
+            element={org ? <OrgDashboard /> : <Navigate to="/choise" />}
+            path="org-dashboard"
+          />
           {/* <Route element={<OrgProfile/>} path="org-profile" /> 
 
           <Route
