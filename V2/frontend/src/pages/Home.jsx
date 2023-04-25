@@ -34,7 +34,11 @@ const Home = () => {
 
       <div className="container">
       <div className="timeline">
-        <TimelineCard />
+        {upcomingConf.map((conf, index)  => {
+          return(
+            <TimelineCard conference={conf} index = {index}/>
+          )
+        })}
         </div>
       </div>
 
