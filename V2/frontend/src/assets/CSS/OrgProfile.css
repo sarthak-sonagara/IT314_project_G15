@@ -1,9 +1,9 @@
 .orgProfileContainer {
-  --backColor: #452dc0;
+  --backColor: var(--primary-color);
   /* aane dark color rakhvo. */
-  --frontMainColor: #f5f5f5;
+  --frontMainColor: var(--bg-color);
   /* aane light color rakhvo. */
-  --frontColor: #409de9;
+  --frontColor: var(--profile-font-color);
   /* aane bei ni vachche no color rakhvo. */
   --fontStyle: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   height: 100vh;
@@ -82,7 +82,9 @@
 }
 
 .choose-file{
-  width: 50%;
+  width: 40%;
+  height: 50%;
+  margin-right: 20px;
   display: inline;
 }
 
@@ -252,7 +254,7 @@ a {
 }
 
 .org_dropdown_menu li {
-  margin: 0 0 0 -5px;
+  margin: 0 0 0 px;
   display: none;
   color: var(--backColor);
   background-color: var(--frontMainColor);
@@ -270,7 +272,7 @@ a {
 }
 
 .org_dropdown_menu-2 .org_dropdown_item-1 {
-  width: 95%;
+  width: 107%;
   animation: rotateX 300ms 60ms ease-in-out forwards;
   word-wrap:break-word;
   padding-top: 5px;

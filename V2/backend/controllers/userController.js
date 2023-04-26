@@ -14,9 +14,7 @@ const signupUser = async (req, res) => {
     .then((user) => {
       const token = createToken(user._id);
       res.status(201).json({
-        email,
-        role,
-        token,
+        user
       });
     })
     .catch((error) => res.status(400).json({ error: error.message }));
@@ -28,9 +26,7 @@ const loginUser = async (req, res) => {
     .then((user) => {
       const token = createToken(user._id);
       res.status(200).json({
-        email,
-        role,
-        token,
+        user
       });
     })
     .catch((error) => res.status(400).json({ error: error.message }));
@@ -82,7 +78,7 @@ const getAllUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   const { email } = req.body;
-  User.findOneAndDelete({ email })
+  User.deleteUser(email)
     .then((user) => {
       res.status(200).json({
         user,

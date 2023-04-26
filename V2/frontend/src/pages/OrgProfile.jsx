@@ -1,12 +1,9 @@
 // import logo from './logo.svg';
-// import "./App.css";
+import "../assets/CSS/OrgProfile.css";
 import { useEffect, useState } from 'react';
 import { AiOutlineMail, AiOutlineInstagram, AiOutlineLinkedin } from 'react-icons/ai';
-// import orgimage from "./logo.svg";
+import orgimage from "../../public/images/DAIICT.png";
 // var cn = require('classNames');
-
-import axios from "axios";
-const baseUrl = "http://localhost:3000";
 
 const c1 = {
   conferenceName: "Adbhut Conference",
@@ -29,7 +26,7 @@ const org = {
 
 
 function OrgProfile() {
-
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentConf, setCurrentConf] = useState('');
 
@@ -113,10 +110,11 @@ function OrgProfile() {
   };
 
   return (
+    <>
     <div className="orgProfileContainer">
-      <div className="org_box">
+    <div className="org_box">
         <div className="org_profileBox">
-        <form onSubmit={handleSubmit} className="org_profileform">
+          <form onSubmit={handleSubmit} className="org_profileform">
             <label htmlFor="file-upload" className="custom-file-upload">
               {image ? (
                 <img
@@ -176,7 +174,8 @@ function OrgProfile() {
         </div>
       </div>
       {
-        isModalOpen && <div className="org_modalWindow">
+        isModalOpen && (
+        <div className="org_modalWindow">
           <div className="org_modalBox" onClick={toggleModal}>
             <table class="tg">
               <tbody style={{
@@ -214,8 +213,10 @@ function OrgProfile() {
             </table>
           </div>
         </div>
+        )
       }
     </div>
+    </>
   );
 }
 
