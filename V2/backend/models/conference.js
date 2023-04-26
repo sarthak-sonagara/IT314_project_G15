@@ -63,7 +63,7 @@ conferenceSchema.statics.createConference = async function (req) {
     guestSpeakers,
     topics,
   } = req.body;
- // console.log("------in create conference------",req.body);
+  // console.log("------in create conference------",req.body);
   if (!conferenceName || !description || !startDate || !endDate) {
     throw new Error("Please fill all the required fields");
   }
@@ -139,10 +139,38 @@ conferenceSchema.statics.deleteConference = async function (req) {
   const filter = { _id: conferenceObjId };
   const exist = await this.findOne(filter);
   console.log(exist);
-  
+
   // Conference does not exist then return error message.
   if (!exist) {
     throw new Error("Conference does not exist");
+  }
+
+  // delete the conference from the org's conferences array
+  const org = await Org.findOne({ _id: exist.org_id });
+  const index = org.conferences.indexOf(conferenceObjId);
+  org.conferences.splice(index, 1);
+  await org.save();
+
+  console.log("deleted conference from organization successfully.");
+
+  const users = await exist.populate("registeredAttendees");
+
+  console.log("here", users.registeredAttendees.length);
+
+  for (let i = 0; i < users.registeredAttendees.length; i++) {
+    const index = users
+      .registeredAttendees[i]
+      .registered_conferences
+      .indexOf(conferenceObjId);
+                                            // console.log("here1")
+    users
+      .registeredAttendees[i]
+      .registered_conferences
+      .splice(index, 1);
+                                            // console.log("here2")
+    await users.registeredAttendees[i].save();
+
+    console.log("deleted conference from user");
   }
 
   const conference = await this.findOneAndDelete(filter);
@@ -209,19 +237,19 @@ conferenceSchema.statics.cancelConferenceRegistration = async function (req) {
   if (!conference.registeredAttendees.includes(userId)) {
     throw new Error("you are not registered for this conference");
   }
-  
+
   //check if the conference has already ended
   const currDate = Date.now();
   if (conference.endDate < currDate) {
     throw new Error("Conference has already ended! Can't Unregister Now");
   }
-  
-  
+
+
   //remove the user from the conference's registeredAttendees array
   const index = conference.registeredAttendees.indexOf(userId);
   conference.registeredAttendees.splice(index, 1);
   await conference.save();
-  
+
 
   //remove the conference from the user's conferences array
   const user = await User.findOne({ _id: userId });
