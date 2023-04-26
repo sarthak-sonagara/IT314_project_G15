@@ -17,66 +17,93 @@ const AdminDashboard = () => {
   const handleShowEdit = () => setShowEdit(true);
   const handleCloseDelete = () => setShowDelete(false);
   const handleShowDelete = () => setShowDelete(true);
+  const handleDeleteSubmit = () => {
+    setShowDelete(false);
+    var mail = deleteMail;
+    console.log("This is the mail:", mail);
+    fetch("http://localhost:3000/auth/user/delete/", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: mail,
+      }),
+    });
+    fetchUsers();
+  };
+  const [editEmail, SetEditEmail] = useState("");
+  const [editId, SetEditId] = useState("");
+  const [editUsername, SetEditUsername] = useState("");
+  const [editPassword, SetEditPassword] = useState("");
+  const [deleteID, SetDeleteID] = useState("");
+  const [deleteMail, SetDeleteMail] = useState("");
   const [toggleState, setToggleState] = useState(1);
 
+
+  const fetchUsers = async () => {
+    const res = await fetch("http://localhost:3000/auth/user/");
+    const data = await res.json();
+    console.log("This are Users:", data);
+    $(document).ready(function () {
+      let table = $("#users_datatable").DataTable({
+        stateSave: true,
+        bDestroy: true,
+        data: data.users,
+        columns: [
+          { data: "_id" },
+          { data: "username" },
+          { data: "email" },
+          { data: "role" },
+          {
+            data: null,
+            defaultContent:
+              '<div style="display:flex"><button class="btn btn-primary edit-btn" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn">Delete</button></div>',
+          },
+        ],
+      });
+
+      // Handle Edit button click
+      $("#users_datatable tbody").on("click", ".edit-btn", function () {
+        let td = $(this).closest("tr").find("td:eq(0)");
+        SetEditId(table.cell($(this).closest("tr").find("td:eq(0)")).data());
+        SetEditEmail(table.cell($(this).closest("tr").find("td:eq(2)")).data());
+        SetEditUsername(table.cell($(this).closest("tr").find("td:eq(1)")).data());
+        handleShowEdit();
+      });
+
+      // Handle Delete button click
+      $("#users_datatable tbody").on("click", ".delete-btn", function () {
+        // let rowData = table.row($(this).parents("tr")).data();
+        // console.log("Delete row data:", rowData);
+        let td = $(this).closest("tr").find("td:eq(2)");
+        if (table.cell(td).data()) {
+          console.log(table.cell(td).data());
+          SetDeleteMail(table.cell(td).data());
+        }
+        handleShowDelete();
+      });
+    });
+  };
+
+  const fetchOrgs = async () => {
+    const res = await fetch("http://localhost:3000/auth/org/");
+    const data = await res.json();
+    console.log("This is Orgs:", data);
+    $(document).ready(function () {
+      $("#orgs_datatable").DataTable({
+        stateSave: true,
+        bDestroy: true,
+        data: data.orgs,
+        columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
+      });
+    });
+  };
+
+  fetchUsers();
+  fetchOrgs();
   useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await fetch("http://localhost:3000/auth/user/");
-      const data = await res.json();
-      console.log("This are Users:", data);
-      $(document).ready(function () {
-        $("#users_datatable").DataTable({
-          stateSave: true,
-          bDestroy: true,
-          data: data.users,
-          columns: [
-            { data: "_id" },
-            { data: "username" },
-            { data: "email" },
-            { data: "role" },
-            {
-              data: null,
-              defaultContent:
-                '<div style="display:flex"><button class="btn btn-primary edit-btn" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn">Delete</button></div>',
-            },
-          ],
-        });
 
-        // Handle Edit button click
-        $("#users_datatable tbody").on("click", ".edit-btn", function () {
-          let td = $(this).closest("tr").find("td:eq(0)");
-          if (table.cell(td).data()) {
-            console.log(table.cell(td).data());
-            console.log($("#input-id").val());
-          }
-          handleShowEdit();
-        });
-
-        // Handle Delete button click
-        $("#users_datatable tbody").on("click", ".delete-btn", function () {
-          let rowData = table.row($(this).parents("tr")).data();
-          console.log("Delete row data:", rowData);
-          handleShowDelete();
-        });
-      });
-    };
-
-    const fetchOrgs = async () => {
-      const res = await fetch("http://localhost:3000/auth/org/");
-      const data = await res.json();
-      console.log("This is Orgs:", data);
-      $(document).ready(function () {
-        $("#orgs_datatable").DataTable({
-          stateSave: true,
-          bDestroy: true,
-          data: data.orgs,
-          columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
-        });
-      });
-    };
-
-    fetchUsers();
-    fetchOrgs();
   }, []);
 
   const toggleTab = (index) => {
@@ -206,7 +233,7 @@ const AdminDashboard = () => {
                     id="input-id"
                     required
                     readOnly
-                    value={"s"}
+                    value={editId}
                   />
                 </div>
                 <div className="mb-3">
@@ -219,19 +246,20 @@ const AdminDashboard = () => {
                     id="input-email"
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    // readOnly
+                    value={editEmail}
                     defaultValue=""
                   />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="input-password" className="form-label">
-                    Password:
+                    Username:
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     className="input-field"
                     id="input-password"
                     onChange={(e) => setPassword(e.target.value)}
+                    value={editUsername}
                     required
                   />
                 </div>
@@ -263,20 +291,18 @@ const AdminDashboard = () => {
             <Modal.Header closeButton>
               <Modal.Title>Are you really want to delete it?</Modal.Title>
             </Modal.Header>
-            <form action="">
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseDelete}>
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  variant="danger"
-                  onClick={handleCloseDelete}
-                >
-                  Delete
-                </Button>
-              </Modal.Footer>
-            </form>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseDelete}>
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                variant="danger"
+                onClick={handleDeleteSubmit}
+              >
+                Delete
+              </Button>
+            </Modal.Footer>
           </Modal>
         </>
       </div>
