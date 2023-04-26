@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import TimelineCard from "../components/TimelineCard";
+import img from "../../public/images/conference_background_2.jpg";
 
 const Home = () => {
   const [orgs, setOrgs] = useState([]);
@@ -29,45 +30,68 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <Navbar />
+    <div
+    style={{
+      backgroundColor: "#c4ccff",
+    }}>
+      {/* <Navbar /> */}
 
-      <div className="container" style={{marginTop: "70px"}}>
-        <div className="timeline">
+      <div class="carousel-inner shadow-lg"
+        style={{
+          height: "100vh"
+        }}>
+      <div class="carousel-item active h-100">
+        <img src={img} class="d-block w-100 h-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h2>First slide label</h2>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      </div>
+
+      <section 
+        style={{ 
+          backgroundColor: "#F0F2F5;"
+        }}>
+        <div className="container py-5">
+          <div className="main-timeline-2">
           {upcomingConf.map((conf, index) => {
             return (
               <TimelineCard conference={conf} index={index} key={conf._id} />
             );
           })}
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="container" style={{ marginTop: "1rem" }}>
-        <div
-          className="p-4 p-md-2 mb-4 rounded"
-          style={{
-            backgroundColor: "#409de9",
-          }}
-        >
-          <div className="col-md-6 px-0">
-            <h3 className="display-4 fst-italic">Organization</h3>
-            <p className="lead my-3">
-              Every organization and their conference details.
-            </p>
+
+        <div className="my-5">
+          <div className="position-relative p-5 text-center text-muted bg-body border border-dashed ">
+            <h4>Section</h4>
+            <hr />
+            <h1 className="text-body-emphasis">Organizations</h1>
           </div>
         </div>
 
+      <div className="container" style={{ marginTop: "1rem" }}>
         <div className="row mb-2">
           {orgs.map((org) => {
             return (
-              <div className="col-md-4" key={org._id}>
-                <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                  <div className="col p-4 d-flex flex-column position-static">
+              <div className="col-md-6 col-lg-4 col-sm-12" key={org._id}>
+                <div className="row g-0 border rounded-4 overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" 
+                style={{
+                  backgroundColor: "#ffffff"
+                }}>
+                  <div className="col p-4 d-flex flex-column position-static ">
                     <strong className="d-inline-block mb-2 text-success">
                       Organization
                     </strong>
                     <h3 className="mb-2">{org.orgname}</h3>
-                    <Link to="/home-conf">
+                    <Link 
+                      to={{
+                        pathname: "/home-conf",
+                        state: org
+                      }}>
                       <div className="d-grid gap-2">
                         <button className="btn btn-success" type="button">
                           More Conferences...
@@ -80,13 +104,8 @@ const Home = () => {
             );
           })}
         </div>
-
-        <div className="p-4 p-md-4 mb-4 rounded text-bg-dark">
-          <div className="col-md-6 px-0">
-            <h2 className="display-4 fst-italic">Upcoming Conference</h2>
-          </div>
-        </div>
       </div>
+      
     </div>
   );
 };

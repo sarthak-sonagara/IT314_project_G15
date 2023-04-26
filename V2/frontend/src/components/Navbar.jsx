@@ -216,11 +216,11 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faAddressCard} className="menu-icons" />
             <p className="menu-texts">PROFILE</p>
           </Link>
-          <div className="menu-options-ctn">
+          <Link to="/call-for-paper"className="menu-options-ctn">
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faUpload} className="menu-icons" />
             <p className="menu-texts">CALL FOR PAPER</p>
-          </div>
+          </Link>
           <div className="menu-options-ctn">
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faServer} className="menu-icons" />
