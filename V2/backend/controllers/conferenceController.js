@@ -96,6 +96,17 @@ const removeUserFromConferences = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
+const removeConferencesOfOrg = async (req, res) => {
+  Conference.removeConferencesOfOrg(req)
+    .then((ack) => {
+      res.status(200).json({
+        ack,
+      });
+    })
+    .catch((error) => res.status(400).json({ error: error.message }));
+};
+
+
 module.exports = {
   createConference,
   getAllConferences,
@@ -106,4 +117,5 @@ module.exports = {
   cancelRegistration,
   viewConference,
   removeUserFromConferences,   // call when user is deleted
+  removeConferencesOfOrg, // call when org is deleted
 };
