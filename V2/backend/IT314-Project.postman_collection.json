@@ -1139,7 +1139,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"uu1@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"UN@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1187,6 +1187,99 @@
 								"auth",
 								"user",
 								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove deleted user from conferences registration list",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\" : \"64482bdfae81d3aac89f4504\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/removeUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"removeUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete Org Cascade",
+			"item": [
+				{
+					"name": "Delete org",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"parth@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/org/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"org",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete conferences organized by deleted org",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orgId\": \"64493126bfc1179af210993d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/remove-conferences-of-org",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"remove-conferences-of-org"
 							]
 						}
 					},
