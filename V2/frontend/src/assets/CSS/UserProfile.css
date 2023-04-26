@@ -1,9 +1,9 @@
 .userProfileContainer {
-  --backColor: #452dc0;
+  --backColor: var(--primary-color);
   /* aane dark color rakhvo. */
-  --frontMainColor: #f5f5f5;
+  --frontMainColor: var(--bg-color);
   /* aane light color rakhvo. */
-  --frontColor: #409de9;
+  --frontColor: var(--profile-font-color);
   /* aane bei ni vachche no color rakhvo. */
   --fontStyle: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   height: 100vh;
@@ -29,7 +29,7 @@
   justify-content: center;
 
   @media only screen and (max-width: 720px) {
-    flex-wrap: wrap;
+    display: block;
   }
 }
 
@@ -37,11 +37,11 @@
   background-color: var(--backColor);
   display: flex;
   margin: 0;
-  border-radius: 20px 0 0 20px;
+  border-radius: 8px 0 0 8px;
 
   @media only screen and (max-width: 720px) {
     width: 100%;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 7px 7px 0px 0px;
   }
 
   /* margin-top: 20px; */
@@ -68,7 +68,7 @@
   border: none;
   color: black;
   margin: 0.5rem 0.5rem 0.5rem 0.5rem;
-  background-color: #fff;
+  background-color: #bfd7ea;
   box-shadow: 0px 0px 15px 2px #ababab;
   width: 50%;
   margin: 20px auto;
@@ -81,9 +81,11 @@
   justify-content: center;
 }
 
-.choose-file{
-  width: 50%;
+.choose-file {
   display: inline;
+  width: 40%;
+  height: 50%;
+  margin-right: 20px;
 }
 
 .profilePhoto {
@@ -158,13 +160,13 @@ a {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 8px 8px 0;
   /* justify-content: center; */
   text-align: center;
   /* border-radius: 10px; */
 
   @media only screen and (max-width: 720px) {
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 7px 7px;
   }
 
   padding: 5px 0;

@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../assets/CSS/style.css";
-// Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-//jQuery libraries
-import "jquery/dist/jquery.min.js";
-//Datatable Modules
+import $ from "jquery";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
-import $ from "jquery";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
 import AdminNavbar from "../components/AdminNavbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -15,74 +11,73 @@ import Modal from "react-bootstrap/Modal";
 const AdminDashboard = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const handleCloseEdit = () => setShowEdit(false);
   const handleShowEdit = () => setShowEdit(true);
   const handleCloseDelete = () => setShowDelete(false);
   const handleShowDelete = () => setShowDelete(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [toggleState, setToggleState] = useState(1);
 
   useEffect(() => {
-    fetch("http://localhost:3000/auth/user/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("This are Users:", data);
-        $(document).ready(function () {
-          let table = $("#users_datatable").DataTable({
-            stateSave: true,
-            bDestroy: true,
-            data: data.users,
-            columns: [
-              { data: "_id" },
-              { data: "username" },
-              { data: "email" },
-              { data: "role" },
-              {
-                data: null,
-                defaultContent:
-                  '<div style="display:flex"><button class="btn btn-primary edit-btn" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn">Delete</button></div>',
-              },
-            ],
-          });
+    const fetchUsers = async () => {
+      const res = await fetch("http://localhost:3000/auth/user/");
+      const data = await res.json();
+      console.log("This are Users:", data);
+      $(document).ready(function () {
+        $("#users_datatable").DataTable({
+          stateSave: true,
+          bDestroy: true,
+          data: data.users,
+          columns: [
+            { data: "_id" },
+            { data: "username" },
+            { data: "email" },
+            { data: "role" },
+            {
+              data: null,
+              defaultContent:
+                '<div style="display:flex"><button class="btn btn-primary edit-btn" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn">Delete</button></div>',
+            },
+          ],
+        });
 
-          // Handle Edit button click
-          $("#users_datatable tbody").on("click", ".edit-btn", function () {
-            let td = $(this).closest("tr").find("td:eq(0)");
-            // let id = table.row(td).data();
-            if (table.cell(td).data()) {
-              // $("#input-id").val("Hello");
-              console.log(table.cell(td).data());
-              console.log($("#input-id").val());
-            }
-            // let rowData = table.row(tr).data();
-            handleShowEdit();
-          });
+        // Handle Edit button click
+        $("#users_datatable tbody").on("click", ".edit-btn", function () {
+          let td = $(this).closest("tr").find("td:eq(0)");
+          if (table.cell(td).data()) {
+            console.log(table.cell(td).data());
+            console.log($("#input-id").val());
+          }
+          handleShowEdit();
+        });
 
-          // Handle Delete button click
-          $("#users_datatable tbody").on("click", ".delete-btn", function () {
-            let rowData = table.row($(this).parents("tr")).data();
-            console.log("Delete row data:", rowData);
-            handleShowDelete();
-          });
+        // Handle Delete button click
+        $("#users_datatable tbody").on("click", ".delete-btn", function () {
+          let rowData = table.row($(this).parents("tr")).data();
+          console.log("Delete row data:", rowData);
+          handleShowDelete();
         });
       });
+    };
 
-    fetch("http://localhost:3000/auth/org/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("This is Orgs:", data);
-        $(document).ready(function () {
-          let table1 = $("#orgs_datatable").DataTable({
-            stateSave: true,
-            bDestroy: true,
-            data: data.orgs,
-            columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
-          });
+    const fetchOrgs = async () => {
+      const res = await fetch("http://localhost:3000/auth/org/");
+      const data = await res.json();
+      console.log("This is Orgs:", data);
+      $(document).ready(function () {
+        $("#orgs_datatable").DataTable({
+          stateSave: true,
+          bDestroy: true,
+          data: data.orgs,
+          columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
         });
       });
+    };
+
+    fetchUsers();
+    fetchOrgs();
   }, []);
-
-  const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -131,7 +126,7 @@ const AdminDashboard = () => {
               onClick={() => toggleTab(3)}
               style={{ width: "100%", height: "100%" }}
             >
-              Orgs
+              Organizations
             </button>
           </p>
         </div>

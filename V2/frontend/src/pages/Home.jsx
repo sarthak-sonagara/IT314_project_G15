@@ -32,7 +32,7 @@ const Home = () => {
     <div>
       <Navbar />
 
-      <div className="container">
+      <div className="container" style={{marginTop: "70px"}}>
         <div className="timeline">
           {upcomingConf.map((conf, index) => {
             return (

@@ -90,7 +90,7 @@ const Signup = () => {
             <b
               style={{
                 fontSize: 25,
-                color: "var(--menu-bg-color)",
+                color: "var(--secondary-color)",
                 marginBottom: 15,
               }}
             >
@@ -137,7 +137,7 @@ const Signup = () => {
                     id="flexRadioDefault1"
                     style={{
                       cursor: "pointer",
-                      accentColor: "var(--menu-bg-color)",
+                      accentColor: "var(--secondary-color)",
                     }}
                     onChange={(e) => setRole(e.target.value)}
                     value="publisher"
@@ -159,7 +159,7 @@ const Signup = () => {
                     defaultChecked=""
                     style={{
                       cursor: "pointer",
-                      accentColor: "var(--menu-bg-color)",
+                      accentColor: "var(--secondary-color)",
                     }}
                     onChange={(e) => setRole(e.target.value)}
                     required
@@ -202,7 +202,7 @@ const Signup = () => {
                 type="submit"
                 className="input-btn"
                 style={{
-                  backgroundColor: "var(--menu-bg-color)",
+                  backgroundColor: "var(--secondary-color)",
                   border: "none",
                 }}
                 disabled={isLoading}
