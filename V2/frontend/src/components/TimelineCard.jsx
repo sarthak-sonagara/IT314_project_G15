@@ -9,6 +9,7 @@ const TimelineCard = ({ conference, index }) => {
         <div class="card">
           <div class="card-body p-4">
             <h4 class="fw-bold mb-4">{conference.conferenceName}</h4>
+            <hr />
             <p class="text-muted mb-4">{conference.startDate} - {conference.endDate}</p>
             <p class="mb-0"><b>Description: </b></p>
             <p class="mb-0">{conference.description}</p>

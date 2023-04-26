@@ -8,7 +8,7 @@
   content: "";
   position: absolute;
   width: 3px;
-  background-color: #0078cc;
+  background-color: #000000;
   top: 0;
   bottom: 0;
   left: 50%;
@@ -16,7 +16,7 @@
 }
 
 .card{
-  background-color: #84ccff;
+  background-color: #ffffff;
 }
 /* Container around content */
 .timeline-2 {
@@ -32,7 +32,8 @@
   width: 25px;
   height: 25px;
   right: -11px;
-  background-color: #0078cc;
+  /* background-color: #0078cc; */
+  background-color: #000000;
   top: 15px;
   border-radius: 50%;
   z-index: 1;

@@ -7,7 +7,6 @@ const HomeConf = (org) => {
   return (
     <div>
       <Navbar />
-      <div className="container">
       <div className="row">
         <div className="card-header"><h3>Conference Table</h3></div>
         <table className="table table-hover">
@@ -50,7 +49,6 @@ const HomeConf = (org) => {
             </tr>
           </tbody>
         </table>
-      </div>
       </div>
     </div>
 );
