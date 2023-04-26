@@ -246,20 +246,7 @@ const OrgDashboard = () => {
           Add Conference
         </Button>
 
-        <Button
-          variant="primary"
-          onClick={handleShow}
-          style={{
-            height: "50px",
-            position: "absolute",
-            left: "20px",
-            top: "5px",
-            width: "200px",
-            borderRadius: "10px",
-          }}
-        >
-          Profile
-        </Button>
+        
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -466,7 +453,7 @@ const OrgDashboard = () => {
               <Modal.Header closeButton>
                 <Modal.Title>Are you really want to delete it?</Modal.Title>
               </Modal.Header>
-              <form action="">
+              
                 <Modal.Footer>
                   <Button variant="secondary" onClick={hide}>
                     Cancel
@@ -479,7 +466,6 @@ const OrgDashboard = () => {
                     Delete
                   </Button>
                 </Modal.Footer>
-              </form>
             </Modal>
           </>
         </div>
