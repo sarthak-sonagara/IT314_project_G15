@@ -17,7 +17,7 @@ import Alert from "react-bootstrap/Alert";
 
 const OrgDashboard = () => {
   const { user, org } = useAuthContext();
-
+  const [orgName, setorgName] = useState("");
   console.log(org);
   const [show, setShow] = useState(false);
 
@@ -28,6 +28,7 @@ const OrgDashboard = () => {
     const data = await res.json();
     console.log("This is Orgs:", data);
     Setmyid(data.org._id);
+    setorgName(data.org.orgname);
   };
   fetchOrgsFromEmail();
 
@@ -144,7 +145,6 @@ const OrgDashboard = () => {
     setShow(false);
     setShowEdit(false);
     setShowDelete(false);
-
   };
 
   const fetchUsers = async () => {
@@ -230,18 +230,7 @@ const OrgDashboard = () => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundColor: "#F5F5F5",
-          overflow: "hidden",
-          display: "flex",
-          width: "100%",
-          minHeight: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div className="org-outer">
         <Button
           variant="primary"
           onClick={handleShow}
@@ -321,7 +310,7 @@ const OrgDashboard = () => {
               top: "5px",
             }}
           >
-            Organization Name
+            {orgName}
           </h1>
 
           <div className="org-content-ctn">
