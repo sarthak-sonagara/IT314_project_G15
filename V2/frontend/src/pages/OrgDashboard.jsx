@@ -17,10 +17,21 @@ import Alert from "react-bootstrap/Alert";
 
 const OrgDashboard = () => {
   const { user, org } = useAuthContext();
-  
+
   console.log(org);
   const [show, setShow] = useState(false);
-  const myid = "642c6b0187058e54695f37b7";
+
+  const [myid, Setmyid] = useState("");
+
+  const fetchOrgsFromEmail = async () => {
+    const res = await fetch("http://localhost:3000/auth/org/" + org.email);
+    const data = await res.json();
+    console.log("This is Orgs:", data);
+    Setmyid(data.org._id);
+  };
+  fetchOrgsFromEmail();
+
+
   const handleClose = () => {
     setShow(false);
     var conf_name = document.getElementById("conference-name").value;
@@ -129,82 +140,80 @@ const OrgDashboard = () => {
     });
   };
 
-  useEffect(() => {
-    var xmlhttp = new XMLHttpRequest();
-    console.log(myid);
-    var listFilesUrl = "http://localhost:3000/auth/org/" + myid + "/myconferences";
-    console.log(listFilesUrl);
-    xmlhttp.open("GET", listFilesUrl, true);
-    xmlhttp.send();
-    xmlhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        var data = JSON.parse(this.responseText);
-        console.log(data);
-        $(document).ready(function () {
-          let table = $("#example").DataTable({
-            stateSave: true,
-            bDestroy: true,
-            
-            data: data.conferences,
-            columns: [
-              { data: "_id" },
-              { data: "conferenceName" },
-              { data: "description" },
-              { data: "startDate" },
-              { data: "endDate" },
-              { data: "guestSpeakers" },
-              { data: "topics" },
-              {
-                data: null,
-                defaultContent:
-                  '<button class="btn btn-primary edit-btn">Edit</button>',
-              },
-              {
-                data: null,
-                defaultContent:
-                  '<button class="btn btn-danger delete-btn">Delete</button>',
-              },
-            ],
-          });
+  const hide = () => {
+    setShow(false);
+    setShowEdit(false);
+    setShowDelete(false);
 
-          // Handle Edit button click
-          $("#example tbody").on("click", ".edit-btn", function () {
-            let td = $(this).closest("tr").find("td:eq(0)");
-            // let id = table.row(td).data();
-            if (table.cell(td).data()) {
-              // console.log(table.cell(td).data());
-              Seteditid(table.cell(td).data());
-              // console.log(editid);
-              td = $(this).closest("tr").find("td:eq(1)");
-              Seteditname(table.cell(td).data());
-              td = $(this).closest("tr").find("td:eq(2)");
-              Seteditdesc(table.cell(td).data());
-              td = $(this).closest("tr").find("td:eq(3)");
+  };
 
-              // change date format
-              function format(input) {
-                var datePart = input.match(/\d+/g),
-                  year = datePart[0].substring(0), // get only two digits
-                  month = datePart[1],
-                  day = datePart[2];
-                return year + "-" + month + "-" + day;
-              }
-              Seteditstartdate(format(table.cell(td).data()));
-              td = $(this).closest("tr").find("td:eq(4)");
-              Seteditenddate(format(table.cell(td).data()));
-              console.log(editenddate);
-              td = $(this).closest("tr").find("td:eq(5)");
-              Seteditguestspeaker(table.cell(td).data());
-              td = $(this).closest("tr").find("td:eq(6)");
-              Setedittopic(table.cell(td).data());
-            }
-            // let rowData = table.row(tr).data();
-            // console.log("Edit row data:", id);
+  const fetchUsers = async () => {
+    const res = await fetch("http://localhost:3000/auth/org/" + myid + "/myconferences");
+    const data = await res.json();
+    console.log("This are Users:", data);
+    $(document).ready(function () {
+      let table = $("#example").DataTable({
+        stateSave: true,
+        bDestroy: true,
+        data: data.conferences,
+        columns: [
+          { data: "_id" },
+          { data: "conferenceName" },
+          { data: "description" },
+          { data: "startDate" },
+          { data: "endDate" },
+          { data: "guestSpeakers" },
+          { data: "topics" },
+          {
+            data: null,
+            defaultContent:
+              '<button class="btn btn-primary edit-btn">Edit</button>',
+          },
+          {
+            data: null,
+            defaultContent:
+              '<button class="btn btn-danger delete-btn">Delete</button>',
+          },
+        ],
+      });
+      // Handle Edit button click
+    $("#example tbody").on("click", ".edit-btn", function () {
+      console.log("edit");
+      let td = $(this).closest("tr").find("td:eq(0)");
+      // let id = table.row(td).data();
+      if (table.cell(td).data()) {
+        // console.log(table.cell(td).data());
+        Seteditid(table.cell(td).data());
+        // console.log(editid);
+        td = $(this).closest("tr").find("td:eq(1)");
+        Seteditname(table.cell(td).data());
+        td = $(this).closest("tr").find("td:eq(2)");
+        Seteditdesc(table.cell(td).data());
+        td = $(this).closest("tr").find("td:eq(3)");
 
-            handleShowEdit();
-          });
+        // change date format
+        function format(input) {
+          var datePart = input.match(/\d+/g),
+            year = datePart[0].substring(0), // get only two digits
+            month = datePart[1],
+            day = datePart[2];
+          return year + "-" + month + "-" + day;
+        }
+        Seteditstartdate(format(table.cell(td).data()));
+        td = $(this).closest("tr").find("td:eq(4)");
+        Seteditenddate(format(table.cell(td).data()));
+        console.log(editenddate);
+        td = $(this).closest("tr").find("td:eq(5)");
+        Seteditguestspeaker(table.cell(td).data());
+        td = $(this).closest("tr").find("td:eq(6)");
+        Setedittopic(table.cell(td).data());
+      }
+      // let rowData = table.row(tr).data();
+      // console.log("Edit row data:", id);
 
-          // Handle Delete button click
+      handleShowEdit();
+    });
+    // Handle Delete button click
           $("#example tbody").on("click", ".delete-btn", function () {
             let td = $(this).closest("tr").find("td:eq(0)");
             // let id = table.row(td).data();
@@ -213,10 +222,11 @@ const OrgDashboard = () => {
             }
             handleShowDelete();
           });
-        });
-      }
-    };
-  }, []);
+    });
+    
+  };
+  fetchUsers();
+
 
   return (
     <>
@@ -295,7 +305,7 @@ const OrgDashboard = () => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={hide}>
               Close
             </Button>
             <Button variant="primary" onClick={handleClose}>
@@ -441,7 +451,7 @@ const OrgDashboard = () => {
                   </div>
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleCloseEdit}>
+                  <Button variant="secondary" onClick={hide}>
                     Close
                   </Button>
                   <Button
@@ -469,7 +479,7 @@ const OrgDashboard = () => {
               </Modal.Header>
               <form action="">
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleCloseDelete}>
+                  <Button variant="secondary" onClick={hide}>
                     Cancel
                   </Button>
                   <Button
