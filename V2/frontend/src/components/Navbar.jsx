@@ -27,8 +27,8 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 
 const Navbar = () => {
-  const { logout, orgLogout } = useLogout();
   const { user, org } = useAuthContext();
+  const { logout, orgLogout } = useLogout();
   console.log("user ", user, "org", org);
   const handleClick = () => {
     logout();
@@ -216,11 +216,13 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faAddressCard} className="menu-icons" />
             <p className="menu-texts">PROFILE</p>
           </Link>
-          <Link to="/call-for-paper"className="menu-options-ctn">
-            <div className="active-indicator"></div>
-            <FontAwesomeIcon icon={faUpload} className="menu-icons" />
-            <p className="menu-texts">CALL FOR PAPER</p>
-          </Link>
+          {user && user.user.role === "publisher" && (
+            <Link to="/call-for-paper" className="menu-options-ctn">
+              <div className="active-indicator"></div>
+              <FontAwesomeIcon icon={faUpload} className="menu-icons" />
+              <p className="menu-texts">CALL FOR PAPER</p>
+            </Link>
+          )}
           <div className="menu-options-ctn">
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faServer} className="menu-icons" />
