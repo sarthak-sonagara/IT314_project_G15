@@ -1067,7 +1067,7 @@
 			]
 		},
 		{
-			"name": "Delete Conference",
+			"name": "Delete Conference Cascade",
 			"item": [
 				{
 					"name": "Delete valid conference",
@@ -1122,6 +1122,71 @@
 									"key": "id",
 									"value": "6448bc55bd33bfcdc79c00f0"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete User Cascade",
+			"item": [
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"uu1@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add user to delete later",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"uu1\",\r\n    \"email\": \"uu1@gmail.com\",\r\n    \"password\": \"Daiict@1234\",\r\n    \"role\": \"attendee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"signup"
 							]
 						}
 					},

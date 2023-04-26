@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 const bcyrpt = require("bcrypt");
 const validator = require("validator");
 
+//importing the conference model
+const Conference = require("./conference");
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -240,6 +243,30 @@ userSchema.statics.removeProfilePic = async function (req) {
   user.profile_picture = "";
   await user.save();
   return user;
+};
+
+// static function to delete user
+userSchema.statics.deleteUser = async function (email) {
+  console.log("---------In delete user function--------\n");
+  const user = await this.findOne({ email });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  //remove user from all conferences
+  await Conference.updateMany(
+    { _id: { $in: user.registered_conferences } },
+    { $pull: { registeredAttendees: user._id } }
+  );
+
+  console.log("User deleted from all conferences registration list");
+
+  // delete user
+  user.deleteOne(user);
+  console.log("User deleted successfully");
+  return user;
+
 };
 
 module.exports = mongoose.model("User", userSchema);
