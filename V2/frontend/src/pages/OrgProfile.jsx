@@ -1,8 +1,8 @@
 // import logo from './logo.svg';
-import "./App.css";
+// import "./App.css";
 import { useEffect, useState } from 'react';
 import { AiOutlineMail, AiOutlineInstagram, AiOutlineLinkedin } from 'react-icons/ai';
-import orgimage from "./logo.svg";
+// import orgimage from "./logo.svg";
 // var cn = require('classNames');
 
 import axios from "axios";
