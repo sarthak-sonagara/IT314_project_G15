@@ -162,12 +162,12 @@ conferenceSchema.statics.deleteConference = async function (req) {
       .registeredAttendees[i]
       .registered_conferences
       .indexOf(conferenceObjId);
-                                            // console.log("here1")
+    // console.log("here1")
     users
       .registeredAttendees[i]
       .registered_conferences
       .splice(index, 1);
-                                            // console.log("here2")
+    // console.log("here2")
     await users.registeredAttendees[i].save();
 
     console.log("deleted conference from user");
@@ -294,6 +294,23 @@ conferenceSchema.statics.viewConference = async function (req) {
 
   throw new Error("Please Enter Name of a conference");
   //const find({EmployeeDetails:{$elemMatch:{EmployeePerformanceArea : "C++", Year : 1998}}}).pretty();
+};
+
+// static function to remove user from conferences
+conferenceSchema.statics.removeUserFromConferences = async function (req) {
+  console.log("------In removeUserFromConference function------\n", req.body);
+  const userId = req.body.userId;
+  // iterate over all the conferences and remove the user from the registeredAttendees array
+  const conferences = await this.find();
+  for (let i = 0; i < conferences.length; i++) {
+    const index = conferences[i].registeredAttendees.indexOf(userId);
+    if (index > -1) {
+      conferences[i].registeredAttendees.splice(index, 1);
+      await conferences[i].save();
+    }
+  }
+  console.log("removed user from all conferences successfully.");
+  return "succsessful";
 };
 
 module.exports = mongoose.model("Conference", conferenceSchema);

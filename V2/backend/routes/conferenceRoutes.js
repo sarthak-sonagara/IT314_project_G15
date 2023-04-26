@@ -13,6 +13,7 @@ const {
   conferenceRegistration,
   cancelRegistration,
   viewConference,
+  removeUserFromConferences,   // call when user is deleted
 } = require("../controllers/conferenceController");
 
 const requireAuth = require("../middlewares/requireAuth");
@@ -40,5 +41,7 @@ router.get("/get", viewConference);
 router.patch("/edit", editConference);
 
 router.delete("/delete/:id", deleteConference);
+
+router.patch("/removeUser", removeUserFromConferences);
 
 module.exports = router;
