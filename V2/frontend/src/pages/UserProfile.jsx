@@ -8,8 +8,6 @@ import {
 } from "react-icons/ai";
 import userimage from "../../public/images/DAIICT.png";
 
-const baseUrl = "http://localhost:3000";
-
 const c1 = {
   conferenceName: "Adbhut Conference",
   startDate: "22-01-2022",
