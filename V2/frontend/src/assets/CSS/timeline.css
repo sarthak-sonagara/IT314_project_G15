@@ -15,6 +15,9 @@
   margin-left: -3px;
 }
 
+.card{
+  background-color: #84ccff;
+}
 /* Container around content */
 .timeline-2 {
   position: relative;
@@ -29,7 +32,7 @@
   width: 25px;
   height: 25px;
   right: -11px;
-  background-color: #26c6da;
+  background-color: #0078cc;
   top: 15px;
   border-radius: 50%;
   z-index: 1;

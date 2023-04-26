@@ -32,12 +32,50 @@ const Home = () => {
     <div>
       <Navbar />
 
+      <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="http://www.gettyimages.com/detail/1166085754" class="d-block w-100" alt="..." />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>First slide label</h5>
+              <p>Some representative placeholder content for the first slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="..." />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Second slide label</h5>
+              <p>Some representative placeholder content for the second slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="..." />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Third slide label</h5>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
       <section 
         style={{ 
           backgroundColor: "#F0F2F5;"
         }}>
-        <div class="container py-5">
-          <div class="main-timeline-2">
+        <div className="container py-5">
+          <div className="main-timeline-2">
           {upcomingConf.map((conf, index) => {
             return (
               <TimelineCard conference={conf} index={index} key={conf._id} />
@@ -51,7 +89,7 @@ const Home = () => {
         <div
           className="p-4 p-md-2 mb-4 rounded"
           style={{
-            backgroundColor: "#409de9",
+            backgroundColor: "#0078cc",
           }}
         >
           <div className="col-md-6 px-0">
@@ -72,7 +110,11 @@ const Home = () => {
                       Organization
                     </strong>
                     <h3 className="mb-2">{org.orgname}</h3>
-                    <Link to="/home-conf">
+                    <Link 
+                      to={{
+                        pathname: "/home-conf",
+                        state: org
+                      }}>
                       <div className="d-grid gap-2">
                         <button className="btn btn-success" type="button">
                           More Conferences...
@@ -86,6 +128,7 @@ const Home = () => {
           })}
         </div>
       </div>
+      
     </div>
   );
 };
