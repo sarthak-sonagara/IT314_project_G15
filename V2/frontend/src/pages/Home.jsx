@@ -32,15 +32,20 @@ const Home = () => {
     <div>
       <Navbar />
 
-      <div className="container">
-      <div className="timeline">
-        {upcomingConf.map((conf, index)  => {
-          return(
-            <TimelineCard conference={conf} index = {index}/>
-          )
-        })}
+      <section 
+        style={{ 
+          backgroundColor: "#F0F2F5" 
+        }}>
+        <div className="container py-5">
+          <div className="main-timeline-2">
+          {upcomingConf.map((conf, index)  => {
+            return(
+              <TimelineCard conference={conf} index = {index}/>
+            )
+          })}
+          </div>
         </div>
-      </div>
+      </section>
 
       <div className="container" style={{ marginTop: "1rem" }}>
         <div
@@ -79,15 +84,6 @@ const Home = () => {
               </div>
             );
           })}
-        </div>
-
-
-        
-
-        <div className="p-4 p-md-4 mb-4 rounded text-bg-dark">
-          <div className="col-md-6 px-0">
-            <h2 className="display-4 fst-italic">Upcoming Conference</h2>
-          </div>
         </div>
       </div>
     </div>
