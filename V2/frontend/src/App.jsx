@@ -6,7 +6,6 @@ import HomeConf from "./pages/HomeConf";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PasswordReset from "./pages/PasswordReset";
-import TimeLine from "./pages/TimeLine";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import OrgLogin from "./pages/OrgLogin";
@@ -40,12 +39,12 @@ function App() {
             element={
               user && user.user.role === "admin" ? (
                 <AdminDashboard />
-                ) : (
-                  <Navigate to="/admin/login" />
-                  )
-                }
-                path="/admin/dashboard"
-                />
+              ) : (
+                <Navigate to="/admin/login" />
+              )
+            }
+            path="/admin/dashboard"
+          />
           {/* general routes */}
           {/* public routes */}
           <Route element={<Home />} path="/" />
@@ -53,39 +52,39 @@ function App() {
           <Route
             element={!user && !org ? <Choice /> : <Navigate to="/" />}
             path="/choice"
-            />
+          />
           <Route
             element={!user ? <Login /> : <Navigate to="/" />}
             path="/login"
-            />
+          />
           <Route
             element={!user ? <Signup /> : <Navigate to="/" />}
             path="/signup"
-            />
+          />
           <Route
             element={org ? <OrgDashboard /> : <Navigate to="/choise" />}
             path="org-dashboard"
-            />
+          />
           <Route
             element={!org ? <OrgLogin /> : <Navigate to="/" />}
             path="/org-login"
-            />
+          />
           <Route
             element={!org ? <OrgSignup /> : <Navigate to="/" />}
             path="/org-signup"
-            />
+          />
           <Route
             element={
               user ? (
                 <UserDashboard />
-                ) : org ? (
-                  <OrgDashboard />
-                  ) : (
-                    <Navigate to="/choice" />
-                    )
-                  }
-                  path="/dashboard"
-                  />
+              ) : org ? (
+                <OrgDashboard />
+              ) : (
+                <Navigate to="/choice" />
+              )
+            }
+            path="/dashboard"
+          />
 
           <Route
             element={
@@ -93,18 +92,17 @@ function App() {
                 <UserProfile />
               ) : org ? (
                 <OrgProfile />
-                ) : (
-                  <Navigate to="/login" />
-                  )
-                }
-                path="/profile"
-                />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+            path="/profile"
+          />
           <Route element={<PasswordReset />} path="/password-reset" />
 
           <Route element={<TestUpload />} path="test-upload" />
-          <Route element={<HomeConf />} path="home-conf"/>
+          <Route element={<HomeConf />} path="home-conf" />
           <Route element={<CallForPaper />} path="/call-for-paper" />
-
         </Routes>
       </BrowserRouter>
     </>

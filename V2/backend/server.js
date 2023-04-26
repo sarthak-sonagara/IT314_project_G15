@@ -92,7 +92,6 @@ app.post("/upload/", multer.single("file"), async (req, res) => {
   const { email, confid } = req.query;
   const auth = authenticateGoogle();
   const response = await uploadToGoogleDrive(req.file, auth);
-  console.log(response);
   deleteFile(req.file.path);
   const user = await User.findOne({ email });
   user.papers.push({
@@ -102,10 +101,6 @@ app.post("/upload/", multer.single("file"), async (req, res) => {
   });
   await user.save();
 
-  const paper = await google
-    .drive({ version: "v3", auth })
-    .files.list(response.data.id);
-  console.log(paper);
   res.status(200).json({ response });
 });
 

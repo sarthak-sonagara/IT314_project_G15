@@ -68,6 +68,7 @@ function UserProfile() {
   }
 
   useEffect(() => {
+    document.title = `${user.user.username}'s Profile`;
     getImage();
     fetch("http://localhost:3000/org/all")
       .then((res) => res.json())
