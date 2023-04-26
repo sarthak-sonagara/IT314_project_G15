@@ -22,7 +22,7 @@ const AdminLogin = () => {
             <b
               style={{
                 fontSize: 25,
-                color: "var(--menu-bg-color)",
+                color: "var(--secondary-color)",
                 marginBottom: 15,
               }}
             >
@@ -58,7 +58,7 @@ const AdminLogin = () => {
                 type="submit"
                 className="input-btn"
                 style={{
-                  backgroundColor: "var(--menu-bg-color)",
+                  backgroundColor: "var(--secondary-color)",
                   border: "none",
                 }}
                 disabled={isLoading}

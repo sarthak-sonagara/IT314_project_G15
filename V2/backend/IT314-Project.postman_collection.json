@@ -1065,6 +1065,69 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Delete Conference",
+			"item": [
+				{
+					"name": "Delete valid conference",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/org/delete/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6448bc55bd33bfcdc79c00f0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to delete invalid conference",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/org/delete/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"org",
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6448bc55bd33bfcdc79c00f0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

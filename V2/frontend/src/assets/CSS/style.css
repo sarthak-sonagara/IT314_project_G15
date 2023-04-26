@@ -10,13 +10,11 @@
 :root {
   --bg-color: rgb(229, 230, 231);
   --nav-bg-color: #ffffff;
-  --logo-bg-color: #0066ae;
-  --menu-bg-color: #0078cc;
-  --icon-color: #eee;
   --primary-color: #0078cc;
   --secondary-color: #0066ae;
   --font-color: #707275;
   --active-font-color: #1a1c23;
+  --profile-font-color: #212c51;
 }
 
 .global-nav-bar {
@@ -421,7 +419,7 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: rgb(223, 227, 231);
+  background-color: rgb(229, 235, 240);
   padding: 100px 0 50px 0;
 }
 
@@ -584,7 +582,7 @@
   bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
-  width: 25px;
+  width: 35px;
   height: 5px;
   background: var(--primary-color);
   border-radius: 5px 5px 0 0;

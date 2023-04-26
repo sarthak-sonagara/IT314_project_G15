@@ -129,7 +129,7 @@ const Login = () => {
                     id="flexRadioDefault1"
                     style={{
                       cursor: "pointer",
-                      accentColor: "var(--menu-bg-color)",
+                      accentColor: "var(--secondary-color)",
                     }}
                     onChange={(e) => setRole(e.target.value)}
                     required
@@ -151,7 +151,7 @@ const Login = () => {
                     defaultChecked=""
                     style={{
                       cursor: "pointer",
-                      accentColor: "var(--menu-bg-color)",
+                      accentColor: "var(--secondary-color)",
                     }}
                     onChange={(e) => setRole(e.target.value)}
                     required
@@ -170,7 +170,7 @@ const Login = () => {
                 type="submit"
                 className="input-btn"
                 style={{
-                  backgroundColor: "var(--menu-bg-color)",
+                  backgroundColor: "var(--secondary-color)",
                   border: "none",
                 }}
                 disabled={isLoading}

@@ -121,7 +121,7 @@ const Navbar = () => {
                   border: "2px solid var(--nav-bg-color)",
                   fontWeight: "bold",
                   fontSize: "0.875rem",
-                  backgroundColor: "var(--menu-bg-color)",
+                  backgroundColor: "var(--secondary-color)",
                   padding: "5px 15px",
                   borderRadius: "0.375rem",
                 }}
@@ -141,7 +141,7 @@ const Navbar = () => {
                     style={{
                       display: "flex",
                       background: "none",
-                      color: "var(--menu-bg-color)",
+                      color: "var(--secondary-color)",
                       border: "none",
                       boxShadow: "none",
                       padding: "0",
