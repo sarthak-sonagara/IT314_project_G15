@@ -162,12 +162,12 @@ conferenceSchema.statics.deleteConference = async function (req) {
       .registeredAttendees[i]
       .registered_conferences
       .indexOf(conferenceObjId);
-                                            // console.log("here1")
+    // console.log("here1")
     users
       .registeredAttendees[i]
       .registered_conferences
       .splice(index, 1);
-                                            // console.log("here2")
+    // console.log("here2")
     await users.registeredAttendees[i].save();
 
     console.log("deleted conference from user");
@@ -294,6 +294,59 @@ conferenceSchema.statics.viewConference = async function (req) {
 
   throw new Error("Please Enter Name of a conference");
   //const find({EmployeeDetails:{$elemMatch:{EmployeePerformanceArea : "C++", Year : 1998}}}).pretty();
+};
+
+// static function to remove user from conferences
+conferenceSchema.statics.removeUserFromConferences = async function (req) {
+  console.log("------In removeUserFromConference function------\n", req.body);
+  const userId = req.body.userId;
+  // iterate over all the conferences and remove the user from the registeredAttendees array
+  const conferences = await this.find();
+  for (let i = 0; i < conferences.length; i++) {
+    const index = conferences[i].registeredAttendees.indexOf(userId);
+    if (index > -1) {
+      conferences[i].registeredAttendees.splice(index, 1);
+      await conferences[i].save();
+    }
+  }
+  console.log("removed user from all conferences successfully.");
+  return "succsessful";
+};
+
+// static function to remove conference of an organization
+conferenceSchema.statics.removeConferencesOfOrg = async function (req) {
+  console.log("------In removeConferenceFromOrg function------\n", req.body);
+  const orgId = req.body.orgId;
+
+  const conferences = await this.find();
+
+  // iterate over all the conferences and delete if it is of the organization which is being deleted
+  for (let i = 0; i < conferences.length; i++) {
+    if (conferences[i].org_id == orgId) {
+
+
+      console.log("conference found!!\n", conferences[i]);
+
+      const users = await conferences[i].populate("registeredAttendees");
+
+
+      console.log("users\n", users);
+      // iterate over all the users and remove the conference from their registered_conferences array
+      for (let j = 0; j < users.registeredAttendees.length; j++) {
+        const index = users.registeredAttendees[j].registered_conferences.indexOf(conferences[i]._id);
+        if (index > -1) {
+          console.log("here");
+          users.registeredAttendees[j].registered_conferences.splice(index, 1);
+          await users.registeredAttendees[j].save();
+        }
+      }
+
+      await this.findOneAndDelete({ _id: conferences[i]._id });
+    }
+  }
+
+  console.log("removed conference from organization successfully.");
+  return "succsessful";
 };
 
 module.exports = mongoose.model("Conference", conferenceSchema);

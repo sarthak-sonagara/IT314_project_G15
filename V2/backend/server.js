@@ -11,6 +11,7 @@ const Multer = require("multer");
 const userRoutes = require("./routes/userRoutes");
 const orgRoutes = require("./routes/orgRoutes");
 const conferenceRoutes = require("./routes/conferenceRoutes");
+const User = require("./models/user");
 
 const corsOptions = {
   origin: "*",
@@ -86,17 +87,35 @@ app.use((req, res, next) => {
 app.use("/auth/user", userRoutes);
 app.use("/auth/org", orgRoutes);
 app.use("/org", conferenceRoutes);
-app.post("/upload", multer.single("file"), async (req, res) => {
-  console.log("body", req.file);
+
+app.post("/upload/:email", multer.single("file"), async (req, res) => {
+  const { email } = req.params;
+  console.log("body", req.file, email);
   const auth = authenticateGoogle();
   const response = await uploadToGoogleDrive(req.file, auth);
+  console.log(response);
   deleteFile(req.file.path);
+  const user = await User.findOne({ email });
+  user.papers.push({
+    title: req.body.originalname,
+    fileUrl: response.data.id,
+  });
+  await user.save();
+
+  const paper = await google
+    .drive({ version: "v3", auth })
+    .files.list(response.data.id);
+  console.log(paper);
   res.status(200).json({ response });
 });
 
 app.get("/files", async (req, res) => {
   const auth = authenticateGoogle();
-  const response = await google.drive({ version: "v3", auth }).files.list();
+  const response = await google.drive({ version: "v3", auth }).files.get({
+    fileId: "1JSDRS574wh_fs59w7xN912VQ1riB9Fbg",
+    alt: "media",
+  });
+  // return response;
   res.status(200).json({ response });
 });
 

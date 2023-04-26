@@ -21,7 +21,6 @@ import CallForPaper from "./pages/CallForPaper";
 
 function App() {
   const { user, org } = useAuthContext(); // will be used to provide functionality of private routes
-  console.log(user);
   return (
     <>
       <BrowserRouter>
@@ -29,7 +28,7 @@ function App() {
           {/* admin routes */}
           <Route
             element={
-              !user || user.role !== "admin" ? (
+              !user || user.user.role !== "admin" ? (
                 <AdminLogin />
               ) : (
                 <Navigate to="/admin/dashboard" />
@@ -39,7 +38,7 @@ function App() {
           />
           <Route
             element={
-              user && user.role === "admin" ? (
+              user && user.user.role === "admin" ? (
                 <AdminDashboard />
                 ) : (
                   <Navigate to="/admin/login" />
