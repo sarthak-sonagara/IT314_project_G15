@@ -9,10 +9,16 @@ const TestUpload = () => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("file", file);
-    fetch("http://localhost:3000/upload/" + user.email, {
-      method: "POST",
-      body: formData,
-    })
+    fetch(
+      "http://localhost:3000/upload?email=" +
+        user.user.email +
+        "&confid=" +
+        "64452811cbf9eb7a940b1439",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -88,9 +88,8 @@ app.use("/auth/user", userRoutes);
 app.use("/auth/org", orgRoutes);
 app.use("/org", conferenceRoutes);
 
-app.post("/upload/:email", multer.single("file"), async (req, res) => {
-  const { email } = req.params;
-  console.log("body", req.file, email);
+app.post("/upload/", multer.single("file"), async (req, res) => {
+  const { email, confid } = req.query;
   const auth = authenticateGoogle();
   const response = await uploadToGoogleDrive(req.file, auth);
   console.log(response);
@@ -99,6 +98,7 @@ app.post("/upload/:email", multer.single("file"), async (req, res) => {
   user.papers.push({
     title: req.body.originalname,
     fileUrl: response.data.id,
+    conference: confid,
   });
   await user.save();
 
