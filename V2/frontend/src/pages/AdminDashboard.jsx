@@ -9,10 +9,8 @@ import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import AdminNavbar from "../components/AdminNavbar";
-// import tabs from "../components/Tabs";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Tabs from "../components/Tabs";
 
 const AdminDashboard = () => {
   const [showEdit, setShowEdit] = useState(false);
