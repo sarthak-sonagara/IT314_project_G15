@@ -32,6 +32,20 @@ const Home = () => {
     <div>
       <Navbar />
 
+<<<<<<< HEAD
+      <section 
+        style={{ 
+          backgroundColor: "#F0F2F5" 
+        }}>
+        <div className="container py-5">
+          <div className="main-timeline-2">
+          {upcomingConf.map((conf, index)  => {
+            return(
+              <TimelineCard conference={conf} index = {index}/>
+            )
+          })}
+          </div>
+=======
       <div className="container" style={{marginTop: "70px"}}>
         <div className="timeline">
           {upcomingConf.map((conf, index) => {
@@ -39,8 +53,9 @@ const Home = () => {
               <TimelineCard conference={conf} index={index} key={conf._id} />
             );
           })}
+>>>>>>> 4096fc5f8d875d07c2081b1ed8e8b79f2f8a430f
         </div>
-      </div>
+      </section>
 
       <div className="container" style={{ marginTop: "1rem" }}>
         <div
@@ -80,12 +95,15 @@ const Home = () => {
             );
           })}
         </div>
+<<<<<<< HEAD
+=======
 
         <div className="p-4 p-md-4 mb-4 rounded text-bg-dark">
           <div className="col-md-6 px-0">
             <h2 className="display-4 fst-italic">Upcoming Conference</h2>
           </div>
         </div>
+>>>>>>> 4096fc5f8d875d07c2081b1ed8e8b79f2f8a430f
       </div>
     </div>
   );
