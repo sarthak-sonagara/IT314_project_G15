@@ -82,37 +82,110 @@ const AdminDashboard = () => {
       });
   }, []);
 
+  const [toggleState, setToggleState] = useState(1);
+
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
+
   return (
     <>
       <AdminNavbar />
+      {/* <Tabs/> */}
+      <div className="admin-nav-left-span">
+        <div className="admin-nav-left-sub-ctn">
+          <p
+            style={{ padding: "0", margin: "0" }}
+            className="adm-left-nav-ctn-text"
+          >
+            <button
+              className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(1)}
+              style={{ width: "100%", height: "100%" }}
+            >
+              Admin
+            </button>
+          </p>
+        </div>
+        <div className="admin-nav-left-sub-ctn">
+          <p
+            style={{ padding: "0", margin: "0" }}
+            className="user-left-nav-ctn-text"
+          >
+            <button
+              className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(2)}
+              style={{ width: "100%", height: "100%" }}
+            >
+              Users
+            </button>
+          </p>
+        </div>
+        <div className="admin-nav-left-sub-ctn">
+          <p
+            style={{ padding: "0", margin: "0" }}
+            className="org-left-nav-ctn-text"
+          >
+            <button
+              className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(3)}
+              style={{ width: "100%", height: "100%" }}
+            >
+              Orgs
+            </button>
+          </p>
+        </div>
+      </div>
+
       <div className="admin-container">
-        <div className="admin-content-ctn admin-welcome-screen">
-          <div className="admin-welcome-ctn">Welcome to Admin Dashboard</div>
+        <div
+          className={
+            toggleState === 1 ? "tab-content  active-content" : "tab-content"
+          }
+        >
+          <div className="admin-content-ctn admin-welcome-screen">
+            <div className="admin-welcome-ctn">Welcome to Admin Dashboard</div>
+          </div>
         </div>
-        <div className="admin-content-ctn user-table-ctn">
-          <table id="users_datatable" className="display">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role.</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-          </table>
+
+        <div
+          className={
+            toggleState === 2 ? "tab-content  active-content" : "tab-content"
+          }
+        >
+          <div className="admin-content-ctn user-table-ctn">
+            <table id="users_datatable" className="display">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Role.</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
-        <div className="admin-content-ctn org-table-ctn">
-          <table id="orgs_datatable" className="display">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>OrgName</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-          </table>
+
+        <div
+          className={
+            toggleState === 3 ? "tab-content  active-content" : "tab-content"
+          }
+        >
+          <div className="admin-content-ctn org-table-ctn">
+            <table id="orgs_datatable" className="display">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>OrgName</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
+
         <>
           <Modal
             show={showEdit}
@@ -215,61 +288,5 @@ const AdminDashboard = () => {
     </>
   );
 };
-
-// $(document).ready(function () {
-//   $(".adm-ctn").on("click", function () {
-//     console.log("clicked");
-//     if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
-//       $(".user-table-ctn").toggleClass("user-active-table-ctn");
-//       $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
-//       $(".user-active-indicator").toggleClass("user-inactive-indicator");
-//     }
-//     if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
-//       $(".org-table-ctn").toggleClass("org-active-table-ctn");
-//       $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
-//       $(".org-active-indicator").toggleClass("org-inactive-indicator");
-//     }
-//     if ($(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
-//       $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
-//       $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
-//       $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
-//     }
-//   });
-//   $(".user-ctn").on("click", function () {
-//     if (!$(".user-table-ctn").hasClass("user-active-table-ctn")) {
-//       $(".user-table-ctn").toggleClass("user-active-table-ctn");
-//       $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
-//       $(".user-active-indicator").toggleClass("user-inactive-indicator");
-//     }
-//     if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
-//       $(".org-table-ctn").toggleClass("org-active-table-ctn");
-//       $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
-//       $(".org-active-indicator").toggleClass("org-inactive-indicator");
-//     }
-//     if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
-//       $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
-//       $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
-//       $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
-//     }
-//   });
-//   $(".org-ctn").on("click", function () {
-//     console.log("clicked");
-//     if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
-//       $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
-//       $(".user-table-ctn").toggleClass("user-active-table-ctn");
-//       $(".user-active-indicator").toggleClass("user-inactive-indicator");
-//     }
-//     if (!$(".org-table-ctn").hasClass("org-active-table-ctn")) {
-//       $(".org-table-ctn").toggleClass("org-active-table-ctn");
-//       $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
-//       $(".org-active-indicator").toggleClass("org-inactive-indicator");
-//     }
-//     if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
-//       $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
-//       $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
-//       $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
-//     }
-//   });
-// });
 
 export default AdminDashboard;
