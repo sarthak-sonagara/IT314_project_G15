@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "_id": "8f265f03-d589-4a40-a7d1-d6c3fc30ea9a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/files",
+    "url": "http://localhost:3000/files",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-26T09:53:03.719Z",
+    "modified": "2023-04-26T09:53:03.719Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]
