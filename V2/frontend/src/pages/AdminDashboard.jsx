@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../assets/CSS/style.css";
-// Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-//jQuery libraries
-import "jquery/dist/jquery.min.js";
-//Datatable Modules
+import $ from "jquery";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
-import $ from "jquery";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
 import AdminNavbar from "../components/AdminNavbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -15,104 +11,176 @@ import Modal from "react-bootstrap/Modal";
 const AdminDashboard = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const handleCloseEdit = () => setShowEdit(false);
   const handleShowEdit = () => setShowEdit(true);
   const handleCloseDelete = () => setShowDelete(false);
   const handleShowDelete = () => setShowDelete(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [toggleState, setToggleState] = useState(1);
 
   useEffect(() => {
-    fetch("http://localhost:3000/auth/user/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("This are Users:", data);
-        $(document).ready(function () {
-          let table = $("#users_datatable").DataTable({
-            stateSave: true,
-            bDestroy: true,
-            data: data.users,
-            columns: [
-              { data: "_id" },
-              { data: "username" },
-              { data: "email" },
-              { data: "role" },
-              {
-                data: null,
-                defaultContent:
-                  '<div style="display:flex"><button class="btn btn-primary edit-btn" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn">Delete</button></div>',
-              },
-            ],
-          });
+    const fetchUsers = async () => {
+      const res = await fetch("http://localhost:3000/auth/user/");
+      const data = await res.json();
+      console.log("This are Users:", data);
+      $(document).ready(function () {
+        $("#users_datatable").DataTable({
+          stateSave: true,
+          bDestroy: true,
+          data: data.users,
+          columns: [
+            { data: "_id" },
+            { data: "username" },
+            { data: "email" },
+            { data: "role" },
+            {
+              data: null,
+              defaultContent:
+                '<div style="display:flex"><button class="btn btn-primary edit-btn" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn">Delete</button></div>',
+            },
+          ],
+        });
 
-          // Handle Edit button click
-          $("#users_datatable tbody").on("click", ".edit-btn", function () {
-            let td = $(this).closest("tr").find("td:eq(0)");
-            // let id = table.row(td).data();
-            if (table.cell(td).data()) {
-              // $("#input-id").val("Hello");
-              console.log(table.cell(td).data());
-              console.log($("#input-id").val());
-            }
-            // let rowData = table.row(tr).data();
-            handleShowEdit();
-          });
+        // Handle Edit button click
+        $("#users_datatable tbody").on("click", ".edit-btn", function () {
+          let td = $(this).closest("tr").find("td:eq(0)");
+          if (table.cell(td).data()) {
+            console.log(table.cell(td).data());
+            console.log($("#input-id").val());
+          }
+          handleShowEdit();
+        });
 
-          // Handle Delete button click
-          $("#users_datatable tbody").on("click", ".delete-btn", function () {
-            let rowData = table.row($(this).parents("tr")).data();
-            console.log("Delete row data:", rowData);
-            handleShowDelete();
-          });
+        // Handle Delete button click
+        $("#users_datatable tbody").on("click", ".delete-btn", function () {
+          let rowData = table.row($(this).parents("tr")).data();
+          console.log("Delete row data:", rowData);
+          handleShowDelete();
         });
       });
+    };
 
-    fetch("http://localhost:3000/auth/org/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("This is Orgs:", data);
-        $(document).ready(function () {
-          let table1 = $("#orgs_datatable").DataTable({
-            stateSave: true,
-            bDestroy: true,
-            data: data.orgs,
-            columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
-          });
+    const fetchOrgs = async () => {
+      const res = await fetch("http://localhost:3000/auth/org/");
+      const data = await res.json();
+      console.log("This is Orgs:", data);
+      $(document).ready(function () {
+        $("#orgs_datatable").DataTable({
+          stateSave: true,
+          bDestroy: true,
+          data: data.orgs,
+          columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
         });
       });
+    };
+
+    fetchUsers();
+    fetchOrgs();
   }, []);
+
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
 
   return (
     <>
       <AdminNavbar />
+      {/* <Tabs/> */}
+      <div className="admin-nav-left-span">
+        <div className="admin-nav-left-sub-ctn">
+          <p
+            style={{ padding: "0", margin: "0" }}
+            className="adm-left-nav-ctn-text"
+          >
+            <button
+              className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(1)}
+              style={{ width: "100%", height: "100%" }}
+            >
+              Admin
+            </button>
+          </p>
+        </div>
+        <div className="admin-nav-left-sub-ctn">
+          <p
+            style={{ padding: "0", margin: "0" }}
+            className="user-left-nav-ctn-text"
+          >
+            <button
+              className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(2)}
+              style={{ width: "100%", height: "100%" }}
+            >
+              Users
+            </button>
+          </p>
+        </div>
+        <div className="admin-nav-left-sub-ctn">
+          <p
+            style={{ padding: "0", margin: "0" }}
+            className="org-left-nav-ctn-text"
+          >
+            <button
+              className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(3)}
+              style={{ width: "100%", height: "100%" }}
+            >
+              Organizations
+            </button>
+          </p>
+        </div>
+      </div>
+
       <div className="admin-container">
-        <div className="admin-content-ctn admin-welcome-screen">
-          <div className="admin-welcome-ctn">Welcome to Admin Dashboard</div>
+        <div
+          className={
+            toggleState === 1 ? "tab-content  active-content" : "tab-content"
+          }
+        >
+          <div className="admin-content-ctn admin-welcome-screen">
+            <div className="admin-welcome-ctn">Welcome to Admin Dashboard</div>
+          </div>
         </div>
-        <div className="admin-content-ctn user-table-ctn">
-          <table id="users_datatable" className="display">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role.</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-          </table>
+
+        <div
+          className={
+            toggleState === 2 ? "tab-content  active-content" : "tab-content"
+          }
+        >
+          <div className="admin-content-ctn user-table-ctn">
+            <table id="users_datatable" className="display">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Role.</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
-        <div className="admin-content-ctn org-table-ctn">
-          <table id="orgs_datatable" className="display">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>OrgName</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-          </table>
+
+        <div
+          className={
+            toggleState === 3 ? "tab-content  active-content" : "tab-content"
+          }
+        >
+          <div className="admin-content-ctn org-table-ctn">
+            <table id="orgs_datatable" className="display">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>OrgName</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
+
         <>
           <Modal
             show={showEdit}
@@ -215,61 +283,5 @@ const AdminDashboard = () => {
     </>
   );
 };
-
-// $(document).ready(function () {
-//   $(".adm-ctn").on("click", function () {
-//     console.log("clicked");
-//     if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
-//       $(".user-table-ctn").toggleClass("user-active-table-ctn");
-//       $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
-//       $(".user-active-indicator").toggleClass("user-inactive-indicator");
-//     }
-//     if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
-//       $(".org-table-ctn").toggleClass("org-active-table-ctn");
-//       $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
-//       $(".org-active-indicator").toggleClass("org-inactive-indicator");
-//     }
-//     if ($(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
-//       $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
-//       $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
-//       $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
-//     }
-//   });
-//   $(".user-ctn").on("click", function () {
-//     if (!$(".user-table-ctn").hasClass("user-active-table-ctn")) {
-//       $(".user-table-ctn").toggleClass("user-active-table-ctn");
-//       $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
-//       $(".user-active-indicator").toggleClass("user-inactive-indicator");
-//     }
-//     if ($(".org-table-ctn").hasClass("org-active-table-ctn")) {
-//       $(".org-table-ctn").toggleClass("org-active-table-ctn");
-//       $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
-//       $(".org-active-indicator").toggleClass("org-inactive-indicator");
-//     }
-//     if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
-//       $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
-//       $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
-//       $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
-//     }
-//   });
-//   $(".org-ctn").on("click", function () {
-//     console.log("clicked");
-//     if ($(".user-table-ctn").hasClass("user-active-table-ctn")) {
-//       $(".user-left-nav-ctn-text").toggleClass("active-user-left-nav-ctn-text");
-//       $(".user-table-ctn").toggleClass("user-active-table-ctn");
-//       $(".user-active-indicator").toggleClass("user-inactive-indicator");
-//     }
-//     if (!$(".org-table-ctn").hasClass("org-active-table-ctn")) {
-//       $(".org-table-ctn").toggleClass("org-active-table-ctn");
-//       $(".org-left-nav-ctn-text").toggleClass("active-org-left-nav-ctn-text");
-//       $(".org-active-indicator").toggleClass("org-inactive-indicator");
-//     }
-//     if (!$(".admin-welcome-screen").hasClass("admin-hidden-welcome-screen")) {
-//       $(".adm-left-nav-ctn-text").toggleClass("active-adm-left-nav-ctn-text");
-//       $(".admin-welcome-screen").toggleClass("admin-hidden-welcome-screen");
-//       $(".adm-active-indicator").toggleClass("adm-inactive-indicator");
-//     }
-//   });
-// });
 
 export default AdminDashboard;

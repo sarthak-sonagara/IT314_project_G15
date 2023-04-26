@@ -1,9 +1,12 @@
 // import logo from './logo.svg';
-import "../assets/CSS/OrgProfile.css";
-import { useState } from 'react';
+// import "./App.css";
+import { useEffect, useState } from 'react';
 import { AiOutlineMail, AiOutlineInstagram, AiOutlineLinkedin } from 'react-icons/ai';
-import orgimage from "../../public/images/DAIICT.png";
+// import orgimage from "./logo.svg";
 // var cn = require('classNames');
+
+import axios from "axios";
+const baseUrl = "http://localhost:3000";
 
 const c1 = {
   conferenceName: "Adbhut Conference",
@@ -38,6 +41,23 @@ function OrgProfile() {
     setCurrentConf(confName);
     setIsModalOpen(true);
   }
+
+  function conftable(conf) {
+    const rows = conf.map((conf, ind) => {
+      const classind = "org_dropdown_item-1";
+      return (
+        <div
+          onClick={() => {
+            setConf(conf);
+          }}
+        >
+          <li class={classind}>{conf.conferenceName}</li>
+        </div>
+      );
+    });
+    return <ul class="org_dropdown_menu org_dropdown_menu-2">{rows}</ul>;
+  }
+
   const [postImage, setPostImage] = useState({ myFile: "" });
   const [image, setImage] = useState([]);
 
@@ -92,55 +112,11 @@ function OrgProfile() {
     setPostImage({ ...postImage, myFile: base64 });
   };
 
-  function conftable(conf) {
-    const rows = conf.map((conf, ind) => {
-      const classind = "org_dropdown_item-1";
-      return (
-        <li onClick={() => { setConf(conf); }} class={(classind)} >{conf.conferenceName}</li>
-      )
-    });
-    return (
-      <ul class="org_dropdown_menu org_dropdown_menu-2" style={{
-        position: "absolute",
-        top: "100%",
-        left: "0",
-        zIndex: "1000",
-        float: "left",
-        minWidth: "160px",
-        padding: "5px 0",
-        margin: "2px 0 0",
-        fontSize: "14px",
-        textAlign: "left",
-        listStyle: "none",
-        backgroundColor: "#fff",
-        WebkitBackgroundClip: "padding-box",
-        backgroundClip: "padding-box",
-        border: "1px solid #ccc",
-        borderRadius: "4px",
-        WebkitBoxShadow: "0 6px 12px rgba(0,0,0,.175)",
-        boxShadow: "0 6px 12px rgba(0,0,0,.175)",
-        WebkitBoxSizing: "border-box",
-        MozBoxSizing: "border-box",
-        boxSizing: "border-box",
-        WebkitFontSmoothing: "antialiased",
-        textShadow: "1px 1px 1px rgba(0,0,0,0.004)",
-        color: "#333",
-        WebkitTransition: "all 0.2s ease-in-out",
-        transition: "all 0.2s ease-in-out",
-        cursor: "pointer"
-
-      }}>
-        {rows}
-      </ul>
-    )
-  }
-
   return (
-    <div className="userProfileContainer">
-    <div className="UserProfileBodyCtn">
+    <div className="orgProfileContainer">
       <div className="org_box">
         <div className="org_profileBox">
-        <form onSubmit={handleSubmit} className="profileform">
+        <form onSubmit={handleSubmit} className="org_profileform">
             <label htmlFor="file-upload" className="custom-file-upload">
               {image ? (
                 <img
@@ -150,7 +126,7 @@ function OrgProfile() {
                 />
               ) : (
                 <img
-                  src={userimage}
+                  src={orgimage}
                   alt="Default profile picture"
                   className="org_profilePhoto"
                 />
@@ -240,8 +216,21 @@ function OrgProfile() {
         </div>
       }
     </div>
-    </div>
   );
+}
+
+//function convertToBase64
+function convertToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
 }
 
 export default OrgProfile;

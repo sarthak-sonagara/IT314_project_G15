@@ -7,9 +7,7 @@ import {
   AiOutlineLinkedin,
 } from "react-icons/ai";
 import userimage from "../../public/images/DAIICT.png";
-// var cn = require('classNames');
 
-import axios from "axios";
 const baseUrl = "http://localhost:3000";
 
 const c1 = {
@@ -117,111 +115,111 @@ function UserProfile() {
 
   return (
     <>
-    <div className="userProfileContainer">
-      <div className="box">
-        <div className="profileBox">
-          <form onSubmit={handleSubmit} className="profileform">
-            <label htmlFor="file-upload" className="custom-file-upload">
-              {image ? (
-                <img
-                  src={image}
-                  alt="Uploaded Profile picture"
-                  className="profilePhoto"
+      <div className="userProfileContainer">
+        <div className="box">
+          <div className="profileBox">
+            <form onSubmit={handleSubmit} className="profileform">
+              <label htmlFor="file-upload" className="custom-file-upload">
+                {image ? (
+                  <img
+                    src={image}
+                    alt="Uploaded Profile picture"
+                    className="profilePhoto"
+                  />
+                ) : (
+                  <img
+                    src={userimage}
+                    alt="Default profile picture"
+                    className="profilePhoto"
+                  />
+                )}
+
+              </label>
+              <span className="file-input btn btn-file">
+                <input
+                  className="choose-file btn btn-file"
+                  type="file"
+                  label="image"
+                  name="myFile"
+                  id="file-upload"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={(e) => handleFileUpload(e)}
                 />
-              ) : (
-                <img
-                  src={userimage}
-                  alt="Default profile picture"
-                  className="profilePhoto"
-                />
-              )}
-              
-            </label>
-            <span>
-            <input
-              className="choose-file"
-              type="file"
-              label="image"
-              name="myFile"
-              id="file-upload"
-              accept=".jpg, .jpeg, .png"
-              onChange={(e) => handleFileUpload(e)}
-            />
-            <button type="submit" className="upload-btn">Upload</button>
-            </span>
-          </form>
-          <div className="profileUserName">{user.username}</div>
-          <div className="role">{user.role}</div>
-          <hr class="h_line" />
-          <div className="profileEmail">
-            <span className="emailIcon">
-              <AiOutlineMail />
-            </span>
-            <a href={`mailto: ${user.email}`}>
-              {user.email}
-            </a>
-          </div>
-          <hr class="h_line" />
-          <div className="profileLinks">
-            <a href={user.instagram}>
-              <AiOutlineInstagram />
-            </a>
-            <a href={user.linkedIn}>
-              <AiOutlineLinkedin />
-            </a>
-          </div>
-        </div>
-        <div className="conferenceList">
-          <div className="header">Registered Conferences</div>
-          <div className="confTypes">
-            <div class="conferenceItem dropdown dropdown-2" onclick="try">
-              Past Conferences
-              {conftable(user.oldConfList)}
+                <button type="submit" className="upload-btn" style={{ boxShadow: "none" }}>Upload</button>
+              </span>
+            </form>
+            <div className="profileUserName">{user.username}</div>
+            <div className="role">{user.role}</div>
+            <hr class="h_line" />
+            <div className="profileEmail">
+              <span className="emailIcon">
+                <AiOutlineMail />
+              </span>
+              <a href={`mailto: ${user.email}`}>
+                {user.email}
+              </a>
             </div>
-            <div class="conferenceItem dropdown dropdown-2" onclick="try">
-              Upcoming Conferences
-              {conftable(user.newConfList)}
+            <hr class="h_line" />
+            <div className="profileLinks">
+              <a href={user.instagram}>
+                <AiOutlineInstagram />
+              </a>
+              <a href={user.linkedIn}>
+                <AiOutlineLinkedin />
+              </a>
             </div>
           </div>
+          <div className="conferenceList">
+            <div className="header">Registered Conferences</div>
+            <div className="confTypes">
+              <div class="conferenceItem dropdown dropdown-2" onclick="try">
+                Past Conferences
+                {conftable(user.oldConfList)}
+              </div>
+              <div class="conferenceItem dropdown dropdown-2" onclick="try">
+                Upcoming Conferences
+                {conftable(user.newConfList)}
+              </div>
+            </div>
+          </div>
         </div>
+        {isModalOpen && (
+          <div className="modalWindow">
+            <div className="modalBox" onClick={toggleModal}>
+              <table class="tg">
+                <tbody>
+                  <tr>
+                    <td class="tg-gseg">Name</td>
+                    <td class="tg-0lax">{currentConf.conferenceName}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">Start date</td>
+                    <td class="tg-0lax">{currentConf.startDate}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">End date</td>
+                    <td class="tg-0lax">{currentConf.endDate}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">Guest speakers</td>
+                    <td class="tg-0lax">
+                      {currentConf.guestSpeakers.toString()}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">Topics</td>
+                    <td class="tg-0lax">{currentConf.topics.toString()}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">Description</td>
+                    <td class="tg-0lax">{currentConf.description}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
-      {isModalOpen && (
-        <div className="modalWindow">
-          <div className="modalBox" onClick={toggleModal}>
-            <table class="tg">
-              <tbody>
-                <tr>
-                  <td class="tg-gseg">Name</td>
-                  <td class="tg-0lax">{currentConf.conferenceName}</td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">Start date</td>
-                  <td class="tg-0lax">{currentConf.startDate}</td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">End date</td>
-                  <td class="tg-0lax">{currentConf.endDate}</td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">Guest speakers</td>
-                  <td class="tg-0lax">
-                    {currentConf.guestSpeakers.toString()}
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">Topics</td>
-                  <td class="tg-0lax">{currentConf.topics.toString()}</td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">Description</td>
-                  <td class="tg-0lax">{currentConf.description}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-    </div>
     </>
   );
 }

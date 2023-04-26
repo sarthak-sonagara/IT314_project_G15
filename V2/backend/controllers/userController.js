@@ -8,7 +8,6 @@ const createToken = (id) => {
   });
 };
 
-
 const signupUser = async (req, res) => {
   const { username, email, password, role } = req.body;
   User.signup(username, email, password, role)
@@ -49,7 +48,6 @@ const updateUser = async (req, res) => {
 };
 
 const updateUserProfile = async (req, res) => {
-
   const id = req.params.id;
 
   User.updateUserProfile(req)
@@ -59,7 +57,6 @@ const updateUserProfile = async (req, res) => {
       });
     })
     .catch((error) => res.status(400).json({ error: error.message }));
-
 };
 
 const getUserById = async (req, res) => {
@@ -124,6 +121,29 @@ const removeProfilePic = async (req, res) => {
     .catch((error) => res.status(400).json({ error: error.message }));
 };
 
+const uploadPaper = async (req, res) => {
+  const { title, conferenceId } = req.body;
+  console.log(req);
+  // const { filename } = req.file;
+
+  // const paper = {
+  //   title,
+  //   fileUrl: `http://localhost:3000/uploads/${filename}`,
+  //   conference: conferenceId,
+  // };
+
+  // const publisher = await User.findById(req.user.id);
+
+  // if (!publisher) {
+  //   return res.status(404).json({ error: "Publisher not found" });
+  // }
+
+  // // add paper to publisher
+  // publisher.papers.push(paper);
+  // await publisher.save();
+  // res.status(200).json({ publisher });
+};
+
 module.exports = {
   signupUser,
   loginUser,
@@ -134,5 +154,6 @@ module.exports = {
   deleteUser,
   uploadProfilePicture,
   getProfilePic,
-  removeProfilePic
+  removeProfilePic,
+  uploadPaper,
 };

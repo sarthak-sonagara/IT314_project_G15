@@ -1,4 +1,4 @@
-.userProfileContainer {
+.orgProfileContainer {
   --backColor: #452dc0;
   /* aane dark color rakhvo. */
   --frontMainColor: #f5f5f5;
@@ -47,13 +47,12 @@
 
   /* margin-top: 20px; */
   /* justify-content: space-between; */
-
+  padding: 0px 20px;
   flex-direction: column;
+  
   /* align-items: center; */
   /* width: 200px; */
-  padding: 30px 20px;
-
-  gap: 20px;
+  
 }
 
 .upload-btn {
@@ -75,7 +74,7 @@
   margin: 20px auto;
 }
 
-.profileform {
+.org_profileform {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,7 +177,10 @@ a {
   background-color: var(--frontMainColor);
   width: 100%;
   color: var(--backColor);
-  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
   font-size: 30px;
 }
 
@@ -250,6 +252,7 @@ a {
 }
 
 .org_dropdown_menu li {
+  margin: 0 0 0 -5px;
   display: none;
   color: var(--backColor);
   background-color: var(--frontMainColor);
@@ -267,14 +270,14 @@ a {
 }
 
 .org_dropdown_menu-2 .org_dropdown_item-1 {
-  width: 107%;
+  width: 95%;
   animation: rotateX 300ms 60ms ease-in-out forwards;
-  word-wrap: break-word;
-  /* padding-top: 5px; */
+  word-wrap:break-word;
+  padding-top: 5px;
 }
 
 .org_dropdown_menu-2 .org_dropdown_item-2 {
-  /* transform-origin: top center; */
+  transform-origin: top center;
   animation: rotateX 300ms 120ms ease-in-out forwards;
 }
 
@@ -443,39 +446,42 @@ a {
 .tg {
   border-collapse: collapse;
   border-spacing: 0;
-  /* height: 350px; */
+  height: 350px;
 }
 
 .tg td {
-  border-color: white;
-  /* border-style: solid; */
-  /* border-width: 1px; */
   font-family: Arial, sans-serif;
   font-size: 14px;
-  /* font coloe */
   overflow: hidden;
+  padding: 10px;
   word-break: normal;
 }
 
 .tg th {
-  border-color: whitesmoke;
-  /* border-style: solid; */
-  /* border-width: 1px; */
   font-family: Arial, sans-serif;
   font-size: 14px;
   font-weight: normal;
   overflow: hidden;
+  padding: 10px 10px;
   word-break: normal;
 }
 
 .tg .tg-gseg {
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   background-color: var(--backColor);
   color: var(--frontMainColor);
   text-align: left;
+  vertical-align: middle;
+  font-weight: bold;
 }
 
 .tg .tg-0lax {
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   background-color: var(--frontMainColor);
-  color: black;
+  color: var(--backColor);
   text-align: left;
+  vertical-align: middle;
 }

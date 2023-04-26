@@ -16,13 +16,13 @@ const AdminLogin = () => {
   };
   return (
     <>
-    <div className="login-screen-ctn">
+      <div className="login-screen-ctn">
         <div className="admin-login-container">
           <div className="admin-login-ctn">
             <b
               style={{
                 fontSize: 25,
-                color: "var(--menu-bg-color)",
+                color: "var(--secondary-color)",
                 marginBottom: 15,
               }}
             >
@@ -58,16 +58,38 @@ const AdminLogin = () => {
                 type="submit"
                 className="input-btn"
                 style={{
-                  backgroundColor: "var(--menu-bg-color)",
+                  backgroundColor: "var(--secondary-color)",
                   border: "none",
                 }}
                 disabled={isLoading}
               >
                 Submit
               </button>
+              <Link
+                className="input-btn"
+                style={{
+                  backgroundColor: "var(--menu-bg-color)",
+                  border: "none",
+                  color: "#fff",
+                  float: "right",
+                }}
+                to={"/"}
+              >
+                Home
+              </Link>
               <br />
               <Link to="/password-reset">
-                <p style={{padding: "0", color: "var(--primary-color)", background: "none", marginTop: "10px", marginLeft: "2px"}}>Forgot Password ?</p>
+                <p
+                  style={{
+                    padding: "0",
+                    color: "var(--primary-color)",
+                    background: "none",
+                    marginTop: "10px",
+                    marginLeft: "2px",
+                  }}
+                >
+                  Forgot Password ?
+                </p>
               </Link>
               {error && <div className="error text-danger">{error}</div>}
             </form>
@@ -75,7 +97,7 @@ const AdminLogin = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default AdminLogin
+export default AdminLogin;

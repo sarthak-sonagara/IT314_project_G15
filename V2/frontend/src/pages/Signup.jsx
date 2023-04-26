@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/CSS/style.css";
 
 import { useSignup } from "../hooks/useSignup";
@@ -11,6 +11,10 @@ const Signup = () => {
   const [role, setRole] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { signup, isLoading, error } = useSignup();
+
+  useEffect(() => {
+    document.title = "User Signup";
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,7 +90,7 @@ const Signup = () => {
             <b
               style={{
                 fontSize: 25,
-                color: "var(--menu-bg-color)",
+                color: "var(--secondary-color)",
                 marginBottom: 15,
               }}
             >
@@ -133,7 +137,7 @@ const Signup = () => {
                     id="flexRadioDefault1"
                     style={{
                       cursor: "pointer",
-                      accentColor: "var(--menu-bg-color)",
+                      accentColor: "var(--secondary-color)",
                     }}
                     onChange={(e) => setRole(e.target.value)}
                     value="publisher"
@@ -155,7 +159,7 @@ const Signup = () => {
                     defaultChecked=""
                     style={{
                       cursor: "pointer",
-                      accentColor: "var(--menu-bg-color)",
+                      accentColor: "var(--secondary-color)",
                     }}
                     onChange={(e) => setRole(e.target.value)}
                     required
@@ -198,7 +202,7 @@ const Signup = () => {
                 type="submit"
                 className="input-btn"
                 style={{
-                  backgroundColor: "var(--menu-bg-color)",
+                  backgroundColor: "var(--secondary-color)",
                   border: "none",
                 }}
                 disabled={isLoading}

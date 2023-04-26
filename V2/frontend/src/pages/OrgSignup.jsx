@@ -13,8 +13,8 @@ const OrgSignup = () => {
   const { orgSignup, isLoading, error } = useSignup();
 
   useEffect(() => {
-    console.log("orgname", orgname);
-  }, [orgname]);
+    document.title = "Organization Signup";
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,7 +93,7 @@ const OrgSignup = () => {
             <b
               style={{
                 fontSize: 25,
-                color: "var(--menu-bg-color)",
+                color: "var(--secondary-color)",
                 marginBottom: 15,
               }}
             >
@@ -153,7 +153,7 @@ const OrgSignup = () => {
                 type="submit"
                 className="input-btn"
                 style={{
-                  backgroundColor: "var(--menu-bg-color)",
+                  backgroundColor: "var(--secondary-color)",
                   border: "none",
                 }}
               >

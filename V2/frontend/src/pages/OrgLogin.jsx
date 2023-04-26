@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/CSS/style.css";
 import { Link } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
@@ -6,8 +6,11 @@ import { useLogin } from "../hooks/useLogin";
 const OrgLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const { orgLogin, error, isLoading } = useLogin();
+
+  useEffect(() => {
+    document.title = "Organization Login";
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,7 +80,7 @@ const OrgLogin = () => {
             <b
               style={{
                 fontSize: 25,
-                color: "var(--menu-bg-color)",
+                color: "var(--secondary-color)",
                 marginBottom: 15,
               }}
             >
@@ -114,7 +117,7 @@ const OrgLogin = () => {
                 type="submit"
                 className="input-btn"
                 style={{
-                  backgroundColor: "var(--menu-bg-color)",
+                  backgroundColor: "var(--secondary-color)",
                   border: "none",
                 }}
                 disabled={isLoading}
