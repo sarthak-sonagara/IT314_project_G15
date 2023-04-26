@@ -68,7 +68,7 @@ const AdminLogin = () => {
               <Link
                 className="input-btn"
                 style={{
-                  backgroundColor: "var(--menu-bg-color)",
+                  backgroundColor: "var(--primary-color)",
                   border: "none",
                   color: "#fff",
                   float: "right",

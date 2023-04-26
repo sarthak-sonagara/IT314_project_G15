@@ -65,10 +65,10 @@ const userSchema = new mongoose.Schema({
     {
       title: String,
       fileUrl: String,
-      // conference: {
-      //   type: mongoose.Schema.Types.ObjectId,
-      //   ref: "Conference",
-      // },
+      conference: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Conference",
+      },
     },
   ],
 });

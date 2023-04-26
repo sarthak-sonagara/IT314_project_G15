@@ -7,6 +7,7 @@ import {
   AiOutlineLinkedin,
 } from "react-icons/ai";
 import userimage from "../../public/images/DAIICT.png";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const c1 = {
   conferenceName: "Adbhut Conference",
@@ -17,18 +18,24 @@ const c1 = {
   description: "aa to atyant sundar confereence chhe. khub khub abhar.",
 };
 
-const user = {
-  username: "Narayan",
-  email: "shree_hari@gmail.com",
-  password: "xyz",
-  role: "attendee",
-  oldConfList: [c1, c1, c1, c1, c1, c1, c1],
-  newConfList: [c1, c1, c1, c1, c1, c1, c1],
-  linkedIn: "https://www.linkedin.com/in/narayan-0b1b1b1b1/",
-  instagram: "https://www.insta.com/narayan",
-};
+// const user = {
+//   username: "Narayan",
+//   email: "shree_hari@gmail.com",
+//   password: "xyz",
+//   role: "attendee",
+//   oldConfList: [c1, c1, c1, c1, c1, c1, c1],
+//   newConfList: [c1, c1, c1, c1, c1, c1, c1],
+//   linkedIn: "https://www.linkedin.com/in/narayan-0b1b1b1b1/",
+//   instagram: "https://www.insta.com/narayan",
+// };
 
 function UserProfile() {
+  const { user } = useAuthContext();
+  const [userData] = useState(user.user);
+  const [allConferences, setAllConferences] = useState([]);
+  const [pastConferences, setPastConferences] = useState([]);
+  const [upcomoingConferences, setUpcomingConferences] = useState([]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentConf, setCurrentConf] = useState("");
 
@@ -40,6 +47,9 @@ function UserProfile() {
     setCurrentConf(confName);
     setIsModalOpen(true);
   };
+
+  const [postImage, setPostImage] = useState({ myFile: "" });
+  const [image, setImage] = useState([]);
 
   function conftable(conf) {
     const rows = conf.map((conf, ind) => {
@@ -57,13 +67,26 @@ function UserProfile() {
     return <ul class="dropdown_menu dropdown_menu-2">{rows}</ul>;
   }
 
-  const [postImage, setPostImage] = useState({ myFile: "" });
-  const [image, setImage] = useState([]);
-
   useEffect(() => {
     getImage();
-  }, []);
+    fetch("http://localhost:3000/org/all")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllConferences(data.conferences);
+      });
 
+    setPastConferences(
+      allConferences
+        .filter((conference) => new Date(conference.endDate) < new Date())
+        .sort((a, b) => new Date(b.endDate) - new Date(a.endDate))
+    );
+
+    setUpcomingConferences(
+      allConferences
+        .filter((conference) => new Date(conference.startDate) >= new Date())
+        .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+    );
+  }, []);
 
   function getImage() {
     // for now passed hard coded value
@@ -131,7 +154,6 @@ function UserProfile() {
                     className="profilePhoto"
                   />
                 )}
-
               </label>
               <span className="file-input btn btn-file">
                 <input
@@ -143,26 +165,30 @@ function UserProfile() {
                   accept=".jpg, .jpeg, .png"
                   onChange={(e) => handleFileUpload(e)}
                 />
-                <button type="submit" className="upload-btn" style={{ boxShadow: "none" }}>Upload</button>
+                <button
+                  type="submit"
+                  className="upload-btn"
+                  style={{ boxShadow: "none" }}
+                >
+                  Upload
+                </button>
               </span>
             </form>
             <div className="profileUserName">{user.username}</div>
-            <div className="role">{user.role}</div>
+            <div className="role">{userData.role}</div>
             <hr class="h_line" />
             <div className="profileEmail">
               <span className="emailIcon">
                 <AiOutlineMail />
               </span>
-              <a href={`mailto: ${user.email}`}>
-                {user.email}
-              </a>
+              <a href={`mailto: ${userData.email}`}>{userData.email}</a>
             </div>
             <hr class="h_line" />
             <div className="profileLinks">
-              <a href={user.instagram}>
+              <a href={userData.instagram}>
                 <AiOutlineInstagram />
               </a>
-              <a href={user.linkedIn}>
+              <a href={userData.linkedIn}>
                 <AiOutlineLinkedin />
               </a>
             </div>
@@ -172,11 +198,11 @@ function UserProfile() {
             <div className="confTypes">
               <div class="conferenceItem dropdown dropdown-2" onclick="try">
                 Past Conferences
-                {conftable(user.oldConfList)}
+                {conftable(pastConferences)}
               </div>
               <div class="conferenceItem dropdown dropdown-2" onclick="try">
                 Upcoming Conferences
-                {conftable(user.newConfList)}
+                {conftable(upcomoingConferences)}
               </div>
             </div>
           </div>
