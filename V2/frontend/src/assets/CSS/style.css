@@ -518,34 +518,52 @@
 }
 
 
-/* Organization */
+/* --------------------------------Organization----------------------- */
 .org-outer {
-  background-color: hwb(0 96% 4%);
   display: flex;
-  width: 100%;
-  min-height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: max-content;
+  height: max-content;
   justify-content: center;
-  align-items: center;
   scroll-behavior: auto;
+  background-color: rgb(223, 227, 231);
+  padding-top: 1rem;
+  padding-bottom: 3rem;
 }
 
-
 .org-container {
-  /* width: 100vw;
-  height: 100vh; */
   display: flex;
   justify-content: center;
-  background-color: rgb(223, 227, 231);
   padding-top: 60px;
+  height: max-content;
+  width: max-content;
+  margin: 1.5rem;
+}
+
+.org-text-ctn {
+  display: flex;
+  position: fixed;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100vw;
+  width: max-content;
+  padding: 10px;
+  z-index: 50;
+  background-color: rgb(223, 227, 231);
 }
 
 .org-content-ctn {
-  width: 1300px;
+  min-width: 1200px;
   padding: 10px;
   padding: 10px 20px;
   border-radius: 0.75rem;
   border: 1px #898e92;
   border-style: dashed;
+  height: max-content;
+  margin-top: 2rem;
+  width: max-content;
 }
 
 
@@ -620,3 +638,9 @@ button {
 
 
 @media screen and (max-width: 1200px) {}
+
+@media screen and (max-width: 1000px) {
+  .org-outer {
+    justify-content: initial;
+  }
+}
