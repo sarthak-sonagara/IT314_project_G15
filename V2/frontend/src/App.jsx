@@ -16,6 +16,7 @@ import UserDashboard from "./pages/UserDashboard";
 import Choice from "./pages/choice";
 import UserProfile from "./pages/UserProfile";
 import OrgProfile from "./pages/OrgProfile";
+import TestUpload from "./pages/TestUpload";
 
 function App() {
   const { user, org } = useAuthContext(); // will be used to provide functionality of private routes
@@ -99,9 +100,8 @@ function App() {
             path="/profile"
           />
           <Route element={<PasswordReset />} path="/password-reset" />
-          {/* Oragnization  */}
-          <Route element={<TimeLine />} path="/timeline" />
-          {/* <Route element={<TimeLineTest />} path="/timeline" /> */}
+
+          <Route element={<TestUpload />} path="test-upload" />
         </Routes>
       </BrowserRouter>
     </>
