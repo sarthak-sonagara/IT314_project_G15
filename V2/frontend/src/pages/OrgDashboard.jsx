@@ -14,7 +14,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
 
-
 const OrgDashboard = () => {
   const { user, org } = useAuthContext();
   const [orgName, setorgName] = useState("");
@@ -31,7 +30,6 @@ const OrgDashboard = () => {
     setorgName(data.org.orgname);
   };
   fetchOrgsFromEmail();
-
 
   const handleClose = () => {
     setShow(false);
@@ -148,7 +146,9 @@ const OrgDashboard = () => {
   };
 
   const fetchUsers = async () => {
-    const res = await fetch("http://localhost:3000/auth/org/" + myid + "/myconferences");
+    const res = await fetch(
+      "http://localhost:3000/auth/org/" + myid + "/myconferences"
+    );
     const data = await res.json();
     console.log("This are Users:", data);
     $(document).ready(function () {
@@ -177,77 +177,72 @@ const OrgDashboard = () => {
         ],
       });
       // Handle Edit button click
-    $("#example tbody").on("click", ".edit-btn", function () {
-      console.log("edit");
-      let td = $(this).closest("tr").find("td:eq(0)");
-      // let id = table.row(td).data();
-      if (table.cell(td).data()) {
-        // console.log(table.cell(td).data());
-        Seteditid(table.cell(td).data());
-        // console.log(editid);
-        td = $(this).closest("tr").find("td:eq(1)");
-        Seteditname(table.cell(td).data());
-        td = $(this).closest("tr").find("td:eq(2)");
-        Seteditdesc(table.cell(td).data());
-        td = $(this).closest("tr").find("td:eq(3)");
+      $("#example tbody").on("click", ".edit-btn", function () {
+        console.log("edit");
+        let td = $(this).closest("tr").find("td:eq(0)");
+        // let id = table.row(td).data();
+        if (table.cell(td).data()) {
+          // console.log(table.cell(td).data());
+          Seteditid(table.cell(td).data());
+          // console.log(editid);
+          td = $(this).closest("tr").find("td:eq(1)");
+          Seteditname(table.cell(td).data());
+          td = $(this).closest("tr").find("td:eq(2)");
+          Seteditdesc(table.cell(td).data());
+          td = $(this).closest("tr").find("td:eq(3)");
 
-        // change date format
-        function format(input) {
-          var datePart = input.match(/\d+/g),
-            year = datePart[0].substring(0), // get only two digits
-            month = datePart[1],
-            day = datePart[2];
-          return year + "-" + month + "-" + day;
+          // change date format
+          function format(input) {
+            var datePart = input.match(/\d+/g),
+              year = datePart[0].substring(0), // get only two digits
+              month = datePart[1],
+              day = datePart[2];
+            return year + "-" + month + "-" + day;
+          }
+          Seteditstartdate(format(table.cell(td).data()));
+          td = $(this).closest("tr").find("td:eq(4)");
+          Seteditenddate(format(table.cell(td).data()));
+          console.log(editenddate);
+          td = $(this).closest("tr").find("td:eq(5)");
+          Seteditguestspeaker(table.cell(td).data());
+          td = $(this).closest("tr").find("td:eq(6)");
+          Setedittopic(table.cell(td).data());
         }
-        Seteditstartdate(format(table.cell(td).data()));
-        td = $(this).closest("tr").find("td:eq(4)");
-        Seteditenddate(format(table.cell(td).data()));
-        console.log(editenddate);
-        td = $(this).closest("tr").find("td:eq(5)");
-        Seteditguestspeaker(table.cell(td).data());
-        td = $(this).closest("tr").find("td:eq(6)");
-        Setedittopic(table.cell(td).data());
-      }
-      // let rowData = table.row(tr).data();
-      // console.log("Edit row data:", id);
+        // let rowData = table.row(tr).data();
+        // console.log("Edit row data:", id);
 
-      handleShowEdit();
+        handleShowEdit();
+      });
+      // Handle Delete button click
+      $("#example tbody").on("click", ".delete-btn", function () {
+        let td = $(this).closest("tr").find("td:eq(0)");
+        // let id = table.row(td).data();
+        if (table.cell(td).data()) {
+          Seteditid(table.cell(td).data());
+        }
+        handleShowDelete();
+      });
     });
-    // Handle Delete button click
-          $("#example tbody").on("click", ".delete-btn", function () {
-            let td = $(this).closest("tr").find("td:eq(0)");
-            // let id = table.row(td).data();
-            if (table.cell(td).data()) {
-              Seteditid(table.cell(td).data());
-            }
-            handleShowDelete();
-          });
-    });
-    
   };
   fetchUsers();
 
-
   return (
     <>
-      <div className="org-outer">
+      <div className="org-text-ctn">
+        <h1 style={{}}>{orgName}</h1>
         <Button
           variant="primary"
           onClick={handleShow}
           style={{
             height: "50px",
-            position: "absolute",
-            right: "20px",
-            top: "5px",
-            width: "200px",
+            width: "10rem",
             borderRadius: "10px",
           }}
         >
           Add Conference
         </Button>
-
-        
-
+      </div>
+      <div className="org-outer">
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>New Conference</Modal.Title>
@@ -291,15 +286,6 @@ const OrgDashboard = () => {
         </Modal>
 
         <div className="org-container">
-          <h1
-            style={{
-              position: "absolute",
-              top: "5px",
-            }}
-          >
-            {orgName}
-          </h1>
-
           <div className="org-content-ctn">
             <table id="example" className="display">
               <thead>
@@ -453,19 +439,19 @@ const OrgDashboard = () => {
               <Modal.Header closeButton>
                 <Modal.Title>Are you really want to delete it?</Modal.Title>
               </Modal.Header>
-              
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={hide}>
-                    Cancel
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="danger"
-                    onClick={handleCloseDelete}
-                  >
-                    Delete
-                  </Button>
-                </Modal.Footer>
+
+              <Modal.Footer>
+                <Button variant="secondary" onClick={hide}>
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="danger"
+                  onClick={handleCloseDelete}
+                >
+                  Delete
+                </Button>
+              </Modal.Footer>
             </Modal>
           </>
         </div>
