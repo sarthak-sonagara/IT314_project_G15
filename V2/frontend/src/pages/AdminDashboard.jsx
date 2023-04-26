@@ -37,7 +37,7 @@ const AdminDashboard = () => {
             {
               data: null,
               defaultContent:
-                '<div style="display:flex"><button class="btn btn-primary edit-btn" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn">Delete</button></div>',
+                '<div style="display:flex"><button class="btn btn-primary edit-btn" id="adm-dashboard-button-size" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn" id="adm-dashboard-button-size">Delete</button></div>',
             },
           ],
         });
@@ -92,42 +92,30 @@ const AdminDashboard = () => {
           <p
             style={{ padding: "0", margin: "0" }}
             className="adm-left-nav-ctn-text"
-          >
-            <button
-              className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+            className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
               onClick={() => toggleTab(1)}
-              style={{ width: "100%", height: "100%" }}
-            >
+          >
               Admin
-            </button>
           </p>
         </div>
         <div className="admin-nav-left-sub-ctn">
           <p
             style={{ padding: "0", margin: "0" }}
             className="user-left-nav-ctn-text"
-          >
-            <button
-              className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+            className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
               onClick={() => toggleTab(2)}
-              style={{ width: "100%", height: "100%" }}
-            >
+          >
               Users
-            </button>
           </p>
         </div>
         <div className="admin-nav-left-sub-ctn">
           <p
             style={{ padding: "0", margin: "0" }}
             className="org-left-nav-ctn-text"
-          >
-            <button
-              className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+            className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
               onClick={() => toggleTab(3)}
-              style={{ width: "100%", height: "100%" }}
-            >
+          >
               Organizations
-            </button>
           </p>
         </div>
       </div>

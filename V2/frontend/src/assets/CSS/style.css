@@ -599,12 +599,13 @@
 
 .active-tabs {
   color: var(--primary-color);
+  font-weight: bold;
   /* border-bottom: 1px solid transparent; */
 }
 
 .active-tabs::before {
   content: "";
-  display: block;
+  display: none;
   position: absolute;
   /* top: 0px; */
   bottom: -5px;
@@ -642,5 +643,60 @@ button {
 @media screen and (max-width: 1000px) {
   .org-outer {
     justify-content: initial;
+  }
+  .admin-nav-left-span {
+    width: 220px;
+    left: 7px;
+  }
+
+  .admin-container {
+    font-size: 12px;
+    width: max-content;
+    min-width: 100vw;
+  }
+
+  .admin-nav-left-sub-ctn {
+    font-size:  14px;
+  }
+  .admin-nav-right-logout-span{
+    font-size: 14px;
+    right: 7px;
+  }
+  #adm-dashboard-button-size {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    font-size: 10px;
+    width: 50px;
+  }
+  .admin-content-ctn {
+    width: max-content;
+    min-width: 75vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .admin-nav-left-span {
+    width: 200px;
+    left: 3px;
+  }
+  .admin-container{
+    font-size: 10px;
+    width: max-content;
+  }
+
+  .admin-nav-left-sub-ctn {
+    font-size:  12px;
+  }
+  .admin-nav-right-logout-span{
+    font-size: 12px;
+    right: 3px;
+  }
+  #adm-dashboard-button-size {
+    display: flex;
+    align-items: center;
+    height: 21px;
+    font-size: 7px;
+    width: 40px;
   }
 }
