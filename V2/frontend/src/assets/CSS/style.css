@@ -45,6 +45,14 @@
   display: flex;
   /* justify-content: space-around; */
   align-items: center;
+  z-index: 15;
+}
+
+.global-nav-logo-text {
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .search-input {
@@ -133,9 +141,9 @@
   /* width: auto; */
   display: flex;
   position: absolute;
-  right: 10px;
+  right: 0px;
   align-items: center;
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 .user-icon-container,
@@ -380,6 +388,15 @@
   border: 1.5px solid var(--bg-color);
 }
 
+.nav-optional-btn {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 0.875rem;
+  padding: 5px 15px;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.375rem;
+}
+
 .choice-btn {
   display: inline-block;
   font-weight: 400;
@@ -616,6 +633,7 @@
 }
 
 .tabs {
+  width: max-content;
   padding: 5px;
   text-align: center;
   width: 50%;
@@ -625,6 +643,7 @@
   outline: none;
   border: none;
   background: none;
+  font-weight: bold;
 }
 
 .tabs:not(:last-child) {
@@ -633,7 +652,7 @@
 
 .active-tabs {
   color: var(--primary-color);
-  font-weight: bold;
+
   /* border-bottom: 1px solid transparent; */
 }
 
@@ -671,10 +690,30 @@ button {
   flex-direction: column;
 }
 
+#ctn-of-HomeConf {
+  padding-left: 85px;
+}
+
 @media screen and (max-width: 1200px) {
 }
 
 @media screen and (max-width: 1000px) {
+  #logo-ctn {
+    font-size: 10px;
+    padding-left: 9px;
+  }
+  .global-nav-logo-icon {
+    width: 27px;
+    height: 27px;
+  }
+  .icons-container {
+    margin-right: 11px;
+  }
+  .nav-optional-btn {
+    font-size: 10px;
+    margin-right: 5px;
+  }
+
   .org-outer {
     justify-content: initial;
   }
@@ -706,7 +745,7 @@ button {
   }
   .admin-content-ctn {
     width: max-content;
-    min-width: 75vw;
+    min-width: 80vw;
   }
   .addButtonInAdminDashBoardCtn {
     position: inherit;
@@ -726,9 +765,60 @@ button {
   .addButtonInAdminDashBoardTxt {
     display: inherit;
   }
+
+  /* Home Conf */
+  #ctn-of-HomeConf {
+    font-size: 12px;
+    padding-left: 75px;
+  }
+  #ctn-of-HomeConf-rg-btn {
+    font-size: 12px;
+  }
+  .global-nav-logo-text {
+    font-size: 15px;
+  }
+  .login-container {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .left-login-ctn {
+    width: 70%;
+    margin-bottom: 10px;
+  }
+  .right-login-ctn {
+    width: 70%;
+  }
+
 }
 
 @media screen and (max-width: 600px) {
+  .global-nav-search-bar {
+    display: none;
+  }
+  .left-close-container {
+    width: 100vw;
+  }
+  #logo-ctn {
+    font-size: 10px;
+    padding-left: 5px;
+    width: 70px;
+  }
+  .global-nav-logo-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .nav-optional-btn {
+    font-size: 8px;
+    margin-right: 5px;
+  }
+  .icons-container {
+    margin-right: 9px;
+  }
+  .left-login-ctn {
+    display: none;
+  }
   .admin-nav-left-span {
     width: 200px;
     left: 3px;
@@ -743,7 +833,8 @@ button {
   }
   .admin-nav-right-logout-span {
     font-size: 12px;
-    right: 3px;
+    right: 7px;
+    width: max-content;
   }
   #adm-dashboard-button-size {
     display: flex;
@@ -768,5 +859,21 @@ button {
   }
   .addButtonInAdminDashBoardTxt {
     display: inherit;
+  }
+  /* Home Conf */
+  #ctn-of-HomeConf {
+    font-size: 10px;
+  }
+  #ctn-of-HomeConf-rg-btn {
+    font-size: 10px;
+  }
+  .global-nav-logo-text {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .admin-nav-right-logout-span-txt {
+    display: none;
   }
 }

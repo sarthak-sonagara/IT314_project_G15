@@ -76,7 +76,7 @@ const Navbar = () => {
               />
             </defs>
           </svg>
-          <h5 style={{ padding: "0px", margin: 0, fontWeight: "600" }}>CMS</h5>
+          <p style={{  }} className="global-nav-logo-text">CMS</p>
         </div>
         <div className="global-nav-search-bar">
           <FontAwesomeIcon
@@ -96,18 +96,11 @@ const Navbar = () => {
         </div>
         {!user && !org ? (
           <div className="icons-container" style={{ width: "auto" }}>
-            <Link to="/choice" style={{ marginRight: "1.2rem" }}>
+            <Link to="/choice" style={{ marginRight: "1.0.5rem" }}>
               <button
                 type="submit"
-                className="nav-optional-btn"
-                style={{
-                  color: "var(--primary-color)",
-                  fontWeight: "bold",
-                  fontSize: "0.875rem",
-                  padding: "5px 15px",
-                  border: "1px solid var(--primary-color)",
-                  borderRadius: "0.375rem",
-                }}
+                className="nav-optional-btn" style={{color: "var(--primary-color)",
+                border: "1px solid var(--primary-color)"}}
               >
                 SIGNUP
               </button>
@@ -119,11 +112,7 @@ const Navbar = () => {
                 style={{
                   color: "var(--nav-bg-color)",
                   border: "2px solid var(--nav-bg-color)",
-                  fontWeight: "bold",
-                  fontSize: "0.875rem",
                   backgroundColor: "var(--secondary-color)",
-                  padding: "5px 15px",
-                  borderRadius: "0.375rem",
                 }}
               >
                 LOGIN
