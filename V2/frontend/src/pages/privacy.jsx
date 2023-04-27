@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/Navbar";
-import '../assets/CSS/privacy.css';
+import "../assets/CSS/privacy.css";
 const Privacy = () => {
+  useEffect(() => {
+    document.title = "Privacy Policy";
+  }, []);
+
   return (
     <>
       <Navbar />

@@ -8,11 +8,11 @@ const fs = require("fs");
 const { google } = require("googleapis");
 const Multer = require("multer");
 const { JWT } = require("google-auth-library");
-const request = require("request");
 
 const userRoutes = require("./routes/userRoutes");
 const orgRoutes = require("./routes/orgRoutes");
 const conferenceRoutes = require("./routes/conferenceRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
 const User = require("./models/user");
 
 const corsOptions = {
@@ -99,6 +99,7 @@ app.use((req, res, next) => {
 app.use("/auth/user", userRoutes);
 app.use("/auth/org", orgRoutes);
 app.use("/org", conferenceRoutes);
+app.use("/upload", uploadRoutes);
 
 app.post("/upload/", multer.single("file"), async (req, res) => {
   const { email, confid } = req.query;

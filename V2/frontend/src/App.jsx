@@ -76,15 +76,7 @@ function App() {
             path="/org-signup"
           />
           <Route
-            element={
-              user ? (
-                <UserDashboard />
-              ) : org ? (
-                <OrgDashboard />
-              ) : (
-                <Navigate to="/choice" />
-              )
-            }
+            element={org ? <OrgDashboard /> : <Navigate to="/choice" />}
             path="/dashboard"
           />
 
