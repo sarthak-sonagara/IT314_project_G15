@@ -37,7 +37,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="global-nav-bar">
-        <Link className="logo-container" id="logo-ctn">
+        <Link className="logo-container" id="logo-ctn" to='/'>
           <svg
             className="global-nav-logo-icon"
             width="262.667"
