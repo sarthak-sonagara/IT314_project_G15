@@ -72,7 +72,26 @@ const OrgDashboard = () => {
       alert("Start date cannot be less than today's date");
       return;
     }
-    
+    function d_y(input) {
+      var datePart = input.match(/\d+/g),
+        year = datePart[0].substring(0), // get only two digits
+        month = datePart[1],
+        day = datePart[2];
+      return year;
+    }
+    var y1 = d_y(start_date);
+    var y2 = d_y(end_date);
+    if(!(y1>=2022 && y1<=2050)){
+      alert("Please enter a valid year in start date");
+      console.log(y1);
+      return;
+    }
+    if(!(y2>=2022 && y2<=2050)){
+      alert("Please enter a valid year in start date");
+      return;
+    }
+
+
 
 
 
@@ -141,8 +160,47 @@ const OrgDashboard = () => {
     for (let i = 0; i < topic.length; i++) {
       topic[i] = topic[i].trim();
     }
+    if(conf_name === "" ){
+      alert("Please fill conference name");
+      return;
+    }
+    if(desc === "" ){
+      alert("Please fill description");
+      return;
+    }
+    if(start_date === "" ){
+      alert("Please fill start date");
+      return;
+    }
+    if(end_date === "" ){
+      alert("Please fill end date");
+      return;
+    }
+
     if (start_date > end_date) {
       alert("Start date cannot be greater than end date");
+      return;
+    }
+    if(start_date < new Date().toISOString().split('T')[0]){
+      alert("Start date cannot be less than today's date");
+      return;
+    }
+    function d_y(input) {
+      var datePart = input.match(/\d+/g),
+        year = datePart[0].substring(0), // get only two digits
+        month = datePart[1],
+        day = datePart[2];
+      return year;
+    }
+    var y1 = d_y(start_date);
+    var y2 = d_y(end_date);
+    if(!(y1>=2022 && y1<=2050)){
+      alert("Please enter a valid year in start date");
+      console.log(y1);
+      return;
+    }
+    if(!(y2>=2022 && y2<=2050)){
+      alert("Please enter a valid year in start date");
       return;
     }
     fetch("http://localhost:3000/org/edit/", {
