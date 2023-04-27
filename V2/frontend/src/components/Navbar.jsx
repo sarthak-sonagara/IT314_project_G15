@@ -37,7 +37,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="global-nav-bar">
-        <div className="logo-container" id="logo-ctn">
+        <Link className="logo-container" id="logo-ctn">
           <svg
             className="global-nav-logo-icon"
             width="262.667"
@@ -79,7 +79,7 @@ const Navbar = () => {
           <p style={{}} className="global-nav-logo-text">
             CMS
           </p>
-        </div>
+        </Link>
         {!user && !org ? (
           <div className="icons-container" style={{ width: "auto" }}>
             <Link to="/choice" style={{ marginRight: "1.0.5rem" }}>
@@ -156,16 +156,12 @@ const Navbar = () => {
                 </Dropdown>
               </div>
             </div>
-            <div className="notification-icon-container">
-              {/* <img class="notification-icon" src="./assests/bell.png" alt="" /> */}
-              <FontAwesomeIcon icon={faBell} />
-            </div>
           </div>
         )}
       </nav>
       {/* -------------------------------------------------------------- */}
       <div className="left-container" id="left-container">
-      <FontAwesomeIcon icon={faBars} className="menu-icons menu-icon" />
+        <FontAwesomeIcon icon={faBars} className="menu-icons menu-icon" />
         <div className="left-sub-container" id="left-sub-container">
           <h6 className="menu-text-ctn">
             <p className="menu-texts" id="menu-text">
@@ -203,21 +199,6 @@ const Navbar = () => {
               <p className="menu-texts">CALL FOR PAPER</p>
             </Link>
           )}
-          {/* <div className="menu-options-ctn">
-            <div className="active-indicator"></div>
-            <FontAwesomeIcon icon={faServer} className="menu-icons" />
-            <p className="menu-texts">DATA</p>
-          </div>
-          <div className="menu-options-ctn">
-            <div className="active-indicator"></div>
-            <FontAwesomeIcon icon={faClipboardList} className="menu-icons" />
-            <p className="menu-texts">RESOURCES</p>
-          </div>
-          <div className="menu-options-ctn">
-            <div className="active-indicator"></div>
-            <FontAwesomeIcon icon={faTimeline} className="menu-icons" />
-            <p className="menu-texts">PAST PROCEEDING</p>
-          </div> */}
         </div>
         {!user && !org ? (
           <></>

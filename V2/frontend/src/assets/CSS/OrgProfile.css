@@ -15,8 +15,9 @@
 
 .org_box {
   display: flex;
-  min-height: 90%;
-  width: 90%;
+  min-height: 80%;
+  min-width: 80%;
+  max-width: 90%;
   /* @media only screen and (max-width: 720px) {
       height:100%;
       width:100%;
@@ -132,7 +133,7 @@ a {
   color: var(--frontMainColor);
 }
 a:hover {
-  color: aliceblue;
+  color: currentColor;
   font-weight: 550;
 }
 
