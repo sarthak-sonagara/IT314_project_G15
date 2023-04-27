@@ -18,6 +18,7 @@ import OrgProfile from "./pages/OrgProfile";
 import TestUpload from "./pages/TestUpload";
 import CallForPaper from "./pages/CallForPaper";
 import Error from "./pages/Error";
+import Privacy from "./pages/privacy";
 
 function App() {
   const { user, org } = useAuthContext(); // will be used to provide functionality of private routes
@@ -100,7 +101,8 @@ function App() {
             path="/profile"
           />
           <Route element={<PasswordReset />} path="/password-reset" />
-
+          <Route element={<Privacy />} path="/privacy" />
+          
           <Route element={<TestUpload />} path="test-upload" />
           <Route element={<HomeConf />} path="home-conf" />
           <Route element={<CallForPaper />} path="/call-for-paper" />
