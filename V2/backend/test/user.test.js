@@ -978,7 +978,6 @@ chai.use(chaiHttp);
         });
     });
     
-
     //user not exists
     describe("patch /auth/user/remove-pic/:id", () => {
         it("it should not remove user profile pic (user not exists)", (done) => {
