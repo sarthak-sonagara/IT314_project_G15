@@ -102,7 +102,7 @@ function UserProfile() {
   }
 
   function uploadImage() {
-    fetch("http://localhost:3000/auth/user/upload-pic/", {
+    fetch("http://localhost:3000/upload", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

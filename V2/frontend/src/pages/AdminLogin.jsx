@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/CSS/style.css";
-import { Link } from "react-router-dom";
+import { Link, useFetcher } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 
 const AdminLogin = () => {
@@ -14,6 +14,10 @@ const AdminLogin = () => {
 
     await login(email, password, role);
   };
+
+  useEffect(() => {
+    document.title = "Admin Login";
+  }, []);
   return (
     <>
       <div className="login-screen-ctn">

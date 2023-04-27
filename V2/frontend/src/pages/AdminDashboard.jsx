@@ -5,13 +5,20 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserPlus,
+  faCalendarPlus,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import AdminNavbar from "../components/AdminNavbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
+  useEffect(() => {
+    document.title = "Admin Dashboard";
+  }, []);
   const [showAdd, setShowAdd] = useState(false);
   const [show, setShow] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -113,7 +120,7 @@ const AdminDashboard = () => {
           {
             data: null,
             defaultContent:
-              '<div style="display:flex"><button class="btn btn-danger delete-btn" id="adm-dashboard-button-size">Delete</button></div>',
+              '<div style="display:flex"><svg class="delete-btn" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></div>',
           },
         ],
       });
@@ -149,11 +156,16 @@ const AdminDashboard = () => {
           { data: "_id" },
           { data: "orgname" },
           { data: "email" },
-          { data: "accepted", defaultContent: "true" },
+          {
+            data: "accepted",
+            render: function (data, type, row) {
+              return `<label class="switch"><input type="checkbox" data-id="$row._id}" ${data ? "checked" : ""}> <span class="slider round"></span></label>`;
+            },
+          },
           {
             data: null,
             defaultContent:
-              '<div style="display:flex"><button class="btn btn-danger delete-btn" id="adm-dashboard-button-size">Delete</button></div>',
+              '<div style="display:flex"><svg class="delete-btn" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></div>',
           },
         ],
       });
@@ -185,7 +197,6 @@ const AdminDashboard = () => {
   return (
     <>
       <AdminNavbar />
-      {/* <Tabs/> */}
       <div className="admin-nav-left-span">
         <Link className="admin-nav-left-sub-ctn" to="/">
           <p
@@ -283,7 +294,7 @@ const AdminDashboard = () => {
             <p className="addButtonInAdminDashBoardTxt">Add User</p>
           </div>
           <div className="admin-content-ctn user-table-ctn">
-            <table id="users_datatable" className="display">
+            <table id="users_datatable" className="display" style={{width: "auto"}}>
               <thead>
                 <tr>
                   <th>Id</th>
@@ -310,7 +321,7 @@ const AdminDashboard = () => {
             <p className="addButtonInAdminDashBoardTxt">Add Orgs</p>
           </div>
           <div className="admin-content-ctn org-table-ctn">
-            <table id="orgs_datatable" className="display">
+            <table id="orgs_datatable" className="display" style={{width: "auto"}}>
               <thead>
                 <tr>
                   <th>Id</th>

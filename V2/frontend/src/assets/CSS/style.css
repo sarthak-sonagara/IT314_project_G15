@@ -639,7 +639,6 @@
   width: max-content;
   padding: 5px;
   text-align: center;
-  width: 50%;
   cursor: pointer;
   box-sizing: content-box;
   position: relative;
@@ -673,6 +672,13 @@
   border-radius: 5px 5px 0 0;
 }
 
+.delete-btn {
+  height: 20px;
+  width: 20px;
+  fill: var(--bs-danger);
+  cursor: pointer;
+}
+
 button {
   border: none;
 }
@@ -696,6 +702,78 @@ button {
 #ctn-of-HomeConf {
   padding-left: 85px;
 }
+
+/* Toggle button css */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  scale: 60%;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#users_datatable, #orgs_datatable {
+  min-width: 1200px;
+  width: max-content;
+} 
+
 
 @media screen and (max-width: 1200px) {
 }
@@ -768,6 +846,13 @@ button {
   .addButtonInAdminDashBoardTxt {
     display: inherit;
   }
+  .delete-btn {
+    height: 15px;
+    width: 15px;
+  }
+  .switch {
+    scale: 50%;
+  }
 
   /* Home Conf */
   #ctn-of-HomeConf {
@@ -794,12 +879,22 @@ button {
     width: 70%;
   }
 
+  #users_datatable, #orgs_datatable {
+    min-width: max-content;
+  }
+
 }
 
 @media screen and (max-width: 600px) {
+  #users_datatable, #orgs_datatable {
+    min-width: max-content;
+  }
   .global-nav-search-bar {
     display: none;
   }
+  /* .left-container {
+  } */
+
   .left-close-container {
     width: 100vw;
   }
@@ -862,6 +957,13 @@ button {
   }
   .addButtonInAdminDashBoardTxt {
     display: inherit;
+  }
+  .delete-btn { 
+    height: 13px;
+    width: 13px;
+  }
+  .switch {
+    scale: 40%;
   }
   /* Home Conf */
   #ctn-of-HomeConf {

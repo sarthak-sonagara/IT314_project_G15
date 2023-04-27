@@ -76,15 +76,7 @@ function App() {
             path="/org-signup"
           />
           <Route
-            element={
-              user ? (
-                <UserDashboard />
-              ) : org ? (
-                <OrgDashboard />
-              ) : (
-                <Navigate to="/choice" />
-              )
-            }
+            element={org ? <OrgDashboard /> : <Navigate to="/choice" />}
             path="/dashboard"
           />
 
@@ -101,8 +93,8 @@ function App() {
             path="/profile"
           />
           <Route element={<PasswordReset />} path="/password-reset" />
-          <Route element={<Privacy />} path="/privacy" />
-          
+          <Route element={<Privacy />} path="/privacy-policy" />
+
           <Route element={<TestUpload />} path="test-upload" />
           <Route element={<HomeConf />} path="home-conf" />
           <Route element={<CallForPaper />} path="/call-for-paper" />
