@@ -11,6 +11,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const c1 = {
   conferenceName: "Adbhut Conference",
@@ -140,6 +141,7 @@ function OrgProfile() {
 
   return (
     <>
+      <Navbar />
       <div className="orgProfileContainer">
         <div className="org_box">
           <div className="org_profileBox py-5">
@@ -176,7 +178,8 @@ function OrgProfile() {
           </div>
           <div className="org_conferenceList">
             <div className="org_header">
-              Conferences by {organization.orgname}
+              Organized by
+              <span className="fw-bold "> {" " + organization.orgname}</span>
             </div>
             <div className="org_confTypes">
               <div
