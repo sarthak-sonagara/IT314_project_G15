@@ -87,7 +87,7 @@ function App() {
               ) : org ? (
                 <OrgProfile />
               ) : (
-                <Navigate to="/login" />
+                <Navigate to="/choice" />
               )
             }
             path="/profile"
