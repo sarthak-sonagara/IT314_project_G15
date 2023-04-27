@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import TimelineCard from "../components/TimelineCard";
 import img from "../../public/images/conference_background_2.jpg";
 
-
-
 const Home = () => {
   const [orgs, setOrgs] = useState([]);
   const [upcomingConf, setUpcomingConf] = useState([]);
@@ -41,7 +39,8 @@ const Home = () => {
           backgroundColor: "#caecff",
         }}>
 
-      <div class="carousel-inner shadow-lg"
+      <div
+        class="carousel-inner shadow-lg"
         style={{
           height: "70vh"
         }}>
