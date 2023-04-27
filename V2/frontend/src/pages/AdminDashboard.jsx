@@ -17,67 +17,92 @@ const AdminDashboard = () => {
   const handleShowEdit = () => setShowEdit(true);
   const handleCloseDelete = () => setShowDelete(false);
   const handleShowDelete = () => setShowDelete(true);
+  const handleDeleteSubmit = () => {
+    var mail = deleteMail;
+    console.log("This is the mail:", mail);
+    fetch("http://localhost:3000/auth/user/delete/", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: mail,
+      }),
+    });
+    fetchUsers();
+    setShowDelete(false);
+  };
+  const [editEmail, SetEditEmail] = useState("");
+  const [editId, SetEditId] = useState("");
+  const [editUsername, SetEditUsername] = useState("");
+  const [editPassword, SetEditPassword] = useState("");
+  const [deleteID, SetDeleteID] = useState("");
+  const [deleteMail, SetDeleteMail] = useState("");
   const [toggleState, setToggleState] = useState(1);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await fetch("http://localhost:3000/auth/user/");
-      const data = await res.json();
-      console.log("This are Users:", data);
-      $(document).ready(function () {
-        $("#users_datatable").DataTable({
-          stateSave: true,
-          bDestroy: true,
-          data: data.users,
-          columns: [
-            { data: "_id" },
-            { data: "username" },
-            { data: "email" },
-            { data: "role" },
-            {
-              data: null,
-              defaultContent:
-                '<div style="display:flex"><button class="btn btn-primary edit-btn" id="adm-dashboard-button-size" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn" id="adm-dashboard-button-size">Delete</button></div>',
-            },
-          ],
-        });
-
-        // Handle Edit button click
-        $("#users_datatable tbody").on("click", ".edit-btn", function () {
-          let td = $(this).closest("tr").find("td:eq(0)");
-          if (table.cell(td).data()) {
-            console.log(table.cell(td).data());
-            console.log($("#input-id").val());
-          }
-          handleShowEdit();
-        });
-
-        // Handle Delete button click
-        $("#users_datatable tbody").on("click", ".delete-btn", function () {
-          let rowData = table.row($(this).parents("tr")).data();
-          console.log("Delete row data:", rowData);
-          handleShowDelete();
-        });
+  const fetchUsers = async () => {
+    const res = await fetch("http://localhost:3000/auth/user/");
+    const data = await res.json();
+    console.log("This are Users:", data);
+    $(document).ready(function () {
+      let table = $("#users_datatable").DataTable({
+        stateSave: true,
+        bDestroy: true,
+        data: data.users,
+        columns: [
+          { data: "_id" },
+          { data: "username" },
+          { data: "email" },
+          { data: "role" },
+          {
+            data: null,
+            defaultContent:
+              '<div style="display:flex"><button class="btn btn-primary edit-btn" id="adm-dashboard-button-size" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn" id="adm-dashboard-button-size">Delete</button></div>',
+          },
+        ],
       });
-    };
 
-    const fetchOrgs = async () => {
-      const res = await fetch("http://localhost:3000/auth/org/");
-      const data = await res.json();
-      console.log("This is Orgs:", data);
-      $(document).ready(function () {
-        $("#orgs_datatable").DataTable({
-          stateSave: true,
-          bDestroy: true,
-          data: data.orgs,
-          columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
-        });
+      // Handle Edit button click
+      $("#users_datatable tbody").on("click", ".edit-btn", function () {
+        let td = $(this).closest("tr").find("td:eq(0)");
+        SetEditId(table.cell($(this).closest("tr").find("td:eq(0)")).data());
+        SetEditEmail(table.cell($(this).closest("tr").find("td:eq(2)")).data());
+        SetEditUsername(
+          table.cell($(this).closest("tr").find("td:eq(1)")).data()
+        );
+        handleShowEdit();
       });
-    };
 
-    fetchUsers();
-    fetchOrgs();
-  }, []);
+      // Handle Delete button click
+      $("#users_datatable tbody").on("click", ".delete-btn", function () {
+        // let rowData = table.row($(this).parents("tr")).data();
+        // console.log("Delete row data:", rowData);
+        let td = $(this).closest("tr").find("td:eq(2)");
+        if (table.cell(td).data()) {
+          console.log(table.cell(td).data());
+          SetDeleteMail(table.cell(td).data());
+        }
+        handleShowDelete();
+      });
+    });
+  };
+
+  const fetchOrgs = async () => {
+    const res = await fetch("http://localhost:3000/auth/org/");
+    const data = await res.json();
+    console.log("This is Orgs:", data);
+    $(document).ready(function () {
+      $("#orgs_datatable").DataTable({
+        stateSave: true,
+        bDestroy: true,
+        data: data.orgs,
+        columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
+      });
+    });
+  };
+
+  fetchUsers();
+  fetchOrgs();
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -93,9 +118,9 @@ const AdminDashboard = () => {
             style={{ padding: "0", margin: "0" }}
             className="adm-left-nav-ctn-text"
             className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(1)}
+            onClick={() => toggleTab(1)}
           >
-              Admin
+            Admin
           </p>
         </div>
         <div className="admin-nav-left-sub-ctn">
@@ -103,9 +128,9 @@ const AdminDashboard = () => {
             style={{ padding: "0", margin: "0" }}
             className="user-left-nav-ctn-text"
             className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(2)}
+            onClick={() => toggleTab(2)}
           >
-              Users
+            Users
           </p>
         </div>
         <div className="admin-nav-left-sub-ctn">
@@ -113,9 +138,9 @@ const AdminDashboard = () => {
             style={{ padding: "0", margin: "0" }}
             className="org-left-nav-ctn-text"
             className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(3)}
+            onClick={() => toggleTab(3)}
           >
-              Organizations
+            Organizations
           </p>
         </div>
       </div>
@@ -182,61 +207,55 @@ const AdminDashboard = () => {
             <Modal.Header closeButton>
               <Modal.Title>Edit User</Modal.Title>
             </Modal.Header>
-            <form action="">
-              <Modal.Body>
-                <div className="mb-3">
-                  <label htmlFor="input-id" className="form-label">
-                    ID:
-                  </label>
-                  <input
-                    type="text"
-                    className="input-field"
-                    id="input-id"
-                    required
-                    readOnly
-                    value={"s"}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="input-email" className="form-label">
-                    Email address:
-                  </label>
-                  <input
-                    type="email"
-                    className="input-field"
-                    id="input-email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    // readOnly
-                    defaultValue=""
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="input-password" className="form-label">
-                    Password:
-                  </label>
-                  <input
-                    type="password"
-                    className="input-field"
-                    id="input-password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseEdit}>
-                  Close
-                </Button>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  onClick={handleCloseEdit}
-                >
-                  Submit
-                </Button>
-              </Modal.Footer>
-            </form>
+            <Modal.Body>
+              <div className="mb-3">
+                <label htmlFor="input-id" className="form-label">
+                  ID:
+                </label>
+                <input
+                  type="text"
+                  className="input-field"
+                  id="input-id"
+                  required
+                  readOnly
+                  value={editId}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="input-email" className="form-label">
+                  Email address:
+                </label>
+                <input
+                  type="email"
+                  className="input-field"
+                  id="input-email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  value={editEmail}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="input-password" className="form-label">
+                  Password:
+                </label>
+                <input
+                  type="password"
+                  className="input-field"
+                  id="input-password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={editUsername}
+                  required
+                />
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseEdit}>
+                Close
+              </Button>
+              <Button type="submit" variant="primary" onClick={handleCloseEdit}>
+                Submit
+              </Button>
+            </Modal.Footer>
           </Modal>
 
           <Modal
@@ -251,20 +270,18 @@ const AdminDashboard = () => {
             <Modal.Header closeButton>
               <Modal.Title>Are you really want to delete it?</Modal.Title>
             </Modal.Header>
-            <form action="">
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseDelete}>
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  variant="danger"
-                  onClick={handleCloseDelete}
-                >
-                  Delete
-                </Button>
-              </Modal.Footer>
-            </form>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseDelete}>
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                variant="danger"
+                onClick={handleDeleteSubmit}
+              >
+                Delete
+              </Button>
+            </Modal.Footer>
           </Modal>
         </>
       </div>
