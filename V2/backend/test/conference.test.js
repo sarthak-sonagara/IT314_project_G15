@@ -5,7 +5,7 @@ const app = require("../server");
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-// in edit function user registation is allowed
+// in edit function user registation is allowed also user can change org id 
 describe("conference", () => {
     //create conference
     describe("POST /org/create", () => {

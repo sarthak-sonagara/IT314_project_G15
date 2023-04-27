@@ -1,13 +1,14 @@
-// process.env.NODE_ENV = "test";
-// const chai = require("chai");
-// const chaiHttp = require("chai-http");
-// const app = require("../server");
-// const expect = chai.expect;
-// chai.use(chaiHttp);
+process.env.NODE_ENV = "test";
+const chai = require("chai");
+const chaiHttp = require("chai-http");
+const app = require("../server");
+const expect = chai.expect;
+chai.use(chaiHttp);
+
 
 
 // // password constrains not working for all functions 
-// describe("Org", () => {
+ describe("Org", () => {
 //   // signup org
 //   describe("POST /auth/org/signup", () => {
 //     it("it should signup an org", (done) => {
@@ -600,4 +601,150 @@
 //     });
 //   });
 
-// });
+    // test case get organization by id
+  describe("GET /auth/org/:emailid", () => {
+    it("it should return organization ", (done) => {
+      chai
+        .request(app)
+        .get("/auth/org/org2@gmail.com")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.a("object");
+          if (err) return done(err);
+          done();
+        });
+    });
+  });
+
+  // organization not exists
+  describe("GET /auth/org/:emailid", () => {
+    it("it should not return organization (organization not exists)", (done) => {
+      chai
+        .request(app)
+        .get("/auth/org/org123@gmail.com")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.a("object");
+          if (err) return done(err);
+          done();
+        });
+    });
+  });
+
+  // invalid email
+  describe("GET /auth/org/:emailid", () => {
+    it("it should not return organization (invalid email) ", (done) => {
+      chai
+        .request(app)
+        .get("/auth/org/org2@gmailcom")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.a("object");
+          if (err) return done(err);
+          done();
+        });
+    });
+  });
+
+   // test case get organization's conference by id
+   describe("GET /auth/org/:id/myConferences", () => {
+    it("it should return conference ", (done) => {
+      chai
+        .request(app)
+        .get("/auth/org/6447d8735cdd016178347124/myConferences")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.a("object");
+          console.log(res.body);
+          if (err) return done(err);
+          done();
+        });
+    });
+  });
+
+   // organization not exists
+  describe("GET /auth/org/:id/myConferences", () => {
+    it("it not should return conference ( organization not exists)", (done) => {
+      chai
+        .request(app)
+        .get("/auth/org/1234/myConferences")
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.a("object");
+          //console.log(res.body);
+          if (err) return done(err);
+          done();
+        });
+    });
+  });
+
+  //test case for update org accepted status
+  describe("patch /auth/org/update/accepted", () => {
+    it("it should update status of an org", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/org/update/accepted")
+        .send({
+          email: "dslk@gmail.com",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          if (err) console.log(err);
+          done();
+        });
+    });
+  });
+
+  // org not exists
+  describe("patch /auth/org/update/accepted", () => {
+    it("it should not update status of an org (org not exists)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/org/update/accepted")
+        .send({
+          email: "dslk@abc.com",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          if (err) console.log(err);
+          done();
+        });
+    });
+  });
+
+  //email is not valid
+  describe("patch /auth/org/update/accepted", () => {
+    it("it should not update status of an org (email is not valid)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/org/update/accepted")
+        .send({
+          email: "dslk@gmailcom",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          if (err) console.log(err);
+          done();
+        });
+    });
+  });
+
+  //email is empty
+  describe("patch /auth/org/update/accepted", () => {
+    it("it should not update status of an org (email is empty)", (done) => {
+      chai
+        .request(app)
+        .patch("/auth/org/update/accepted")
+        .send({
+          email: "",
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          if (err) console.log(err);
+          done();
+        });
+    });
+  });
+  
+
+ });

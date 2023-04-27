@@ -27,7 +27,7 @@ const AdminNavbar = () => {
             onClick={handleClick}
           >
             <FontAwesomeIcon icon={faSignOut} style={{}} />
-            <p style={{ padding: "0", margin: "0", marginLeft: "5px" }}>
+            <p className="admin-nav-right-logout-span-txt"  style={{ padding: "0", margin: "0", marginLeft: "5px" }}>
               LOGOUT
             </p>
           </div>
