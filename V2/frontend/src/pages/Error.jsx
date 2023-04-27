@@ -1,5 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
 
 const Error = () => {
   return (
@@ -11,7 +12,9 @@ const Error = () => {
         <p className="lead">
           The page you’re looking for doesn’t exist.
         </p>
-        <a className="btn btn-primary">Go Home</a>
+        <Link to="/">
+          <button className="btn btn-primary">Go Home</button>
+        </Link>
       </div>
     </div>
   );
