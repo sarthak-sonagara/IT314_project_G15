@@ -5,13 +5,14 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 import AdminNavbar from "../components/AdminNavbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const AdminDashboard = () => {
   const [showAdd, setShowAdd] = useState(false);
+  const [show, setShow] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +20,8 @@ const AdminDashboard = () => {
   const handleShowAdd = () => setShowAdd(true);
   const handleCloseDelete = () => setShowDelete(false);
   const handleShowDelete = () => setShowDelete(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const handleAddSubmit = () => {
     fetch("http://localhost:3000/auth/user/signup/", {
       method: "POST",
@@ -35,6 +38,23 @@ const AdminDashboard = () => {
     fetchUsers();
     setShowAdd(false);
   };
+
+  const orgHandleSubmit = () => {
+    fetch("http://localhost:3000/auth/org/signup/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        orgname: Orgname,
+        email: OrgEmail,
+        password: OrgPass,
+      }),
+    });
+    fetchOrgs();
+    setShow(false);
+  };
+
   const handleDeleteSubmit = () => {
     var mail = deleteMail;
     console.log("This is the mail:", mail);
@@ -67,6 +87,9 @@ const AdminDashboard = () => {
   const [AddPass, SetAddPass] = useState("");
   const [AddUser, SetAddUser] = useState("");
   const [AddRole, SetAddRole] = useState("");
+  const [Orgname, SetOrgname] = useState("");
+  const [OrgEmail, SetOrgEmail] = useState("");
+  const [OrgPass, SetOrgPass] = useState("");
   // const [editEmail, Set] = useState("");
   // const [editId, SetId] = useState("");
   // const [editUsername, SetEditUsername] = useState("");
@@ -118,7 +141,7 @@ const AdminDashboard = () => {
   const fetchOrgs = async () => {
     const res = await fetch("http://localhost:3000/auth/org/");
     const data = await res.json();
-    // console.log("This is Orgs:", data);
+    console.log("This is Orgs:", data);
     $(document).ready(function () {
       let table = $("#orgs_datatable").DataTable({
         stateSave: true,
@@ -128,6 +151,7 @@ const AdminDashboard = () => {
           { data: "_id" },
           { data: "orgname" },
           { data: "email" },
+          { data: "accepted", defaultContent: "true" },
           {
             data: null,
             defaultContent:
@@ -144,6 +168,11 @@ const AdminDashboard = () => {
           SetDeleteMail(table.cell(td).data());
         }
         handleShowDelete();
+      });
+      // // Handle Add button click
+      $(".admin-container").on("click", ".add-org-btn", function () {
+        handleShow();
+        // console.log("clicked");
       });
     });
   };
@@ -189,6 +218,59 @@ const AdminDashboard = () => {
           </p>
         </div>
       </div>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>New Conference</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="mb-3">
+            <label htmlFor="input-orgname" className="form-label">
+              Username:
+            </label>
+            <input
+              type="text"
+              className="input-field"
+              id="input-orgname"
+              onChange={(e) => SetOrgname(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="input-orgEmail" className="form-label">
+              Email:
+            </label>
+            <input
+              type="email"
+              className="input-field"
+              id="input-orgEmail"
+              onChange={(e) => SetOrgEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="input-orgPass" className="form-label">
+              Password:
+            </label>
+            <input
+              type="password"
+              className="input-field"
+              id="input-orgPass"
+              onChange={(e) => SetOrgPass(e.target.value)}
+              required
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={orgHandleSubmit}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <div className="admin-container">
         <div
           className={
@@ -232,6 +314,13 @@ const AdminDashboard = () => {
             toggleState === 3 ? "tab-content  active-content" : "tab-content"
           }
         >
+          <div className="addButtonInAdminDashBoardCtn add-org-btn">
+            <FontAwesomeIcon
+              icon={faCalendarPlus}
+              class="addButtonInAdminDashBoard"
+            />
+            <p className="addButtonInAdminDashBoardTxt">Add Orgs</p>
+          </div>
           <div className="admin-content-ctn org-table-ctn">
             <table id="orgs_datatable" className="display">
               <thead>
@@ -239,6 +328,7 @@ const AdminDashboard = () => {
                   <th>Id</th>
                   <th>OrgName</th>
                   <th>Email</th>
+                  <th>Status</th>
                   <th>Delete</th>
                 </tr>
               </thead>
