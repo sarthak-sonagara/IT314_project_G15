@@ -47,10 +47,34 @@ const OrgDashboard = () => {
     for (let i = 0; i < topic.length; i++) {
       topic[i] = topic[i].trim();
     }
+    if(conf_name === "" ){
+      alert("Please fill conference name");
+      return;
+    }
+    if(desc === "" ){
+      alert("Please fill description");
+      return;
+    }
+    if(start_date === "" ){
+      alert("Please fill start date");
+      return;
+    }
+    if(end_date === "" ){
+      alert("Please fill end date");
+      return;
+    }
+
     if (start_date > end_date) {
       alert("Start date cannot be greater than end date");
       return;
     }
+    if(start_date < new Date().toISOString().split('T')[0]){
+      alert("Start date cannot be less than today's date");
+      return;
+    }
+    
+
+
 
     fetch("http://localhost:3000/org/create", {
       method: "POST",
@@ -244,7 +268,7 @@ const OrgDashboard = () => {
       </div>
       <div className="org-outer">
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title>New Conference</Modal.Title>
           </Modal.Header>
           <Modal.Body>
