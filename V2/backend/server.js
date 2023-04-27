@@ -99,7 +99,7 @@ app.use((req, res, next) => {
 app.use("/auth/user", userRoutes);
 app.use("/auth/org", orgRoutes);
 app.use("/org", conferenceRoutes);
-app.use("/upload", uploadRoutes);
+// app.use("/upload", uploadRoutes);
 
 app.post("/upload/", multer.single("file"), async (req, res) => {
   const { email, confid } = req.query;
@@ -143,17 +143,6 @@ app.get("/files", async (req, res) => {
         },
       };
       res.json({ downloadUrl, options });
-      // request(options, (err, response, body) => {
-      //   console.log(response);
-      //   if (err) throw new Error("Error downloading file", err);
-
-      //   console.log(`File downloaded: ${name}`);
-      //   // Do something with the downloaded file
-      //   res.download(downloadUrl, name, (err) => {
-      //     if (err) return console.error("Error sending download response", err);
-      //     console.log("Download response sent successfully");
-      //   });
-      // });
     }
   );
 });

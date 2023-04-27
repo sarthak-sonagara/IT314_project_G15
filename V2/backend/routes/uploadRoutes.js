@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Multer = require("multer");
 
-const { uploadPaper } = require("../controllers/uploadController");
+const { uploadPaper, getPaper } = require("../controllers/uploadController");
 
 const multer = Multer({
   storage: Multer.diskStorage({
@@ -21,8 +21,10 @@ const multer = Multer({
   },
 });
 
-router.use(multer.single("paper"));
+router.get("/paper", getPaper);
 
-router.post("/paper", uploadPaper);
+// router.use(multer.single("file"));
+
+router.post("/paper", multer.single("file"), uploadPaper);
 
 module.exports = router;
