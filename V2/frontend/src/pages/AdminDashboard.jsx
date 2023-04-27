@@ -4,19 +4,38 @@ import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import AdminNavbar from "../components/AdminNavbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const AdminDashboard = () => {
-  const [showEdit, setShowEdit] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleCloseEdit = () => setShowEdit(false);
-  const handleShowEdit = () => setShowEdit(true);
+  const handleCloseAdd = () => setShowAdd(false);
+  const handleShowAdd = () => setShowAdd(true);
   const handleCloseDelete = () => setShowDelete(false);
   const handleShowDelete = () => setShowDelete(true);
+  const handleAddSubmit = () => {
+    console.log(AddUser, AddEmail, AddPass, AddRole);
+    fetch("http://localhost:3000/auth/user/signup/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: AddUser,
+        email: AddEmail,
+        password: AddPass,
+        role: AddRole,
+      }),
+    });
+    fetchUsers();
+    setShowAdd(false);
+  };
   const handleDeleteSubmit = () => {
     var mail = deleteMail;
     console.log("This is the mail:", mail);
@@ -32,10 +51,14 @@ const AdminDashboard = () => {
     fetchUsers();
     setShowDelete(false);
   };
-  const [editEmail, SetEditEmail] = useState("");
-  const [editId, SetEditId] = useState("");
-  const [editUsername, SetEditUsername] = useState("");
-  const [editPassword, SetEditPassword] = useState("");
+  const [AddEmail, SetAddEmail] = useState("");
+  const [AddPass, SetAddPass] = useState("");
+  const [AddUser, SetAddUser] = useState("");
+  const [AddRole, SetAddRole] = useState("");
+  // const [editEmail, Set] = useState("");
+  // const [editId, SetId] = useState("");
+  // const [editUsername, SetEditUsername] = useState("");
+  // const [editPassword, SetEditPassword] = useState("");
   const [deleteID, SetDeleteID] = useState("");
   const [deleteMail, SetDeleteMail] = useState("");
   const [toggleState, setToggleState] = useState(1);
@@ -57,26 +80,19 @@ const AdminDashboard = () => {
           {
             data: null,
             defaultContent:
-              '<div style="display:flex"><button class="btn btn-primary edit-btn" id="adm-dashboard-button-size" style="margin-right: 5px">Edit</button><button class="btn btn-danger delete-btn" id="adm-dashboard-button-size">Delete</button></div>',
+              '<div style="display:flex"><button class="btn btn-danger delete-btn" id="adm-dashboard-button-size">Delete</button></div>',
           },
         ],
       });
 
-      // Handle Edit button click
-      $("#users_datatable tbody").on("click", ".edit-btn", function () {
-        let td = $(this).closest("tr").find("td:eq(0)");
-        SetEditId(table.cell($(this).closest("tr").find("td:eq(0)")).data());
-        SetEditEmail(table.cell($(this).closest("tr").find("td:eq(2)")).data());
-        SetEditUsername(
-          table.cell($(this).closest("tr").find("td:eq(1)")).data()
-        );
-        handleShowEdit();
+      // // Handle Add button click
+      $(".admin-container").on("click", ".add-btn", function () {
+        handleShowAdd();
+        console.log("clicked");
       });
 
       // Handle Delete button click
       $("#users_datatable tbody").on("click", ".delete-btn", function () {
-        // let rowData = table.row($(this).parents("tr")).data();
-        // console.log("Delete row data:", rowData);
         let td = $(this).closest("tr").find("td:eq(2)");
         if (table.cell(td).data()) {
           console.log(table.cell(td).data());
@@ -116,17 +132,16 @@ const AdminDashboard = () => {
         <div className="admin-nav-left-sub-ctn">
           <p
             style={{ padding: "0", margin: "0" }}
-            className="adm-left-nav-ctn-text"
             className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
             onClick={() => toggleTab(1)}
           >
             Admin
           </p>
         </div>
+
         <div className="admin-nav-left-sub-ctn">
           <p
             style={{ padding: "0", margin: "0" }}
-            className="user-left-nav-ctn-text"
             className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
             onClick={() => toggleTab(2)}
           >
@@ -136,7 +151,6 @@ const AdminDashboard = () => {
         <div className="admin-nav-left-sub-ctn">
           <p
             style={{ padding: "0", margin: "0" }}
-            className="org-left-nav-ctn-text"
             className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
             onClick={() => toggleTab(3)}
           >
@@ -144,7 +158,6 @@ const AdminDashboard = () => {
           </p>
         </div>
       </div>
-
       <div className="admin-container">
         <div
           className={
@@ -159,8 +172,15 @@ const AdminDashboard = () => {
         <div
           className={
             toggleState === 2 ? "tab-content  active-content" : "tab-content"
-          }
+          } 
         >
+          <div className="addButtonInAdminDashBoardCtn add-btn">
+          <FontAwesomeIcon
+            icon={faUserPlus}
+            class="addButtonInAdminDashBoard"
+          />
+          <p className="addButtonInAdminDashBoardTxt">Add User</p>
+        </div>
           <div className="admin-content-ctn user-table-ctn">
             <table id="users_datatable" className="display">
               <thead>
@@ -196,29 +216,28 @@ const AdminDashboard = () => {
 
         <>
           <Modal
-            show={showEdit}
-            onHide={handleCloseEdit}
+            show={showAdd}
+            onHide={handleCloseAdd}
             style={{
               transform: "translate(-50%, -25%)",
-              top: "50%",
+              top: "40%",
               left: "50%",
             }}
           >
             <Modal.Header closeButton>
-              <Modal.Title>Edit User</Modal.Title>
+              <Modal.Title>Add a User</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className="mb-3">
-                <label htmlFor="input-id" className="form-label">
-                  ID:
+                <label htmlFor="input-username" className="form-label">
+                  Username:
                 </label>
                 <input
                   type="text"
                   className="input-field"
-                  id="input-id"
+                  id="input-username"
+                  onChange={(e) => SetAddUser(e.target.value)}
                   required
-                  readOnly
-                  value={editId}
                 />
               </div>
               <div className="mb-3">
@@ -229,10 +248,62 @@ const AdminDashboard = () => {
                   type="email"
                   className="input-field"
                   id="input-email"
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => SetAddEmail(e.target.value)}
                   required
-                  value={editEmail}
                 />
+              </div>
+              Role:
+              <div
+                className="mb-3 form-check"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
+              >
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault1"
+                    style={{
+                      cursor: "pointer",
+                      accentColor: "var(--secondary-color)",
+                    }}
+                    onChange={(e) => SetAddRole(e.target.value)}
+                    required
+                    value="publisher"
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexRadioDefault1"
+                    style={{ cursor: "pointer", marginLeft: "3px" }}
+                  >
+                    Publisher
+                  </label>
+                </div>
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault2"
+                    defaultChecked=""
+                    style={{
+                      cursor: "pointer",
+                      accentColor: "var(--secondary-color)",
+                    }}
+                    onChange={(e) => SetAddRole(e.target.value)}
+                    required
+                    value="attendee"
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexRadioDefault2"
+                    style={{ cursor: "pointer", marginLeft: "3px" }}
+                  >
+                    Attendee
+                  </label>
+                </div>
               </div>
               <div className="mb-3">
                 <label htmlFor="input-password" className="form-label">
@@ -242,17 +313,16 @@ const AdminDashboard = () => {
                   type="password"
                   className="input-field"
                   id="input-password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={editUsername}
+                  onChange={(e) => SetAddPass(e.target.value)}
                   required
                 />
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseEdit}>
-                Close
+              <Button variant="secondary" onClick={handleCloseAdd}>
+                Cancel
               </Button>
-              <Button type="submit" variant="primary" onClick={handleCloseEdit}>
+              <Button type="submit" variant="danger" onClick={handleAddSubmit}>
                 Submit
               </Button>
             </Modal.Footer>

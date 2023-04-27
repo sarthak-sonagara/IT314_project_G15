@@ -498,7 +498,7 @@
   color: var(--primary-color);
 }
 
-.adm-left-nav-ctn-text {
+#adm-left-nav-ctn-text {
   color: var(--primary-color);
 }
 
@@ -507,7 +507,7 @@
 }
 
 .admin-content-ctn {
-  width: 1200px;
+  width: max-content;
   padding: 10px;
   padding: 25px 20px 20px 20px;
   /* background-color: #707275; */
@@ -576,6 +576,33 @@
 
 /* --------------------------------------------------- */
 
+.addButtonInAdminDashBoardCtn {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addButtonInAdminDashBoard {
+  width: 27px;
+  height: 27px;
+  color: var(--bg-color);
+}
+
+.addButtonInAdminDashBoardTxt {
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
 .tabsContainer {
   display: flex;
   width: 100vw;
@@ -633,6 +660,7 @@ button {
   width: 100%;
   height: 100%;
   display: none;
+  flex-direction: column;
 }
 
 .active-content {
@@ -640,6 +668,7 @@ button {
   justify-content: center;
   align-items: center;
   background: none;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1200px) {
@@ -658,6 +687,7 @@ button {
     font-size: 12px;
     width: max-content;
     min-width: 100vw;
+    flex-direction: column;
   }
 
   .admin-nav-left-sub-ctn {
@@ -677,6 +707,24 @@ button {
   .admin-content-ctn {
     width: max-content;
     min-width: 75vw;
+  }
+  .addButtonInAdminDashBoardCtn {
+    position: inherit;
+    min-width: 150px;
+    width: max-content;
+    height: 40px;
+    margin-left: 50px;
+    text-align: center;
+    color: var(--bg-color);
+    margin-bottom: 10px;
+  }
+  .addButtonInAdminDashBoard {
+    width: 17px;
+    height: 17px;
+    margin-right: 10px;
+  }
+  .addButtonInAdminDashBoardTxt {
+    display: inherit;
   }
 }
 
@@ -703,5 +751,22 @@ button {
     height: 21px;
     font-size: 7px;
     width: 40px;
+  }
+  .addButtonInAdminDashBoardCtn {
+    position: inherit;
+    min-width: 110px;
+    width: max-content;
+    height: 30px;
+    margin-left: 40px;
+    text-align: center;
+    color: var(--bg-color);
+  }
+  .addButtonInAdminDashBoard {
+    width: 15px;
+    height: 15px;
+    margin-right: 7px;
+  }
+  .addButtonInAdminDashBoardTxt {
+    display: inherit;
   }
 }
