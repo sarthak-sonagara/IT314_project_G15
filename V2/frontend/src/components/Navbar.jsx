@@ -76,31 +76,20 @@ const Navbar = () => {
               />
             </defs>
           </svg>
-          <p style={{  }} className="global-nav-logo-text">CMS</p>
-        </div>
-        <div className="global-nav-search-bar">
-          <FontAwesomeIcon
-            icon={faSearch}
-            style={{
-              color: "var(--primary-color)",
-              position: "absolute",
-              marginLeft: "13px",
-            }}
-          />
-          <input
-            type="text"
-            className="form-control search-input"
-            placeholder="Search conferences..."
-            style={{ background: "none", border: "none" }}
-          />
+          <p style={{}} className="global-nav-logo-text">
+            CMS
+          </p>
         </div>
         {!user && !org ? (
           <div className="icons-container" style={{ width: "auto" }}>
             <Link to="/choice" style={{ marginRight: "1.0.5rem" }}>
               <button
                 type="submit"
-                className="nav-optional-btn" style={{color: "var(--primary-color)",
-                border: "1px solid var(--primary-color)"}}
+                className="nav-optional-btn"
+                style={{
+                  color: "var(--primary-color)",
+                  border: "1px solid var(--primary-color)",
+                }}
               >
                 SIGNUP
               </button>
