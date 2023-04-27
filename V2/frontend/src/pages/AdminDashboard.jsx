@@ -53,6 +53,7 @@ const AdminDashboard = () => {
     });
     fetchOrgs();
     setShow(false);
+    setToggleState(1);
   };
 
   const handleDeleteSubmit = () => {
@@ -90,10 +91,6 @@ const AdminDashboard = () => {
   const [Orgname, SetOrgname] = useState("");
   const [OrgEmail, SetOrgEmail] = useState("");
   const [OrgPass, SetOrgPass] = useState("");
-  // const [editEmail, Set] = useState("");
-  // const [editId, SetId] = useState("");
-  // const [editUsername, SetEditUsername] = useState("");
-  // const [editPassword, SetEditPassword] = useState("");
   const [deleteID, SetDeleteID] = useState("");
   const [deleteMail, SetDeleteMail] = useState("");
   const [toggleState, setToggleState] = useState(1);
