@@ -1,55 +1,20 @@
-// config to dotenv
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
 const fs = require("fs");
 
 const { google } = require("googleapis");
-const Multer = require("multer");
 const { JWT } = require("google-auth-library");
-
-const userRoutes = require("./routes/userRoutes");
-const orgRoutes = require("./routes/orgRoutes");
-const conferenceRoutes = require("./routes/conferenceRoutes");
-const uploadRoutes = require("./routes/uploadRoutes");
-const User = require("./models/user");
-
-const corsOptions = {
-  origin: "*",
-  successStatus: 200,
-};
-
-// express app
-const app = express();
-
-const multer = Multer({
-  storage: Multer.diskStorage({
-    destination: function (req, file, callback) {
-      callback(null, `${__dirname}/papers`);
-    },
-    filename: function (req, file, callback) {
-      callback(
-        null,
-        file.fieldname + "_" + Date.now() + "_" + file.originalname
-      );
-    },
-  }),
-  limits: {
-    fileSize: 5 * 1024 * 1024,
-  },
-});
+const User = require("../models/user");
 
 // authenticate with google
 const authenticateGoogle = () => {
   const auth = new google.auth.GoogleAuth({
-    keyFile: "./key-file.json",
+    keyFile: "../key-file.json",
     scopes: "https://www.googleapis.com/auth/drive",
   });
   return auth;
 };
 
-const keyFile = require("./key-file.json");
+const keyFile = require("../key-file.json");
+
 const client = new JWT({
   email: keyFile.client_email,
   key: keyFile.private_key,
@@ -87,22 +52,9 @@ const deleteFile = (filePath) => {
   });
 };
 
-// middlewares
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
-
-// routes
-app.use("/auth/user", userRoutes);
-app.use("/auth/org", orgRoutes);
-app.use("/org", conferenceRoutes);
-// app.use("/upload", uploadRoutes);
-
-app.post("/upload/", multer.single("file"), async (req, res) => {
+const uploadPaper = async (req, res) => {
   const { email, confid } = req.query;
+  console.log(email, confid);
   const auth = authenticateGoogle();
   const response = await uploadToGoogleDrive(req.file, auth);
   deleteFile(req.file.path);
@@ -116,9 +68,10 @@ app.post("/upload/", multer.single("file"), async (req, res) => {
   await user.save();
 
   res.status(200).json({ response });
-});
+};
 
-app.get("/files", async (req, res) => {
+const getPaper = async (req, res) => {
+  console.log("get paper");
   let downloadUrl = "";
   drive.files.get(
     {
@@ -145,21 +98,6 @@ app.get("/files", async (req, res) => {
       res.json({ downloadUrl, options });
     }
   );
-});
+};
 
-// connect to mongodb
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    // listen for requests
-    if (!module.parent) {
-      app.listen(process.env.PORT, () => {
-        console.log("connected to db & listening on port", process.env.PORT);
-      });
-    }
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
-module.exports = app;
+module.exports = { uploadPaper, getPaper };

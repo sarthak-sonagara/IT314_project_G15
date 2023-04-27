@@ -184,11 +184,13 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faHome} className="menu-icons" style={{}} />
             <p className="menu-texts">HOME</p>
           </Link>
-          <Link to="/dashboard" className="menu-options-ctn">
-            <div className="active-indicator"></div>
-            <FontAwesomeIcon icon={faUserGroup} className="menu-icons" />
-            <p className="menu-texts">DASHBOARD</p>
-          </Link>
+          {org && (
+            <Link to="/dashboard" className="menu-options-ctn">
+              <div className="active-indicator"></div>
+              <FontAwesomeIcon icon={faUserGroup} className="menu-icons" />
+              <p className="menu-texts">DASHBOARD</p>
+            </Link>
+          )}
           <Link to="/profile" className="menu-options-ctn">
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faAddressCard} className="menu-icons" />
@@ -201,7 +203,7 @@ const Navbar = () => {
               <p className="menu-texts">CALL FOR PAPER</p>
             </Link>
           )}
-          <div className="menu-options-ctn">
+          {/* <div className="menu-options-ctn">
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faServer} className="menu-icons" />
             <p className="menu-texts">DATA</p>
@@ -215,7 +217,7 @@ const Navbar = () => {
             <div className="active-indicator"></div>
             <FontAwesomeIcon icon={faTimeline} className="menu-icons" />
             <p className="menu-texts">PAST PROCEEDING</p>
-          </div>
+          </div> */}
         </div>
         {!user && !org ? (
           <></>

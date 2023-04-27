@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 const Error = () => {
+  useEffect(() => {
+    document.title = "404 Error";
+  }, []);
   return (
     <div className="d-flex align-items-center justify-content-center vh-100">
       <div className="text-center">

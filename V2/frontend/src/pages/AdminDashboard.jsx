@@ -5,13 +5,20 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserPlus,
+  faCalendarPlus,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import AdminNavbar from "../components/AdminNavbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
+  useEffect(() => {
+    document.title = "Admin Dashboard";
+  }, []);
   const [showAdd, setShowAdd] = useState(false);
   const [show, setShow] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
