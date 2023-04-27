@@ -149,7 +149,12 @@ const AdminDashboard = () => {
           { data: "_id" },
           { data: "orgname" },
           { data: "email" },
-          { data: "accepted", defaultContent: "true" },
+          {
+            data: "accepted",
+            render: function (data, type, row) {
+              return `<label class="switch"><input type="checkbox" data-id="$row._id}" ${data ? "checked" : ""}> <span class="slider round"></span></label>`;
+            },
+          },
           {
             data: null,
             defaultContent:
@@ -282,7 +287,7 @@ const AdminDashboard = () => {
             <p className="addButtonInAdminDashBoardTxt">Add User</p>
           </div>
           <div className="admin-content-ctn user-table-ctn">
-            <table id="users_datatable" className="display">
+            <table id="users_datatable" className="display" style={{width: "auto"}}>
               <thead>
                 <tr>
                   <th>Id</th>
@@ -309,7 +314,7 @@ const AdminDashboard = () => {
             <p className="addButtonInAdminDashBoardTxt">Add Orgs</p>
           </div>
           <div className="admin-content-ctn org-table-ctn">
-            <table id="orgs_datatable" className="display">
+            <table id="orgs_datatable" className="display" style={{width: "auto"}}>
               <thead>
                 <tr>
                   <th>Id</th>
