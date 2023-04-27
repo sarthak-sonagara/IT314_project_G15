@@ -135,12 +135,13 @@ app.get("/files", async (req, res) => {
 
       console.log(downloadUrl);
       const options = {
-        url: downloadUrl,
+        method: "GET",
         headers: {
           Authorization: `Bearer ${client.credentials.access_token}`,
+          "Access-Control-Allow-Origin": "*", // Required for CORS support to work
         },
       };
-      res.json({ downloadUrl });
+      res.json({ downloadUrl, options });
       // request(options, (err, response, body) => {
       //   console.log(response);
       //   if (err) throw new Error("Error downloading file", err);
