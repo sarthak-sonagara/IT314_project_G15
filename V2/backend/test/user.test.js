@@ -1,15 +1,17 @@
-// process.env.NODE_ENV = "test";
-// const chai = require("chai");
-// const chaiHttp = require("chai-http");
-// const app = require("../server");
-// const expect = chai.expect;
-// chai.use(chaiHttp);
+process.env.NODE_ENV = "test";
+const chai = require("chai");
+const chaiHttp = require("chai-http");
+const app = require("../server");
+const expect = chai.expect;
+chai.use(chaiHttp);
 
 // //errors
 // // set default role in userSchema but put condition in signup function on empty role 
-// // password constrains not working for all functions 
+// // password constrains not working for all functions Update function
+// in userprofile update user is allowed to update password and email that should not be happen 
 
-// // describe("User", () => {
+
+ // describe("User", () => {
   
 // //   // valid login
 // //   describe("POST /auth/user/login", () => {
@@ -162,7 +164,7 @@
 // //   });
 
 
-// describe("User", () => {
+ describe("User", () => {
 // ///signup test cases
 // //(valid signup)
 // describe("POST /auth/user/signup", () => {
@@ -677,7 +679,7 @@
 //     });
 //   });
 
-//   //password contain less than 8 characters 
+  //password contain less than 8 characters 
 //   describe("patch /auth/user/update", () => {
 //     it("it should not update a user (password contain less than 8 characters)", (done) => {
 //       chai
@@ -689,6 +691,8 @@
 //         })
 //         .end((err, res) => {
 //           expect(res).to.have.status(200);
+//           console.log(res.body);
+//           if(err) console.log(err);
 //           done();
 //         });
 //     });
@@ -762,26 +766,233 @@
 //     });
 //   });
 
-//   // //Update User Profile test cases
-//   // var id = "64482bdfae81d3aac89f4504";
-//   // describe("patch /auth/user/updateProfile/?id=", () => {
-//   //   it("it should update a user profile (valid update)", (done) => {
-//   //     chai
-//   //       .request(app)
-//   //       .patch("/auth/user/updateProfile/?id='64482bdfae81d3aac89f4504'")
-//   //       .send({
-//   //         username: "UN_update", 
-//   //         role : "publisher",
-//   //         gender: "male",
-//   //       })
-//   //       .end((err, res) => {
-//   //         expect(res).to.have.status(200);
-//   //         done();
-//   //       });
-//   //   });
-//   // });
+    //Update User Profile test cases
+    describe("patch /auth/user/updateProfile/:id", () => {
+        it("it should update a user profile (valid update)", (done) => {
+        chai
+            .request(app)
+            .patch("/auth/user/updateProfile/644a9bf89f9a8b33158e6f97")
+            .send({
+                //email: "abc@abc.com",
+                username: "UN_update", 
+                role : "publisher",
+                gender: "male",
+                //password: "abc",
+                linkedin: "linkUN",
+                instagram: "insta",
+                //registered_conferences: ["644a8a03d924cd47687e818a"],
+            })
+            .end((err, res) => {
+            expect(res).to.have.status(200);
+            if(err) console.log(err);
+            done();
+            });
+        });
+    });
 
-  
+    //user not exists
+    describe("patch /auth/user/updateProfile/:id", () => {
+        it("it should not update a user profile (user not exists)", (done) => {
+        chai
+            .request(app)
+            .patch("/auth/user/updateProfile/1234")
+            .send({
+                //email: "abc@abc.com",
+                username: "UN_update", 
+                role : "publisher",
+                gender: "male",
+                //password: "abc",
+                linkedin: "linkUN",
+                instagram: "insta",
+                //registered_conferences: ["644a8a03d924cd47687e818a"],
+            })
+            .end((err, res) => {
+            expect(res).to.have.status(200);
+            if(err) console.log(err);
+            done();
+            });
+        });
+    });
 
-// });
+    // test case for getalluser 
+    describe("get /auth/user/", () => {
+        it("it should return all users", (done) => {
+        chai
+            .request(app)
+            .get("/auth/user/")
+        
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.a("object");
+                if(err) console.log(err);
+                done();
+            });
+        });
+    });
+
+    //test case for get user by id
+    describe("get /auth/user/:id", () => {
+        it("it should return user", (done) => {
+        chai
+            .request(app)
+            .get("/auth/user/644a9bf89f9a8b33158e6f97")
+        
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.a("object");
+                if(err) console.log(err);
+                done();
+            });
+        });
+    });
+
+    //user not exists
+    describe("get /auth/user/:id", () => {
+        it("it should not return user (user not exists)", (done) => {
+        chai
+            .request(app)
+            .get("/auth/user/12234")
+        
+            .end((err, res) => {
+                if(err) console.log(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.a("object");
+                done();
+            });
+        });
+    });
+
+    //test case for delete user
+    describe("delete /auth/user/delete", () => {
+        it("it should delete user ", (done) => {
+        chai
+            .request(app)
+            .delete("/auth/user/delete")
+            .send({
+                email : "abc@abc.com"
+            })
+            .end((err, res) => {
+                if(err) console.log(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.a("object");
+                done();
+            });
+        });
+    });
+
+    // user not exists
+    describe("delete /auth/user/delete", () => {
+        it("it should not delete user (user not exists)", (done) => {
+        chai
+            .request(app)
+            .delete("/auth/user/delete")
+            .send({
+                email : "abc@abc.com"
+            })
+            .end((err, res) => {
+                if(err) console.log(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.a("object");
+                done();
+            });
+        });
+    });
+
+    // email is invalid
+    describe("delete /auth/user/delete", () => {
+        it("it should not delete user (email is invalid)", (done) => {
+        chai
+            .request(app)
+            .delete("/auth/user/delete")
+            .send({
+                email : "abc@abccom"
+            })
+            .end((err, res) => {
+                if(err) console.log(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.a("object");
+                done();
+            });
+        });
+    });
+
+    // test cases for get profile pic
+    describe("get /auth/user/show-pic/:id", () => {
+        it("it should return user user profile pic", (done) => {
+        chai
+            .request(app)
+            .get("/auth/user/show-pic/644a80baeb3c08a1d359f574")
+        
+            .end((err, res) => {
+                if(err) console.log(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.a("object");
+                done();
+            });
+        });
+    });
+
+    //user not exists
+    describe("get /auth/user/show-pic/:id", () => {
+        it("it should not return user user profile pic (user not exists)", (done) => {
+        chai
+            .request(app)
+            .get("/auth/user/show-pic/1234")
+        
+            .end((err, res) => {
+                if(err) console.log(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.a("object");
+                done();
+            });
+        });
+    });
+
+    //test cases for remove profile pic
+    describe("patch /auth/user/remove-pic/:id", () => {
+        it("it should remove user profile pic ", (done) => {
+        chai
+            .request(app)
+            .patch("/auth/user/remove-pic/644a80baeb3c08a1d359f574")
+        
+            .end((err, res) => {
+                if(err) console.log(err);
+                expect(res).to.have.status(200);
+                done();
+            });
+        });
+    });
+
+    // profile pic not exists
+    describe("patch /auth/user/remove-pic/:id", () => {
+        it("it should not remove user profile pic (profile pic not exists)", (done) => {
+        chai
+            .request(app)
+            .patch("/auth/user/remove-pic/644a80baeb3c08a1d359f574")
+        
+            .end((err, res) => {
+                if(err) console.log(err);
+                expect(res).to.have.status(200);
+                done();
+            });
+        });
+    });
+    
+
+    //user not exists
+    describe("patch /auth/user/remove-pic/:id", () => {
+        it("it should not remove user profile pic (user not exists)", (done) => {
+        chai
+            .request(app)
+            .patch("/auth/user/remove-pic/1234")
+        
+            .end((err, res) => {
+                if(err) console.log(err);
+                expect(res).to.have.status(200);
+                done();
+            });
+        });
+    });
+
+ });
 
