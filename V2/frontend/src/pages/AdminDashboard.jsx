@@ -20,7 +20,6 @@ const AdminDashboard = () => {
   const handleCloseDelete = () => setShowDelete(false);
   const handleShowDelete = () => setShowDelete(true);
   const handleAddSubmit = () => {
-    console.log(AddUser, AddEmail, AddPass, AddRole);
     fetch("http://localhost:3000/auth/user/signup/", {
       method: "POST",
       headers: {
@@ -39,15 +38,28 @@ const AdminDashboard = () => {
   const handleDeleteSubmit = () => {
     var mail = deleteMail;
     console.log("This is the mail:", mail);
-    fetch("http://localhost:3000/auth/user/delete/", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: mail,
-      }),
-    });
+    if (toggleState === 2) {
+      fetch("http://localhost:3000/auth/user/delete/", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: mail,
+        }),
+      });
+    }
+    if (toggleState === 3) {
+      fetch("http://localhost:3000/auth/org/delete/", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: mail,
+        }),
+      });
+    }
     fetchUsers();
     setShowDelete(false);
   };
@@ -66,7 +78,7 @@ const AdminDashboard = () => {
   const fetchUsers = async () => {
     const res = await fetch("http://localhost:3000/auth/user/");
     const data = await res.json();
-    console.log("This are Users:", data);
+    // console.log("This are Users:", data);
     $(document).ready(function () {
       let table = $("#users_datatable").DataTable({
         stateSave: true,
@@ -88,14 +100,14 @@ const AdminDashboard = () => {
       // // Handle Add button click
       $(".admin-container").on("click", ".add-btn", function () {
         handleShowAdd();
-        console.log("clicked");
+        // console.log("clicked");
       });
 
       // Handle Delete button click
       $("#users_datatable tbody").on("click", ".delete-btn", function () {
         let td = $(this).closest("tr").find("td:eq(2)");
         if (table.cell(td).data()) {
-          console.log(table.cell(td).data());
+          // console.log(table.cell(td).data());
           SetDeleteMail(table.cell(td).data());
         }
         handleShowDelete();
@@ -106,13 +118,32 @@ const AdminDashboard = () => {
   const fetchOrgs = async () => {
     const res = await fetch("http://localhost:3000/auth/org/");
     const data = await res.json();
-    console.log("This is Orgs:", data);
+    // console.log("This is Orgs:", data);
     $(document).ready(function () {
-      $("#orgs_datatable").DataTable({
+      let table = $("#orgs_datatable").DataTable({
         stateSave: true,
         bDestroy: true,
         data: data.orgs,
-        columns: [{ data: "_id" }, { data: "orgname" }, { data: "email" }],
+        columns: [
+          { data: "_id" },
+          { data: "orgname" },
+          { data: "email" },
+          {
+            data: null,
+            defaultContent:
+              '<div style="display:flex"><button class="btn btn-danger delete-btn" id="adm-dashboard-button-size">Delete</button></div>',
+          },
+        ],
+      });
+
+      // Handel org delete button click
+      $("#orgs_datatable tbody").on("click", ".delete-btn", function () {
+        let td = $(this).closest("tr").find("td:eq(2)");
+        if (table.cell(td).data()) {
+          // console.log(table.cell(td).data());
+          SetDeleteMail(table.cell(td).data());
+        }
+        handleShowDelete();
       });
     });
   };
@@ -172,15 +203,15 @@ const AdminDashboard = () => {
         <div
           className={
             toggleState === 2 ? "tab-content  active-content" : "tab-content"
-          } 
+          }
         >
           <div className="addButtonInAdminDashBoardCtn add-btn">
-          <FontAwesomeIcon
-            icon={faUserPlus}
-            class="addButtonInAdminDashBoard"
-          />
-          <p className="addButtonInAdminDashBoardTxt">Add User</p>
-        </div>
+            <FontAwesomeIcon
+              icon={faUserPlus}
+              class="addButtonInAdminDashBoard"
+            />
+            <p className="addButtonInAdminDashBoardTxt">Add User</p>
+          </div>
           <div className="admin-content-ctn user-table-ctn">
             <table id="users_datatable" className="display">
               <thead>
@@ -208,6 +239,7 @@ const AdminDashboard = () => {
                   <th>Id</th>
                   <th>OrgName</th>
                   <th>Email</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
             </table>
