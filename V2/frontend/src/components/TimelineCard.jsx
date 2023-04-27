@@ -2,16 +2,17 @@ import React from "react";
 import "../assets/CSS/timeline.css";
 
 const TimelineCard = ({ conference, index }) => {
-  const className = index & 1 ? "timeline-2 right-2" : "timeline-2 left-2";
+  const rootClass = index & 1 ? "timeline-2 right-2" : "timeline-2 left-2";
+  const cardClass = index & 1 ? "card-left" : "card-right";
   const formatDate = (date) => {
     const d = new Date(date);
     return d.toLocaleDateString();
   };
   return (
     <>
-      <div class={className}>
-        <div class="card">
-          <div class="card-body p-">
+      <div class={rootClass}>
+        <div class={cardClass + " card"}>
+          <div class="card-body p-3">
             <h4 class="fw-bold mb-2 bg-info p-2 rounded text-light">
               {conference.conferenceName}
             </h4>
@@ -28,7 +29,7 @@ const TimelineCard = ({ conference, index }) => {
             {conference.topics.length && (
               <>
                 <p class="mb-0">
-                  <b>Topic: </b>
+                  <b>Topics: </b>
                 </p>
                 {conference.topics.map((topic) => {
                   return (
@@ -43,7 +44,7 @@ const TimelineCard = ({ conference, index }) => {
             {conference.guestSpeakers.length && (
               <>
                 <p class="mb-0">
-                  <b>Guest Speaker: </b>
+                  <b>Guest Speakers: </b>
                 </p>
                 {conference.guestSpeakers.map((guestSpeaker) => {
                   return (

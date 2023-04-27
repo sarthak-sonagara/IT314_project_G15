@@ -9,6 +9,7 @@ import { faUserPlus, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 import AdminNavbar from "../components/AdminNavbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [showAdd, setShowAdd] = useState(false);
@@ -93,7 +94,7 @@ const AdminDashboard = () => {
   const [OrgPass, SetOrgPass] = useState("");
   const [deleteID, SetDeleteID] = useState("");
   const [deleteMail, SetDeleteMail] = useState("");
-  const [toggleState, setToggleState] = useState(1);
+  const [toggleState, setToggleState] = useState(2);
 
   const fetchUsers = async () => {
     const res = await fetch("http://localhost:3000/auth/user/");
@@ -186,15 +187,15 @@ const AdminDashboard = () => {
       <AdminNavbar />
       {/* <Tabs/> */}
       <div className="admin-nav-left-span">
-        <div className="admin-nav-left-sub-ctn">
+        <Link className="admin-nav-left-sub-ctn" to="/">
           <p
             style={{ padding: "0", margin: "0" }}
             className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
             onClick={() => toggleTab(1)}
           >
-            Admin
+            Home
           </p>
-        </div>
+        </Link>
 
         <div className="admin-nav-left-sub-ctn">
           <p
@@ -269,16 +270,6 @@ const AdminDashboard = () => {
       </Modal>
 
       <div className="admin-container">
-        <div
-          className={
-            toggleState === 1 ? "tab-content  active-content" : "tab-content"
-          }
-        >
-          <div className="admin-content-ctn admin-welcome-screen">
-            <div className="admin-welcome-ctn">Welcome to Admin Dashboard</div>
-          </div>
-        </div>
-
         <div
           className={
             toggleState === 2 ? "tab-content  active-content" : "tab-content"
@@ -441,7 +432,7 @@ const AdminDashboard = () => {
               <Button variant="secondary" onClick={handleCloseAdd}>
                 Cancel
               </Button>
-              <Button type="submit" variant="danger" onClick={handleAddSubmit}>
+              <Button type="submit" variant="primary" onClick={handleAddSubmit}>
                 Submit
               </Button>
             </Modal.Footer>

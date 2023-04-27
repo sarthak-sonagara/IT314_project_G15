@@ -133,3 +133,7 @@ body {
     left: 0%;
   }
 }
+
+.card-left {
+  background-color: red;
+}
