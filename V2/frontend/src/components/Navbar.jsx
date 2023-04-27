@@ -165,9 +165,9 @@ const Navbar = () => {
       </nav>
       {/* -------------------------------------------------------------- */}
       <div className="left-container" id="left-container">
+      <FontAwesomeIcon icon={faBars} className="menu-icons menu-icon" />
         <div className="left-sub-container" id="left-sub-container">
           <h6 className="menu-text-ctn">
-            <FontAwesomeIcon icon={faBars} className="menu-icons menu-icon" />
             <p className="menu-texts" id="menu-text">
               MENU
             </p>
