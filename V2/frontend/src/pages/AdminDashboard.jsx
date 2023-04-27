@@ -31,7 +31,12 @@ const AdminDashboard = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleAddSubmit = () => {
-    fetch("http://localhost:3000/auth/user/signup/", {
+    setUrl(
+      process.env.Node_ENV === "development"
+        ? "http://localhost:3000/auth/user/signup/"
+        : "https://conf-backend.onrender.com/auth/user/signup/"
+    );
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -104,6 +109,12 @@ const AdminDashboard = () => {
   const [toggleState, setToggleState] = useState(2);
 
   const fetchUsers = async () => {
+    const [url, setUrl] = useState("");
+    setUrl(
+      ProcessingInstruction.env_NODE_ENV === "development"
+        ? "http://localhost:3000/auth/user/"
+        : "https://conf-backend.onrender.com/auth/user/"
+    );
     const res = await fetch("http://localhost:3000/auth/user/");
     const data = await res.json();
     // console.log("This are Users:", data);
@@ -144,7 +155,12 @@ const AdminDashboard = () => {
   };
 
   const fetchOrgs = async () => {
-    const res = await fetch("http://localhost:3000/auth/org/");
+    setUrl(
+      process.env.Node_ENV === "development"
+        ? "http://localhost:3000/auth/org/"
+        : "https://conf-backend.onrender.com/auth/org/"
+    );
+    const res = await fetch(url);
     const data = await res.json();
     console.log("This is Orgs:", data);
     $(document).ready(function () {
@@ -159,7 +175,9 @@ const AdminDashboard = () => {
           {
             data: "accepted",
             render: function (data, type, row) {
-              return `<label class="switch"><input type="checkbox" data-id="$row._id}" ${data ? "checked" : ""}> <span class="slider round"></span></label>`;
+              return `<label class="switch"><input type="checkbox" data-id="$row._id}" ${
+                data ? "checked" : ""
+              }> <span class="slider round"></span></label>`;
             },
           },
           {
@@ -294,7 +312,11 @@ const AdminDashboard = () => {
             <p className="addButtonInAdminDashBoardTxt">Add User</p>
           </div>
           <div className="admin-content-ctn user-table-ctn">
-            <table id="users_datatable" className="display" style={{width: "auto"}}>
+            <table
+              id="users_datatable"
+              className="display"
+              style={{ width: "auto" }}
+            >
               <thead>
                 <tr>
                   <th>Id</th>
@@ -321,7 +343,11 @@ const AdminDashboard = () => {
             <p className="addButtonInAdminDashBoardTxt">Add Orgs</p>
           </div>
           <div className="admin-content-ctn org-table-ctn">
-            <table id="orgs_datatable" className="display" style={{width: "auto"}}>
+            <table
+              id="orgs_datatable"
+              className="display"
+              style={{ width: "auto" }}
+            >
               <thead>
                 <tr>
                   <th>Id</th>
