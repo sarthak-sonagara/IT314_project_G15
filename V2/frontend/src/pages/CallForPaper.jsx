@@ -52,6 +52,14 @@ const CallForPaper = () => {
     return d.toLocaleDateString();
   };
 
+  const testDownload = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:3000/files")
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Navbar />
@@ -59,6 +67,7 @@ const CallForPaper = () => {
         <form className="row">
           <div className="card-header">
             <h3>Conference Table</h3>
+            <button onClick={testDownload}>Test Download</button>
           </div>
           <table
             className="table table-hover"
@@ -96,12 +105,7 @@ const CallForPaper = () => {
                   <td className="date">{formatDate(conference.endDate)}</td>
                   <td className="topic">Space Reseach</td>
                   <td className="file_upload">
-                    <input
-                      type="file"
-                      name="r_paper"
-                      id="r_paper"
-                      onChange={handleChange}
-                    />
+                    <input type="file" id="r_paper" onChange={handleChange} />
                   </td>
                   <td className="upload_button">
                     <button
