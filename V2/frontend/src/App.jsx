@@ -100,7 +100,7 @@ function App() {
           <Route element={<HomeConf />} path="/conferences" />
           <Route
             element={
-              user && user.role === "publisher" ? (
+              user && user.user.role === "publisher" ? (
                 <CallForPaper />
               ) : (
                 <Navigate to="/choice" />
