@@ -47,19 +47,21 @@ const Home = () => {
       <div
         className="main"
         style={{
-          backgroundColor: "#caecff", paddingLeft: "60px",
-        }}>
-
-      <div
-        class="carousel-inner shadow-lg"
-        style={{
-          height: "70vh"
-        }}>
-        <div class="carousel-item active h-100">
-          <img src={img} class="d-block w-100 h-100" alt="..." style={{objectFit: "cover"}} />
-          <div class="carousel-caption d-none d-md-block">
-            <h2>Conference Management Website</h2>
-            {/* <p>Welcome to </p> */}
+          backgroundColor: "#caecff",
+        }}
+      >
+        <div
+          class="carousel-inner shadow-lg"
+          style={{
+            height: "70vh",
+          }}
+        >
+          <div class="carousel-item active h-100">
+            <img src={img} class="d-block w-100 h-100" alt="..." />
+            <div class="carousel-caption d-none d-md-block">
+              <h2>Conference Management Website</h2>
+              {/* <p>Welcome to </p> */}
+            </div>
           </div>
         </div>
 
