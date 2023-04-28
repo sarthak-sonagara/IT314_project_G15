@@ -37,10 +37,10 @@ const OrgDashboard = () => {
   };
 fetchOrgsFromEmail();
 
-  useEffect(() => {
-    document.title = "Organizer Dashboard";
-    fetchOrgsFromEmail();
-  }, [org]);
+  // useEffect(() => {
+  //   document.title = "Organizer Dashboard";
+  //   fetchOrgsFromEmail();
+  // }, [org]);
 
   const handleClose = () => {
     setShow(false);
