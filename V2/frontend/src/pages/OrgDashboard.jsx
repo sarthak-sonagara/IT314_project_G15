@@ -21,9 +21,15 @@ const OrgDashboard = () => {
   const [show, setShow] = useState(false);
 
   const [myid, Setmyid] = useState("");
+  const [url, setUrl] = useState("");
 
   const fetchOrgsFromEmail = async () => {
-    const res = await fetch("http://localhost:3000/auth/org/" + org.email);
+    setUrl(
+      prcess.env.NODE_ENV === "development"
+        ? "http://localhost:3000/auth/org/" + org.email
+        : "https://conf-backend.onrender.com/auth/org/" + org.email
+    );
+    const res = await fetch(url);
     const data = await res.json();
     console.log("This is Orgs:", data);
     Setmyid(data.org._id);
@@ -47,19 +53,19 @@ const OrgDashboard = () => {
     for (let i = 0; i < topic.length; i++) {
       topic[i] = topic[i].trim();
     }
-    if(conf_name === "" ){
+    if (conf_name === "") {
       alert("Please fill conference name");
       return;
     }
-    if(desc === "" ){
+    if (desc === "") {
       alert("Please fill description");
       return;
     }
-    if(start_date === "" ){
+    if (start_date === "") {
       alert("Please fill start date");
       return;
     }
-    if(end_date === "" ){
+    if (end_date === "") {
       alert("Please fill end date");
       return;
     }
@@ -68,7 +74,7 @@ const OrgDashboard = () => {
       alert("Start date cannot be greater than end date");
       return;
     }
-    if(start_date < new Date().toISOString().split('T')[0]){
+    if (start_date < new Date().toISOString().split("T")[0]) {
       alert("Start date cannot be less than today's date");
       return;
     }
@@ -81,19 +87,21 @@ const OrgDashboard = () => {
     }
     var y1 = d_y(start_date);
     var y2 = d_y(end_date);
-    if(!(y1>=2022 && y1<=2050)){
+    if (!(y1 >= 2022 && y1 <= 2050)) {
       alert("Please enter a valid year in start date");
       console.log(y1);
       return;
     }
-    if(!(y2>=2022 && y2<=2050)){
+    if (!(y2 >= 2022 && y2 <= 2050)) {
       alert("Please enter a valid year in start date");
       return;
     }
 
-
-
-
+    setUrl(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/org/create"
+        : "https://conf-backend.onrender.com/org/create"
+    );
 
     fetch("http://localhost:3000/org/create", {
       method: "POST",
@@ -122,8 +130,13 @@ const OrgDashboard = () => {
 
     var id = editid;
 
+    setUrl(
+      prcess.env.NODE_ENV === "development"
+        ? "http://localhost:3000/org/delete/" + id
+        : "https://conf-backend.onrender.com/org/delete/" + id
+    );
     console.log("http://localhost:3000/org/delete/" + id);
-    fetch("http://localhost:3000/org/delete/" + id, {
+    fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -160,19 +173,19 @@ const OrgDashboard = () => {
     for (let i = 0; i < topic.length; i++) {
       topic[i] = topic[i].trim();
     }
-    if(conf_name === "" ){
+    if (conf_name === "") {
       alert("Please fill conference name");
       return;
     }
-    if(desc === "" ){
+    if (desc === "") {
       alert("Please fill description");
       return;
     }
-    if(start_date === "" ){
+    if (start_date === "") {
       alert("Please fill start date");
       return;
     }
-    if(end_date === "" ){
+    if (end_date === "") {
       alert("Please fill end date");
       return;
     }
@@ -181,7 +194,7 @@ const OrgDashboard = () => {
       alert("Start date cannot be greater than end date");
       return;
     }
-    if(start_date < new Date().toISOString().split('T')[0]){
+    if (start_date < new Date().toISOString().split("T")[0]) {
       alert("Start date cannot be less than today's date");
       return;
     }
@@ -194,15 +207,20 @@ const OrgDashboard = () => {
     }
     var y1 = d_y(start_date);
     var y2 = d_y(end_date);
-    if(!(y1>=2022 && y1<=2050)){
+    if (!(y1 >= 2022 && y1 <= 2050)) {
       alert("Please enter a valid year in start date");
       console.log(y1);
       return;
     }
-    if(!(y2>=2022 && y2<=2050)){
+    if (!(y2 >= 2022 && y2 <= 2050)) {
       alert("Please enter a valid year in start date");
       return;
     }
+    setUrl(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/org/edit/"
+        : "https://conf-backend.onrender.com/org/edit/"
+    );
     fetch("http://localhost:3000/org/edit/", {
       method: "PATCH",
       headers: {
@@ -228,9 +246,14 @@ const OrgDashboard = () => {
   };
 
   const fetchUsers = async () => {
-    const res = await fetch(
-      "http://localhost:3000/auth/org/" + myid + "/myconferences"
+    setUrl(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/auth/org/" + myid + "/myconferences"
+        : "https://conf-backend.onrender.com/auth/org/" +
+            myid +
+            "/myconferences"
     );
+    const res = await fetch(url);
     const data = await res.json();
     console.log("This are Users:", data);
     $(document).ready(function () {
