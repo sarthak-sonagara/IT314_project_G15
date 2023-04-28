@@ -7,14 +7,14 @@ import img from "../../public/images/conference_background_2.jpg";
 const Home = () => {
   const [orgs, setOrgs] = useState([]);
   const [upcomingConf, setUpcomingConf] = useState([]);
-
+  console.log(import.meta.env.MODE);
   useEffect(() => {
     document.title = "Home";
     // get details of all organizations
-    let url =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/auth/org/"
-        : "https://conf-backend.onrender.com/auth/org/";
+
+    let url = import.meta.env.DEV
+      ? "http://localhost:3000/auth/org/"
+      : "https://conf-backend.onrender.com/auth/org/";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -22,10 +22,9 @@ const Home = () => {
       });
 
     // get details of all top 5 upcoming conferences
-    url =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/org/all"
-        : "https://conf-backend.onrender.com/org/all";
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/org/all"
+      : "https://conf-backend.onrender.com/org/all";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

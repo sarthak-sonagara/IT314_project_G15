@@ -4,11 +4,11 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3000/files",
-    "url": "http://localhost:3000/upload/files",
+    "url": "http://localhost:3000/auth/org/org@abc.com",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-04-26T09:53:03.719Z",
-    "modified": "2023-04-27T16:45:04.871Z",
+    "modified": "2023-04-28T07:57:42.549Z",
     "headers": [],
     "params": [],
     "tests": []
