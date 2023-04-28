@@ -32,7 +32,7 @@ const Login = () => {
                 marginBottom: 20,
               }}
             >
-              The best plateform <br />
+              The best platform <br />
               <span style={{ color: "hsl(218, 81%, 75%)" }}>
                 for Conferences
               </span>
@@ -87,7 +87,7 @@ const Login = () => {
             >
               Login
             </b>
-            <form style={{ width: "65%" }} onSubmit={handleSubmit}>
+            <form id="admin-login-from-id" onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   Email address:

@@ -240,7 +240,7 @@
 
 .menu-icon {
   position: inherit;
-  margin-left: 5px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
@@ -438,6 +438,10 @@
 
 /* --------------------------------admin ------------------------------------------- */
 
+#admin-login-from-id {
+  width: 70%;
+}
+
 .admin-nav {
   position: fixed;
   top: 0;
@@ -583,7 +587,7 @@
 }
 
 .org-content-ctn {
-  min-width: 1200px;
+  min-width: 900px;
   padding: 10px;
   padding: 10px 20px;
   border-radius: 0.75rem;
@@ -672,11 +676,15 @@
   border-radius: 5px 5px 0 0;
 }
 
-.delete-btn {
+.delete-btn, .edit-btn {
   height: 20px;
   width: 20px;
   fill: var(--bs-danger);
   cursor: pointer;
+}
+
+.edit-btn {
+  fill: var(--bs-primary);
 }
 
 button {
@@ -846,7 +854,7 @@ input:checked + .slider:before {
   .addButtonInAdminDashBoardTxt {
     display: inherit;
   }
-  .delete-btn {
+  .delete-btn, .edit-btn {
     height: 15px;
     width: 15px;
   }
@@ -870,17 +878,43 @@ input:checked + .slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: max-content;
+    padding: 25px 0;
   }
   .left-login-ctn {
     width: 70%;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    padding: 25px 0;
   }
   .right-login-ctn {
     width: 70%;
+    padding: 25px 0;
   }
 
   #users_datatable, #orgs_datatable {
     min-width: max-content;
+  }
+
+  /* admin dashboard */
+  .admin-login-container {
+    width: 400px;
+    height: 400px;
+    /* scale: 80%; */
+  }
+
+  #admin-login-from-id {
+    width: 80%;
+    font-size: 13px;
+  }
+
+  .input-btn {
+    font-size: 13px;
+  }
+
+
+  .org-content-ctn {
+    width: max-content;
+    min-width: 80vw;
   }
 
 }
@@ -916,6 +950,13 @@ input:checked + .slider:before {
   }
   .left-login-ctn {
     display: none;
+  }
+  .login-container {
+    box-shadow: none;
+  }
+  .right-login-ctn {
+    width: 100%;
+    padding: 25px 0;
   }
   .admin-nav-left-span {
     width: 200px;
@@ -958,7 +999,7 @@ input:checked + .slider:before {
   .addButtonInAdminDashBoardTxt {
     display: inherit;
   }
-  .delete-btn { 
+  .delete-btn, .edit-btn { 
     height: 13px;
     width: 13px;
   }
@@ -974,6 +1015,22 @@ input:checked + .slider:before {
   }
   .global-nav-logo-text {
     font-size: 13px;
+  }
+   /* admin dashboard */
+   .admin-login-container {
+    font-size: 10px;
+    width: 350px;
+    height: 350px;
+    /* scale: 70%; */
+  }
+
+  #admin-login-from-id {
+    width: 85%;
+    font-size: 10px;
+  }
+
+  .input-btn {
+    font-size: 11px;
   }
 }
 

@@ -19,7 +19,7 @@ const PasswordReset = () => {
                 marginBottom: 20,
               }}
             >
-              The best plateform <br />
+              The best platform <br />
               <span style={{ color: "hsl(218, 81%, 75%)" }}>
                 for Conferences
               </span>

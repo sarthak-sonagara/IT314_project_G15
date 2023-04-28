@@ -1,9 +1,17 @@
 // import logo from './logo.svg';
 import "../assets/CSS/OrgProfile.css";
-import { useEffect, useState } from 'react';
-import { AiOutlineMail, AiOutlineInstagram, AiOutlineLinkedin } from 'react-icons/ai';
+import { useEffect, useState } from "react";
+import {
+  AiOutlineMail,
+  AiOutlineInstagram,
+  AiOutlineLinkedin,
+} from "react-icons/ai";
 import orgimage from "../../public/images/DAIICT.png";
-// var cn = require('classNames');
+import { useAuthContext } from "../hooks/useAuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const c1 = {
   conferenceName: "Adbhut Conference",
@@ -11,33 +19,70 @@ const c1 = {
   endDate: "24-01-2022",
   guestSpeakers: ["Shree Ram", "Shree Krishna", "Shree Hanuman"],
   topics: ["jivan", "mrutyu", "gnyan"],
-  description: "aa to atyant sundar confereence chhe. khub khub abhar."
-}
-
-const org = {
-  orgname: "Narayan",
-  email: "shree_hari@gmail.com",
-  password: "xyz",
-  oldConfList: [c1, c1, c1, c1, c1, c1, c1],
-  newConfList: [c1, c1, c1, c1, c1, c1, c1],
-  linkedIn: "https://www.linkedin.com/in/narayan-0b1b1b1b1/",
-  instagram: "https://www.insta.com/narayan"
-}
-
+  description: "aa to atyant sundar confereence chhe. khub khub abhar.",
+};
 
 function OrgProfile() {
-  
+  const { org } = useAuthContext();
+  const [url, setUrl] = useState("");
+  const [allConferences, setAllConferences] = useState([]);
+  const [pastConferences, setPastConferences] = useState([]);
+  const [upcomingConferences, setUpcomingConferences] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentConf, setCurrentConf] = useState('');
+  const [currentConf, setCurrentConf] = useState("");
+  const [organization, setOrgnization] = useState("");
+
+  useEffect(() => {
+    document.title = "Organization Profile";
+    setUrl(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/auth/org/" + org.email
+        : "https://conf-backend.onrender.com/auth/org/" + org.email
+    );
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setOrgnization(data.org);
+        setUrl(
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:3000/auth/org/" +
+                organization._id +
+                "/myConferences"
+            : "https://conf-backend.onrender.com/auth/org/" +
+                organization._id +
+                "/myConferences"
+        );
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            setAllConferences(data.conferences);
+          });
+      });
+
+    setPastConferences(
+      allConferences
+        .filter((conference) => new Date(conference.endDate) < new Date())
+        .sort((a, b) => new Date(b.endDate) - new Date(a.endDate))
+    );
+
+    setUpcomingConferences(
+      allConferences
+        .filter((conference) => new Date(conference.startDate) >= new Date())
+        .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+    );
+
+    getImage();
+  }, []);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
-  }
+  };
 
   const setConf = (confName) => {
     setCurrentConf(confName);
     setIsModalOpen(true);
-  }
+  };
 
   function conftable(conf) {
     const rows = conf.map((conf, ind) => {
@@ -57,11 +102,6 @@ function OrgProfile() {
 
   const [postImage, setPostImage] = useState({ myFile: "" });
   const [image, setImage] = useState([]);
-
-  useEffect(() => {
-    getImage();
-  }, []);
-
 
   function getImage() {
     // for now passed hard coded value
@@ -111,111 +151,109 @@ function OrgProfile() {
 
   return (
     <>
-    <div className="orgProfileContainer">
-    <div className="org_box">
-        <div className="org_profileBox">
-          <form onSubmit={handleSubmit} className="org_profileform">
-            <label htmlFor="file-upload" className="custom-file-upload">
-              {image ? (
-                <img
-                  src={image}
-                  alt="Uploaded Profile picture"
-                  className="org_profilePhoto"
-                />
-              ) : (
-                <img
-                  src={orgimage}
-                  alt="Default profile picture"
-                  className="org_profilePhoto"
-                />
-              )}
-              
-            </label>
-            <span>
-            <input
-              className="choose-file"
-              type="file"
-              label="image"
-              name="myFile"
-              id="file-upload"
-              accept=".jpg, .jpeg, .png"
-              onChange={(e) => handleFileUpload(e)}
-            />
-            <button type="submit" className="upload-btn">Upload</button>
-            </span>
-          </form>
-          <div className="profileOrgName">{org.orgname}</div>
-          <div className='org_role'>organization</div>
-          <hr class="org_h_line" />
-          <div className="org_profileEmail">
-            <span className='org_emailIcon'><AiOutlineMail /></span>
-            <a href={`mailto: ${org.email}`}>
-              {org.email}
-            </a>
-          </div>
-          <hr class="org_h_line" />
-          <div className="org_profileLinks">
-            <a href={org.instagram}><AiOutlineInstagram /></a>
-            <a href={org.linkedIn}><AiOutlineLinkedin /></a>
-          </div>
-        </div>
-        <div className="org_conferenceList">
-          <div className="org_header">Organized Conferences</div>
-          <div className="org_confTypes">
-            <div class="org_conferenceItem org_dropdown org_dropdown-2" onclick="try">
-              Past Conferences
-              {conftable(org.oldConfList)}
+      <Navbar />
+      <div className="orgProfileContainer">
+        <div className="org_box">
+          <div className="org_profileBox py-5">
+            <div className="d-flex justify-content-center">
+              <FontAwesomeIcon
+                className="my-2 border border-3 text-light rounded-circle p-5"
+                style={{ fontSize: "8em" }}
+                icon={faBuildingColumns}
+              />
             </div>
-            <div class="org_conferenceItem org_dropdown org_dropdown-2" onclick="try">
-              Upcoming Conferences
-              {conftable(org.newConfList)}
+            <div className="d-flex flex-column align-items-center">
+              <div className="profileOrgName p-2 text-primary rounded">
+                {organization.orgname}
+              </div>
+              <hr class="org_h_line" />
+              <div className="org_profileEmail">
+                <span className="org_emailIcon">
+                  <AiOutlineMail />
+                </span>
+                <Link href={`mailto: ${organization.email}`}>
+                  {organization.email}
+                </Link>
+              </div>
+              <hr class="org_h_line" />
+              <div className="org_profileLinks">
+                <Link href={org.instagram}>
+                  <AiOutlineInstagram />
+                </Link>
+                <Link href={org.linkedIn}>
+                  <AiOutlineLinkedin />
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="org_conferenceList">
+            <div className="org_header">
+              Organized by
+              <span className="fw-bold "> {" " + organization.orgname}</span>
+            </div>
+            <div className="org_confTypes">
+              <div
+                class="org_conferenceItem shadow-lg rounded org_dropdown org_dropdown-2"
+                onclick="try"
+              >
+                Past Conferences
+                {conftable(pastConferences)}
+              </div>
+              <div
+                class="org_conferenceItem shadow-lg rounded org_dropdown org_dropdown-2"
+                onclick="try"
+              >
+                Upcoming Conferences
+                {conftable(upcomingConferences)}
+              </div>
             </div>
           </div>
         </div>
+        {isModalOpen && (
+          <div className="org_modalWindow">
+            <div className="org_modalBox" onClick={toggleModal}>
+              <table class="tg">
+                <tbody
+                  style={{
+                    textAlign: "left",
+                    fontSize: "1.2rem",
+                    color: "black",
+                    fontWeight: "bold",
+                    padding: "1rem",
+                  }}
+                >
+                  <tr>
+                    <td class="tg-gseg">Name</td>
+                    <td class="tg-0lax">{currentConf.conferenceName}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">Start date</td>
+                    <td class="tg-0lax">{currentConf.startDate}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">End date</td>
+                    <td class="tg-0lax">{currentConf.endDate}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">Guest speakers</td>
+                    <td class="tg-0lax">
+                      {currentConf.guestSpeakers.toString()}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">Topics</td>
+                    <td class="tg-0lax">{currentConf.topics.toString()}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-gseg">Description</td>
+                    <td class="tg-0lax">{currentConf.description}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
-      {
-        isModalOpen && (
-        <div className="org_modalWindow">
-          <div className="org_modalBox" onClick={toggleModal}>
-            <table class="tg">
-              <tbody style={{
-                textAlign: "left",
-                fontSize: "1.2rem",
-                color: "black",
-                fontWeight: "bold",
-                padding: "1rem"
-              }}>
-                <tr>
-                  <td class="tg-gseg">Name</td>
-                  <td class="tg-0lax">{currentConf.conferenceName}</td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">Start date</td>
-                  <td class="tg-0lax">{currentConf.startDate}</td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">End date</td>
-                  <td class="tg-0lax">{currentConf.endDate}</td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">Guest speakers</td>
-                  <td class="tg-0lax">{currentConf.guestSpeakers.toString()}</td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">Topics</td>
-                  <td class="tg-0lax">{currentConf.topics.toString()}</td>
-                </tr>
-                <tr>
-                  <td class="tg-gseg">Description</td>
-                  <td class="tg-0lax">{currentConf.description}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        )
-      }
-    </div>
     </>
   );
 }
