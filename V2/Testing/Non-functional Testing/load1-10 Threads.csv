@@ -1,0 +1,91 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1682700532784,372,Home Page,200,OK,CMS Testing 1-1,text,true,,1417,264,4,4,https://it-314-project-g15.vercel.app/,207,0,47
+1682700532784,207,Home Page-0,308,Permanent Redirect,CMS Testing 1-1,text,true,,334,132,4,4,http://it-314-project-g15.vercel.app/,207,0,47
+1682700532991,165,Home Page-1,200,OK,CMS Testing 1-1,text,true,,1083,132,4,4,https://it-314-project-g15.vercel.app/,165,0,119
+1682700532888,299,Home Page,200,OK,CMS Testing 1-2,text,true,,1417,264,5,5,https://it-314-project-g15.vercel.app/,144,0,3
+1682700532888,144,Home Page-0,308,Permanent Redirect,CMS Testing 1-2,text,true,,334,132,5,5,http://it-314-project-g15.vercel.app/,144,0,3
+1682700533032,155,Home Page-1,200,OK,CMS Testing 1-2,text,true,,1083,132,5,5,https://it-314-project-g15.vercel.app/,155,0,119
+1682700532999,255,Home Page,200,OK,CMS Testing 1-3,text,true,,1417,264,5,5,https://it-314-project-g15.vercel.app/,136,0,8
+1682700532999,136,Home Page-0,308,Permanent Redirect,CMS Testing 1-3,text,true,,334,132,5,5,http://it-314-project-g15.vercel.app/,136,0,8
+1682700533136,118,Home Page-1,200,OK,CMS Testing 1-3,text,true,,1083,132,5,5,https://it-314-project-g15.vercel.app/,118,0,89
+1682700533156,114,organization's conferences,200,OK,CMS Testing 1-1,text,true,,1450,286,5,5,https://it-314-project-g15.vercel.app/conferences,85,0,5
+1682700533156,85,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-1,text,true,,367,143,5,5,http://it-314-project-g15.vercel.app/conferences,85,0,5
+1682700533241,29,organization's conferences-1,200,OK,CMS Testing 1-1,text,true,,1083,143,5,5,https://it-314-project-g15.vercel.app/conferences,29,0,0
+1682700533187,88,organization's conferences,200,OK,CMS Testing 1-2,text,true,,1450,286,5,5,https://it-314-project-g15.vercel.app/conferences,66,0,6
+1682700533187,66,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-2,text,true,,367,143,5,5,http://it-314-project-g15.vercel.app/conferences,66,0,6
+1682700533253,22,organization's conferences-1,200,OK,CMS Testing 1-2,text,true,,1083,143,5,5,https://it-314-project-g15.vercel.app/conferences,22,0,0
+1682700533093,230,Home Page,200,OK,CMS Testing 1-4,text,true,,1417,264,6,6,https://it-314-project-g15.vercel.app/,122,0,24
+1682700533093,122,Home Page-0,308,Permanent Redirect,CMS Testing 1-4,text,true,,334,132,6,6,http://it-314-project-g15.vercel.app/,122,0,24
+1682700533216,107,Home Page-1,200,OK,CMS Testing 1-4,text,true,,1083,132,6,6,https://it-314-project-g15.vercel.app/,107,0,68
+1682700533187,169,Home Page,200,OK,CMS Testing 1-5,text,true,,1417,264,6,6,https://it-314-project-g15.vercel.app/,55,0,6
+1682700533187,55,Home Page-0,308,Permanent Redirect,CMS Testing 1-5,text,true,,334,132,6,6,http://it-314-project-g15.vercel.app/,55,0,6
+1682700533242,114,Home Page-1,200,OK,CMS Testing 1-5,text,true,,1083,132,6,6,https://it-314-project-g15.vercel.app/,114,0,80
+1682700533254,108,organization's conferences,200,OK,CMS Testing 1-3,text,true,,1450,286,6,6,https://it-314-project-g15.vercel.app/conferences,67,0,5
+1682700533254,67,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-3,text,true,,367,143,6,6,http://it-314-project-g15.vercel.app/conferences,67,0,5
+1682700533321,41,organization's conferences-1,200,OK,CMS Testing 1-3,text,true,,1083,143,6,6,https://it-314-project-g15.vercel.app/conferences,41,0,0
+1682700533271,98,User Profile Page,200,OK,CMS Testing 1-1,text,true,,1438,325,6,6,https://it-314-project-g15.vercel.app/profile,77,0,9
+1682700533271,77,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-1,text,true,,355,186,6,6,http://it-314-project-g15.vercel.app/profile,77,0,9
+1682700533348,21,User Profile Page-1,200,OK,CMS Testing 1-1,text,true,,1083,139,6,6,https://it-314-project-g15.vercel.app/profile,21,0,0
+1682700533275,99,User Profile Page,200,OK,CMS Testing 1-2,text,true,,1438,325,5,5,https://it-314-project-g15.vercel.app/profile,75,0,5
+1682700533275,75,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-2,text,true,,355,186,5,5,http://it-314-project-g15.vercel.app/profile,75,0,5
+1682700533350,24,User Profile Page-1,200,OK,CMS Testing 1-2,text,true,,1083,139,5,5,https://it-314-project-g15.vercel.app/profile,24,0,0
+1682700533323,90,organization's conferences,200,OK,CMS Testing 1-4,text,true,,1450,286,5,5,https://it-314-project-g15.vercel.app/conferences,48,0,9
+1682700533323,48,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-4,text,true,,367,143,5,5,http://it-314-project-g15.vercel.app/conferences,48,0,9
+1682700533371,42,organization's conferences-1,200,OK,CMS Testing 1-4,text,true,,1083,143,5,5,https://it-314-project-g15.vercel.app/conferences,42,0,0
+1682700533283,165,Home Page,200,OK,CMS Testing 1-6,text,true,,1417,264,5,5,https://it-314-project-g15.vercel.app/,57,0,9
+1682700533283,57,Home Page-0,308,Permanent Redirect,CMS Testing 1-6,text,true,,334,132,5,5,http://it-314-project-g15.vercel.app/,57,0,9
+1682700533340,108,Home Page-1,200,OK,CMS Testing 1-6,text,true,,1083,132,5,5,https://it-314-project-g15.vercel.app/,108,0,64
+1682700533356,98,organization's conferences,200,OK,CMS Testing 1-5,text,true,,1450,286,5,5,https://it-314-project-g15.vercel.app/conferences,62,0,3
+1682700533356,62,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-5,text,true,,367,143,5,5,http://it-314-project-g15.vercel.app/conferences,62,0,3
+1682700533418,36,organization's conferences-1,200,OK,CMS Testing 1-5,text,true,,1083,143,5,5,https://it-314-project-g15.vercel.app/conferences,36,0,0
+1682700533362,98,User Profile Page,200,OK,CMS Testing 1-3,text,true,,1438,325,5,5,https://it-314-project-g15.vercel.app/profile,64,0,3
+1682700533362,64,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-3,text,true,,355,186,5,5,http://it-314-project-g15.vercel.app/profile,64,0,3
+1682700533426,34,User Profile Page-1,200,OK,CMS Testing 1-3,text,true,,1083,139,5,5,https://it-314-project-g15.vercel.app/profile,34,0,0
+1682700533413,117,User Profile Page,200,OK,CMS Testing 1-4,text,true,,1438,325,5,5,https://it-314-project-g15.vercel.app/profile,74,0,13
+1682700533413,74,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-4,text,true,,355,186,5,5,http://it-314-project-g15.vercel.app/profile,74,0,13
+1682700533487,43,User Profile Page-1,200,OK,CMS Testing 1-4,text,true,,1083,139,5,5,https://it-314-project-g15.vercel.app/profile,43,0,0
+1682700533454,85,User Profile Page,200,OK,CMS Testing 1-5,text,true,,1438,325,4,4,https://it-314-project-g15.vercel.app/profile,54,0,12
+1682700533454,54,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-5,text,true,,355,186,4,4,http://it-314-project-g15.vercel.app/profile,54,0,12
+1682700533508,31,User Profile Page-1,200,OK,CMS Testing 1-5,text,true,,1083,139,4,4,https://it-314-project-g15.vercel.app/profile,31,0,0
+1682700533449,109,organization's conferences,200,OK,CMS Testing 1-6,text,true,,1450,286,3,3,https://it-314-project-g15.vercel.app/conferences,68,0,11
+1682700533449,68,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-6,text,true,,367,143,3,3,http://it-314-project-g15.vercel.app/conferences,68,0,11
+1682700533517,41,organization's conferences-1,200,OK,CMS Testing 1-6,text,true,,1083,143,3,3,https://it-314-project-g15.vercel.app/conferences,41,0,0
+1682700533383,175,Home Page,200,OK,CMS Testing 1-7,text,true,,1417,264,3,3,https://it-314-project-g15.vercel.app/,65,0,3
+1682700533383,66,Home Page-0,308,Permanent Redirect,CMS Testing 1-7,text,true,,334,132,3,3,http://it-314-project-g15.vercel.app/,65,0,3
+1682700533449,109,Home Page-1,200,OK,CMS Testing 1-7,text,true,,1083,132,3,3,https://it-314-project-g15.vercel.app/,109,0,73
+1682700533558,95,organization's conferences,200,OK,CMS Testing 1-7,text,true,,1450,286,4,4,https://it-314-project-g15.vercel.app/conferences,66,0,3
+1682700533558,67,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-7,text,true,,367,143,4,4,http://it-314-project-g15.vercel.app/conferences,66,0,3
+1682700533625,28,organization's conferences-1,200,OK,CMS Testing 1-7,text,true,,1083,143,4,4,https://it-314-project-g15.vercel.app/conferences,28,0,0
+1682700533558,98,User Profile Page,200,OK,CMS Testing 1-6,text,true,,1438,325,4,4,https://it-314-project-g15.vercel.app/profile,70,0,3
+1682700533558,70,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-6,text,true,,355,186,4,4,http://it-314-project-g15.vercel.app/profile,70,0,3
+1682700533628,28,User Profile Page-1,200,OK,CMS Testing 1-6,text,true,,1083,139,4,4,https://it-314-project-g15.vercel.app/profile,28,0,0
+1682700533483,175,Home Page,200,OK,CMS Testing 1-8,text,true,,1417,264,3,3,https://it-314-project-g15.vercel.app/,75,0,13
+1682700533483,75,Home Page-0,308,Permanent Redirect,CMS Testing 1-8,text,true,,334,132,3,3,http://it-314-project-g15.vercel.app/,75,0,13
+1682700533558,100,Home Page-1,200,OK,CMS Testing 1-8,text,true,,1083,132,3,3,https://it-314-project-g15.vercel.app/,100,0,72
+1682700533583,160,Home Page,200,OK,CMS Testing 1-9,text,true,,1417,264,4,4,https://it-314-project-g15.vercel.app/,62,0,6
+1682700533583,62,Home Page-0,308,Permanent Redirect,CMS Testing 1-9,text,true,,334,132,4,4,http://it-314-project-g15.vercel.app/,62,0,6
+1682700533653,90,User Profile Page,200,OK,CMS Testing 1-7,text,true,,1438,325,4,4,https://it-314-project-g15.vercel.app/profile,57,0,5
+1682700533645,98,Home Page-1,200,OK,CMS Testing 1-9,text,true,,1083,132,4,4,https://it-314-project-g15.vercel.app/,98,0,66
+1682700533653,57,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-7,text,true,,355,186,4,4,http://it-314-project-g15.vercel.app/profile,57,0,5
+1682700533710,33,User Profile Page-1,200,OK,CMS Testing 1-7,text,true,,1083,139,4,4,https://it-314-project-g15.vercel.app/profile,33,0,0
+1682700533658,103,organization's conferences,200,OK,CMS Testing 1-8,text,true,,1450,286,3,3,https://it-314-project-g15.vercel.app/conferences,70,0,12
+1682700533658,70,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-8,text,true,,367,143,3,3,http://it-314-project-g15.vercel.app/conferences,70,0,12
+1682700533728,33,organization's conferences-1,200,OK,CMS Testing 1-8,text,true,,1083,143,3,3,https://it-314-project-g15.vercel.app/conferences,33,0,0
+1682700533683,223,Home Page,200,OK,CMS Testing 1-10,text,true,,1417,264,3,3,https://it-314-project-g15.vercel.app/,52,0,9
+1682700533683,52,Home Page-0,308,Permanent Redirect,CMS Testing 1-10,text,true,,334,132,3,3,http://it-314-project-g15.vercel.app/,52,0,9
+1682700533736,170,Home Page-1,200,OK,CMS Testing 1-10,text,true,,1083,132,3,3,https://it-314-project-g15.vercel.app/,170,0,96
+1682700533761,163,User Profile Page,200,OK,CMS Testing 1-8,text,true,,1438,325,3,3,https://it-314-project-g15.vercel.app/profile,82,0,12
+1682700533743,181,organization's conferences,200,OK,CMS Testing 1-9,text,true,,1450,286,3,3,https://it-314-project-g15.vercel.app/conferences,88,0,10
+1682700533761,82,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-8,text,true,,355,186,3,3,http://it-314-project-g15.vercel.app/profile,82,0,12
+1682700533743,88,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-9,text,true,,367,143,3,3,http://it-314-project-g15.vercel.app/conferences,88,0,10
+1682700533843,81,User Profile Page-1,200,OK,CMS Testing 1-8,text,true,,1083,139,3,3,https://it-314-project-g15.vercel.app/profile,81,0,0
+1682700533831,93,organization's conferences-1,200,OK,CMS Testing 1-9,text,true,,1083,143,3,3,https://it-314-project-g15.vercel.app/conferences,93,0,0
+1682700533907,246,organization's conferences,200,OK,CMS Testing 1-10,text,true,,1450,286,2,2,https://it-314-project-g15.vercel.app/conferences,112,0,46
+1682700533907,112,organization's conferences-0,308,Permanent Redirect,CMS Testing 1-10,text,true,,367,143,2,2,http://it-314-project-g15.vercel.app/conferences,112,0,46
+1682700534019,134,organization's conferences-1,200,OK,CMS Testing 1-10,text,true,,1083,143,2,2,https://it-314-project-g15.vercel.app/conferences,134,0,0
+1682700533924,240,User Profile Page,200,OK,CMS Testing 1-9,text,true,,1438,325,2,2,https://it-314-project-g15.vercel.app/profile,112,0,29
+1682700533924,112,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-9,text,true,,355,186,2,2,http://it-314-project-g15.vercel.app/profile,112,0,29
+1682700534036,128,User Profile Page-1,200,OK,CMS Testing 1-9,text,true,,1083,139,2,2,https://it-314-project-g15.vercel.app/profile,128,0,0
+1682700534154,108,User Profile Page,200,OK,CMS Testing 1-10,text,true,,1438,325,1,1,https://it-314-project-g15.vercel.app/profile,88,0,27
+1682700534154,88,User Profile Page-0,308,Permanent Redirect,CMS Testing 1-10,text,true,,355,186,1,1,http://it-314-project-g15.vercel.app/profile,88,0,27
+1682700534242,20,User Profile Page-1,200,OK,CMS Testing 1-10,text,true,,1083,139,1,1,https://it-314-project-g15.vercel.app/profile,20,0,0

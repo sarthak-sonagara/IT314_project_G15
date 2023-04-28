@@ -12,6 +12,7 @@ const HomeConf = () => {
   let url = "";
 
   const [conferences, setConferences] = useState([]);
+  const [status, setStatus] = useState([false]);
 
   const formateDate = (date) => {
     const d = new Date(date);
@@ -52,6 +53,46 @@ const HomeConf = () => {
     });
   };
 
+  const handleCancelRegister = (event, id, index) => {
+    event.preventDefault();
+    if (!user) {
+      alert("Please login to register");
+      return;
+    }
+    console.log(id, user.user._id);
+    let url = import.meta.env.DEV
+      ? "http://localhost:3000/org/cancelRegistration/" + id
+      : "https://conf-backend.onrender.com/org/cancelRegistration/" + id;
+
+    fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: user.user._id }),
+    }).then((res) => {
+      res
+        .json()
+        .then((data) => {
+          console.log(data);
+          if (data.error) {
+            alert(data.error);
+            return;
+          }
+          alert("Registration cancelled successfully");
+          // mark the status false
+          setStatus((prev) => {
+            prev[index] = false;
+            return prev;
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Something went wrong");
+        });
+    });
+  };
+
   useEffect(() => {
     document.title = `${org.orgname} | Conferences}`;
     url = import.meta.env.DEV
@@ -60,10 +101,20 @@ const HomeConf = () => {
     fetch(url).then((res) => {
       res.json().then((data) => {
         setConferences(data.conferences);
-        console.log(conferences);
+        setStatus(Array.from({ length: conferences.length }).fill(false));
+        // write code for marking the registered conferences among the list of all conferences
+        conferences.forEach((conference, index) => {
+          if (conference.registeredAttendees.includes(user.user._id)) {
+            setStatus((prev) => {
+              prev[index] = true;
+              return prev;
+            });
+          }
+        });
+        console.log(conferences, status);
       });
     });
-  }, []);
+  }, [status]);
 
   return (
     <div>
@@ -110,7 +161,7 @@ const HomeConf = () => {
                 </tr>
               </thead>
               <tbody>
-                {conferences.map((conference) => {
+                {conferences.map((conference, index) => {
                   return (
                     <tr>
                       <td scope="row" className="conference_name">
@@ -135,15 +186,31 @@ const HomeConf = () => {
                       )}
                       <td className="topic">{conference.topics}</td>
                       <td className="reg_btn">
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-primary"
-                          id="ctn-of-HomeConf-rg-btn"
-                          onClick={(e) => handleRegister(e, conference._id)}
-                          disabled={!user}
-                        >
-                          Register
-                        </button>
+                        {status[index] ? (
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-outline-danger"
+                            id="ctn-of-HomeConf-rg-btn"
+                            disabled={!user}
+                            onClick={(event) =>
+                              handleCancelRegister(event, conference._id, index)
+                            }
+                          >
+                            Registered
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-outline-primary"
+                            id="ctn-of-HomeConf-rg-btn"
+                            onClick={(event) =>
+                              handleRegister(event, conference._id)
+                            }
+                            disabled={!user}
+                          >
+                            Register
+                          </button>
+                        )}
                       </td>
                       <td className="reg_btn">
                         <Link
