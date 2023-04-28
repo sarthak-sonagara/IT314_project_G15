@@ -27,7 +27,23 @@ const Choice = () => {
             Organization
           </Link>
         </div>
+        <Link
+        className="input-btn"
+        style={{
+          backgroundColor: "var(--primary-color)",
+          border: "none",
+          color: "#fff",
+          float: "right",
+          position: "absolute",
+          top: "10px",
+          left: "50px",
+        }}
+        to={"/"}
+      >
+        Back
+      </Link>
       </div>
+      
     </>
   );
 };

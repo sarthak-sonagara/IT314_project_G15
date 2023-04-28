@@ -36,7 +36,7 @@ const Home = () => {
       <div 
         className="main"
         style={{
-          backgroundColor: "#caecff",
+          backgroundColor: "#caecff", paddingLeft: "60px",
         }}>
 
       <div
@@ -45,7 +45,7 @@ const Home = () => {
           height: "70vh"
         }}>
         <div class="carousel-item active h-100">
-          <img src={img} class="d-block w-100 h-100" alt="..." />
+          <img src={img} class="d-block w-100 h-100" alt="..." style={{objectFit: "cover"}} />
           <div class="carousel-caption d-none d-md-block">
             <h2>Conference Management Website</h2>
             {/* <p>Welcome to </p> */}

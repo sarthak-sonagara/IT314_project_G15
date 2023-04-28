@@ -438,6 +438,10 @@
 
 /* --------------------------------admin ------------------------------------------- */
 
+#admin-login-from-id {
+  width: 70%;
+}
+
 .admin-nav {
   position: fixed;
   top: 0;
@@ -870,17 +874,37 @@ input:checked + .slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: max-content;
+    padding: 25px 0;
   }
   .left-login-ctn {
     width: 70%;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    padding: 25px 0;
   }
   .right-login-ctn {
     width: 70%;
+    padding: 25px 0;
   }
 
   #users_datatable, #orgs_datatable {
     min-width: max-content;
+  }
+
+  /* admin dashboard */
+  .admin-login-container {
+    width: 400px;
+    height: 400px;
+    /* scale: 80%; */
+  }
+
+  #admin-login-from-id {
+    width: 80%;
+    font-size: 13px;
+  }
+
+  .input-btn {
+    font-size: 13px;
   }
 
 }
@@ -916,6 +940,13 @@ input:checked + .slider:before {
   }
   .left-login-ctn {
     display: none;
+  }
+  .login-container {
+    box-shadow: none;
+  }
+  .right-login-ctn {
+    width: 100%;
+    padding: 25px 0;
   }
   .admin-nav-left-span {
     width: 200px;
@@ -974,6 +1005,22 @@ input:checked + .slider:before {
   }
   .global-nav-logo-text {
     font-size: 13px;
+  }
+   /* admin dashboard */
+   .admin-login-container {
+    font-size: 10px;
+    width: 350px;
+    height: 350px;
+    /* scale: 70%; */
+  }
+
+  #admin-login-from-id {
+    width: 85%;
+    font-size: 10px;
+  }
+
+  .input-btn {
+    font-size: 11px;
   }
 }
 

@@ -32,7 +32,7 @@ const AdminLogin = () => {
             >
               Admin Login
             </b>
-            <form style={{ width: "70%" }} onSubmit={handleSubmit}>
+            <form id="admin-login-from-id" onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   Email address:
