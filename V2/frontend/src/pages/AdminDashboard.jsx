@@ -75,7 +75,6 @@ const AdminDashboard = () => {
     });
     fetchOrgs();
     setShow(false);
-    setToggleState(1);
   };
 
   function toggleButtonHandler(index) {
@@ -87,6 +86,7 @@ const AdminDashboard = () => {
 
   const handleDeleteSubmit = () => {
     var mail = deleteMail;
+    var id = deleteID;
     console.log("This is the mail:", mail);
     if (toggleState === 2) {
       url =
@@ -108,6 +108,9 @@ const AdminDashboard = () => {
         import.meta.env.MODE === "development"
           ? "http://localhost:3000/auth/org/delete/"
           : "https://conf-backend.onrender.com/auth/org/delete/";
+        const URL =  import.meta.env.MODE === "development"
+        ? "http://localhost:3000/org/remove-conferences-of-Org/"
+        : "https://conf-backend.onrender.com/org/remove-conferences-of-Org/";
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -115,6 +118,15 @@ const AdminDashboard = () => {
         },
         body: JSON.stringify({
           email: mail,
+        }),
+      });
+      fetch(URL, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _id: id,
         }),
       });
     }
@@ -128,6 +140,7 @@ const AdminDashboard = () => {
   const [Orgname, SetOrgname] = useState("");
   const [OrgEmail, SetOrgEmail] = useState("");
   const [OrgPass, SetOrgPass] = useState("");
+  const [OrgId, SetOrgId] = useState("");
   const [deleteID, SetDeleteID] = useState("");
   const [deleteMail, SetDeleteMail] = useState("");
   const [acceptanceStatus, SetAcceptanceStatus] = useState("");
@@ -304,12 +317,12 @@ const AdminDashboard = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>New Conference</Modal.Title>
+          <Modal.Title>Add New Conference</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="mb-3">
             <label htmlFor="input-orgname" className="form-label">
-              Username:
+              Organization Name:
             </label>
             <input
               type="text"
