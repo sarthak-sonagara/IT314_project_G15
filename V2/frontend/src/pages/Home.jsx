@@ -123,7 +123,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer/>
+      
     </div>
   );
 };
