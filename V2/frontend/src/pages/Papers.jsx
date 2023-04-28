@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 const Papers = () => {
   const { conference } = useLocation().state;
   const [downloads, setDownloads] = useState([]);
-  console.log(conference.papers[0].filename);
 
   useEffect(() => {
     conference.papers.map((paper) => {
@@ -27,8 +26,8 @@ const Papers = () => {
       <Navbar />
       {!downloads || downloads.length === 0 ? (
         <h1
-          className="text-center text-primary mt-5"
-          style={{ marginTop: "3em" }}
+          className="text-center text-danger"
+          style={{ marginTop: "3em", minHeight: "70vh" }}
         >
           No papers submitted yet
         </h1>
