@@ -14,6 +14,7 @@ const orgRoutes = require("./routes/orgRoutes");
 const conferenceRoutes = require("./routes/conferenceRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const User = require("./models/user");
+const Conference = require("./models/conference");
 
 const corsOptions = {
   origin: "*",
@@ -110,19 +111,28 @@ app.post("/upload/", multer.single("file"), async (req, res) => {
   user.papers.push({
     title: req.body.originalname,
     fileUrl: response.data.id,
+    filename: req.file.originalname,
     conference: confid,
   });
   console.log(response.data.id);
   await user.save();
-
+  const conference = await Conference.findById(confid);
+  conference.papers.push({
+    title: req.body.originalname,
+    fileUrl: response.data.id,
+    filename: req.file.originalname,
+    user: user._id,
+  });
+  await conference.save();
   res.status(200).json({ response });
 });
 
-app.get("/files", async (req, res) => {
+app.get("/files/:id", async (req, res) => {
+  const { id } = req.params;
   let downloadUrl = "";
   drive.files.get(
     {
-      fileId: "1590nRXUmOoerl4hdy2aGCfGekni9BWbo",
+      fileId: id,
       fields: "id,name,webContentLink",
     },
     (err, resp) => {

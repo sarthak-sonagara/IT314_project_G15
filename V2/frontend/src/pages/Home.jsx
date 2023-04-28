@@ -65,8 +65,8 @@ const Home = () => {
         </div>
 
         <div className="my-5 mt-0" id="upcoming_conference">
-          <div className="position-relative p-5 text-center text-muted bg-body border border-dashed ">
-            <h1 className="text-body-emphasis">Upcoming Conferences</h1>
+          <div className="position-relative p-2 text-center text-muted bg-body border border-dashed ">
+            <h3 className="text-body-emphasis">Upcoming Conferences</h3>
           </div>
         </div>
 
@@ -87,8 +87,8 @@ const Home = () => {
         </section>
 
         <div className="my-5" id="organizations">
-          <div className="position-relative p-5 text-center text-muted bg-body border border-dashed ">
-            <h1 className="text-body-emphasis">Organizations</h1>
+          <div className="position-relative text-center text-muted bg-body border border-dashed ">
+            <h3 className="text-body-emphasis">Organizations</h3>
           </div>
         </div>
 
