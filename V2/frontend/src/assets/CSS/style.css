@@ -587,7 +587,7 @@
 }
 
 .org-content-ctn {
-  min-width: 1200px;
+  min-width: 900px;
   padding: 10px;
   padding: 10px 20px;
   border-radius: 0.75rem;
@@ -676,11 +676,15 @@
   border-radius: 5px 5px 0 0;
 }
 
-.delete-btn {
+.delete-btn, .edit-btn {
   height: 20px;
   width: 20px;
   fill: var(--bs-danger);
   cursor: pointer;
+}
+
+.edit-btn {
+  fill: var(--bs-primary);
 }
 
 button {
@@ -850,7 +854,7 @@ input:checked + .slider:before {
   .addButtonInAdminDashBoardTxt {
     display: inherit;
   }
-  .delete-btn {
+  .delete-btn, .edit-btn {
     height: 15px;
     width: 15px;
   }
@@ -905,6 +909,12 @@ input:checked + .slider:before {
 
   .input-btn {
     font-size: 13px;
+  }
+
+
+  .org-content-ctn {
+    width: max-content;
+    min-width: 80vw;
   }
 
 }
@@ -989,7 +999,7 @@ input:checked + .slider:before {
   .addButtonInAdminDashBoardTxt {
     display: inherit;
   }
-  .delete-btn { 
+  .delete-btn, .edit-btn { 
     height: 13px;
     width: 13px;
   }
