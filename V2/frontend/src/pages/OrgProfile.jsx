@@ -24,6 +24,7 @@ const c1 = {
 
 function OrgProfile() {
   const { org } = useAuthContext();
+  const [url, setUrl] = useState("");
   const [allConferences, setAllConferences] = useState([]);
   const [pastConferences, setPastConferences] = useState([]);
   const [upcomingConferences, setUpcomingConferences] = useState([]);
@@ -33,17 +34,26 @@ function OrgProfile() {
 
   useEffect(() => {
     document.title = "Organization Profile";
-
-    fetch("http://localhost:3000/auth/org/" + org.email)
+    setUrl(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/auth/org/" + org.email
+        : "https://conf-backend.onrender.com/auth/org/" + org.email
+    );
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setOrgnization(data.org);
-        fetch(
-          "http://localhost:3000/auth/org/" +
-            organization._id +
-            "/myConferences"
-        )
+        setUrl(
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:3000/auth/org/" +
+                organization._id +
+                "/myConferences"
+            : "https://conf-backend.onrender.com/auth/org/" +
+                organization._id +
+                "/myConferences"
+        );
+        fetch(url)
           .then((res) => res.json())
           .then((data) => {
             setAllConferences(data.conferences);

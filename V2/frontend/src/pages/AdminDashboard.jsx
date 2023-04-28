@@ -24,6 +24,8 @@ const AdminDashboard = () => {
   const [showDelete, setShowDelete] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [url, setUrl] = useState("");
+
   const handleCloseAdd = () => setShowAdd(false);
   const handleShowAdd = () => setShowAdd(true);
   const handleCloseDelete = () => setShowDelete(false);
@@ -31,7 +33,12 @@ const AdminDashboard = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleAddSubmit = () => {
-    fetch("http://localhost:3000/auth/user/signup/", {
+    setUrl(
+      process.env.Node_ENV === "development"
+        ? "http://localhost:3000/auth/user/signup/"
+        : "https://conf-backend.onrender.com/auth/user/signup/"
+    );
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +55,12 @@ const AdminDashboard = () => {
   };
 
   const orgHandleSubmit = () => {
-    fetch("http://localhost:3000/auth/org/signup/", {
+    setUrl(
+      process.env.Node_ENV === "development"
+        ? "http://localhost:3000/auth/org/signup/"
+        : "https://conf-backend.onrender.com/auth/org/signup/"
+    );
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +87,12 @@ const AdminDashboard = () => {
     var mail = deleteMail;
     console.log("This is the mail:", mail);
     if (toggleState === 2) {
-      fetch("http://localhost:3000/auth/user/delete/", {
+      setUrl(
+        process.env.Node_ENV === "development"
+          ? "http://localhost:3000/auth/user/delete/"
+          : "https://conf-backend.onrender.com/auth/user/delete/"
+      );
+      fetch(url, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +103,12 @@ const AdminDashboard = () => {
       });
     }
     if (toggleState === 3) {
-      fetch("http://localhost:3000/auth/org/delete/", {
+      setUrl(
+        process.env.Node_ENV === "development"
+          ? "http://localhost:3000/auth/org/delete/"
+          : "https://conf-backend.onrender.com/auth/org/delete/"
+      );
+      fetch(url, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -112,7 +134,12 @@ const AdminDashboard = () => {
   const [toggleState, setToggleState] = useState(2);
 
   const fetchUsers = async () => {
-    const res = await fetch("http://localhost:3000/auth/user/");
+    setUrl(
+      process.env_NODE_ENV === "development"
+        ? "http://localhost:3000/auth/user/"
+        : "https://conf-backend.onrender.com/auth/user/"
+    );
+    const res = await fetch(url);
     const data = await res.json();
     // console.log("This are Users:", data);
     $(document).ready(function () {
@@ -152,7 +179,12 @@ const AdminDashboard = () => {
   };
 
   const fetchOrgs = async () => {
-    const res = await fetch("http://localhost:3000/auth/org/");
+    setUrl(
+      process.env.Node_ENV === "development"
+        ? "http://localhost:3000/auth/org/"
+        : "https://conf-backend.onrender.com/auth/org/"
+    );
+    const res = await fetch(url);
     const data = await res.json();
     console.log("This is Orgs:", data);
     $(document).ready(function () {

@@ -21,9 +21,15 @@ const OrgDashboard = () => {
   const [show, setShow] = useState(false);
 
   const [myid, Setmyid] = useState("");
+  const [url, setUrl] = useState("");
 
   const fetchOrgsFromEmail = async () => {
-    const res = await fetch("http://localhost:3000/auth/org/" + org.email);
+    setUrl(
+      prcess.env.NODE_ENV === "development"
+        ? "http://localhost:3000/auth/org/" + org.email
+        : "https://conf-backend.onrender.com/auth/org/" + org.email
+    );
+    const res = await fetch(url);
     const data = await res.json();
     console.log("This is Orgs:", data);
     Setmyid(data.org._id);
@@ -91,7 +97,13 @@ const OrgDashboard = () => {
       return;
     }
 
-    fetch("http://localhost:3000/org/create", {
+    setUrl(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/org/create"
+        : "https://conf-backend.onrender.com/org/create"
+    );
+
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -118,8 +130,13 @@ const OrgDashboard = () => {
 
     var id = editid;
 
-    console.log("http://localhost:3000/org/delete/" + id);
-    fetch("http://localhost:3000/org/delete/" + id, {
+    setUrl(
+      prcess.env.NODE_ENV === "development"
+        ? "http://localhost:3000/org/delete/" + id
+        : "https://conf-backend.onrender.com/org/delete/" + id
+    );
+    console.log(url);
+    fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -199,7 +216,12 @@ const OrgDashboard = () => {
       alert("Please enter a valid year in start date");
       return;
     }
-    fetch("http://localhost:3000/org/edit/", {
+    setUrl(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/org/edit/"
+        : "https://conf-backend.onrender.com/org/edit/"
+    );
+    fetch(url, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -224,9 +246,14 @@ const OrgDashboard = () => {
   };
 
   const fetchUsers = async () => {
-    const res = await fetch(
-      "http://localhost:3000/auth/org/" + myid + "/myconferences"
+    setUrl(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/auth/org/" + myid + "/myconferences"
+        : "https://conf-backend.onrender.com/auth/org/" +
+            myid +
+            "/myconferences"
     );
+    const res = await fetch(url);
     const data = await res.json();
     console.log("This are Users:", data);
     $(document).ready(function () {
