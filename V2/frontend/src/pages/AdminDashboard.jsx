@@ -93,10 +93,6 @@ const AdminDashboard = () => {
         import.meta.env.MODE === "development"
           ? "http://localhost:3000/auth/user/delete/"
           : "https://conf-backend.onrender.com/auth/user/delete/";
-      const URL =
-        import.meta.env.MODE === "development"
-          ? "http://localhost:3000/org/removeUser/"
-          : "https://conf-backend.onrender.com/org/removeUser/";
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -106,25 +102,15 @@ const AdminDashboard = () => {
           email: mail,
         }),
       });
-      fetch(URL, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          _id: id,
-        }),
-      });
     }
     if (toggleState === 3) {
       url =
         import.meta.env.MODE === "development"
           ? "http://localhost:3000/auth/org/delete/"
           : "https://conf-backend.onrender.com/auth/org/delete/";
-      const URL =
-        import.meta.env.MODE === "development"
-          ? "http://localhost:3000/org/remove-conferences-of-Org/"
-          : "https://conf-backend.onrender.com/org/remove-conferences-of-Org/";
+        const URL =  import.meta.env.MODE === "development"
+        ? "http://localhost:3000/org/remove-conferences-of-Org/"
+        : "https://conf-backend.onrender.com/org/remove-conferences-of-Org/";
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -331,7 +317,7 @@ const AdminDashboard = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add New Organization</Modal.Title>
+          <Modal.Title>Add New Conference</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="mb-3">
