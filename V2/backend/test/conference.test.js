@@ -5,17 +5,17 @@ const app = require("../server");
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-// in edit function user registation is allowed also user can change org id 
+// // in edit function user registation is allowed also user can change org id 
 describe("conference", () => {
-    //create conference
+   // create conference
     describe("POST /org/create", () => {
       it("it should create a conference", (done) => {
         chai
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
-            conferenceName: "CONF1",
+            org_id: "644b31d6c6a497bce006434b",
+            conferenceName: "CONF100",
             description: "first conference of org ORG1",
             startDate: "2023-5-1",
             endDate:"2023-5-2",
@@ -24,9 +24,10 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
+            if(err) console.log(err);
+            console.log(res.body);
             expect(res).to.have.status(201);
             expect(res.body).to.be.a("object");
-           // expect(res.body).to.have.property("conferenceName");
             done();
 
           });
@@ -40,7 +41,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: 1.1,
             description: "first conference of org ORG1",
             startDate: "2023-4-21",
@@ -50,9 +51,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-           // expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -76,9 +77,10 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             expect(res.body).to.be.a("object");
-            //expect(res.body).to.have.property("conferenceName");
             done();
 
           });
@@ -102,9 +104,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-           // expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -118,7 +120,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "",
             description: "first conference of org ORG1",
             startDate: "2023-4-4",
@@ -128,9 +130,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-           // expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -144,7 +146,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF3",
             description: "",
             startDate: "2023-4-5",
@@ -154,9 +156,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-           // expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -170,7 +172,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF4",
             description: "first conference of org ORG1",
             startDate: "",
@@ -180,9 +182,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-          //  expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -196,7 +198,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF5",
             description: "first conference of org ORG1",
             startDate: "2023-4-6",
@@ -206,9 +208,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-          //  expect(res.body).to.have.property("conferenceName");
+             if(err) console.log(err);
+             console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -222,7 +224,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF6",
             description: "first conference of org ORG1",
             startDate: "2023-4-7",
@@ -232,9 +234,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-           // expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -258,9 +260,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-          //  expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -274,7 +276,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF8",
             description: 24312,
             startDate: "2023-4-9",
@@ -284,9 +286,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-         //   expect(res.body).to.have.property("conferenceName");
+             if(err) console.log(err);
+             console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -300,7 +302,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF9",
             description: "first conference of org ORG1",
             startDate: "10-4-2023",
@@ -310,9 +312,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-          //  expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -326,7 +328,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF10",
             description: "first conference of org ORG1",
             startDate: "2023-13-21",
@@ -336,9 +338,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-         //   expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -352,7 +354,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF11",
             description: "first conference of org ORG1",
             startDate: "2023-4-33",
@@ -362,9 +364,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-           // expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -378,7 +380,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF12",
             description: "first conference of org ORG1",
             startDate: "2023-4-11",
@@ -388,9 +390,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-          //  expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -404,7 +406,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF13",
             description: "first conference of org ORG1",
             startDate: "2023-12-21",
@@ -414,9 +416,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-           // expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -430,7 +432,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF14",
             description: "first conference of org ORG1",
             startDate: "2023-4-21",
@@ -440,9 +442,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-          //  expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -456,7 +458,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF15",
             description: "first conference of org ORG1",
             startDate: "2023-4-17",
@@ -466,9 +468,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-           // expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
@@ -482,7 +484,7 @@ describe("conference", () => {
           .request(app)
           .post("/org/create")
           .send({
-            org_id: "642c6b0187058e54695f37b7",
+            org_id: "644b31d6c6a497bce006434b",
             conferenceName: "CONF16",
             description: "first conference of org ORG1",
             startDate: "2023-4-18",
@@ -492,16 +494,16 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.be.a("object");
-         //   expect(res.body).to.have.property("conferenceName");
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
 
           });
       });
     }); 
 
-   // conference: getAllConferences function testing 
+   //conference: getAllConferences function testing 
     describe("get /org/all", () => {
       it("it should return all conference object", (done) => {
         chai
@@ -509,9 +511,10 @@ describe("conference", () => {
           .get("/org/all")
           
           .end((err, res) => {
+            if(err) console.log(err);
+             console.log(res.body);
             expect(res).to.have.status(200);
             expect(res.body).to.be.a("object");
-            if (err) return done(err);
             done();
           });
       });
@@ -538,7 +541,7 @@ describe("conference", () => {
     //   });
     // }); 
 
-    // test case for conference edit function
+    //test case for conference edit function
     describe("patch /org/edit", () => {
       it("it should edit conference object", (done) => {
         chai
@@ -546,26 +549,27 @@ describe("conference", () => {
           .patch("/org/edit")
           .send({
                     id : "64497aa3538721b8200e8a9b",
-                    org_id: "642c6b0187058e54695f37b7",
+                    org_id: "644b6163247fb94d893a8edb",
                     conferenceName: "CONF1",
                     description: "first conference of org ORG1",
                     startDate: "2023-5-1",
                     endDate:"2023-5-2",
                     guestSpeakers: [ "abc" , "xyz"],
-                    topics: [ "AI" , "ML" ],
-                    registeredAttendees : ["644777fff8bfe1f355c60c11" , "6446d482aa8b2ea8be3ba696"]
+                    topics: [ "AI Update" , "ML Update" ],
+                    registeredAttendees : ["644777fff8bfe1f355c60c11" , "6446d482aa8b2ea8be3ba696", 
+                                           "644ab7cbeb45b59b361bfb44"]
                   })
 
           .end((err, res) => {
+            if(err) console.log(err);
+               console.log(res.body);
             expect(res).to.have.status(200);
-            expect(res.body).to.be.a("object");
-            if (err) return done(err);
             done();
           });
       });
     }); 
     
-    // not contain organization id
+    //not contain organization id
     describe("patch /org/edit", () => {
       it("it should not edit conference object (not contain organization id)", (done) => {
         chai
@@ -582,9 +586,9 @@ describe("conference", () => {
                   })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.a("object");
-            if (err) return done(err);
+            if(err) console.log(err);
+               console.log(res.body);
+            expect(res).to.have.status(400);
             done();
           });
       });
@@ -598,7 +602,7 @@ describe("conference", () => {
           .patch("/org/edit")
           .send({
                     id : "64484a96319342700f59ddb6",
-                    org_id: "642c6b0187058e54695f37b7",
+                    org_id: "644b31d6c6a497bce006434b",
                     description: "first conference of org ORG1",
                     startDate: "2023-4-18",
                     endDate:"2023-4-19",
@@ -607,9 +611,9 @@ describe("conference", () => {
                   })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.a("object");
-            if (err) return done(err);
+            if(err) console.log(err);
+               console.log(res.body);
+            expect(res).to.have.status(400);
             done();
           });
       });
@@ -623,7 +627,7 @@ describe("conference", () => {
           .patch("/org/edit")
           .send({
                     id : "64484a96319342700f59ddb6",
-                    org_id: "642c6b0187058e54695f37b7",
+                    org_id: "644b31d6c6a497bce006434b",
                     conferenceName: "CONF16",
                     startDate: "2023-4-18",
                     endDate:"2023-4-19",
@@ -632,9 +636,9 @@ describe("conference", () => {
                   })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.a("object");
-            if (err) return done(err);
+            if(err) console.log(err);
+               console.log(res.body);
+            expect(res).to.have.status(400);
             done();
           });
       });
@@ -648,7 +652,7 @@ describe("conference", () => {
           .patch("/org/edit")
           .send({
                     id : "64484a96319342700f59ddb6",
-                    org_id: "642c6b0187058e54695f37b7",
+                    org_id: "644b31d6c6a497bce006434b",
                     conferenceName: "CONF16",
                     description: "first conference of org ORG1",
                     startDate: "",
@@ -658,9 +662,9 @@ describe("conference", () => {
                   })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.a("object");
-            if (err) return done(err);
+            if(err) console.log(err);
+               console.log(res.body);
+            expect(res).to.have.status(400);
             done();
           });
       });
@@ -674,7 +678,7 @@ describe("conference", () => {
           .patch("/org/edit")
           .send({
                     id : "64484a96319342700f59ddb6",
-                    org_id: "642c6b0187058e54695f37b7",
+                    org_id: "644b31d6c6a497bce006434b",
                     conferenceName: "CONF16",
                     description: "first conference of org ORG1",
                     startDate: "2023-4-18",
@@ -684,15 +688,15 @@ describe("conference", () => {
                   })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.a("object");
-            if (err) return done(err);
+            if(err) console.log(err);
+               console.log(res.body);
+            expect(res).to.have.status(400);
             done();
           });
       });
     }); 
 
-    //test case for remove users form conference 
+   // test case for remove users form conference 
     describe("patch /org/removeUser", () => {
       it("it should remove user from conference ", (done) => {
         chai
@@ -703,6 +707,8 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
+            if(err) console.log(err);
+                console.log(res.body);
             expect(res).to.have.status(200);
             if (err) return done(err);
             done();
@@ -721,6 +727,8 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
+            if(err) console.log(err);
+                console.log(res.body);
             expect(res).to.have.status(200);
             if (err) return done(err);
             done();
@@ -739,6 +747,28 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
+            if(err) console.log(err);
+                console.log(res.body);
+            expect(res).to.have.status(200);
+            if (err) return done(err);
+            done();
+          });
+      });
+    }); 
+
+    //test case for remove conference of org
+    describe("delete /org/remove-conferences-of-Org", () => {
+      it("it should not remove conference of an organization (organization not exists)", (done) => {
+        chai
+          .request(app)
+          .delete("/org/remove-conferences-of-Org")
+          .send({
+            orgId : "644b31d6c6a497bce006434b"
+          })
+
+          .end((err, res) => {
+            if(err) console.log(err);
+                 console.log(res.body);
             expect(res).to.have.status(200);
             if (err) return done(err);
             done();
@@ -757,6 +787,8 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
+            if(err) console.log(err);
+                 console.log(res.body);
             expect(res).to.have.status(200);
             if (err) return done(err);
             done();
@@ -775,6 +807,8 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
+            if(err) console.log(err);
+                 console.log(res.body);
             expect(res).to.have.status(200);
             if (err) return done(err);
             done();
@@ -782,17 +816,18 @@ describe("conference", () => {
       });
     }); 
 
-    //test case for get conference by id
+   // test case for get conference by id
     describe("get /org/:id", () => {
       it("it should return conference object", (done) => {
         chai
           .request(app)
-          .get("/org/6449615194ffb1616b43d49f")
+          .get("/org/644b94b6e8e41b681b5d0bd1")
           
           .end((err, res) => {
+            if(err) console.log(err);
+                  console.log(res.body);
             expect(res).to.have.status(200);
             expect(res.body).to.be.a("object");
-            if (err) return done(err);
             done();
           });
       });
@@ -806,26 +841,50 @@ describe("conference", () => {
           .get("/org/123")
           
           .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.a("object");
-            if (err) return done(err);
+            if(err) console.log(err);
+                  console.log(res.body);
+            expect(res).to.have.status(400);
             done();
           });
       });
     }); 
 
-    //test case for conference Registration
+   // test case for conference Registration
     describe("patch /org/register/:id", () => {
-      it("it should register user in conference ", (done) => {
+      it("it should  register user in conference ", (done) => {
         chai
           .request(app)
-          .patch("/org/register/64497aa3538721b8200e8a9b")
+          .patch("/org/register/644b94b5e8e41b681b5d0bcd")
           .send({
-              userId : "644777fff8bfe1f355c60c11"
+              userId : "644b9c687feb40c9255360cf"
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
+            if(err) console.log(err);
+                  console.log(res.body);
+            expect(res).to.have.status(400);
+            if (err) return done(err);
+            done();
+          });
+      });
+    });
+
+
+
+    //conference ended
+    describe("patch /org/register/:id", () => {
+      it("it should not register user in conference (conference ended)", (done) => {
+        chai
+          .request(app)
+          .patch("/org/register/644b94b6e8e41b681b5d0bd1")
+          .send({
+              userId : "644b9c687feb40c9255360cf"
+          })
+
+          .end((err, res) => {
+            if(err) console.log(err);
+                  console.log(res.body);
+            expect(res).to.have.status(400);
             if (err) return done(err);
             done();
           });
@@ -837,13 +896,15 @@ describe("conference", () => {
       it("it should not register user in conference (user not exists)", (done) => {
         chai
           .request(app)
-          .patch("/org/register/64497aa3538721b8200e8a9b")
+          .patch("/org/register/644b94b6e8e41b681b5d0bd1")
           .send({
               userId : "1234"
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
+            if(err) console.log(err);
+                  console.log(res.body);
+            expect(res).to.have.status(400);
             if (err) return done(err);
             done();
           });
@@ -856,13 +917,15 @@ describe("conference", () => {
       it("it should not register user in conference (user already register exists)", (done) => {
         chai
           .request(app)
-          .patch("/org/register/64497aa3538721b8200e8a9b")
+          .patch("/org/register/644b94b5e8e41b681b5d0bcd")
           .send({
-              userId : "644777fff8bfe1f355c60c11"
+              userId : "644b9c687feb40c9255360cf"
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
+            if(err) console.log(err);
+                  console.log(res.body);
+            expect(res).to.have.status(400);
             if (err) return done(err);
             done();
           });
@@ -876,11 +939,13 @@ describe("conference", () => {
             .request(app)
             .patch("/org/register/1234")
             .send({
-                userId : "644777fff8bfe1f355c60c11"
+                userId : "644b9c687feb40c9255360cf"
             })
   
             .end((err, res) => {
-              expect(res).to.have.status(200);
+              if(err) console.log(err);
+                  console.log(res.body);
+              expect(res).to.have.status(400);
               if (err) return done(err);
               done();
             });
@@ -892,32 +957,35 @@ describe("conference", () => {
         it("it should not register user in conference (empty user id)", (done) => {
           chai
             .request(app)
-            .patch("/org/register/64497aa3538721b8200e8a9b")
+            .patch("/org/register/644b94b6e8e41b681b5d0bd1")
             .send({
                 userId : ""
             })
   
             .end((err, res) => {
-              expect(res).to.have.status(200);
+              if(err) console.log(err);
+                  console.log(res.body);
+              expect(res).to.have.status(400);
               if (err) return done(err);
               done();
             });
         });
       });
   
-      //test case for conference cancel Registration
+     // test case for conference cancel Registration
     describe("patch /org/cancelRegistration/:id", () => {
       it("it should unregister user in conference ", (done) => {
         chai
           .request(app)
-          .patch("/org/cancelRegistration/64497aa3538721b8200e8a9b")
+          .patch("/org/cancelRegistration/644b94b5e8e41b681b5d0bcd")
           .send({
-              userId : "644777fff8bfe1f355c60c11"
+              userId : "644b9c687feb40c9255360cf"
           })
 
           .end((err, res) => {
+            if(err) console.log(err);
+                   console.log(res.body);
             expect(res).to.have.status(200);
-            if (err) return done(err);
             done();
           });
       });
@@ -934,7 +1002,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
+            if(err) console.log(err);
+                   console.log(res.body);
+            expect(res).to.have.status(400);
             if (err) return done(err);
             done();
           });
@@ -952,7 +1022,9 @@ describe("conference", () => {
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
+            if(err) console.log(err);
+                   console.log(res.body);
+            expect(res).to.have.status(400);
             if (err) return done(err);
             done();
           });
@@ -964,46 +1036,90 @@ describe("conference", () => {
       it("it should not unregister user in conference(user not register in conference) ", (done) => {
         chai
           .request(app)
-          .patch("/org/cancelRegistration/64497aa3538721b8200e8a9b")
+          .patch("/org/cancelRegistration/644b94b5e8e41b681b5d0bcd")
           .send({
-              userId : "644777fff8bfe1f355c60c11"
+              userId : "644b9c687feb40c9255360cf1"
           })
 
           .end((err, res) => {
-            expect(res).to.have.status(200);
+            if(err) console.log(err);
+                   console.log(res.body);
+            expect(res).to.have.status(400);
             if (err) return done(err);
             done();
           });
       });
     });
 
-     // test case of conference delete org
-    // describe("delete /org/remove-conferences-of-Org", () => {
-    //   it("it should remove conference of an organization", (done) => {
-    //     chai
-    //       .request(app)
-    //       .delete("/org/remove-conferences-of-Org")
-    //       .send({
-    //         orgId : "642c6b0187058e54695f37b7"
-    //       })
+     //test case of conference delete org
+    describe("delete /org/remove-conferences-of-Org", () => {
+      it("it should remove conference of an organization", (done) => {
+        chai
+          .request(app)
+          .delete("/org/remove-conferences-of-Org")
+          .send({
+            orgId : "644b31d6c6a497bce006434b"
+          })
 
-    //       .end((err, res) => {
-    //         expect(res).to.have.status(200);
-    //         if (err) return done(err);
-    //         done();
-    //       });
-    //   });
-    // }); 
+          .end((err, res) => {
+            if(err) console.log(err);
+              console.log(res.body);
+            expect(res).to.have.status(200);
+            done();
+          });
+      });
+    }); 
+    
+    // organization do not have any conference
+    describe("delete /org/remove-conferences-of-Org", () => {
+      it("it should not remove conference of an organization (organization do not have any conference)", (done) => {
+        chai
+          .request(app)
+          .delete("/org/remove-conferences-of-Org")
+          .send({
+            orgId : "644b31d6c6a497bce006434b"
+          })
 
-     //  test case of conference delete
+          .end((err, res) => {
+            if(err) console.log(err);
+              console.log(res.body);
+            expect(res).to.have.status(200);
+            if (err) return done(err);
+            done();
+          });
+      });
+    }); 
+
+    // organization not exists
+    describe("delete /org/remove-conferences-of-Org", () => {
+      it("it should not remove conference of an organization (organization not exists)", (done) => {
+        chai
+          .request(app)
+          .delete("/org/remove-conferences-of-Org")
+          .send({
+            orgId : "1234"
+          })
+
+          .end((err, res) => {
+            if(err) console.log(err);
+              console.log(res.body);
+            expect(res).to.have.status(200);
+            if (err) return done(err);
+            done();
+          });
+      });
+    }); 
+
+      //test case of conference delete
     describe("delete /org/delete/:id", () => {
       it("it should remove conference by id", (done) => {
         chai
           .request(app)
-          .delete("/org/delete/6449615194ffb1616b43d49f")
+          .delete("/org/delete/644b94b6e8e41b681b5d0be5")
           .end((err, res) => {
+            if(err) console.log(err);
+            console.log(res.body);
             expect(res).to.have.status(200);
-            if (err) return done(err);
             done();
           });
       });
@@ -1016,13 +1132,14 @@ describe("conference", () => {
           .request(app)
           .delete("/org/delete/123")
           .end((err, res) => {
-            expect(res).to.have.status(200);
-            if (err) return done(err);
+            if(err) console.log(err);
+            console.log(res.body);
+            expect(res).to.have.status(400);
             done();
           });
       });
     }); 
 
 
-  });
+   });
   

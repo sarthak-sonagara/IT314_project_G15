@@ -19,6 +19,7 @@ import TestUpload from "./pages/TestUpload";
 import CallForPaper from "./pages/CallForPaper";
 import Error from "./pages/Error";
 import Privacy from "./pages/privacy";
+import Papers from "./pages/Papers";
 
 function App() {
   const { user, org } = useAuthContext(); // will be used to provide functionality of private routes
@@ -96,8 +97,18 @@ function App() {
           <Route element={<Privacy />} path="/privacy-policy" />
 
           <Route element={<TestUpload />} path="test-upload" />
-          <Route element={<HomeConf />} path="home-conf" />
-          <Route element={<CallForPaper />} path="/call-for-paper" />
+          <Route element={<HomeConf />} path="/conferences" />
+          <Route
+            element={
+              user && user.user.role === "publisher" ? (
+                <CallForPaper />
+              ) : (
+                <Navigate to="/choice" />
+              )
+            }
+            path="/call-for-paper"
+          />
+          <Route element={<Papers />} path="/conference/papers" />
           <Route element={<Error />} path="*" />
         </Routes>
       </BrowserRouter>

@@ -14,17 +14,22 @@ import AdminNavbar from "../components/AdminNavbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const AdminDashboard = () => {
+  const { user } = useAuthContext();
   useEffect(() => {
     document.title = "Admin Dashboard";
-  }, []);
+    fetchUsers();
+    fetchOrgs();
+  }, [user]);
   const [showAdd, setShowAdd] = useState(false);
   const [show, setShow] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [url, setUrl] = useState("");
+  const [ururltempl, setUrl] = useState("");
+  let url = "";
 
   const handleCloseAdd = () => setShowAdd(false);
   const handleShowAdd = () => setShowAdd(true);
@@ -33,11 +38,9 @@ const AdminDashboard = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleAddSubmit = () => {
-    setUrl(
-      process.env.Node_ENV === "development"
-        ? "http://localhost:3000/auth/user/signup/"
-        : "https://conf-backend.onrender.com/auth/user/signup/"
-    );
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/auth/user/signup/"
+      : "https://conf-backend.onrender.com/auth/user/signup/";
     fetch(url, {
       method: "POST",
       headers: {
@@ -55,11 +58,10 @@ const AdminDashboard = () => {
   };
 
   const orgHandleSubmit = () => {
-    setUrl(
-      process.env.Node_ENV === "development"
+    url =
+      import.meta.env.MODE === "development"
         ? "http://localhost:3000/auth/org/signup/"
-        : "https://conf-backend.onrender.com/auth/org/signup/"
-    );
+        : "https://conf-backend.onrender.com/auth/org/signup/";
     fetch(url, {
       method: "POST",
       headers: {
@@ -73,7 +75,6 @@ const AdminDashboard = () => {
     });
     fetchOrgs();
     setShow(false);
-    setToggleState(1);
   };
 
   function toggleButtonHandler(index) {
@@ -85,13 +86,13 @@ const AdminDashboard = () => {
 
   const handleDeleteSubmit = () => {
     var mail = deleteMail;
+    var id = deleteID;
     console.log("This is the mail:", mail);
     if (toggleState === 2) {
-      setUrl(
-        process.env.Node_ENV === "development"
+      url =
+        import.meta.env.MODE === "development"
           ? "http://localhost:3000/auth/user/delete/"
-          : "https://conf-backend.onrender.com/auth/user/delete/"
-      );
+          : "https://conf-backend.onrender.com/auth/user/delete/";
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -103,11 +104,13 @@ const AdminDashboard = () => {
       });
     }
     if (toggleState === 3) {
-      setUrl(
-        process.env.Node_ENV === "development"
+      url =
+        import.meta.env.MODE === "development"
           ? "http://localhost:3000/auth/org/delete/"
-          : "https://conf-backend.onrender.com/auth/org/delete/"
-      );
+          : "https://conf-backend.onrender.com/auth/org/delete/";
+        const URL =  import.meta.env.MODE === "development"
+        ? "http://localhost:3000/org/remove-conferences-of-Org/"
+        : "https://conf-backend.onrender.com/org/remove-conferences-of-Org/";
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -115,6 +118,15 @@ const AdminDashboard = () => {
         },
         body: JSON.stringify({
           email: mail,
+        }),
+      });
+      fetch(URL, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _id: id,
         }),
       });
     }
@@ -128,17 +140,17 @@ const AdminDashboard = () => {
   const [Orgname, SetOrgname] = useState("");
   const [OrgEmail, SetOrgEmail] = useState("");
   const [OrgPass, SetOrgPass] = useState("");
+  const [OrgId, SetOrgId] = useState("");
   const [deleteID, SetDeleteID] = useState("");
   const [deleteMail, SetDeleteMail] = useState("");
   const [acceptanceStatus, SetAcceptanceStatus] = useState("");
   const [toggleState, setToggleState] = useState(2);
 
   const fetchUsers = async () => {
-    setUrl(
-      process.env_NODE_ENV === "development"
+    url =
+      import.meta.env.MODE === "development"
         ? "http://localhost:3000/auth/user/"
-        : "https://conf-backend.onrender.com/auth/user/"
-    );
+        : "https://conf-backend.onrender.com/auth/user/";
     const res = await fetch(url);
     const data = await res.json();
     // console.log("This are Users:", data);
@@ -179,11 +191,10 @@ const AdminDashboard = () => {
   };
 
   const fetchOrgs = async () => {
-    setUrl(
-      process.env.Node_ENV === "development"
+    url =
+      import.meta.env.MODE === "development"
         ? "http://localhost:3000/auth/org/"
-        : "https://conf-backend.onrender.com/auth/org/"
-    );
+        : "https://conf-backend.onrender.com/auth/org/";
     const res = await fetch(url);
     const data = await res.json();
     console.log("This is Orgs:", data);
@@ -266,9 +277,6 @@ const AdminDashboard = () => {
     });
   };
 
-  fetchUsers();
-  fetchOrgs();
-
   const toggleTab = (index) => {
     setToggleState(index);
   };
@@ -309,12 +317,12 @@ const AdminDashboard = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>New Conference</Modal.Title>
+          <Modal.Title>Add New Conference</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="mb-3">
             <label htmlFor="input-orgname" className="form-label">
-              Username:
+              Organization Name:
             </label>
             <input
               type="text"

@@ -37,7 +37,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="global-nav-bar">
-        <Link className="logo-container" id="logo-ctn" to='/'>
+        <Link className="logo-container" id="logo-ctn" to="/">
           <svg
             className="global-nav-logo-icon"
             width="262.667"
@@ -192,7 +192,7 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faAddressCard} className="menu-icons" />
             <p className="menu-texts">PROFILE</p>
           </Link>
-          {user && user.user.role === "publisher" && (
+          {(!user || (user && user.user.role === "publisher")) && (
             <Link to="/call-for-paper" className="menu-options-ctn">
               <div className="active-indicator"></div>
               <FontAwesomeIcon icon={faUpload} className="menu-icons" />

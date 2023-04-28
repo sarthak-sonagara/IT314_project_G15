@@ -47,9 +47,19 @@ const conferenceSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId, // type must be object ids
       ref: "User", // whatever object id we store must be from the User model
       default: [],
-    }
+    },
   ],
-
+  papers: [
+    {
+      title: String,
+      fileUrl: String,
+      filename:String,
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    },
+  ],
 });
 
 // static function to create new conferences

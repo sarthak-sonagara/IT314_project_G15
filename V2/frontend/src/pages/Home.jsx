@@ -8,25 +8,24 @@ import Footer from "../components/Footer";
 const Home = () => {
   const [orgs, setOrgs] = useState([]);
   const [upcomingConf, setUpcomingConf] = useState([]);
-
+  console.log(import.meta.env.MODE);
   useEffect(() => {
     document.title = "Home";
     // get details of all organizations
-    let url =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/auth/org/"
-        : "https://conf-backend.onrender.com/auth/org/";
+
+    let url = import.meta.env.DEV
+      ? "http://localhost:3000/auth/org/"
+      : "https://conf-backend.onrender.com/auth/org/";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setOrgs(data.orgs);
+        setOrgs(data.orgs.filter((org) => org.accepted));
       });
 
     // get details of all top 5 upcoming conferences
-    url =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/org/all"
-        : "https://conf-backend.onrender.com/org/all";
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/org/all"
+      : "https://conf-backend.onrender.com/org/all";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -66,8 +65,8 @@ const Home = () => {
         </div>
 
         <div className="my-5 mt-0" id="upcoming_conference">
-          <div className="position-relative p-5 text-center text-muted bg-body border border-dashed ">
-            <h1 className="text-body-emphasis">Upcoming Conferences</h1>
+          <div className="position-relative p-2 text-center text-muted bg-body border border-dashed ">
+            <h3 className="text-body-emphasis">Upcoming Conferences</h3>
           </div>
         </div>
 
@@ -88,8 +87,8 @@ const Home = () => {
         </section>
 
         <div className="my-5" id="organizations">
-          <div className="position-relative p-5 text-center text-muted bg-body border border-dashed ">
-            <h1 className="text-body-emphasis">Organizations</h1>
+          <div className="position-relative text-center text-muted bg-body border border-dashed ">
+            <h3 className="text-body-emphasis">Organizations</h3>
           </div>
         </div>
 
@@ -109,12 +108,7 @@ const Home = () => {
                         Organization
                       </strong>
                       <h3 className="mb-2">{org.orgname}</h3>
-                      <Link
-                        to={{
-                          pathname: "/home-conf",
-                          state: org,
-                        }}
-                      >
+                      <Link to={"conferences"} state={{ org }}>
                         <div className="d-grid gap-2">
                           <button className="btn btn-success" type="button">
                             More Conferences...
@@ -129,7 +123,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
       <Footer/>
       
     </div>
