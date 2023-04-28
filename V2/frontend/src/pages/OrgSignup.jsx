@@ -39,11 +39,10 @@ const OrgSignup = () => {
                 marginBottom: 20,
               }}
             >
-              The best plateform <br />
+              The best platform <br />
               <span style={{ color: "hsl(218, 81%, 75%)" }}>
                 for Conferences
               </span>
-              P
             </h1>
             <p
               classname="mb-4 opacity-70"
@@ -99,7 +98,7 @@ const OrgSignup = () => {
             >
               Organization Signup
             </b>
-            <form style={{ width: "65%" }} onSubmit={handleSubmit}>
+            <form id="admin-login-from-id" onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="input-username" className="form-label">
                   Organization name:
