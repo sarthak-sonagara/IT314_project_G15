@@ -33,8 +33,6 @@ function UserProfile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentConf, setCurrentConf] = useState("");
 
-  let url = "";
-
   useEffect(() => {
     document.title = `${user.user.username}'s Profile`;
     url = import.meta.env.DEV
