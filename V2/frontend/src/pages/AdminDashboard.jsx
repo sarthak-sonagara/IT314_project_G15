@@ -64,6 +64,13 @@ const AdminDashboard = () => {
     setToggleState(1);
   };
 
+  function toggleButtonHandler(index) {
+    console.log("This is the index:", index);
+  }
+  //  toggleButtonHandler = (index) => {
+  //   console.log("This is the index:", index);
+  // }
+
   const handleDeleteSubmit = () => {
     var mail = deleteMail;
     console.log("This is the mail:", mail);
@@ -101,6 +108,7 @@ const AdminDashboard = () => {
   const [OrgPass, SetOrgPass] = useState("");
   const [deleteID, SetDeleteID] = useState("");
   const [deleteMail, SetDeleteMail] = useState("");
+  const [acceptanceStatus, SetAcceptanceStatus] = useState("");
   const [toggleState, setToggleState] = useState(2);
 
   const fetchUsers = async () => {
@@ -159,7 +167,11 @@ const AdminDashboard = () => {
           {
             data: "accepted",
             render: function (data, type, row) {
-              return `<label class="switch"><input type="checkbox" data-id="$row._id}" ${data ? "checked" : ""}> <span class="slider round"></span></label>`;
+              return `<label class="switch"><input type="checkbox" data-id="${
+                row._id
+              }" ${
+                data ? "checked='checked'" : ""
+              }><span class="slider round"></span></label>`;
             },
           },
           {
@@ -179,6 +191,41 @@ const AdminDashboard = () => {
         }
         handleShowDelete();
       });
+
+      // // Handle org accept button click
+      // $("#orgs_datatable tbody .switch").change(function () {
+      //   // console.log("clicked");
+      //   // console.log();
+      //   let td = $(this).closest("tr").find("td:eq(3)");
+      //   if (table.cell(td).data()) {
+      //     console.log("This is a data of acceptance: ", table.cell(td).data());
+      //     // SetAcceptanceStatus(table.cell(td).data());
+      //   }
+      // });
+
+      $("#orgs_datatable tbody").on(
+        "change",
+        "input[type='checkbox']",
+        function () {
+          // let row = table.row($(this).closest("tr"));
+          // let data = row.data();
+          // let accepted = $(this).is(":checked");
+          let td = $(this).closest("tr").find("td:eq(2)");
+          if (table.cell(td).data()) {
+            // console.log("This is a data of acceptance: ", table.cell(td).data());
+            fetch("http://localhost:3000/auth/org/update/accepted", {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: table.cell(td).data(),
+              }),
+            });
+          }
+        }
+      );
+
       // // Handle Add button click
       $(".admin-container").on("click", ".add-org-btn", function () {
         handleShow();
@@ -294,7 +341,11 @@ const AdminDashboard = () => {
             <p className="addButtonInAdminDashBoardTxt">Add User</p>
           </div>
           <div className="admin-content-ctn user-table-ctn">
-            <table id="users_datatable" className="display" style={{width: "auto"}}>
+            <table
+              id="users_datatable"
+              className="display"
+              style={{ width: "auto" }}
+            >
               <thead>
                 <tr>
                   <th>Id</th>
@@ -321,7 +372,11 @@ const AdminDashboard = () => {
             <p className="addButtonInAdminDashBoardTxt">Add Orgs</p>
           </div>
           <div className="admin-content-ctn org-table-ctn">
-            <table id="orgs_datatable" className="display" style={{width: "auto"}}>
+            <table
+              id="orgs_datatable"
+              className="display"
+              style={{ width: "auto" }}
+            >
               <thead>
                 <tr>
                   <th>Id</th>
