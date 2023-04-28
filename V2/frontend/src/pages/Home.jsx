@@ -36,7 +36,7 @@ const Home = () => {
       });
 
     console.log(upcomingConf);
-  }, [org]);
+  }, []);
 
   return (
     <div>

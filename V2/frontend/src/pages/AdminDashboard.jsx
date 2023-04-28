@@ -34,7 +34,7 @@ const AdminDashboard = () => {
   const handleShow = () => setShow(true);
   const handleAddSubmit = () => {
     setUrl(
-      process.env.Node_ENV === "development"
+      import.meta.env.MODE === "development"
         ? "http://localhost:3000/auth/user/signup/"
         : "https://conf-backend.onrender.com/auth/user/signup/"
     );
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
 
   const orgHandleSubmit = () => {
     setUrl(
-      process.env.Node_ENV === "development"
+      import.meta.env.MODE === "development"
         ? "http://localhost:3000/auth/org/signup/"
         : "https://conf-backend.onrender.com/auth/org/signup/"
     );
@@ -88,7 +88,7 @@ const AdminDashboard = () => {
     console.log("This is the mail:", mail);
     if (toggleState === 2) {
       setUrl(
-        process.env.Node_ENV === "development"
+        import.meta.env.MODE === "development"
           ? "http://localhost:3000/auth/user/delete/"
           : "https://conf-backend.onrender.com/auth/user/delete/"
       );
@@ -104,7 +104,7 @@ const AdminDashboard = () => {
     }
     if (toggleState === 3) {
       setUrl(
-        process.env.Node_ENV === "development"
+        import.meta.env.MODE === "development"
           ? "http://localhost:3000/auth/org/delete/"
           : "https://conf-backend.onrender.com/auth/org/delete/"
       );
@@ -135,7 +135,7 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     setUrl(
-      process.env_NODE_ENV === "development"
+      import.meta.env.MODE === "development"
         ? "http://localhost:3000/auth/user/"
         : "https://conf-backend.onrender.com/auth/user/"
     );
@@ -180,7 +180,7 @@ const AdminDashboard = () => {
 
   const fetchOrgs = async () => {
     setUrl(
-      process.env.Node_ENV === "development"
+      import.meta.env.MODE === "development"
         ? "http://localhost:3000/auth/org/"
         : "https://conf-backend.onrender.com/auth/org/"
     );

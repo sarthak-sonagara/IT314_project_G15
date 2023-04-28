@@ -24,7 +24,7 @@ const c1 = {
 
 function OrgProfile() {
   const { org } = useAuthContext();
-  const [url, setUrl] = useState("");
+  let url = "";
   const [allConferences, setAllConferences] = useState([]);
   const [pastConferences, setPastConferences] = useState([]);
   const [upcomingConferences, setUpcomingConferences] = useState([]);
@@ -34,25 +34,22 @@ function OrgProfile() {
 
   useEffect(() => {
     document.title = "Organization Profile";
-    setUrl(
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/auth/org/" + org.email
-        : "https://conf-backend.onrender.com/auth/org/" + org.email
-    );
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/auth/org/" + org.email
+      : "https://conf-backend.onrender.com/auth/org/" + org.email;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setOrgnization(data.org);
-        setUrl(
-          process.env.NODE_ENV === "development"
-            ? "http://localhost:3000/auth/org/" +
-                organization._id +
-                "/myConferences"
-            : "https://conf-backend.onrender.com/auth/org/" +
-                organization._id +
-                "/myConferences"
-        );
+        url = import.meta.env.DEV
+          ? "http://localhost:3000/auth/org/" +
+            organization._id +
+            "/myConferences"
+          : "https://conf-backend.onrender.com/auth/org/" +
+            organization._id +
+            "/myConferences";
         fetch(url)
           .then((res) => res.json())
           .then((data) => {
@@ -71,9 +68,7 @@ function OrgProfile() {
         .filter((conference) => new Date(conference.startDate) >= new Date())
         .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
     );
-
-    getImage();
-  }, []);
+  }, [org]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -99,55 +94,6 @@ function OrgProfile() {
     });
     return <ul class="org_dropdown_menu org_dropdown_menu-2">{rows}</ul>;
   }
-
-  const [postImage, setPostImage] = useState({ myFile: "" });
-  const [image, setImage] = useState([]);
-
-  function getImage() {
-    // for now passed hard coded value
-    fetch("http://localhost:3000/auth/user/show-pic/6446d482aa8b2ea8be3ba696", {
-      method: "GET",
-    }).then((res) => {
-      res.json().then((data) => {
-        console.log(data);
-        setImage(data.profile_picture);
-      });
-    });
-  }
-
-  function uploadImage() {
-    fetch("http://localhost:3000/auth/user/upload-pic/", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: "6446d482aa8b2ea8be3ba696", // for now passed hard coded value
-        profile_picture: postImage.myFile,
-      }),
-    })
-      .then((response) => {
-        // console.log(response);
-      })
-      .catch((error) => {
-        // Handle error
-      });
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // createPost(postImage)
-    console.log("hello in handleSubmit");
-    uploadImage();
-    console.log("Image Uploaded Successfully");
-  };
-
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    console.log("hello in handleFileUpload");
-    const base64 = await convertToBase64(file);
-    setPostImage({ ...postImage, myFile: base64 });
-  };
 
   return (
     <>
@@ -177,10 +123,10 @@ function OrgProfile() {
               </div>
               <hr class="org_h_line" />
               <div className="org_profileLinks">
-                <Link href={org.instagram}>
+                <Link href={organization.instagram}>
                   <AiOutlineInstagram />
                 </Link>
-                <Link href={org.linkedIn}>
+                <Link href={organization.linkedIn}>
                   <AiOutlineLinkedin />
                 </Link>
               </div>

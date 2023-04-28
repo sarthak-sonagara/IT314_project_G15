@@ -21,21 +21,27 @@ const OrgDashboard = () => {
   const [show, setShow] = useState(false);
 
   const [myid, Setmyid] = useState("");
-  const [url, setUrl] = useState("");
+  const [urltemp, setUrl] = useState("");
+  let url = "";
 
   const fetchOrgsFromEmail = async () => {
-    setUrl(
-      prcess.env.NODE_ENV === "development"
-        ? "http://localhost:3000/auth/org/" + org.email
-        : "https://conf-backend.onrender.com/auth/org/" + org.email
-    );
-    const res = await fetch(url);
-    const data = await res.json();
-    console.log("This is Orgs:", data);
-    Setmyid(data.org._id);
-    setorgName(data.org.orgname);
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/auth/org/" + org.email
+      : "https://conf-backend.onrender.com/auth/org/" + org.email;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        Setmyid(data.org._id);
+        setorgName(data.org.orgname);
+        fetchUsers();
+      });
+
   };
-  fetchOrgsFromEmail();
+  useEffect(() => {
+    document.title = "Organizer Dashboard";
+    fetchOrgsFromEmail();
+  }, [org]);
 
   const handleClose = () => {
     setShow(false);
@@ -246,13 +252,10 @@ const OrgDashboard = () => {
   };
 
   const fetchUsers = async () => {
-    setUrl(
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/auth/org/" + myid + "/myconferences"
-        : "https://conf-backend.onrender.com/auth/org/" +
-            myid +
-            "/myconferences"
-    );
+    url = import.meta.env.MODE
+      ? "http://localhost:3000/auth/org/" + myid + "/myconferences"
+      : "https://conf-backend.onrender.com/auth/org/" + myid + "/myconferences";
+
     const res = await fetch(url);
     const data = await res.json();
     console.log("This are Users:", data);
@@ -339,7 +342,6 @@ const OrgDashboard = () => {
       });
     });
   };
-  fetchUsers();
 
   return (
     <>
