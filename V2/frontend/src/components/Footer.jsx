@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <div>
+    <>
       <footer className="text-center text-lg-start text-black">
         <div className="container p-4 pb-0">
           <section className="">
@@ -52,23 +52,32 @@ const Footer = () => {
                   <b>Contact</b>
                 </h5>
                 <p>
-                  <FontAwesomeIcon icon={faHouse} className="mx-3 text-secondary" />
+                  <FontAwesomeIcon
+                    icon={faHouse}
+                    className="mx-3 text-secondary"
+                  />
                   Gandhinagar, Gujarat, India
                 </p>
                 <p>
-                  <FontAwesomeIcon icon={faEnvelope} className="mx-3 text-secondary" />{" "}
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className="mx-3 text-secondary"
+                  />{" "}
                   cms_info@gmail.com
                 </p>
                 <p>
-                  <FontAwesomeIcon icon={faPhone} className="mx-3 text-secondary" /> + 279 234
-                  567 88
+                  <FontAwesomeIcon
+                    icon={faPhone}
+                    className="mx-3 text-secondary"
+                  />{" "}
+                  + 279 234 567 88
                 </p>
               </div>
             </div>
           </section>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
