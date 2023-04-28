@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 const Papers = () => {
   const { conference } = useLocation().state;
   const [downloads, setDownloads] = useState([]);
+  let url = "";
 
   const handleDownload = (event, url) => {
     event.preventDefault();
@@ -14,7 +15,10 @@ const Papers = () => {
 
   useEffect(() => {
     conference.papers.map((paper) => {
-      fetch("http://localhost:3000/files/" + paper.fileUrl)
+      url = import.meta.env.DEV
+        ? "http://localhost:3000/files/" + paper.fileUrl
+        : "https://conf-backend.onrender.com/files/" + paper.fileUrl;
+      fetch(url)
         .then((res) => res.json())
         .then((data) => {
           setDownloads((prev) => [...prev, data.downloadUrl]);
