@@ -4,10 +4,16 @@ import "../assets/CSS/timeline.css";
 const TimelineCard = ({ conference, index }) => {
   const rootClass = index & 1 ? "timeline-2 right-2" : "timeline-2 left-2";
   const cardClass = index & 1 ? "card-left" : "card-right";
+
   const formatDate = (date) => {
     const d = new Date(date);
     return d.toLocaleDateString();
   };
+
+  const handleRegister = () => {
+    fetch();
+  };
+
   return (
     <>
       <div class={rootClass}>
