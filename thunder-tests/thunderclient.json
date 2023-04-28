@@ -279,5 +279,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "a6e45b64-e3ef-49eb-b4a5-3614e937836d",
+    "colId": "fefdc415-53e5-4db8-ab57-ae06ebe0dae6",
+    "containerId": "6e31e54c-30d1-4fbc-ade2-8fc9d9b0b1ff",
+    "name": "register conference",
+    "url": "http://localhost:3000/org/register/644b94b5e8e41b681b5d0bc4",
+    "method": "PATCH",
+    "sortNum": 160000,
+    "created": "2023-04-28T12:36:36.288Z",
+    "modified": "2023-04-28T12:37:44.626Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"userId\":\"642dea69a53930d9127550a8\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

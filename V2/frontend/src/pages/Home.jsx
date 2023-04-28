@@ -19,7 +19,7 @@ const Home = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setOrgs(data.orgs);
+        setOrgs(data.orgs.filter((org) => org.accepted));
       });
 
     // get details of all top 5 upcoming conferences
@@ -108,12 +108,7 @@ const Home = () => {
                         Organization
                       </strong>
                       <h3 className="mb-2">{org.orgname}</h3>
-                      <Link
-                        to={{
-                          pathname: "/home-conf",
-                          state: org,
-                        }}
-                      >
+                      <Link to={"conferences"} state={{ org }}>
                         <div className="d-grid gap-2">
                           <button className="btn btn-success" type="button">
                             More Conferences...
