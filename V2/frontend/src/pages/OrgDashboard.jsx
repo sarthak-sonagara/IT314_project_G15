@@ -37,10 +37,10 @@ const OrgDashboard = () => {
   };
   fetchOrgsFromEmail();
 
-  // useEffect(() => {
-  //   document.title = "Organizer Dashboard";
-  //   fetchOrgsFromEmail();
-  // }, [org]);
+  useEffect(() => {
+    document.title = "Organizer Dashboard";
+    fetchOrgsFromEmail();
+  }, [org]);
 
   const handleClose = () => {
     setShow(false);
@@ -133,11 +133,13 @@ const OrgDashboard = () => {
 
     var id = editid;
 
-    url = import.meta.env.DEV
-      ? "http://localhost:3000/org/delete/" + id
-      : "https://conf-backend.onrender.com/org/delete/" + id;
-
-    fetch(url, {
+    setUrl(
+      prcess.env.NODE_ENV === "development"
+        ? "http://localhost:3000/org/delete/" + id
+        : "https://conf-backend.onrender.com/org/delete/" + id
+    );
+    console.log(urltemp);
+    fetch(urltemp, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -220,7 +222,6 @@ const OrgDashboard = () => {
     url = import.meta.env.MODE
       ? "http://localhost:3000/org/edit/"
       : "https://conf-backend.onrender.com/org/edit/";
-
     fetch(url, {
       method: "PATCH",
       headers: {
