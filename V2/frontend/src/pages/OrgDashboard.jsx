@@ -28,14 +28,14 @@ const OrgDashboard = () => {
     url = import.meta.env.DEV
       ? "http://localhost:3000/auth/org/" + org.email
       : "https://conf-backend.onrender.com/auth/org/" + org.email;
-      const res = await fetch(url);
-      const data = await res.json();
-      console.log("This is Orgs:", data);
-      Setmyid(data.org._id);
-      setorgName(data.org.orgname);
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log("This is Orgs:", data);
+    Setmyid(data.org._id);
+    setorgName(data.org.orgname);
     // fetchUsers();
   };
-fetchOrgsFromEmail();
+  fetchOrgsFromEmail();
 
   useEffect(() => {
     document.title = "Organizer Dashboard";
@@ -102,13 +102,11 @@ fetchOrgsFromEmail();
       return;
     }
 
-    setUrl(
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/org/create"
-        : "https://conf-backend.onrender.com/org/create"
-    );
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/org/create"
+      : "https://conf-backend.onrender.com/org/create";
 
-    fetch(urltemp, {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -135,13 +133,11 @@ fetchOrgsFromEmail();
 
     var id = editid;
 
-    setUrl(
-      prcess.env.NODE_ENV === "development"
-        ? "http://localhost:3000/org/delete/" + id
-        : "https://conf-backend.onrender.com/org/delete/" + id
-    );
-    console.log(urltemp);
-    fetch(urltemp, {
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/org/delete/" + id
+      : "https://conf-backend.onrender.com/org/delete/" + id;
+
+    fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -221,12 +217,11 @@ fetchOrgsFromEmail();
       alert("Please enter a valid year in start date");
       return;
     }
-    setUrl(
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/org/edit/"
-        : "https://conf-backend.onrender.com/org/edit/"
-    );
-    fetch(urltemp, {
+    url = import.meta.env.MODE
+      ? "http://localhost:3000/org/edit/"
+      : "https://conf-backend.onrender.com/org/edit/";
+
+    fetch(url, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
