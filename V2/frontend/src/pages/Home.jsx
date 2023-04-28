@@ -35,6 +35,8 @@ const Home = () => {
           .slice(0, 5);
         setUpcomingConf(temp);
       });
+
+    console.log(upcomingConf);
   }, []);
 
   return (
