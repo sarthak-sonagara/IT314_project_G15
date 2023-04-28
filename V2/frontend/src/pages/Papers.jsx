@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 const Papers = () => {
   const { conference } = useLocation().state;
@@ -23,11 +24,22 @@ const Papers = () => {
 
   return (
     <>
+      <Navbar />
       {!downloads || downloads.length === 0 ? (
-        <h1>No papers submitted yet</h1>
+        <h1
+          className="text-center text-primary mt-5"
+          style={{ marginTop: "3em" }}
+        >
+          No papers submitted yet
+        </h1>
       ) : (
         <div className="container">
-          <h2 className="text-center text-primary">Papers submitted</h2>
+          <h2
+            className="text-center text-primary "
+            style={{ marginTop: "3em" }}
+          >
+            Papers submitted
+          </h2>
 
           <table className="table">
             <thead>
