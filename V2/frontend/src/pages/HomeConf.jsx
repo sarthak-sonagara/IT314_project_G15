@@ -206,7 +206,7 @@ const HomeConf = () => {
                               handleCancelRegister(event, conference._id, index)
                             }
                           >
-                            Registered
+                            Unregister
                           </button>
                         ) : (
                           <button
