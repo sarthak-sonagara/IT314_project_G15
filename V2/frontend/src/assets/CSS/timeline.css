@@ -81,7 +81,7 @@
 }
 
 .card-left {
-  background-color: #f5fffa;
+  background-color: #ffffff;
 }
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
@@ -120,4 +120,8 @@
   .right-2 {
     left: 0%;
   }
+}
+
+.point {
+  background-color: #caecff;
 }
