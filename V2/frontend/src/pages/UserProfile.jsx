@@ -22,21 +22,10 @@ const c1 = {
   description: "aa to atyant sundar confereence chhe. khub khub abhar.",
 };
 
-// const user = {
-//   username: "Narayan",
-//   email: "shree_hari@gmail.com",
-//   password: "xyz",
-//   role: "attendee",
-//   oldConfList: [c1, c1, c1, c1, c1, c1, c1],
-//   newConfList: [c1, c1, c1, c1, c1, c1, c1],
-//   linkedIn: "https://www.linkedin.com/in/narayan-0b1b1b1b1/",
-//   instagram: "https://www.insta.com/narayan",
-// };
-
 function UserProfile() {
   const { user } = useAuthContext();
   let url = "";
-  const [userData] = useState(user.user);
+  const [userData, setUserData] = useState({});
   const [allConferences, setAllConferences] = useState([]);
   const [pastConferences, setPastConferences] = useState([]);
   const [upcomoingConferences, setUpcomingConferences] = useState([]);
@@ -46,24 +35,34 @@ function UserProfile() {
 
   useEffect(() => {
     document.title = `${user.user.username}'s Profile`;
-    fetch("http://localhost:3000/org/all")
+    fetch("http://localhost:3000/auth/user/" + user.user._id)
       .then((res) => res.json())
       .then((data) => {
-        setAllConferences(data.conferences);
+        console.log(data);
+        setUserData(data.user);
       });
-
-    setPastConferences(
-      allConferences
-        .filter((conference) => new Date(conference.endDate) < new Date())
-        .sort((a, b) => new Date(b.endDate) - new Date(a.endDate))
-    );
-
-    setUpcomingConferences(
-      allConferences
-        .filter((conference) => new Date(conference.startDate) >= new Date())
-        .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
-    );
   }, []);
+
+  const formatDate = (date) => {
+    const d = new Date(date);
+    return d.toLocaleDateString();
+  };
+
+  useEffect(() => {
+    if (userData.registered_conferences) {
+      userData.registered_conferences.map((confId) => {
+        fetch("http://localhost:3000/org/" + confId)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (new Date(data.conference.endDate) < new Date())
+              setPastConferences((prev) => [...prev, data.conference]);
+            else setUpcomingConferences((prev) => [...prev, data.conference]);
+            console.log(pastConferences, upcomoingConferences);
+          });
+      });
+    }
+  }, [userData]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -73,9 +72,6 @@ function UserProfile() {
     setCurrentConf(confName);
     setIsModalOpen(true);
   };
-
-  // const [postImage, setPostImage] = useState({ myFile: "" });
-  // const [image, setImage] = useState([]);
 
   function conftable(conf) {
     const rows = conf.map((conf, ind) => {
@@ -93,59 +89,13 @@ function UserProfile() {
     return <ul class="dropdown_menu dropdown_menu-2">{rows}</ul>;
   }
 
-  // function getImage() {
-  //   // for now passed hard coded value
-  //   fetch("http://localhost:3000/auth/user/show-pic/6446d482aa8b2ea8be3ba696", {
-  //     method: "GET",
-  //   }).then((res) => {
-  //     res.json().then((data) => {
-  //       console.log(data);
-  //       setImage(data.profile_picture);
-  //     });
-  //   });
-  // }
-
-  // function uploadImage() {
-  //   fetch("http://localhost:3000/upload", {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       userId: "6446d482aa8b2ea8be3ba696", // for now passed hard coded value
-  //       profile_picture: postImage.myFile,
-  //     }),
-  //   })
-  //     .then((response) => {
-  //       // console.log(response);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error
-  //     });
-  // }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // createPost(postImage)
-  //   console.log("hello in handleSubmit");
-  //   uploadImage();
-  //   console.log("Image Uploaded Successfully");
-  // };
-
-  // const handleFileUpload = async (e) => {
-  //   const file = e.target.files[0];
-  //   console.log("hello in handleFileUpload");
-  //   const base64 = await convertToBase64(file);
-  //   setPostImage({ ...postImage, myFile: base64 });
-  // };
-
   return (
     <>
       <Navbar />
       <div className="userProfileContainer">
         <div className="box">
           <div className="profileBox py-5">
-          <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center">
               <FontAwesomeIcon
                 className="my-2 border border-3 text-light rounded-circle p-5"
                 style={{ fontSize: "8em" }}
@@ -161,9 +111,7 @@ function UserProfile() {
                 <span className="emailIcon">
                   <AiOutlineMail />
                 </span>
-                <Link href={`mailto: ${userData.email}`}>
-                  {userData.email}
-                </Link>
+                <Link href={`mailto: ${userData.email}`}>{userData.email}</Link>
               </div>
               <hr class="h_line" />
               <div className="profileLinks">
@@ -179,11 +127,17 @@ function UserProfile() {
           <div className="conferenceList">
             <div className="header">Registered Conferences</div>
             <div className="confTypes">
-              <div class="conferenceItem shadow-lg rounded dropdown dropdown-2" onclick="try">
+              <div
+                class="conferenceItem shadow-lg rounded dropdown dropdown-2"
+                onclick="try"
+              >
                 Past Conferences
                 {conftable(pastConferences)}
               </div>
-              <div class="conferenceItem shadow-lg rounded dropdown dropdown-2" onclick="try">
+              <div
+                class="conferenceItem shadow-lg rounded dropdown dropdown-2"
+                onclick="try"
+              >
                 Upcoming Conferences
                 {conftable(upcomoingConferences)}
               </div>
@@ -202,18 +156,18 @@ function UserProfile() {
                     fontWeight: "bold",
                     padding: "1rem",
                   }}
-                  >
+                >
                   <tr>
                     <td class="tg-gseg">Name</td>
                     <td class="tg-0lax">{currentConf.conferenceName}</td>
                   </tr>
                   <tr>
                     <td class="tg-gseg">Start date</td>
-                    <td class="tg-0lax">{currentConf.startDate}</td>
+                    <td class="tg-0lax">{formatDate(currentConf.startDate)}</td>
                   </tr>
                   <tr>
                     <td class="tg-gseg">End date</td>
-                    <td class="tg-0lax">{currentConf.endDate}</td>
+                    <td class="tg-0lax">{formatDate(currentConf.endDate)}</td>
                   </tr>
                   <tr>
                     <td class="tg-gseg">Guest speakers</td>

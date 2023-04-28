@@ -6,10 +6,14 @@ const CallForPaper = () => {
   const { user } = useAuthContext();
   const [file, setFile] = useState(null);
   const [allConfernecess, setAllConfernecess] = useState([]);
+  let url = "";
 
   useEffect(() => {
     document.title = "Call For Paper";
-    fetch("http://localhost:3000/org/all")
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/org/all"
+      : "https://conf-backend.onrender.com/org/all";
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setAllConfernecess(data.conferences);
@@ -26,16 +30,13 @@ const CallForPaper = () => {
     }
     let formData = new FormData();
     formData.append("file", file);
-    fetch(
-      "http://localhost:3000/upload?email=" +
-        user.user.email +
-        "&confid=" +
-        confid,
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    let url = import.meta.env.DEV
+      ? `http://localhost:3000/upload?email=${user.user.email}&confid=${confid}`
+      : `https://conf-backend.onrender.com/upload?email=${user.user.email}&confid=${confid}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -52,17 +53,6 @@ const CallForPaper = () => {
     return d.toLocaleDateString();
   };
 
-  const testDownload = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:3000/files")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        window.open(data.downloadUrl, "_blank");
-      })
-      .catch((err) => console.log(err));
-  };
-
   return (
     <>
       <Navbar />
@@ -70,7 +60,6 @@ const CallForPaper = () => {
         <form className="row">
           <div className="card-header">
             <h3>Conference Table</h3>
-            <button onClick={testDownload}>Test Download</button>
           </div>
           <table
             className="table table-hover"
@@ -93,9 +82,11 @@ const CallForPaper = () => {
                   Topic
                 </th>
                 <th scope="col" style={{ width: "20%" }}>
+                  Guest Speakers
+                </th>
+                <th scope="col" style={{ width: "20%" }}>
                   Upload
                 </th>
-                <th scope="col" style={{ width: "10%" }}></th>
               </tr>
             </thead>
             <tbody>
@@ -106,9 +97,32 @@ const CallForPaper = () => {
                   </td>
                   <td className="date">{formatDate(conference.startDate)}</td>
                   <td className="date">{formatDate(conference.endDate)}</td>
-                  <td className="topic">Space Reseach</td>
+                  {conference.guestSpeakers.length &&
+                  conference.guestSpeakers[0] !== "" ? (
+                    <td className="speaker">
+                      {conference.guestSpeakers.map((speaker) => {
+                        return <span className="speaker_name">{speaker}</span>;
+                      })}
+                    </td>
+                  ) : (
+                    <td className="speaker text-secondary">NIL</td>
+                  )}
+                  {conference.topics.length && conference.topics[0] !== "" ? (
+                    <td className="topic">
+                      {conference.topics.map((topic) => {
+                        return <span className="topic_name">{topic}</span>;
+                      })}
+                    </td>
+                  ) : (
+                    <td className="topic text-secondary">NIL</td>
+                  )}
                   <td className="file_upload">
-                    <input type="file" id="r_paper" onChange={handleChange} />
+                    <input
+                      class="btn  btn-sm"
+                      type="file"
+                      id="r_paper"
+                      onChange={handleChange}
+                    />
                   </td>
                   <td className="upload_button">
                     <button
