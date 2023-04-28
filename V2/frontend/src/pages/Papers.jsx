@@ -18,6 +18,7 @@ const Papers = () => {
       url = import.meta.env.DEV
         ? "http://localhost:3000/files/" + paper.fileUrl
         : "https://conf-backend.onrender.com/files/" + paper.fileUrl;
+        
       fetch(url)
         .then((res) => res.json())
         .then((data) => {
@@ -32,14 +33,7 @@ const Papers = () => {
   return (
     <>
       <Navbar />
-      {!conference || conference.papers.length === 0 ? (
-        <h1
-          className="text-center text-danger"
-          style={{ marginTop: "3em", minHeight: "70vh" }}
-        >
-          No papers submitted yet
-        </h1>
-      ) : (
+      {conference && conference.papers.length ? (
         <div className="container" style={{ minHeight: "60vh" }}>
           <h2
             className="text-center text-primary "
@@ -72,6 +66,13 @@ const Papers = () => {
             </tbody>
           </table>
         </div>
+      ) : (
+        <h1
+          className="text-center text-danger"
+          style={{ marginTop: "3em", minHeight: "70vh" }}
+        >
+          No papers submitted yet
+        </h1>
       )}
       <Footer />
     </>

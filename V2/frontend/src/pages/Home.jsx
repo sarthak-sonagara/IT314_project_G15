@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 const Home = () => {
   const [orgs, setOrgs] = useState([]);
   const [upcomingConf, setUpcomingConf] = useState([]);
-  console.log(import.meta.env.MODE);
+  console.log(import.meta.env.MODE, import.meta.env.DEV);
   useEffect(() => {
     document.title = "Home";
     // get details of all organizations
@@ -122,8 +122,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer/>
-      
+      <Footer />
     </div>
   );
 };
