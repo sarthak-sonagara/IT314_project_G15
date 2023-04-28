@@ -30,7 +30,7 @@ const Navbar = () => {
   const { user, org } = useAuthContext();
   const { logout, orgLogout } = useLogout();
   console.log("user ", user, "org", org);
-  const handleClick = () => {
+  const handleClick = () => { 
     logout();
     orgLogout();
   };
