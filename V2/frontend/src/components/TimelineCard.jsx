@@ -13,7 +13,7 @@ const TimelineCard = ({ conference, index }) => {
       <div class={rootClass}>
         <div class={cardClass + " card"}>
           <div class="card-body p-3">
-            <h4 class="fw-bold mb-2 bg-info p-2 rounded text-light">
+            <h4 class="fw-bold mb-2 bg-info p-2 rounded text-light bg-dark">
               {conference.conferenceName}
             </h4>
             <hr />
@@ -33,7 +33,7 @@ const TimelineCard = ({ conference, index }) => {
                 </p>
                 {conference.topics.map((topic) => {
                   return (
-                    <span class="mb-0 px-2 py-1 bg-primary mx-1 rounded text-light">
+                    <span class="point mb-0 px-2 py-1 mx-1 rounded text-dark">
                       {topic}
                     </span>
                   );
@@ -48,7 +48,7 @@ const TimelineCard = ({ conference, index }) => {
                 </p>
                 {conference.guestSpeakers.map((guestSpeaker) => {
                   return (
-                    <span class="mb-0 px-2 py-1 bg-primary mx-1 rounded text-light">
+                    <span class="point mb-0 px-2 py-1  mx-1 rounded text-dark">
                       {guestSpeaker}
                     </span>
                   );

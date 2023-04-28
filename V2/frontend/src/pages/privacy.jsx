@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/Navbar";
 import "../assets/CSS/privacy.css";
+import Footer from "../components/Footer";
 const Privacy = () => {
   return (
     <>
@@ -181,6 +182,8 @@ const Privacy = () => {
             </p>
           </div>
         </div>
+
+        <Footer />
       </div>
     </>
   );
