@@ -32,7 +32,7 @@ const Papers = () => {
   return (
     <>
       <Navbar />
-      {!conference || conference.length === 0 ? (
+      {!conference || conference.papers.length === 0 ? (
         <h1
           className="text-center text-danger"
           style={{ marginTop: "3em", minHeight: "70vh" }}
