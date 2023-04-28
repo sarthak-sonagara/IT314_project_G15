@@ -65,6 +65,7 @@ const userSchema = new mongoose.Schema({
     {
       title: String,
       fileUrl: String,
+      filename: String,
       conference: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Conference",

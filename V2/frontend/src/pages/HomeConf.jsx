@@ -8,6 +8,7 @@ const HomeConf = () => {
   const location = useLocation();
   const { user } = useAuthContext();
   const { org } = location.state;
+  console.log(org);
   let url = "";
 
   const [conferences, setConferences] = useState([]);
