@@ -18,25 +18,26 @@ import { Link } from "react-router-dom";
 const OrgDashboard = () => {
   const { user, org } = useAuthContext();
   const [orgName, setorgName] = useState("");
-  // console.log(org);
+  console.log(org);
   const [show, setShow] = useState(false);
 
   const [myid, Setmyid] = useState("");
   const [urltemp, setUrl] = useState("");
   let url = "";
+
   const fetchOrgsFromEmail = async () => {
     url = import.meta.env.DEV
       ? "http://localhost:3000/auth/org/" + org.email
       : "https://conf-backend.onrender.com/auth/org/" + org.email;
-      const res = await fetch(url);
-      const data = await res.json();
-      console.log("This is Orgs:", data);
-      Setmyid(data.org._id);
-      setorgName(data.org.orgname);
-    // fetchUsers();
-  };
-fetchOrgsFromEmail();
 
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        Setmyid(data.org._id);
+        setorgName(data.org.orgname);
+        fetchUsers();
+      });
+  };
   useEffect(() => {
     document.title = "Organizer Dashboard";
     fetchOrgsFromEmail();
@@ -108,7 +109,7 @@ fetchOrgsFromEmail();
         : "https://conf-backend.onrender.com/org/create"
     );
 
-    fetch(urltemp, {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -140,8 +141,8 @@ fetchOrgsFromEmail();
         ? "http://localhost:3000/org/delete/" + id
         : "https://conf-backend.onrender.com/org/delete/" + id
     );
-    console.log(urltemp);
-    fetch(urltemp, {
+    console.log(url);
+    fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -226,7 +227,7 @@ fetchOrgsFromEmail();
         ? "http://localhost:3000/org/edit/"
         : "https://conf-backend.onrender.com/org/edit/"
     );
-    fetch(urltemp, {
+    fetch(url, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -341,19 +342,26 @@ fetchOrgsFromEmail();
       });
     });
   };
-  fetchUsers();
 
   return (
     <>
       <div className="org-text-ctn">
         <h1 style={{}}>{orgName}</h1>
         <div className="">
+          {" "}
           <Link to="/">
-            <Button className="rounded" variant="primary">
+            {" "}
+            <Button
+            className="rounded"
+              variant="primary"
+            >
               Home
             </Button>
           </Link>
-          <Button variant="primary mx-3" onClick={handleShow}>
+          <Button
+            variant="primary mx-3"
+            onClick={handleShow}
+          >
             Add Conference
           </Button>
         </div>
