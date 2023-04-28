@@ -28,7 +28,7 @@ const Papers = () => {
   return (
     <>
       <Navbar />
-      {!downloads || downloads.length === 0 ? (
+      {!conference || conference.length === 0 ? (
         <h1
           className="text-center text-danger"
           style={{ marginTop: "3em", minHeight: "70vh" }}
