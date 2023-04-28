@@ -33,9 +33,14 @@ function UserProfile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentConf, setCurrentConf] = useState("");
 
+  let url = "";
+
   useEffect(() => {
     document.title = `${user.user.username}'s Profile`;
-    fetch("http://localhost:3000/auth/user/" + user.user._id)
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/auth/user/" + user.user._id
+      : "https://conf-backend.onrender.com/auth/user/" + user.user._id;
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -51,7 +56,10 @@ function UserProfile() {
   useEffect(() => {
     if (userData.registered_conferences) {
       userData.registered_conferences.map((confId) => {
-        fetch("http://localhost:3000/org/" + confId)
+        url = import.meta.env.DEV
+          ? "http://localhost:3000/org/" + confId
+          : "https://conf-backend.onrender.com/org/" + confId;
+        fetch(url)
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
