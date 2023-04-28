@@ -9,9 +9,9 @@ const HomeConf = (org) => {
         <Navbar />
         <div className="container" id="ctn-of-HomeConf" style={{marginTop: "70px"}}>
         <div className="row">
-          <div className="card-header"><h3>Conference Table</h3></div>
+          <div className="card-header text-center"><h3>Conference Table</h3></div>
           <table className="table table-hover">
-            <thead>
+            <thead className="bg-dark text-white">
               <tr>
                 <th scope="col" style={{ width: "25%" }}>Conference Name</th>
                 <th scope="col" style={{ width: "15%" }}>Start Date</th>
