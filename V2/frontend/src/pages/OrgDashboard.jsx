@@ -13,6 +13,7 @@ import $ from "jquery";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
+import { Link } from "react-router-dom";
 
 const OrgDashboard = () => {
   const { user, org } = useAuthContext();
@@ -36,7 +37,6 @@ const OrgDashboard = () => {
         setorgName(data.org.orgname);
         fetchUsers();
       });
-
   };
   useEffect(() => {
     document.title = "Organizer Dashboard";
@@ -347,17 +347,24 @@ const OrgDashboard = () => {
     <>
       <div className="org-text-ctn">
         <h1 style={{}}>{orgName}</h1>
-        <Button
-          variant="primary"
-          onClick={handleShow}
-          style={{
-            height: "50px",
-            width: "10rem",
-            borderRadius: "10px",
-          }}
-        >
-          Add Conference
-        </Button>
+        <div className="">
+          {" "}
+          <Link to="/">
+            {" "}
+            <Button
+            className="rounded"
+              variant="primary"
+            >
+              Home
+            </Button>
+          </Link>
+          <Button
+            variant="primary mx-3"
+            onClick={handleShow}
+          >
+            Add Conference
+          </Button>
+        </div>
       </div>
       <div className="org-outer">
         <Modal show={show} onHide={handleClose}>
