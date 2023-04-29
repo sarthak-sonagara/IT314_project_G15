@@ -133,13 +133,10 @@ const OrgDashboard = () => {
 
     var id = editid;
 
-    setUrl(
-      prcess.env.NODE_ENV === "development"
-        ? "http://localhost:3000/org/delete/" + id
-        : "https://conf-backend.onrender.com/org/delete/" + id
-    );
-    console.log(urltemp);
-    fetch(urltemp, {
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/org/delete/" + id
+      : "https://conf-backend.onrender.com/org/delete/" + id;
+    fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
