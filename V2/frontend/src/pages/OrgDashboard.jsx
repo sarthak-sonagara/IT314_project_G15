@@ -216,7 +216,7 @@ const OrgDashboard = () => {
       alert("Please enter a valid year in start date");
       return;
     }
-    url = import.meta.env.MODE
+    url = import.meta.env.DEV
       ? "http://localhost:3000/org/edit/"
       : "https://conf-backend.onrender.com/org/edit/";
     fetch(url, {
@@ -244,7 +244,7 @@ const OrgDashboard = () => {
   };
 
   const fetchUsers = async () => {
-    url = import.meta.env.MODE
+    url = import.meta.env.DEV
       ? "http://localhost:3000/auth/org/" + myid + "/myConferences"
       : "https://conf-backend.onrender.com/auth/org/" + myid + "/myConferences";
 
