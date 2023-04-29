@@ -245,8 +245,8 @@ const OrgDashboard = () => {
 
   const fetchUsers = async () => {
     url = import.meta.env.MODE
-      ? "http://localhost:3000/auth/org/" + myid + "/myconferences"
-      : "https://conf-backend.onrender.com/auth/org/" + myid + "/myconferences";
+      ? "http://localhost:3000/auth/org/" + myid + "/myConferences"
+      : "https://conf-backend.onrender.com/auth/org/" + myid + "/myConferences";
 
     const res = await fetch(url);
     const data = await res.json();
