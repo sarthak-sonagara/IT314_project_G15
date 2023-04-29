@@ -270,7 +270,10 @@ const AdminDashboard = () => {
           let td = $(this).closest("tr").find("td:eq(2)");
           if (table.cell(td).data()) {
             // console.log("This is a data of acceptance: ", table.cell(td).data());
-            fetch("http://localhost:3000/auth/org/update/accepted", {
+            url = import.meta.env.DEV
+              ? "http://localhost:3000/auth/org/update/accepted"
+              : "https://conf-backend.onrender.com/auth/org/update/accepted";
+            fetch(url, {
               method: "PATCH",
               headers: {
                 "Content-Type": "application/json",
