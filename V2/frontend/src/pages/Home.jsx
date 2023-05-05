@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 const Home = () => {
   const [orgs, setOrgs] = useState([]);
   const [upcomingConf, setUpcomingConf] = useState([]);
-  console.log(import.meta.env.MODE);
+  console.log(import.meta.env.MODE, import.meta.env.DEV);
   useEffect(() => {
     document.title = "Home";
     // get details of all organizations
@@ -59,7 +59,6 @@ const Home = () => {
             <img src={img} class="d-block w-100 h-100" alt="..." />
             <div class="carousel-caption d-none d-md-block">
               <h2>Conference Management Website</h2>
-              {/* <p>Welcome to </p> */}
             </div>
           </div>
         </div>
@@ -71,7 +70,7 @@ const Home = () => {
         </div>
 
         <section>
-          <div className="container py-5">
+          <div className="container">
             <div className="main-timeline-2">
               {upcomingConf.map((conf, index) => {
                 return (
@@ -123,8 +122,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer/>
-      
+      <Footer />
     </div>
   );
 };

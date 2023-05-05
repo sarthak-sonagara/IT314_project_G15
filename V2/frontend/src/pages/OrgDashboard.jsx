@@ -133,13 +133,10 @@ const OrgDashboard = () => {
 
     var id = editid;
 
-    setUrl(
-      prcess.env.NODE_ENV === "development"
-        ? "http://localhost:3000/org/delete/" + id
-        : "https://conf-backend.onrender.com/org/delete/" + id
-    );
-    console.log(urltemp);
-    fetch(urltemp, {
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/org/delete/" + id
+      : "https://conf-backend.onrender.com/org/delete/" + id;
+    fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -219,7 +216,7 @@ const OrgDashboard = () => {
       alert("Please enter a valid year in start date");
       return;
     }
-    url = import.meta.env.MODE
+    url = import.meta.env.DEV
       ? "http://localhost:3000/org/edit/"
       : "https://conf-backend.onrender.com/org/edit/";
     fetch(url, {
@@ -247,9 +244,9 @@ const OrgDashboard = () => {
   };
 
   const fetchUsers = async () => {
-    url = import.meta.env.MODE
-      ? "http://localhost:3000/auth/org/" + myid + "/myconferences"
-      : "https://conf-backend.onrender.com/auth/org/" + myid + "/myconferences";
+    url = import.meta.env.DEV
+      ? "http://localhost:3000/auth/org/" + myid + "/myConferences"
+      : "https://conf-backend.onrender.com/auth/org/" + myid + "/myConferences";
 
     const res = await fetch(url);
     const data = await res.json();

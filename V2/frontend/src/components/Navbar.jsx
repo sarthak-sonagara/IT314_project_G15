@@ -192,7 +192,7 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faAddressCard} className="menu-icons" />
             <p className="menu-texts">PROFILE</p>
           </Link>
-          {(!user || (user && user.user.role === "publisher")) && (
+          {(!user || (user && user.user.role === "publisher")) && !org && (
             <Link to="/call-for-paper" className="menu-options-ctn">
               <div className="active-indicator"></div>
               <FontAwesomeIcon icon={faUpload} className="menu-icons" />

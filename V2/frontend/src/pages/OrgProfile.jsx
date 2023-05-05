@@ -25,6 +25,7 @@ const c1 = {
 function OrgProfile() {
   const { org } = useAuthContext();
   let url = "";
+  const [orgData, setOrgData] = useState({});
   const [allConferences, setAllConferences] = useState([]);
   const [pastConferences, setPastConferences] = useState([]);
   const [upcomingConferences, setUpcomingConferences] = useState([]);
@@ -41,34 +42,33 @@ function OrgProfile() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setOrgnization(data.org);
+        setOrgData(data.org);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (orgData.conferences) {
+      orgData.conferences.map((confId) => {
         url = import.meta.env.DEV
-          ? "http://localhost:3000/auth/org/" +
-            organization._id +
-            "/myConferences"
-          : "https://conf-backend.onrender.com/auth/org/" +
-            organization._id +
-            "/myConferences";
+          ? "http://localhost:3000/org/" + confId
+          : "https://conf-backend.onrender.com/org/" + confId;
+
         fetch(url)
           .then((res) => res.json())
           .then((data) => {
-            setAllConferences(data.conferences);
-          });
+            console.log(data);
+            if (data.conference.startDate < Date.now()) {
+              setPastConferences((prev) => [...prev, data.conference]);
+            } else {
+              setUpcomingConferences((prev) => [...prev, data.conference]);
+            }
+          })
+          .catch((err) => console.log(err));
+
+        console.log(pastConferences, upcomingConferences);
       });
-
-    setPastConferences(
-      allConferences
-        .filter((conference) => new Date(conference.endDate) < new Date())
-        .sort((a, b) => new Date(b.endDate) - new Date(a.endDate))
-    );
-
-    setUpcomingConferences(
-      allConferences
-        .filter((conference) => new Date(conference.startDate) >= new Date())
-        .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
-    );
-  }, [org]);
+    }
+  }, [orgData]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -95,6 +95,11 @@ function OrgProfile() {
     return <ul class="org_dropdown_menu org_dropdown_menu-2">{rows}</ul>;
   }
 
+  const formatDate = (date) => {
+    const d = new Date(date);
+    return d.toLocaleDateString();
+  };
+
   return (
     <>
       <Navbar />
@@ -110,7 +115,7 @@ function OrgProfile() {
             </div>
             <div className="d-flex flex-column align-items-center">
               <div className="profileOrgName p-2 text-primary rounded">
-                {organization.orgname}
+                {orgData.orgname}
               </div>
               <hr class="org_h_line" />
               <div className="org_profileEmail">
@@ -174,11 +179,11 @@ function OrgProfile() {
                   </tr>
                   <tr>
                     <td class="tg-gseg">Start date</td>
-                    <td class="tg-0lax">{currentConf.startDate}</td>
+                    <td class="tg-0lax">{formatDate(currentConf.startDate)}</td>
                   </tr>
                   <tr>
                     <td class="tg-gseg">End date</td>
-                    <td class="tg-0lax">{currentConf.endDate}</td>
+                    <td class="tg-0lax">{formatDate(currentConf.endDate)}</td>
                   </tr>
                   <tr>
                     <td class="tg-gseg">Guest speakers</td>

@@ -32,7 +32,7 @@ const TimelineCard = ({ conference, index }) => {
             </p>
             <p class="mb-0">{conference.description}</p>
 
-            {conference.topics.length && (
+            {conference.topics.length && conference.topics[0] !== "" && (
               <>
                 <p class="mb-0">
                   <b>Topics: </b>
@@ -47,20 +47,21 @@ const TimelineCard = ({ conference, index }) => {
               </>
             )}
 
-            {conference.guestSpeakers.length && (
-              <>
-                <p class="mb-0">
-                  <b>Guest Speakers: </b>
-                </p>
-                {conference.guestSpeakers.map((guestSpeaker) => {
-                  return (
-                    <span class="point mb-0 px-2 py-1  mx-1 rounded text-dark">
-                      {guestSpeaker}
-                    </span>
-                  );
-                })}
-              </>
-            )}
+            {conference.guestSpeakers.length &&
+              conference.topics[0] !== "" && (
+                <>
+                  <p class="mb-0">
+                    <b>Guest Speakers: </b>
+                  </p>
+                  {conference.guestSpeakers.map((guestSpeaker) => {
+                    return (
+                      <span class="point mb-0 px-2 py-1  mx-1 rounded text-dark">
+                        {guestSpeaker}
+                      </span>
+                    );
+                  })}
+                </>
+              )}
           </div>
         </div>
       </div>

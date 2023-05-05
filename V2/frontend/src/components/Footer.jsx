@@ -5,8 +5,12 @@ import {
   faEnvelope,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const handleGoToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <>
       <footer className="text-center text-lg-start text-black">
@@ -31,14 +35,14 @@ const Footer = () => {
                   <b>Sections</b>
                 </h5>
                 <p>
-                  <a className="text-black" href="#">
+                  <Link className="text-black" onClick={handleGoToTop}>
                     Back To Top
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a className="text-black" href="privacy-policy">
+                  <Link className="text-black" to="/privacy-policy">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </p>
                 {/* <p>
                     <a className="text-black" href="#organizations">Organizations</a>

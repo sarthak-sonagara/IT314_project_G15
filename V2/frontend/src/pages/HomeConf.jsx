@@ -173,7 +173,8 @@ const HomeConf = () => {
                       <td className="date">
                         {formateDate(conference.endDate)}
                       </td>
-                      {conference.guestSpeakers.length > 0 ? (
+                      {conference.guestSpeakers.length &&
+                      conference.guestSpeakers[0] !== "" ? (
                         <td className="speaker">
                           {conference.guestSpeakers.map((speaker) => {
                             return (
@@ -182,9 +183,18 @@ const HomeConf = () => {
                           })}
                         </td>
                       ) : (
-                        <td className="speaker">NIL</td>
+                        <td className="speaker text-secondary">NIL</td>
                       )}
-                      <td className="topic">{conference.topics}</td>
+                      {conference.topics.length &&
+                      conference.topics[0] !== "" ? (
+                        <td className="topic">
+                          {conference.topics.map((topic) => {
+                            return <span className="topic_name">{topic}</span>;
+                          })}
+                        </td>
+                      ) : (
+                        <td className="topic text-secondary">NIL</td>
+                      )}
                       <td className="reg_btn">
                         {status[index] ? (
                           <button
@@ -196,7 +206,7 @@ const HomeConf = () => {
                               handleCancelRegister(event, conference._id, index)
                             }
                           >
-                            Registered
+                            Unregister
                           </button>
                         ) : (
                           <button
